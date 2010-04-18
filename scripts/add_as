@@ -1,3 +1,8 @@
 #!/bin/sh
+
+if [ x"$2" = x ]; then
+ echo "Usage: $0 <ASN> <owner>" >&2; exit 255
+fi
+
 mkdir -p db/as/$1 || exit 1
 echo $2 > db/as/$1/owner
