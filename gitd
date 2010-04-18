@@ -1,0 +1,2 @@
+#!/bin/sh
+git daemon --listen=1.0.27.102 --base-path=/home/www/resdb/
