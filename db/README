@@ -1,0 +1,25 @@
+AnoNet Resource Database
+
+as => list of ASNs with owners
+dom => list of domains with owners and nameservers
+ip => list of direct IP assignments with owners and nameservers
+usr => list of users with useful information
+
+The domains are organized by TLD, making it easy to split TLDs off onto
+separate TLD servers, if that ever proves to be useful.
+
+The IP claims are classful, the rationale being that reverse DNS is
+classful anyway, and so trying to split delegations and rDNS on different
+boundries is just an easy way of adding nnnecessary complexity.  If you
+want less than a class C, you should just take a full class C and share
+it with your friends.  If you want a /23, just take 2 adjacent /24s.
+(Remember, your rDNS for the two blocks will have to be separate anyway.)
+
+If anybody wants IPv6, just add an ip6 directory (again, with
+subdirectories split according to rDNS rules).
+
+The user directory is intended to facilitate contact between users.
+Its original purpose was to maintain git URLs directly in the database
+(makes automated git peering dead simple), but it's useful for far more.
+Feel free to add arbitrary fields for users, but it may be wise to use an
+"x-" prefix if you're not sure about the best name for some field.
