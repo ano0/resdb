@@ -1,0 +1,41 @@
+#!/bin/sh
+
+vars="gitd_ip gitd_basepath"
+
+echo "Welcome to the resdb configurator!" >&2
+echo >&2
+
+for var in $vars ; do
+ export "$var"="$(cat conf/$var)"
+done
+if [ x"$gitd_basepath" = x ]; then
+ gitd_basepath="$(pwd)/"
+fi
+
+echo "Please enter the IP address you'd like gitd to listen on." >&2
+echo "(Default: $gitd_ip)" >&2
+echo -n "IP? " >&2
+read new_gitd_ip
+if [ x"$new_gitd_ip" != x ]; then
+ gitd_ip="$new_gitd_ip"
+fi
+
+echo "Please enter the full path to resdb." >&2
+echo "(Default: $gitd_basepath)" >&2
+echo -n "BasePath? " >&2
+read new_gitd_basepath
+if [ x"$new_gitd_basepath" != x ]; then
+ gitd_basepath="$new_gitd_basepath"
+fi
+
+echo "Proposed configuration:" >&2
+for var in $vars ; do
+ echo "$var=${!var}" >&2
+done
+echo -n "To write the configuration, hit RETURN.  To abort, hit ^C: " >&2
+read write_config
+
+mkdir -p conf || exit 1
+for var in $vars ; do
+ echo "${!var}" > conf/"$var" || exit 1
+done
