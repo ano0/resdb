@@ -27,3 +27,37 @@ for tld in db/dom/* ; do
   done
  done
 done
+if [ "$(ls db/ip/ | tr -d 'A-F0-9\n' | wc -c)" != 0 ]; then
+ echo "There's a bad first octet.  You probably don't want to run any shell scripts." >&2
+ exit 1
+ for first in db/ip/* ; do
+  if [ "$(ls $first/ | tr -d 'A-F0-9\n' | wc -c)" != 0 ]; then
+   echo "There's a bad second octet under $first." >&2
+   echo "You probably don't want to run any shell scripts." >&2
+   exit 1
+   for second in $first/* ; do
+    if [ "$(ls $second/ | tr -d 'A-F0-9\n' | wc -c)" != 0 ]; then
+     echo "There's a bad third octet under $second." >&2
+     echo "You probably don't want to run any shell scripts." >&2
+     exit 1
+    fi
+    for third in $second/* ; do
+     if [ "$(ls $third/ns/ | tr -d 'a-z0-9\n.-' | wc -c)" != 0 ]; then
+      ip="$(basename $first).$(basename $second).$(basename $third).0/24"
+      echo "There's a bad nameserver under $ip." >&2
+      echo "You probably don't want to run any shell scripts." >&2
+     fi
+     for ns in $third/ns/* ; do
+      if [ "$(cat $ns | tr -d '0-9.\n' | wc -c)" != 0 ]; then
+       ip="$(basename $first).$(basename $second).$(basename $third).0/24"
+       nsname="$(basename $ns)"
+       echo "There's a bad nameserver IP under $ip, for" >&2
+       echo " $nsname" >&2
+       echo "You probably don't want to run any shell scripts." >&2
+      fi
+     done
+    done
+   done
+  fi
+ done
+fi

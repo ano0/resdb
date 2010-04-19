@@ -1,0 +1,9 @@
+#!/bin/sh
+(
+ echo -n "ibase=16; "
+ if [ x"$1" = x ]; then
+  cat
+ else
+  echo "$1"
+ fi
+) | bc -q
