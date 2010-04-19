@@ -1,15 +1,24 @@
 #!/bin/sh
 
-vars="gitd_ip gitd_basepath"
+vars="gitd_ip gitd_basepath tinydns_config tinydns__tldsrvrname tinydns__tldsrvrip"
 
 echo "Welcome to the resdb configurator!" >&2
 echo >&2
 
 for var in $vars ; do
- export "$var"="$(cat conf/$var)"
+ export "$var"="$(cat conf/$var 2>/dev/null)"
 done
 if [ x"$gitd_basepath" = x ]; then
  gitd_basepath="$(pwd)/"
+fi
+if [ x"$tinydns_config" = x ]; then
+ tinydns_config=n
+fi
+if [ x"$tinydns__tldsrvrname" = x ]; then
+ tinydns__tldsrvrname="uz5fvb7zdqyuz4q8ysjdfuf04kzd2lrt0l6fp4uyguxdg5tfut06ck.anons.somerandomnick.ano"
+fi
+if [ x"$tinydns__tldsrvrip" = x ]; then
+ tinydns__tldsrvrip="1.0.27.37"
 fi
 
 echo "Please enter the IP address you'd like gitd to listen on." >&2
@@ -26,6 +35,29 @@ echo -n "BasePath? " >&2
 read new_gitd_basepath
 if [ x"$new_gitd_basepath" != x ]; then
  gitd_basepath="$new_gitd_basepath"
+fi
+
+echo -n "Would you like to configure the tinydns datafile generator? " >&2
+read new_tinydns_config
+if [ x"$new_tinydns_config" != x ]; then
+ tinydns_config="$new_tinydns_config"
+fi
+if [ x"$tinydns_config" = xy ]; then
+ echo "Please enter the hostname of your .ano TLD server." >&2
+ echo "(Default: $tinydns__tldsrvrname)" >&2
+ echo -n "TLDSrvName? " >&2
+ read new_tinydns__tldsrvrname
+ if [ x"$new_tinydns__tldsrvrname" != x ]; then
+  tinydns__tldsrvrname="$new_tinydns__tldsrvrname"
+ fi
+
+ echo "Please enter the IP address of your .ano TLD server." >&2
+ echo "(Default: $tinydns__tldsrvrip)" >&2
+ echo -n "TLDSrvIP? " >&2
+ read new_tinydns__tldsrvrip
+ if [ x"$new_tinydns__tldsrvrip" != x ]; then
+  tinydns__tldsrvrip="$new_tinydns__tldsrvrip"
+ fi
 fi
 
 echo "Proposed configuration:" >&2

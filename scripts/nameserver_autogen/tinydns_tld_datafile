@@ -1,0 +1,19 @@
+#!/bin/sh
+if ! ./scripts/check_db_safety; then
+ exit 1
+fi
+tldsrvrname="$(./scripts/conf_var tinydns__tldsrvrname uz5fvb7zdqyuz4q8ysjdfuf04kzd2lrt0l6fp4uyguxdg5tfut06ck.anons.somerandomnick.ano)"
+tldsrvrip="$(./scripts/conf_var tinydns__tldsrvrip 1.0.27.37)"
+for tld in db/dom/* ; do
+ tldname="$(basename $tld)"
+ echo "+$tldsrvrname:$tldsrvrip:3600"
+ echo ".$tldname::$tldsrvrname"
+ for zone in $tld/* ; do
+  for ns in $zone/ns/* ; do
+   domain="$(basename $zone).$(basename $tld)"
+   nsip="$(cat $ns)"
+   nsname="$(basename $ns)"
+   echo "&$domain:$nsip:$nsname"
+  done
+ done
+done

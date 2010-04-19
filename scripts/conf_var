@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ -r "conf/$1" ]; then
+ exec cat "conf/$1"
+else
+ echo "$2"
+ exec false
+fi
