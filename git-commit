@@ -1,0 +1,3 @@
+#!/bin/sh
+git add configure db doc git-commit gitd scripts
+git commit

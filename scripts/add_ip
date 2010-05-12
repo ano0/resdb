@@ -1,0 +1,24 @@
+#!/bin/sh
+
+if [ x"$2" = x ]; then
+ echo "Usage: $0 <cidr> <owner> [<ns[/nsip]>...]" >&2; exit 255
+fi
+
+cidr="$1"
+hex="$(./scripts/cidr2hex "$cidr")"
+dir=db/ip/"$hex"
+if [ -e "$dir" ]; then
+ echo "Refusing to clobber existing record" >&2; exit 1
+fi
+mkdir -p "$dir" || exit 1
+echo "$cidr" > "$dir"/cidr
+echo "$2" > "$dir"/owner
+mkdir "$dir"/ns || exit 1
+shift; shift;
+while [ x"$1" != x ]; do
+ echo "$1" | tr / ' ' | (
+  read ns nsip
+  echo "$nsip" > "$dir/ns/$ns"
+ )
+ shift;
+done

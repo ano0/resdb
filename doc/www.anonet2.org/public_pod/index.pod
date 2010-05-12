@@ -1,0 +1,193 @@
+=head1 AnoNet, Take 2!
+
+So, you came across anoNet and thought it sounded great, so you decided
+to join in order to check it out.
+
+...and found the (only) client port doesn't work half the time,
+
+...and most of the advertised services no longer exist,
+
+...and most of the people have left,
+
+...and those who are left can hardly be classified as friendly,
+
+...and so you left, and perhaps found another darknet instead.
+
+Well, you're not the only one who's been turned off, and a few of us
+have decided to fix AnoNet.  Some of us are relatively new, while others
+joined AnoNet years ago, and left out of disgust.  A number of features
+set version 2 apart from the original:
+
+=over
+
+=item No false advertising
+
+If you see something advertised here, it exists.  You won't see stuff
+that hasn't been up in years here.
+
+=item No centralized network control
+
+You don't have to worry about Kaos waking up one morning and blocking
+your access to the whole network by deciding to filter private ASNs.
+You also don't have to worry about a couple of powerful guys getting
+together and "blacklisting" you from the network for some unspecified
+reason with an inquisition against your peers.
+
+=item No centralized IRC control
+
+No centralized IRC control: You don't have to worry about risc g-lining
+you from the "official" IRC network for no apparent reason, and refusing
+to even admit to having g-lined you.
+
+=item No resource mess
+
+We have one mechanism for resource management, a decentralized (not just
+distributed, but truly decentralized) resource database. You don't have
+to deal with half a zillion incompatible (and in the case of the wiki,
+down) services, run by guys who may not even be on the AnoNet tomorrow.
+
+=item No arbitrary rules
+
+If you read the advertising for AnoNet, you probably think it's whatever
+you make of it. Sadly, there's a tiny handful of people who have control
+over most of the network, and make new (unwritten) rules whenever the
+mood strikes them. The sum of those rules is that AnoNet is whatever
+I<they> make of it. In version 2, we've undertaken to fix that, by both
+technical and administrative means.
+
+=back
+
+=head2 How to Join
+
+Joining is pretty simple: If you know how to connect to a
+client port, UFO's CP (L<http://ix.ucis.nl/clientport.php> or
+L<http://www.qontrol.nl/anonet-cp.tgz>) will already land you in
+the right place. (Once you're online, you can join "the club" at
+1.3.3.7:6667 #anonet, or irc.somerandomnick.ano:6667 #RendezVous. If
+you don't have an IRC client handy (or if you're too lazy to set
+it up to avoid leaking your real info), you can just telnet over to
+irc.somerandomnick.ano port 2323. Alternatively, you can point your
+Jabber client over to irc.somerandomnick.ano, or you can even use Jabber
+s2s to talk with everybody else by just joining the MUC room RendezVouz
+at irc.somerandomnick.ano.) If OpenVPN is all Greek to you, UFO's IRC
+server is also reachable from the public Internet (irc.kwaaknet.org port
+6667 channel #anonet). If IRC is all Greek to you, you may want to talk
+to your favorite search engine about that, or just use KwaakNet's Webchat
+(L<http://webchat.kwaaknet.org/?c=AnoNet>). (Note that if your only aim in
+joining AnoNet is to search Google anonymously, you can save yourself the
+hassle by just heading over to Scroogle (L<http://www.scroogle.org/>).)
+
+=head2 Why to Join
+
+(Note: There's now a separate page (L<http://www.anonet2.org/links.html>)
+with links to many more reasons to join AnoNet.)
+
+You'd want to join AnoNet2 for the same reasons as you'd want to join
+AnoNet1: to exercise your freedom of speech and action, without having
+to worry too much about people who don't like you making too many
+connections between your online and offline identities. Unlike AnoNet1,
+we're not nazis about our rules, so if you don't feel the need to conceal
+your real-life identity, we won't get all mad at you. Just please be
+considerate of those who would like to stay anonymous ("pseudonomous,"
+technically), and everybody is happy.
+
+A secondary reason for joining is to gain an opportunity to experiment
+with internet technologies without breaking "the real thing." While
+that's not the purpose behind AnoNet, it seems to be a common reason
+for joining, and as long as you don't break too much with your fun,
+you're more than welcome to have your fun here.
+
+You may want to join for the social scene (we even have our own social
+network, although nobody uses it for what should be obvious reasons),
+or you may want to create your own social scene. Again, you're not
+looking at an "official" reason for joining, but nobody owns AnoNet, so
+"official" is an artificial term 'round here.
+
+Finally, you may be getting a bit nervous at the amount of regulation
+piling up around the world against the public Internet. Since the "public"
+Internet is owned and managed by a number of multinational corporations,
+it's fairly easy for governments to regulate it. Part of the main
+purpose behind AnoNet has always been to get away from those private
+control points, in order to create a truly public internet. In AnoNet1,
+anybody who can regulate crzydmnd can regulate AnoNet's "official"
+wiki (and by extension, its resource "database"), and anybody who can
+regulate Kaos can regulate AnoNet's "official" client port (and by
+extension, all new AnoNet users), so the private control point problem
+hasn't quite been solved there. AnoNet2 is still largely controlled by
+UFO and somerandomnick, but we have both technical and administrative
+measures in place to ensure that as the network grows, the two of us
+will no longer have enough control to destroy the network, even if our
+own governments ever decide to try regulating us.
+
+=head2 Why Not to Join
+
+If you're looking for a ready-made community, where you just show up and
+"browse," AnoNet (either 1 or 2) is probably not what you're after.
+The whole concept behind AnoNet is that it's whatever you make it.
+That's not to say you'll have to build everything from scratch (and
+in fact, it's a bit too late for that, unless you want to I<re>build
+stuff that others have already built, and if you can do better than the
+original, people will probably switch to your version), but if you want
+to be happy here, you're best off bringing your creativity along rather
+than leaving it behind when you join.
+
+=head2 What You Can Do
+
+Since AnoNet uses the same protocols as the public Internet, anything
+that's possible on the public Internet is theoretically possible on
+AnoNet. In practice, we don't have anything that nobody bothered to
+provide on AnoNet.
+
+Here's a list of things you can currently do on AnoNet2 (i.e., without
+having to set anything up yourself):
+
+=over
+
+=item *
+
+DNS (1.0.27.38)
+
+=item *
+
+IRC (L<irc://1.3.3.7/anonet> or L<irc://irc.somerandomnick.ano/RendezVous>)
+
+=item *
+
+Jabber (irc.somerandomnick.ano)
+
+=item *
+
+Web
+
+=item *
+
+PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (irc.somerandomnick.ano)
+
+=item *
+
+git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/> and possibly other feeds)
+
+=back
+
+Here's a list of things that somebody claims to be working on:
+
+=over
+
+=item *
+
+email
+
+=item *
+
+news (NNTP)
+
+=item *
+
+outbound HTTP proxy to the public Internet
+
+=back
+
+If you want something that's not on either list, you'll either have to
+set it up yourself, or con somebody else into setting it up himself.  (If
+it's something that others are likely to find useful and/or interesting,
+you'll probably have an easy time recruiting guys to help you out.)

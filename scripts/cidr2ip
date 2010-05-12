@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ x"$1" = x ]; then
+ echo "Usage: $0 <cidr>" >&2; exit 255
+fi
+
+ip="$(echo "$1" | cut -d/ -f1)"
+len="$(echo "$1" | cut -d/ -f2)"
+if [ x"$((len%8))" != x0 ]; then
+ echo "Prefix length must be a multiple of 8" >&2; exit 255
+fi
+octets="$((len/8))"
+for x in `seq 1 $octets` ; do
+ echo $ip | cut -d. -f$x
+done | tr '\n' . | head -c -1 ; echo

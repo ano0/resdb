@@ -1,0 +1,21 @@
+#!/bin/sh
+(
+ if [ x"$USE_BC" = x1 ]; then
+  echo -n "obase=16; "
+#echo 'obase=16;if (last<16) 0; 10;' | bc
+ fi
+ if [ x"$1" = x ]; then
+  cat
+ else
+  echo "$1"
+ fi
+) | (
+ if [ x"$USE_BC" = x1 ]; then
+  (
+   echo -n 0
+   bc -q
+  ) | tail -c3
+ else
+  cat ./scripts/dec2hex.d/"$(cat)"
+ fi
+)

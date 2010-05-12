@@ -1,0 +1,7 @@
+=head1 AnoNet2 Links
+
+Back to homepage - L<http://www.anonet2.org/>
+
+This is a collection of links that you may find interesting:
+
+20100430 - L<http://www.truthdig.com/report/item/20080727_the_military_industrial_complex_its_much_later_than_you_think/>

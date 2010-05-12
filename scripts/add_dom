@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ x"$2" = x ]; then
+ echo "Usage: $0 <dom> <owner> [<ns[/nsip]>...]" >&2; exit 255
+fi
+
+dir=db/dom/"$(echo "$1" | tr . '\n' | tac | tr '\n' / | head -c -1)"
+mkdir "$dir" || exit 1
+echo "$2" > "$dir/owner"
+mkdir "$dir/ns" || exit 1
+shift; shift;
+while [ x"$1" != x ]; do
+ echo "$1" | tr / ' ' | (
+  read ns nsip
+  echo "$nsip" > "$dir/ns/$ns"
+ )
+ shift;
+done

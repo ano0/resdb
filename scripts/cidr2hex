@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ x"$1" = x ]; then
+ echo "Usage: $0 <cidr>" >&2; exit 255
+fi
+
+./scripts/ip2hex "$(./scripts/cidr2ip "$1")"
