@@ -79,7 +79,7 @@ hassle by just heading over to Scroogle (L<http://www.scroogle.org/>).)
 
 =head2 Why to Join
 
-(Note: There's now a separate page (L<http://www.anonet2.org/links.html>)
+(Note: There's now a separate page (L<http://www.anonet2.org/links>)
 with links to many more reasons to join AnoNet.)
 
 You'd want to join AnoNet2 for the same reasons as you'd want to join
