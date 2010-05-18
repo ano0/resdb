@@ -167,6 +167,10 @@ PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (i
 
 git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/> and possibly other feeds)
 
+=item *
+
+outbound HTTP proxy to the public Internet (http://a.privoxy.somerandomnick.ano:8118/)
+
 =back
 
 Here's a list of things that somebody claims to be working on:
@@ -180,10 +184,6 @@ email
 =item *
 
 news (NNTP)
-
-=item *
-
-outbound HTTP proxy to the public Internet
 
 =back
 
