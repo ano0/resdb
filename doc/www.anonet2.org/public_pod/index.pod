@@ -66,23 +66,24 @@ technical and administrative means.
 Joining is pretty simple: If you know how to connect to a
 client port, UFO's CP (L<http://ix.ucis.nl/clientport.php> or
 L<http://www.qontrol.nl/anonet-cp.tgz>) will already land you in the
-right place. (Once you're online, you can join "the club" at 1.3.3.7:6667
+right place.  (Once you're online, you can join "the club" at 1.3.3.7:6667
 #anonet, or irc.somerandomnick.ano:6667 (1.0.27.103, if you don't have
-DNS for some reason) #RendezVous. If you don't have an IRC client handy
+DNS for some reason) #RendezVous.  If you don't have an IRC client handy
 (or if you're too lazy to set it up to avoid leaking your real info), you
-can just telnet over to irc.somerandomnick.ano port 2323. Alternatively,
-you can point your Jabber client over to irc.somerandomnick.ano, or
-you can even use Jabber s2s to talk with everybody else by just joining
-the MUC room RendezVouz at irc.somerandomnick.ano.) If OpenVPN is all
-Greek to you, UFO's IRC server is also reachable from the public Internet
-(irc.kwaaknet.org port 6667 channel #anonet). If IRC is all Greek to you,
-you may want to talk to your favorite search engine about that, or just
-use KwaakNet's Webchat (L<http://webchat.kwaaknet.org/?c=AnoNet>). (Note
-that if your only aim in joining AnoNet is to search Google anonymously,
-you can save yourself the hassle by just heading over to Scroogle
-(L<http://www.scroogle.org/>).  If you're looking to browse the rest of
-the public Internet anonymously, though, we now have an outbound proxy,
-which you're more than welcome to use.)
+can just telnet over to irc.somerandomnick.ano port 2323 (or ufo-net.nl
+port 2323, from the outside).  Alternatively, you can point your Jabber
+client over to irc.somerandomnick.ano, or you can even use Jabber s2s
+to talk with everybody else by just joining the MUC room RendezVouz
+at irc.somerandomnick.ano.)  If OpenVPN is all Greek to you, UFO's IRC
+server is also reachable from the public Internet (irc.kwaaknet.org port
+6667 channel #anonet).  If IRC is all Greek to you, you may want to talk
+to your favorite search engine about that, or just use KwaakNet's Webchat
+(L<http://webchat.kwaaknet.org/?c=AnoNet>).  (Note that if your only aim
+in joining AnoNet is to search Google anonymously, you can save yourself
+the hassle by just heading over to Scroogle (L<http://www.scroogle.org/>).
+If you're looking to browse the rest of the public Internet anonymously,
+though, we now have an outbound proxy, which you're more than welcome
+to use.)
 
 =head2 Why to Join
 
