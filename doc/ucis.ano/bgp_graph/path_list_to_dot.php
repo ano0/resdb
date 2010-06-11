@@ -22,6 +22,20 @@ foreach ($nodes as $node => $links) {
 	}
 }
 
+function nodename ($node) { switch ($node) {
+ case '64731': return 'SRN';
+}; return $node; };
+
+$nodelist=array();
+foreach ($nodes as $node => $links) {
+ if (!array_key_exists($node,$nodelist)) $nodelist[$node]=nodename($node);
+ foreach ($links as $link => $dummy)
+  if (!array_key_exists($link,$nodelist)) $nodelist[$node]=nodename($link);
+};
+
+foreach ($nodelist as $node => $name)
+ print "\t".$node.' [label="'.$name.'"]'."\n";
+
 print("graph BGP_nodes {\n");
 foreach ($nodes as $node => $links) {
 	foreach ($links as $link => $dummy) {
