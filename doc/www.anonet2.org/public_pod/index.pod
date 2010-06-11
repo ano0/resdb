@@ -173,11 +173,31 @@ PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (i
 
 =item *
 
-git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/> and possibly other feeds)
+git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, and possibly other feeds)
 
 =item *
 
 outbound HTTP proxy to the public Internet (http://a.privoxy.somerandomnick.ano:8118/)
+
+=item *
+
+Web-based resource database viewer:
+
+=over
+
+=item ASNs
+
+L<http://core.ucis.ano/~ivo/anonet/as.php>
+
+=item Domains
+
+L<http://core.ucis.ano/~ivo/anonet/dom.php>
+
+=item IP Blocks
+
+L<http://core.ucis.ano/~ivo/anonet/ip.php>
+
+=back
 
 =back
 
