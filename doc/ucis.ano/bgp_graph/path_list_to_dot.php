@@ -18,7 +18,7 @@ while (!feof($file)) {
 
 foreach ($nodes as $node => $links) {
 	foreach ($links as $link => $dummy) {
-		if (isset($nodes[$node][$link]) && isset($nodes[$link][$node])) unset($nodes[$link][$node]);
+		if ($node != link && isset($nodes[$node][$link]) && isset($nodes[$link][$node])) unset($nodes[$link][$node]);
 	}
 }
 
