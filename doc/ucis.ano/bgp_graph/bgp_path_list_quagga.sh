@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LOCALNODE=64520
+LOCALNODE=${LOCALNODE:-0}
 
 (sleep 0.2;
  echo "insecure";

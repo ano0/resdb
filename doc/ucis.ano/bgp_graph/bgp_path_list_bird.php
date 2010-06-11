@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-$mynode = 64766;
+$mynode = array_key_exists('LOCALNODE',$_SERVER)?$_SERVER['LOCALNODE']:0;
 
 $fds = NULL;
 $proc = proc_open('birdc', array(0 => array('pipe','r'), 1 => array('pipe','w'), 2 => STDERR), $fds);
