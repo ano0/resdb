@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-$mynode = array_key_exists('LOCALNODE',$ENV)?$ENV['LOCALNODE']:0;
+$mynode = array_key_exists('LOCALNODE',$_SERVER)?$_SERVER['LOCALNODE']:0;
 
 $file = STDIN;
 $paths = array();
