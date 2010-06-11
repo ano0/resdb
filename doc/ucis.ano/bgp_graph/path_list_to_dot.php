@@ -33,10 +33,10 @@ foreach ($nodes as $node => $links) {
   if (!array_key_exists($link,$nodelist)) $nodelist[$node]=nodename($link);
 };
 
+print("graph BGP_nodes {\n");
 foreach ($nodelist as $node => $name)
  print "\t".$node.' [label="'.$name.'"]'."\n";
 
-print("graph BGP_nodes {\n");
 foreach ($nodes as $node => $links) {
 	foreach ($links as $link => $dummy) {
 		print("\t".$node.' -- '.$link.";\n");
