@@ -23,8 +23,8 @@ foreach ($nodes as $node => $links) {
 }
 
 function nodename ($node) { switch ($node) {
- case '64731': return 'SRN';
-}; return $node; };
+ case '64731': return 'SRN (AS64731)';
+}; return 'AS'.$node; };
 
 $nodelist=array();
 foreach ($nodes as $node => $links) {
