@@ -35,7 +35,7 @@ foreach ($nodes as $node => $links) {
 
 print("graph BGP_nodes {\n");
 foreach ($nodelist as $node => $name)
- print "\t".$node.' [label="'.$name.'"]'."\n";
+ print "\t".$node.' [label="'.$name.'"];'."\n";
 
 foreach ($nodes as $node => $links) {
 	foreach ($links as $link => $dummy) {
