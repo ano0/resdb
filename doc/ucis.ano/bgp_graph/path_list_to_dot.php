@@ -22,9 +22,17 @@ foreach ($nodes as $node => $links) {
 	}
 }
 
-function nodename ($node) { switch ($node) {
+function static_nodename ($node) { switch ($node) {
  case '64731': return 'SRN (AS64731)';
-}; return 'AS'.$node; };
+ case '64766': return 'UFO (AS64766)';
+}; return NULL; };
+
+function nodename ($node) {
+ $node=preg_replace('/[^0-9]+/','',$node);
+ if (($name=static_nodename($node))!==NULL) return $name;
+ $name=rtrim(`echo $node | ./asn2adminc | ./hdl2person`);
+ if (empty($name)) return 'AS'.$node;
+return 'AS'.$node.' ('.$name.')'; };
 
 $nodelist=array();
 foreach ($nodes as $node => $links) {
