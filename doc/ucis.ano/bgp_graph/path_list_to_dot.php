@@ -23,16 +23,24 @@ foreach ($nodes as $node => $links) {
 }
 
 function static_nodename ($node) { switch ($node) {
- case '64731': return 'SRN (AS64731)';
- case '64766': return 'UFO (AS64766)';
+// case '64731': return 'SRN (AS64731)';
+// case '64766': return 'UFO (AS64766)';
+}; return NULL; };
+
+function nodenickname ($node) { switch ($node) {
+ case '64731': return 'SRN';
+ case '64766': return 'UFO';
 }; return NULL; };
 
 function nodename ($node) {
  $node=preg_replace('/[^0-9]+/','',$node);
  if (($name=static_nodename($node))!==NULL) return $name;
+ $nameparts=array();
+ if (($nick=nodenickname($node))!==NULL) $nameparts[]=$nick;
  $name=rtrim(`echo $node | ./asn2adminc | ./hdl2person`);
- if (empty($name)) return 'AS'.$node;
-return 'AS'.$node.' ('.$name.')'; };
+ if (empty($name)) $name='AS'.$node; else $name="AS$node ($name)";
+ $nameparts[]=$name;
+return join(' - ',$nameparts); };
 
 $nodelist=array();
 foreach ($nodes as $node => $links) {
