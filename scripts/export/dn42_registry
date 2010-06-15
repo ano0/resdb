@@ -1,0 +1,20 @@
+#!/bin/sh
+if ! ./scripts/check_db_safety; then
+ exit 1
+fi
+mkdir -p export/dn42/data/dns || exit 1
+for d in db/dom/dn42/* ; do
+ domain="`basename $d`.dn42"
+ owner="`cat $d/owner | tr a-z A-Z`-DN42"
+ (
+  echo -e "domain:\t\t$domain"
+  for ns in $d/ns/* ; do
+   nsname="`basename $ns`"
+   nsip="`cat $ns`"
+   echo -e "nserver:\t$nsname $nsip"
+  done
+  echo -e "status:\t\tconnect"
+  echo -e "admin-c:\t$owner"
+  echo -e "tech-c:\t\t$owner"
+ ) > "export/dn42/data/dns/$domain"
+done
