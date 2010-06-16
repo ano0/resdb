@@ -202,7 +202,7 @@ outbound HTTP proxy to the public Internet (http://a.privoxy.somerandomnick.ano:
 
 =item *
 
-Web-based resource database viewer: L<http://core.ucis.ano/~ivo/anonet/>
+Web-based resource database viewer: L<http://ix.ucis.ano/anonet/>
 
 =back
 
