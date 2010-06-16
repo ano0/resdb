@@ -1,0 +1,91 @@
+=head1 AnoNet2 FAQ
+
+Back to homepage - L<http://www.anonet2.org/>
+
+=head2 Resources
+
+=over
+
+=item Why do you use 1.0.0.0/8?  It's been assigned to APNIC.  You should use private (RFC1918) address space like 10.0.0.0/8.
+
+AnoNet is a public network, and as such it should use public address space.  ICANN (a private corporation) controls the public resources on the IcannNet (a.k.a. the "public" Internet), and has delegated 1.0.0.0/8 on the IcannNet to APNIC.  AnoNet is a separate public network, that doesn't answer to ICANN (nor to anybody else, for that matter).  Now, that said, when AnoNet started using 1.0.0.0/8 it was reserved (i.e., not to be allocated), but because of ICANN's mismanagement of the IPv4 address space (which is why nearly all 4 billion addresses have already been assigned, in a world with only 6 billion total people, including all the starving babies in Africa who don't even know yet what a computer is), ICANN had to take 1.0.0.0/8 out of its "reserved" pool and to put it into the "assignable" pool.  AnoNet has no control over ICANN policy, so while AnoNet did attempt to avoid directly conflicting with IcannNet addresses, ICANN ultimately made sure that attempt would fail.  (If you'd like to connect to an internet with address space that's still in the ICANN "reserved" pool, you may want to try VAnet.)  Using private address space is inappropriate for a public network, per RFC1918.  (If you'd like to connect to an internet that uses private address space anyway, you may want to try dn42 at L<http://www.dn42.net/>.)
+
+=item If you use 1.0.0.0/8, you're squatting on somebody else's resources.
+
+If you use 1.0.0.0/8 on the IcannNet, then your statement is correct, but AnoNet and IcannNet are two totally separate public networks, so it's ridiculous to accuse a participant in one to be squatting on resources on the other.  ICANN has no divine right to 1.0.0.0/8 (nor to any other netblock, for that matter) outside the IcannNet.
+
+=item AnoNet runs on the IcannNet.  Therefore, you _are_ squatting.
+
+That last accusation has no logical basis.  Just because most AnoNet links are tunneled over the IcannNet doesn't give ICANN a right to rule the content of those tunnels.
+
+=item You should move to IPv6, then.
+
+AnoNet has no rules, so you're more than welcome to move to IPv6, and/or to try to convince others to do the same.  As long as you don't start out with unrealistic expectations, you probably won't be disappointed with the results of your preaching effort.
+
+=back
+
+=head2 Peering
+
+=over
+
+=item What is peering all about?
+
+AnoNet is an internet.  An internet means an internetwork, or a network that connects between networks.  An internetwork is normally constructed by making links between the different networks, and then carrying internetwork traffic along those links.  (If network A has a link to network B, then traffic from A to B or from B to A should probably pass through that link.)  Such a link is called a "peering," and the two sides of that link are called "peers."  On the IcannNet, peerings are normally done over leased lines, but due to the nature of AnoNet, using leased lines isn't much of an option for most peerings.  Therefore, most peerings are done over tunnels on the IcannNet.  The most common software for AnoNet tunnels is OpenVPN, although tinc and quicktuns are also used.  (tinc in particular deserves special attention: it can create a mesh between participants, sacrificing anonymity to achieve lower latency.)
+
+=item Whom should I peer with?
+
+If you want to protect your anonymity, you'll want to peer with only a few others.  If you're more interested in getting good latency, you'll want a more promiscuous peering policy.  Your peers are able to access certain information (like your IP) that isn't easy for others to access, so the harm in having too many peers is that the secrecy of that information is protected by the "weakest" link.  (The greater the number of people who know a secret, the greater the number of people who are likely to hear about it within a given time interval.)
+
+=item How can I talk to the rest of AnoNet, if I'm only peered with a few others?
+
+How can you talk to Google, if you're only hooked up to your local ISP?  The answer is that your ISP offers you "transit" to its peers, which in turn offer your ISP transit to their peers, etc.  (If network A is connected to network B, which itself is connected to network C, then with B's permission network A can talk to network C.)  On AnoNet, most peerings have BGP sessions managing the routing tables on both sides, in order to provide mutual transit.  (On AnoNet, providing transit is an advantage, since it improves your own anonymity.)
+
+=item Won't providing transit slow down my Internet connection?
+
+If you're the preferred transit provider between two guys who feel like streaming a whole ton of real-time studio-quality video back and forth all day, that can certainly slow down (to put it mildly) your dial-up connection.  In reality, most traffic on AnoNet is plain text, so you probably don't have too much to worry about, especially if you have some sort of broadband connection.  That said, if it ever _does_ become an issue, all you have to do is stop providing transit (although the particular case above is unlikely to persist even if you do nothing at all, since the two streaming guys will quickly figure out that going through you won't get them anywhere, and they'll most likely seek another transit provider - or even just peer with each other directly), or use simple BGP tricks to make transit through you less attractive to some or all of the AnoNet.
+
+=back
+
+=head2 DNS
+
+=over
+
+=item How is DNS handled on AnoNet?
+
+AnoNet has a number of TLDs (Top-Level Domains), the most interesting one being .ano.  The entire zone is public (unlike, say, the .com zone on the IcannNet), so you can easily deploy your own TLD nameservers.  In fact, the git resdb already includes scripts to generate both tinydns and BIND zonefiles automatically.  That said, SRN has public root and TLD nameservers, if you don't feel like setting up your own.  SRN also has a public recursive resolver (which also resolves IcannNet names), which you can use if you can't even be bothered to set up your own recursive resolver.  Please note that you're telling SRN about all hostnames that you lookup if you do this.  (Right now, you're probably telling your ISP the same information, BTW.)
+
+=item I want my own domain.  How can I set it up?
+
+You have a number of options, depending on (a) your current infrastructure, and (b) your interest/ability to deploy additional infrastructure.  The resource database is just a whole bunch of directories/files stored in a git repository, so adding a domain into "AnoNet" essentially boils down to adding the right files/directories into everybody's git repository.  (Fortunately, most guys send and receive updates among themselves on a regular basis, so your new domain should "propagate" around rather quickly, once it's made its way into one repository.)  If you have git, you can "git clone" the repository from someone, add your domain (there's a small script to make the job easy, if you don't want to do it by hand),  and then send someone a diff.  If you feel like setting up your own git server, then all you have to do is make the changes on your own repo, and then tell somebody the URL to your git server.  You'll probably want to take advantage of the same opportunity to add your own git URL into the resource database, so others can pull from you on a regular basis.  If you don't have git and don't feel like setting it up, all you have to do is find someone else who does have git (or feels like setting it up), and doesn't mind making the changes for you.  SRN is always such a "someone."  Next, you'll want to set up your nameservers to resolve names within your domain.  If you have tinydns or BIND, just read the relevant documentation.  If you don't have a nameserver and don't feel like setting one up, tell SRN what names you want (like "www.yourdomain.ano," "ftp.yourdomain.ano," etc.), and he'll add them into his own nameservers.
+
+=item What can I do with my own domain?
+
+You can host Web pages, an FTP site, IRC, email, an online shop (but taking payments may not be simple), or anything else that strikes your fancy.
+
+=back
+
+=head2 Censorship
+
+=over
+
+=item Is it safe to speak my mind on AnoNet?
+
+The short answer is "probably."  The long answer is that nobody has ever been censored on AnoNet2, a fact that's not likely to change.  (If that fact ever does change, it'll be noted here as soon as possible.)
+
+=item Will I be censored for child porn?
+
+AnoNet1 has an official policy against CP, and it redefines "censorship" to not include censoring CP.  AnoNet2 has no policies.  That said, you're not likely to find any CP here, since that's simply not a common contribution to AnoNet2.  (Whether or not it'd be a welcome contribution is something you'll want to take up with individual participants.  SRN would like you to know that he believes the CP (and porn, in general) industry destroys the world for no useful purpose.  Nobody else has voiced an opinion here.)
+
+=item Will I be censored for hateful speech?
+
+It depends on the forum.  If you do it on your own server, don't expect too many people to hang around there if you make a practice of making it unpleasant for them to be there.  If you start cursing people out on somebody else's IRC server for no apparent reason, there's a non-trivial chance that the operator will /kill your connection.  SRN encourages you to set up your own channel on irc.somerandomnick.ano, and to say whatever the heck you want there.
+
+=item Will I be censored for trolling?
+
+Since "trolling" is an overly ambiguous term, it's highly unlikely that you'll ever get /kicked or /killed for doing it.  In fact, SRN encourages you to out-troll him on irc.somerandomnick.ano.  That said, you should certainly expect people to /ignore you if you make a practice of saying stuff that people really don't want to hear.  (You may want to create a separate IRC nick for trolling, if you anticipate trolling a lot, but want people to still hear you when you have something interesting to say.)
+
+=item Will I be censored for spreading lies?
+
+not likely, but people may /ignore you if you make a practice of saying stuff that people don't want to hear
+
+=back
