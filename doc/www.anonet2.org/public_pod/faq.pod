@@ -31,7 +31,7 @@ you may want to try dn42 at L<http://www.dn42.net/>.)
 =item If you use 1.0.0.0/8, you're squatting on somebody else's resources.
 
 If you use 1.0.0.0/8 on the IcannNet, then your statement is correct,
-but AnoNet and IcannNet are two totally separate public networks,
+but AnoNet and IcannNet are two totally separate public internets,
 so it's ridiculous to accuse a participant in one to be squatting
 on resources on the other.  ICANN has no divine right to 1.0.0.0/8
 (nor to any other netblock, for that matter) outside the IcannNet.
