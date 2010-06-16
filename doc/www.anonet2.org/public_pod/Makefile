@@ -1,4 +1,4 @@
-all: index.html links.html
+all: index.html links.html faq.html
 
 %.html: %.pod
 	pod2html --noindex < $< 2>/dev/null > $@.tmp
