@@ -1,5 +1,8 @@
 =head1 AnoNet, Take 2!
 
+(Note: There's now a separate page (L<http://www.anonet2.org/faq>),
+to answer all your AnoNet-related questions.)
+
 So, you came across anoNet and thought it sounded great, so you decided
 to join in order to check it out.
 
@@ -14,16 +17,18 @@ to join in order to check it out.
 ...and so you left, and perhaps found another darknet instead.
 
 Well, you're not the only one who's been turned off, and a few of us
-have decided to fix AnoNet.  Some of us are relatively new, while others
-joined AnoNet years ago, and left out of disgust.  A number of features
-set version 2 apart from the original:
+have decided to take action and fix AnoNet.  Some of us are relatively
+new, while others joined AnoNet1 years ago, and left out of disgust.
+A number of features set version 2 apart from the original:
 
 =over
 
 =item No false advertising
 
 If you see something advertised here, it exists.  You won't see stuff
-that hasn't been up in years here.
+that hasn't been up in years here.  (This page is easy to update from
+within AnoNet2 by anybody who has an update/correction to make, and
+changes normally propagate within no more than a few days.)
 
 =item No centralized network control
 
@@ -35,13 +40,22 @@ reason with an inquisition against your peers.
 
 =item No centralized IRC control
 
-No centralized IRC control: You don't have to worry about risc
-g-lining you from the "official" IRC network for no apparent reason,
-and refusing to even admit to having g-lined you.  Since the whole
-purpose behind AnoNet was to create a censorship-resistant alternative
-to the government-censored "public" Internet, arbitrary censorship on
-the "official" AnoNet IRC network by anonymous government members is
-particularly troubling.
+You don't have to worry about risc g-lining you from the "official" IRC
+network for no apparent reason, and refusing to even admit to having
+g-lined you.  Since the whole purpose behind AnoNet was to create a
+censorship-resistant alternative to the government-censored "public"
+Internet, arbitrary censorship on the "official" AnoNet1 IRC network by
+anonymous government members is particularly troubling.  AnoNet2 has
+no "official" IRC network, and the servers most commonly used have
+interesting channels bridged with a relay bot, so even if you manage to
+annoy an IRC server operator to the point where he decides to g-line you
+from his whole "network," that doesn't automatically prevent you from
+connecting to another server and accessing one of the bridged channels.
+(Obviously, if you manage to annoy the operators of all the linked servers
+to the point where all of them g-line you from their respective "networks"
+and nobody wants to let you relay your own server in, then you're probably
+out of luck.  Of course, that doesn't prevent you from running your own
+IRC server, and those who want to hear you can still join it.)
 
 =item No resource mess
 
@@ -49,6 +63,10 @@ We have one mechanism for resource management, a decentralized (not just
 distributed, but truly decentralized) resource database. You don't have
 to deal with half a zillion incompatible (and in the case of the wiki,
 down) services, run by guys who may not even be on the AnoNet tomorrow.
+Managing your resources is as simple as taking a VI to the appropriate
+files, doing a "git commit," and then just waiting for everybody else to
+pull your changes (either directly from you, or indirectly from others
+who pull from you).
 
 =item No arbitrary rules
 
@@ -57,33 +75,36 @@ you make of it. Sadly, there's a tiny handful of people who have control
 over most of the network, and make new (unwritten) rules whenever the
 mood strikes them. The sum of those rules is that AnoNet is whatever
 I<they> make of it. In version 2, we've undertaken to fix that, by both
-technical and administrative means.
+technical and administrative means.  AnoNet2 not only has no arbitrary
+rules - it has no rules whatsoever.
 
 =back
 
 =head2 How to Join
 
 Joining is pretty simple: If you know how to connect to a
-client port, UFO's CP (L<http://ix.ucis.nl/clientport.php> or
-L<http://www.qontrol.nl/anonet-cp.tgz>) will already land you in the
-right place.  (Once you're online, you can join "the club" at 1.3.3.7:6667
-#anonet, or irc.somerandomnick.ano:6667 (1.0.27.103, if you don't have
-DNS for some reason) #RendezVous.  If you don't have an IRC client handy
-(or if you're too lazy to set it up to avoid leaking your real info), you
-can just telnet over to irc.somerandomnick.ano port 2323 (or ufo-net.nl
-port 2323, from the outside).  Alternatively, you can point your Jabber
-client over to irc.somerandomnick.ano, or you can even use Jabber s2s
-to talk with everybody else by just joining the MUC room RendezVouz
-at irc.somerandomnick.ano.)  If OpenVPN is all Greek to you, UFO's IRC
-server is also reachable from the public Internet (irc.kwaaknet.org port
-6667 channel #anonet).  If IRC is all Greek to you, you may want to talk
-to your favorite search engine about that, or just use KwaakNet's Webchat
-(L<http://webchat.kwaaknet.org/?c=AnoNet>).  (Note that if your only aim
-in joining AnoNet is to search Google anonymously, you can save yourself
-the hassle by just heading over to Scroogle (L<http://www.scroogle.org/>).
-If you're looking to browse the rest of the public Internet anonymously,
-though, we now have an outbound proxy, which you're more than welcome
-to use.)
+client port, UFO's CP (L<http://ix.ucis.nl/clientport.php>
+or L<http://www.qontrol.nl/anonet-cp.tgz>) will already
+land you in the right place.  (Once you're online, you
+can join "the club" at L<irc://1.3.3.7:6667/anonet>,
+or L<irc://irc.somerandomnick.ano:6667/RendezVous>
+(L<irc://1.0.27.103:6667/RendezVous>, if you don't have DNS for
+some reason).  If you don't have an IRC client handy (or if you're
+too lazy to set it up to avoid leaking your real info), you can
+just telnet over to L<telnet://irc.somerandomnick.ano:2323/> (or
+L<telnet://ufo-net.nl:2323/>, from the outside).  Alternatively, you
+can point your Jabber client over to irc.somerandomnick.ano, or you can
+even use Jabber s2s to talk with everybody else by just joining the MUC
+room RendezVouz at irc.somerandomnick.ano.)  If OpenVPN is all Greek
+to you, UFO's IRC server is also reachable from the public Internet
+(L<irc://irc.kwaaknet.org:6667/anonet>).  If IRC is all Greek to you,
+you may want to talk to your favorite search engine about that, or just
+use KwaakNet's Webchat (L<http://webchat.kwaaknet.org/?c=AnoNet>).
+(Note that if your only aim in joining AnoNet is to search Google
+anonymously, you can save yourself the hassle by just heading over to
+Scroogle (L<http://www.scroogle.org/>).  If you're looking to browse the
+rest of the public Internet anonymously, though, we now have an outbound
+proxy, which you're more than welcome to use.)
 
 =head2 Why to Join
 
@@ -117,10 +138,10 @@ Internet is owned and managed by a number of multinational corporations,
 it's fairly easy for governments to regulate it. Part of the main
 purpose behind AnoNet has always been to get away from those private
 control points, in order to create a truly public internet. In AnoNet1,
-anybody who can regulate crzydmnd can regulate AnoNet's "official"
+anybody who can regulate crzydmnd can regulate AnoNet1's "official"
 wiki (and by extension, its resource "database"), and anybody who can
-regulate Kaos can regulate AnoNet's "official" client port (and by
-extension, all new AnoNet users), so the private control point problem
+regulate Kaos can regulate AnoNet1's "official" client port (and by
+extension, all new AnoNet1 users), so the private control point problem
 hasn't quite been solved there. AnoNet2 is still largely controlled by
 UFO and somerandomnick, but we have both technical and administrative
 measures in place to ensure that as the network grows, the two of us
@@ -130,11 +151,11 @@ own governments ever decide to try regulating us.
 =head2 Why Not to Join
 
 If you're looking for a ready-made community, where you just show up and
-"browse," AnoNet (either 1 or 2) is probably not what you're after.
+"browse," AnoNet (either 1 or 2) is probably not quite what you're after.
 The whole concept behind AnoNet is that it's whatever you make it.
 That's not to say you'll have to build everything from scratch (and
 in fact, it's a bit too late for that, unless you want to I<re>build
-stuff that others have already built, and if you can do better than the
+stuff that others have already built - and if you can do better than the
 original, people will probably switch to your version), but if you want
 to be happy here, you're best off bringing your creativity along rather
 than leaving it behind when you join.
@@ -165,7 +186,7 @@ Jabber (irc.somerandomnick.ano)
 
 =item *
 
-Web
+Web (for example, L<http://www.somerandomnick.ano/>)
 
 =item *
 
@@ -173,7 +194,7 @@ PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (i
 
 =item *
 
-git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, and possibly other feeds)
+git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, and possibly other repos)
 
 =item *
 
@@ -181,7 +202,7 @@ outbound HTTP proxy to the public Internet (http://a.privoxy.somerandomnick.ano:
 
 =item *
 
-Web-based resource database viewer: http://core.ucis.ano/~ivo/anonet/
+Web-based resource database viewer: L<http://core.ucis.ano/~ivo/anonet/>
 
 =back
 
@@ -203,3 +224,50 @@ If you want something that's not on either list, you'll either have to
 set it up yourself, or con somebody else into setting it up himself.  (If
 it's something that others are likely to find useful and/or interesting,
 you'll probably have an easy time recruiting guys to help you out.)
+
+=head2 What You Can Contribute
+
+Well, each of us has his own wishlist, but most of us are working on
+moving stuff from our TODO lists to our DONE lists, so you're looking
+at a bit of a moving target.  You're more than welcome to contribute
+anthing you want, and if it's interesting and/or useful, it'll probably
+attract a following.  That said, here are a number of things that would
+benefit the AnoNet as a whole:
+
+=over
+
+=item Client Ports
+
+When a new user wants to connect, he'll normally come in through a
+client port.  The more client ports are available, the harder it is for
+any individual client port to abuse its position (for example, if the
+local government decides to try regulating it).
+
+=item Public Email Services
+
+Currently, every AnoNet user who wants an email address on AnoNet has
+to set up his own mailserver.  AnoNet1 used to have a public email
+service so people could get email addresses without running their own
+mail servers, but it hasn't been online in nearly a year (although the
+AnoNet1 Web continues to advertise it).  SRN is working on setting up
+such an animal on AnoNet2, but competition here is a good thing.
+
+=item IRC Servers
+
+IRC on AnoNet2 isn't one big network under centralized control.  Rather,
+anybody who wants runs his own IRC server, and links whatever channels he
+wants to channels on other servers, using a relay bot.  While technically
+UFO controls the relay bot responsible for all channel links today (and
+can therefore "nuke" anybody by simply unlinking his server), there's
+nothing stopping you from fielding your own relay bot if you ever want
+to for any (or no) reason.
+
+=item Outbound HTTP Proxies
+
+SRN runs one right now, but that means he can snoop on all HTTP traffic
+from AnoNet2 to IcannNet.  Having more proxies gives you an alternative
+to blindly trusting SRN not to sell your click-through data to Google,
+invert the order of search results to your queries, and inject malicious
+JavaScript into your Hotmail homepage.
+
+=back
