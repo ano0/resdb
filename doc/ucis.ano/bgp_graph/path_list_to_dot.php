@@ -33,7 +33,7 @@ function nodenickname ($node) { switch ($node) {
  case '64768': return 'yang';
  case '64738': return 'welterde';
  case '64827': return 'deelkar';
- case '64680': case '64692': return rtrim(`echo $ndoe | ./asn2descr`);
+ case '64680': case '64692': return rtrim(`echo $node | ./asn2descr`);
 }; return NULL; };
 
 function nodename ($node) {
