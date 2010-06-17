@@ -53,6 +53,7 @@ foreach ($nodes as $node => $links) {
 };
 
 print("graph BGP_nodes {\n");
+print("\toverlap=\"prism\";\n");
 foreach ($nodelist as $node => $name)
  print "\t".$node.' [label="'.$name.'",URL="http://ix.ucis.dn42/dn42/db/asdetails.php?h='.$node.'"];'."\n";
 
