@@ -174,7 +174,7 @@ having to set anything up yourself):
 
 =item *
 
-DNS (1.0.27.38)
+DNS (Recursive: 1.0.27.38; TLD: 1.0.27.37; Root: 1.0.27.39)
 
 =item *
 
@@ -198,7 +198,7 @@ git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.
 
 =item *
 
-outbound HTTP proxy to the public Internet (http://a.privoxy.somerandomnick.ano:8118/)
+outbound HTTP proxies to the public Internet (http://a.privoxy.somerandomnick.ano:8118/ and http://b.privoxy.somerandomnick.ano:8118/)
 
 =item *
 
@@ -264,7 +264,7 @@ to for any (or no) reason.
 
 =item Outbound HTTP Proxies
 
-SRN runs one right now, but that means he can snoop on all HTTP traffic
+SRN runs two right now, but that means he can snoop on all HTTP traffic
 from AnoNet2 to IcannNet.  Having more proxies gives you an alternative
 to blindly trusting SRN not to sell your click-through data to Google,
 invert the order of search results to your queries, and inject malicious
