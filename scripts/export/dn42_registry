@@ -18,3 +18,25 @@ for d in db/dom/dn42/* ; do
   echo -e "tech-c:\t\t$owner"
  ) > "export/dn42/data/dns/$domain"
 done
+mkdir -p export/dn42/data/inetnum || exit 1
+for i3 in db/ip/AC/16/?? ; do
+ third="$(basename $i3 | ./scripts/hex2dec)"
+ second="$(basename $(dirname $i3) | ./scripts/hex2dec)"
+ first="$(basename $(dirname $(dirname $i3)) | ./scripts/hex2dec)"
+ ip="$first.$second.$third"
+ ownershort="`cat $i3/owner | tr a-z A-Z`"
+ owner="$ownershort-DN42"
+ (
+  echo -e "inetnum:\t$ip.0 - $ip.255"
+  for ns in $i3/ns/* ; do
+   nsname="`basename $ns`"
+   nsip="`cat $ns`"
+   echo -e "nserver:\t$nsname $nsip"
+  done
+  echo -e "netname:\t$ownershort's dn42 network"
+  echo -e "country:\tunknown to resdb"
+  echo -e "admin-c:\t$owner"
+  echo -e "tech-c:\t\t$owner"
+  echo -e "status:\t\tASSIGNED"
+ ) > "export/dn42/data/inetnum/$ip.0_24"
+done
