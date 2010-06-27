@@ -15,7 +15,7 @@ for d in db/dom/dn42/* ; do
   done
   echo -e "status:\t\tconnect"
   echo -e "admin-c:\t$owner"
-  echo -e "tech-c:\t\t$owner"
+  echo -e "tech-c:\t\tRESDB-DN42"
  ) > "export/dn42/data/dns/$domain"
 done
 mkdir -p export/dn42/data/inetnum || exit 1
@@ -36,7 +36,7 @@ for i3 in db/ip/AC/16/?? ; do
   echo -e "netname:\t$ownershort's dn42 network"
   echo -e "country:\tunknown to resdb"
   echo -e "admin-c:\t$owner"
-  echo -e "tech-c:\t\t$owner"
+  echo -e "tech-c:\t\tRESDB-DN42"
   echo -e "status:\t\tASSIGNED"
  ) > "export/dn42/data/inetnum/$ip.0_24"
 done
