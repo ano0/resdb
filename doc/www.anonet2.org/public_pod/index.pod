@@ -202,7 +202,7 @@ git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.
 
 =item *
 
-outbound HTTP proxies to the public Internet (http://a.privoxy.somerandomnick.ano:8118/ and http://b.privoxy.somerandomnick.ano:8118/)
+outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/> and L<http://b.privoxy.somerandomnick.ano:8118/>)
 
 =item *
 
