@@ -4,22 +4,28 @@ if ! ./scripts/check_db_safety; then
 fi
 tldsrvrname="$(./scripts/conf_var tinydns__tldsrvrname uz5fvb7zdqyuz4q8ysjdfuf04kzd2lrt0l6fp4uyguxdg5tfut06ck.anons.somerandomnick.ano)"
 tldsrvrip="$(./scripts/conf_var tinydns__tldsrvrip 1.0.27.37)"
-for tld in db/ip/* ; do
- first="$(basename $tld | ./scripts/hex2dec)"
- tldname="$first.in-addr.arpa"
- echo "+$tldsrvrname:$tldsrvrip:3600"
- echo ".$tldname::$tldsrvrname"
- for ip in $tld/*/* ; do
-  third="$(basename $ip | ./scripts/hex2dec)"
-  second="$(basename $(dirname $ip) | ./scripts/hex2dec)"
-  first="$(basename $(dirname $(dirname $ip)) | ./scripts/hex2dec)"
-  domain="$third.$second.$first.in-addr.arpa"
-  for ns in $ip/ns/* ; do
-   nsip="$(cat $ns)"
-   nsname="$(basename $ns)"
-   echo "&$domain:$nsip:$nsname"
+for tld in db/ip/?? ; do
+ if [ "x$(basename $tld)" != 'x??' ]; then
+  first="$(basename $tld | ./scripts/hex2dec)"
+  tldname="$first.in-addr.arpa"
+  echo "+$tldsrvrname:$tldsrvrip:3600"
+  echo ".$tldname::$tldsrvrname"
+  for ip in $tld/??/?? ; do
+   if [ "x$(basename $ip)" != 'x??' ]; then
+    third="$(basename $ip | ./scripts/hex2dec)"
+    second="$(basename $(dirname $ip) | ./scripts/hex2dec)"
+    first="$(basename $(dirname $(dirname $ip)) | ./scripts/hex2dec)"
+    domain="$third.$second.$first.in-addr.arpa"
+    for ns in $ip/ns/* ; do
+     nsname="$(basename $ns)"
+     if [ "x$nsname" != 'x*' ]; then
+      nsip="$(cat $ns)"
+      echo "&$domain:$nsip:$nsname"
+     fi
+    done
+   fi
   done
- done
+ fi
 done
 for tld in db/dom/* ; do
  tldname="$(basename $tld)"
