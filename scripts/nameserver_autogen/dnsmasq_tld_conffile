@@ -4,7 +4,10 @@
 for tld in $(ls db/dom/); do 
 	for domain in $(ls db/dom/${tld}/); do 
 		for ns in $(cat db/dom/${tld}/${domain}/ns/*); do 
-			echo server=/${domain}.${tld}/${ns}; 
+			STR="server=/${domain}.${tld}/${ns}"
+			if [ "$(grep $STR /etc/dnsmasq.conf)" = "" ]; then
+				echo $STR
+			fi
 		done; 
 	done; 
 done
