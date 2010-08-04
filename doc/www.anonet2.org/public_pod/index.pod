@@ -174,7 +174,7 @@ having to set anything up yourself):
 
 =item *
 
-Live WorldCup Stream (thanks, SRN)
+Live WorldCup Stream (offline until next year)
 
 =item *
 
@@ -198,7 +198,7 @@ PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (i
 
 =item *
 
-git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, and possibly other repos)
+git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, L<git://1.0.48.100/>, L<git://pragmo.ano/>, and possibly other repos)
 
 =item *
 
@@ -207,6 +207,10 @@ outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.
 =item *
 
 Web-based resource database viewer: L<http://ix.ucis.ano/anonet/>
+
+=item *
+
+Decentralized Web mirroring service (at least L<http://a.mirror.somerandomnick.ano>) (technical difficulties)
 
 =back
 
