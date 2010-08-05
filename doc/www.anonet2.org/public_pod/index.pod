@@ -90,7 +90,7 @@ can join "the club" at L<irc://1.3.3.7:6667/anonet>,
 or L<irc://irc.somerandomnick.ano:6667/RendezVous>
 (L<irc://1.0.27.103:6667/RendezVous>, if you don't have DNS for
 some reason), or L<irc://irc.pragmo.ano:6667/atomic> 
-(L<irc://1.0.17.111:6667/atomic>, for the same reaon as before and 
+(L<irc://1.0.17.111:6667/atomic>, for the same reason as before and 
 if you want you can use SSL on port 6697).
 If you don't have an IRC client handy (or if you're
 too lazy to set it up to avoid leaking your real info), you can
