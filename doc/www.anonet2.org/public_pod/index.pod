@@ -201,7 +201,7 @@ PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (i
 
 =item *
 
-git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, L<git://1.0.48.100/>, L<git://pragmo.ano/>, and possibly other repos)
+git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, L<git://1.22.48.100/>, L<git://pragmo.ano/>, and possibly other repos)
 
 =item *
 
