@@ -218,3 +218,133 @@ not likely, but people may /ignore you if you make a practice of saying
 stuff that people don't consider worth hearing
 
 =back
+
+=head2 AnoNet1 vs. AnoNet2
+
+=over
+
+=item Why does AnoNet2 exist?  What's wrong with AnoNet1?
+
+There used to be only one AnoNet.  Unfortunately, a few bad apples (who
+happen to be the guys who control AnoNet1) split AnoNet by forcing a part
+of AnoNet to become disconnected from the rest of AnoNet.  That piece
+(AnoNet2) has been steadily growing, while "the rest" (AnoNet1) has been
+slowly decaying.
+
+=item Is AnoNet1 dead, then?
+
+AnoNet1 is far from dead.  In fact, it still has roughly twice the
+user-base of AnoNet2.  However, AnoNet2 has more services online, at this
+stage.  (Most of the old AnoNet1 services are long defunct, by now, as
+are many of its users.)  AnoNet2 has also been experiencing rather solid
+sustained growth, while the AnoNet1 population growth is mostly flat.
+
+=item What's the difference between AnoNet1 and AnoNet2, then?
+
+AnoNet2 lost peering with AnoNet1 because AnoNet1 is too centralized
+to avoid censorship.  AnoNet2, therefore, is essentially a reboot of
+AnoNet1, while paying careful attention to preventing another AnoNet
+split from ever being necessary.  (The irony, of course, is that the
+level of decentralization engineered into AnoNet2 makes it trivial for
+anyone in AnoNet2 to fork it.  Such a fork doesn't happen simply because
+"the management" hasn't made one necessary.)
+
+=item Who's "the management" in AnoNet2?  What prevents it from becoming evil when AnoNet2 grows closer to the size of AnoNet1?
+
+AnoNet2 (like AnoNet1) has no official government.  Unlike AnoNet1,
+though, AnoNet2's technical construction is such that the unofficial
+government members (primarily UFO and SRN, at this point) don't have
+enough power to force their way (not to mention that they don't really
+_want_ to force their way, anyway).  A recent practical example of
+this anarchy appears to be IPv6: SRN has made no secret of his strong
+opposition to IPv6, but that doesn't seem to be stopping an enterprising
+new AnoNet2 user from deploying it himself and even soliciting support
+from others, even after "the management" (both UFO and SRN) flatly
+refused to participate.
+
+=item Why don't AnoNet1 and AnoNet2 merge again?
+
+The short answer is that a number of people have tried to do just that,
+but AnoNet1 has adopted an exclusionary policy towards AnoNet2, for some
+unspecified reason.  You get bonus points if you can figure out what that
+reason is.  (AnoNet2 has been very careful to avoid collisions in resource
+allocations with AnoNet1, even though AnoNet1 has deliberately removed
+its own record of AnoNet2 resources in a recent "cleanup" of the DNS.
+If AnoNet1 ever decides to reconnect with AnoNet2, no technical problems
+should result.)
+
+=item Why does AnoNet2 filter advertisements to AnoNet1?  Doesn't that prevent the two darknets from ever merging again?
+
+AnoNet1 has deemed the filters necessary, for some unspecified reason.
+(Advertising AnoNet2 routes on AnoNet1 is a great way to get yourself
+kicked from AnoNet1.)  Again, you get bonus points if you can figure out
+what that reason is.  (Hint: crzydmnd and risc likely know the reason,
+but good luck getting them to spill the beans.  Censoring the question
+seems to be their favorite "answer.")  Suffice it to say that if AnoNet1
+wanted to merge with AnoNet2, AnoNet2 wouldn't object.
+
+=item Do I have to choose between AnoNet1 and AnoNet2, or is there a way to join both?
+
+There's no need to choose one or the other.  As long as you don't
+advertise AnoNet2 routes into AnoNet1, you should be fine: their Salem
+witch hunt against "dual citizens" seems to have died off by now.
+If you're currently getting to AnoNet1 through the official AnoNet1 CP
+(run by Kaos), simply switch to UFO's CP, and you'll automatically be
+connected to both, so you can check them both out and figure out at your
+own pace what you want to do.
+
+=item Which darknet preserves my anonymity better, AnoNet1 or AnoNet2?
+
+Well, AnoNet1 has stricter rules (and more centralization, as a
+prerequisite to rule enforcement), so as long as you trust "the powers
+that be" to preserve your anonymity, you get better anonymity guarantees.
+However, your anonymity faces significant risk if any member of the
+AnoNet1 "government" (which doesn't even admit who's who) betrays your
+trust.  (That risk isn't so far-fetched, incidentally, since any type
+of law enforcement "sting-type" operation against one of those guys is
+likely to compromise his guarantees, even through no malice on his part.
+Now, since malice has already been observed, the guarantees become even
+less reliable.)  The AnoNet2 rules have more room for flexibility,
+since centralized police authority is not available on AnoNet2.
+Therefore, your anonymity guarantees are somewhat weaker, but far more
+likely to be reliable.  You also have better theoretical anonymity on
+AnoNet2, because marking a subnet "reserved" on AnoNet1 no longer works.
+("The management" is too nosy, and threatens disconnection against anyone
+who doesn't provide requested information.)
+
+=item Where, then, am I more anonymous?
+
+In the real world, AnoNet2 anonymity wins, hands down.  (On AnoNet1,
+any Easystreet network administrator can easily correlate IcannNet IP
+addresses with CP IP addresses and IRC nicks, allowing him to reliably
+learn the identity of all new AnoNet1 members.  AnoNet2 has many different
+ways of joining, including one rather interesting tor-based approach
+recently demonstrated, where the user never showed his IcannNet IP
+address to anyone on AnoNet2.)
+
+=back
+
+=head2 AnoNet vs. IcannNet
+
+=over
+
+=item What's IcannNet???
+
+IcannNet is the internet (mis)managed by ICANN.  It's what most people
+call "the" Internet.
+
+=item What's wrong with IcannNet?
+
+The short answer is that ICANN is very highly centralized, resulting
+in centralized decision-making (and centralized lobbying, arm-twisting,
+etc.).
+
+=item Does AnoNet really aim to replace IcannNet?
+
+Yes, the long-term goal behind AnoNet is to render IcannNet obsolete.
+In the short-term, though, it'd be highly unlikely for IcannNet to
+disappear even in the hypothetical case where everyone were to move to
+AnoNet tomorrow, since the overwhelming majority of AnoNet peering is
+tunneled over IcannNet.
+
+=back
