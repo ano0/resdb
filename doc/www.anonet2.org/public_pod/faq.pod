@@ -322,6 +322,10 @@ ways of joining, including one rather interesting tor-based approach
 recently demonstrated, where the user never showed his IcannNet IP
 address to anyone on AnoNet2.)
 
+=item How can I learn more about AnoNet1 vs. AnoNet2?
+
+L<http://www.anonet2.org/darknet_comparison>
+
 =back
 
 =head2 AnoNet vs. IcannNet

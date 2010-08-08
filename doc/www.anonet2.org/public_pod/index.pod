@@ -1,5 +1,9 @@
 =head1 AnoNet, Take 2!
 
+(Note: There's now a darknet comparison page
+(L<http://www.anonet2.org/darknet_comparison>), where you can compare
+and contrast the various darknet options.)
+
 (Note: There's now a separate page (L<http://www.anonet2.org/faq>),
 to answer all your AnoNet-related questions.)
 
@@ -88,17 +92,16 @@ or L<http://www.qontrol.nl/anonet-cp.tgz>) will already
 land you in the right place.  (Once you're online, you
 can join "the club" at L<irc://1.3.3.7:6667/anonet>,
 or L<irc://irc.somerandomnick.ano:6667/RendezVous>
-(L<irc://1.0.27.103:6667/RendezVous>, if you don't have DNS for
-some reason), or L<irc://irc.pragmo.ano:6667/atomic> 
-(L<irc://1.0.17.111:6667/atomic>, for the same reason as before and 
-if you want you can use SSL on port 6697).
-If you don't have an IRC client handy (or if you're
-too lazy to set it up to avoid leaking your real info), you can
-just telnet over to L<telnet://irc.somerandomnick.ano:2323/> (or
-L<telnet://ufo-net.nl:2323/>, from the outside).  Alternatively, you
-can point your Jabber client over to irc.somerandomnick.ano, or you can
-even use Jabber s2s to talk with everybody else by just joining the MUC
-room RendezVouz at irc.somerandomnick.ano.)  If OpenVPN is all Greek
+(L<irc://1.0.27.103:6667/RendezVous>, if you don't have
+DNS for some reason), or L<irc://irc.pragmo.ano:6667/atomic>
+(L<irc://1.0.17.111:6667/atomic>, for the same reason as before and if you
+want you can use SSL on port 6697).  If you don't have an IRC client handy
+(or if you're too lazy to set it up to avoid leaking your real info),
+you can just telnet over to L<telnet://irc.somerandomnick.ano:2323/>
+(or L<telnet://ufo-net.nl:2323/>, from the outside).  Alternatively,
+you can point your Jabber client over to irc.somerandomnick.ano, or you
+can even use Jabber s2s to talk with everybody else by just joining the
+MUC room RendezVouz at irc.somerandomnick.ano.)  If OpenVPN is all Greek
 to you, UFO's IRC server is also reachable from the public Internet
 (L<irc://irc.kwaaknet.org:6667/anonet>).  If IRC is all Greek to you,
 you may want to talk to your favorite search engine about that, or just
@@ -106,8 +109,8 @@ use KwaakNet's Webchat (L<http://webchat.kwaaknet.org/?c=AnoNet>).
 (Note that if your only aim in joining AnoNet is to search Google
 anonymously, you can save yourself the hassle by just heading over to
 Scroogle (L<http://www.scroogle.org/>).  If you're looking to browse the
-rest of the public Internet anonymously, though, we now have an outbound
-proxy, which you're more than welcome to use.)
+rest of the public Internet anonymously, though, we now have outbound
+proxies, which you're more than welcome to use.)
 
 =head2 Why to Join
 
@@ -227,7 +230,7 @@ email
 
 =item *
 
-news (NNTP)
+news (NNTP) (guy appears to have died)
 
 =back
 
@@ -265,20 +268,20 @@ such an animal on AnoNet2, but competition here is a good thing.
 
 =item IRC Servers
 
-IRC on AnoNet2 isn't one big network under centralized control.  Rather,
-anybody who wants runs his own IRC server, and links whatever channels he
-wants to channels on other servers, using a relay bot.  While technically
-UFO controls the relay bot responsible for all channel links today (and
-can therefore "nuke" anybody by simply unlinking his server), there's
-nothing stopping you from fielding your own relay bot if you ever want
-to for any (or no) reason.
+IRC on AnoNet2 isn't one big network under centralized control.
+Rather, anybody who wants runs his own IRC (or other chat) server, and
+links whatever channels he wants to channels on other servers, using
+a collection of relay bots.  (Right now, UFO and pragmo field relays,
+and the scalability problems are becoming visible.  How relay bots may
+want to deal with this is still a topic for open discussion.)
 
 =item Outbound HTTP Proxies
 
-SRN runs two right now, but that means he can snoop on all HTTP traffic
-from AnoNet2 to IcannNet.  Having more proxies gives you an alternative
-to blindly trusting SRN not to sell your click-through data to Google,
-invert the order of search results to your queries, and inject malicious
-JavaScript into your Hotmail homepage.
+SRN runs two right now and ryuk runs one, but that means between the two
+of them they can snoop on all HTTP traffic from AnoNet2 to IcannNet.
+Having more proxies gives you an alternative to blindly trusting SRN
+and ryuk not to sell your click-through data to Google, invert the order
+of search results to your queries, and inject malicious JavaScript into
+your Hotmail homepage.
 
 =back
