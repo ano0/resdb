@@ -86,6 +86,12 @@ rules - it has no rules whatsoever.
 
 =head2 How to Join
 
+Disclaimer: If the following paragraph makes no sense to you, you can
+join our webchat at L<http://webchat.kwaaknet.org/?c=AnoNet> to have a
+real human help you get up and running in a hurry.  It's a lot easier
+(and not half as boring) to learn the technical details interactively,
+once you're online.
+
 Joining is pretty simple: If you know how to connect to a
 client port, UFO's CP (L<http://ix.ucis.nl/clientport.php>
 or L<http://www.qontrol.nl/anonet-cp.tgz>) will already
@@ -162,9 +168,13 @@ The whole concept behind AnoNet is that it's whatever you make it.
 That's not to say you'll have to build everything from scratch (and
 in fact, it's a bit too late for that, unless you want to I<re>build
 stuff that others have already built - and if you can do better than the
-original, people will probably switch to your version), but if you want
-to be happy here, you're best off bringing your creativity along rather
-than leaving it behind when you join.
+original, people will probably switch to your version), but if you want to
+be happy here, you're best off bringing your creativity along rather than
+leaving it behind when you join.  (If you've been around darknets before,
+you're probably quite familiar with "design by committee."  On AnoNet,
+you're more than welcome to invite a committee to discuss anything you
+want, but you don't have to.  If you already know what you're doing,
+just "build it and they will come.")
 
 =head2 What You Can Do
 
@@ -204,7 +214,7 @@ PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (i
 
 =item *
 
-git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, L<git://1.22.48.100/>, L<git://pragmo.ano/>, L<git://1.0.18.1/>, and possibly other repos)
+git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, L<git://1.22.48.100/>, L<git://pragmo.ano/>, L<git://1.0.18.1/>, L<git://1.0.111.1/>, and possibly other repos)
 
 =item *
 
@@ -283,5 +293,36 @@ Having more proxies gives you an alternative to blindly trusting SRN
 and ryuk not to sell your click-through data to Google, invert the order
 of search results to your queries, and inject malicious JavaScript into
 your Hotmail homepage.
+
+=back
+
+=head2 See Also
+
+If AnoNet sounds good but not perfect, don't despair: there are a number
+of other projects that may interest you either instead of - or possibly
+in addition to - AnoNet.
+
+=over
+
+=item dn42 - L<http://www.dn42.net/>
+
+dn42 is another highly decentralized darknet, and it's also quite
+friendly.  The main differences are that it doesn't claim anonymity as
+a goal, and that it's significantly larger than AnoNet.  A number of
+AnoNet members are also active in dn42.
+
+=item VAnet - L<http://www.vanet.org/>
+
+VAnet is a strange animal.  It's a highly I<centralized> darknet, making
+the curious claim that centralization actually aids in privacy protection.
+It's still quite small, but it should scale extremely well from a
+technical perspective, due to its centralization.  VAnet's official IRC
+is part of the AnoNet IRC monster for now, so the easiest way to find out
+more about VAnet is actually just to join AnoNet IRC and ask about VAnet.
+
+=item UCIS IX - L<http://ix.ucis.nl/>
+
+The UCIS Internet eXchange is an attempt to link a bunch of darknets
+together.  If you connect using UFO's CP, you're already on the UCIS IX.
 
 =back
