@@ -2,6 +2,25 @@
 
 Back to homepage - L<http://www.anonet2.org/>
 
+There are a number of darknets out there.  Different darknets have
+different features, which any individual may consider as advantages (or
+disadvantages) depending on his goals.  This page attempts to present
+an accurate comparison between the different darknets known to SRN.
+In particular, SRN has attempted to avoid being unjustly critical of
+AnoNet1 even after having been a victim of AnoNet1's ugly side on multiple
+occasions (although obviously, no attempt has been made to avoid "earned"
+criticism).  If you'd like to add other darknets to this table, keep
+in mind that all of anonet2.org is freely editable from within AnoNet.
+If none of the existing darknets suit your needs, you're encouraged
+to advertise your new one here.  You're also more than welcome to spam
+AnoNet IRC for new members, but if your advertisements get redundant and
+boring and redundant and repetitive and redundant after a while, don't
+be surprised if people start b</ignore>ing you.  (Please don't let that
+discourage you, if you truly believe your new darknet is worth joining.
+You may want to rethink your advertising strategy, though.)  You may
+also be able to get help in planning and/or building a new darknet on
+AnoNet IRC.
+
 =begin html
 
 <table>

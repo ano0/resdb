@@ -1,0 +1,385 @@
+=head1 AnoNet2 - Anonymity & Pseudonymity
+
+Back to homepage - L<http://www.anonet2.org/>
+
+=head2 Introduction
+
+This page is intended to explain a bit of the theory behind anonymity
+and pseudonymity.  If your goal in joining AnoNet is to protect your
+anonymity, this page may help you avoid some "leaks."
+
+=head2 Definition
+
+Anonymity translates literally into "having no name," and means having
+no useful identification "marks" ("useful" being defined as "usable
+for future find operations").  While it's technically possible to be
+truly anonymous on AnoNet, true anonymity is not really necessary (nor
+desirable) in order to achieve the goals that most guys here expect.
+Pseudonymity ("having no real name") is what most of us are here to
+achieve.  (Most of us don't care if you can find us again on AnoNet
+(and in fact, we normally _want_ you to).  We only care if you can find
+us _outside_ AnoNet.)  However, the theory behind both is quite similar,
+since the potential attacks against both are quite similar.  Therefore,
+this page primarily concerns itself with true anonymity on the assumption
+that a certain amount of correlation between your actions is already
+feasible for an attacker.
+
+=head2 Introduction to Triangulation
+
+The fundamental method that people use for identification is
+triangulation, where we look at something from a bunch of different angles
+and then narrow down our guesses to items that match that combination
+of observations.  For example, a duck is something that looks like
+a duck, quacks like a duck, etc.  It should go without saying, then,
+that our goal here is to avoid others being able to apply triangulation
+"against" us.  That is, our goal is to prevent triangulation "attacks."
+
+=head2 Simple Triangulation
+
+If you see someone on a chatroom around 1800 GMT, and he tells you that
+his mother just bought him some colourful pants when he got back from
+school, it'd be a pretty safe bet to say that he probably:
+
+=over
+
+=item 1
+
+is a kid (his mother buys him simple clothing items, after school)
+
+=item 2
+
+in England (colourful == British spelling; pants == underpants)
+
+=item 3
+
+who is actually a she (boys with colorful pants?)
+
+=back
+
+Now, obviously, if you found more details concerning the makeup of his
+class, you may be able to narrow down the possibilities for his schools.
+Combine that with his IP address, and you can focus on your candidates
+within range of his geographical location.  Perhaps he (she) talks about
+his older brother walking him (her) to school in the morning, before
+going to his own school.  Well, in that case, you can be reasonably sure
+that his older brother graduated from the same school "back in the day."
+Given the fact that England's birth rate is relatively low, you can
+therefore speculate that this bit of information is likely to narrow
+down the possibilities (especially if he tells you how much older his
+brother is).  Another reasonably safe guess is that he's probably located
+in a rather urban area.  Now, you can add a bit of active triangulation
+to the mix, by telling his ISP that his IP address has been sharing
+your intellectual property.  If the owners of that IP address really
+do have a girl in primary school and your intellectual property sounds
+like something oriented towards kids, the parents' first defense is
+likely to be that they don't fileshare, so it was probably their kid (or
+maybe some guy who drove by with wifi, who happens to like kid stuff).
+(Obviously, if you're a civilian, your country is likely to have laws
+against you committing fraud like that, but intelligence agencies
+routinely do this type of thing, so it's worthwhile understanding some
+of the options physically available to an attacker, even if they're not
+"legally" available to him.  You certainly don't want your anonymity
+dependent on an adversary "playing by the rules," do you?)
+
+=head2 A Bit More Formality
+
+A very powerful science for dealing with these types of problems is
+Mathematics, so we gain an advantage if we can translate our problems into
+Mathematics (and our solutions out of it, of course).  Our Mathematical
+model for triangulation is similar to that of geolocating a cellular phone
+that dials for emergency assistance.  Initially, we can only say that
+the cellular phone is likely to be someplace on (or near) planet Earth.
+Since we know that the cellular signal deteriorates over distance and we
+know (based on the phone's specifications) the original signal strength at
+source, each tower can guage its distance from the phone by translating
+backwards from its observed signal strength to meters.  Most towers
+are well out-of-range, and won't observe any measurable signal at all
+(meaning an effectively infinite distance), while the nearby towers will
+observe measurable signals.  Now, each tower has a circle around it made
+up of all the points at a particular distance from it.  (Actually, it's a
+three-dimensional sphere, but in our case, we're assuming the phone isn't
+in flight or underground, for a bit of simplification.  Real systems will
+add an additional tower in order to triangulate in all three dimensions.)
+Two intersecting circles will normally intersect (touch or cross over each
+other) at two points.  Three intersecting circles will rarely intersect
+at more than a single point.  Therefore, as long as the towers can safely
+assume that the phone is broadcasting a uniform signal in all directions,
+they can safely claim to have triangulated his position.
+
+Now, let's see if we can apply triangulation to our own problem space.
+We know that there are approximately 6 billion people on our planet,
+so we're starting out with a population of 6 billion candidates.
+(Obviously, we're assuming that aliens don't have anything interesting to
+do on our ICANN-dominated Internet, and so for all intents and purposes
+don't count.)  Now, there are many "dimensions" in which these people
+are organized.  (A dimension is simply a metric where each individual
+has a potentially measurable coordinate.)  For example, everybody has
+a gender.  Everybody lives in some country.  Everybody has some level
+of computer expertise, some level of Mathematical education, some set
+of familiar authors, some set of favourite bands, some color skin and
+some length hair, etc.  Now, as you're able to intersect coordinates in
+different dimensions, you can start eliminating unlikely candidates and
+focusing on the likely ones.  For example, the number of males is quite
+high (on the order of 3 billion or so), the number of people in Portugal
+is quite high, the number of 15-year-olds is quite high, the number of
+stay-at-home parents is quite high, the number of people who are still
+married to their first wife is quite high, and the number of parents with
+two kids is quite high, but the number of Portuguese males around age 15
+who stay at home to care for their two kids while their first wife is out
+working is very low (probably well under 1000 - low enough for you to be
+able to go door-to-door looking for him, if you'd recognize him by face).
+Clearly, by triangulating coordinates between a variety of dimensions,
+we're able to take the intersection of a variety of sets, which is quite
+small when the sets have little in common (which is normally true when
+there's no causal relationship between the sets in question).
+
+Therefore, if you're that guy and you don't want others to find you,
+you probably shouldn't give away too many facts about yourself.
+
+=head2 Countermeasures
+
+Remember when we talked about the cellular phone geolocation problem,
+where we noted that the towers need to assume the phone is broadcasting
+the same value (in this case, the same starting signal strength) in
+all directions?  Obviously, a phone without an omnidirectional antenna
+could point a different directional antenna at each nearby (or even far
+away) tower, and transmit a highly focused signal at an arbitrary power
+level to each tower, and thereby confuse the towers.  Alternatively, it
+could even work backwards through the triangulation algorithm in order
+to figure out a set of inputs that would cause the towers to geolocate
+the phone "accurately" as being kilometers away from its true location.
+It should come as no surprise, then, that similar techniques work in
+our own problem space.  For example, how do you know that the guy is
+really male?  Given the other dimensions, wouldn't you say he's more
+likely to be a female?
+
+=head2 Verification
+
+Going back to our cellular phone geolocation problem, we left off
+with our phone fooling the towers into thinking it's someplace else.
+However, we didn't take into account that the towers themselves may
+have directional antennas scanning around on a regular basis in order
+to detect precisely this type of fraud.  If the phone is supposed to be
+southwest of one of our towers, why is its signal coming in from the east?
+Not surprisingly, certain verification techniques may be applicable in
+our own problem space.  For example, suppose you somehow got a list of
+all candidates, and then combed all of Portugal door-to-door looking
+for the guy, and didn't find him?  What if he told you that he was a
+licensed pilot, but you couldn't find any pilot matching his description?
+The goal of a verification algorithm is to assess the probability of
+our data sources being correct.  The goal of a verification algorithm
+is to tell us how likely it is that we've been fooled, not to find the
+right answer.  (Obviously, a verification algorithm may itself reveal
+additional information that we can then triangulate with.  For example,
+the towers employing directional antennas can geolocate our phone with
+the directional antennas (using the law of intersecting lines), without
+even relying on the omnidirectional antennas.  Therefore, the verification
+algorithm in this particular case not only verifies the likelyhood of the
+triangulation, but actually provides its own alternative triangulation
+dataset.)
+
+=head2 AnoNet
+
+On AnoNet, the single most important factor in securing your anonymity is
+precluding verification.  If an adversary can't verify his data about you,
+then he's trivially vulnerable to countermeasures, making it difficult for
+him to trust the results of his triangulation (and making it difficult,
+therefore, for him to even justify the cost of triangulating in the
+first place).
+
+For example, you probably don't want to recycle a nickname you
+use elsewhere, since a simple Google search may give adversaries
+a verification tool to use against anything they learn about you on
+AnoNet.  You also want to make sure that the public IP address you use
+for peering doesn't geolocate your exact location (try MaxMind's online
+tool, for example).  A good way of getting around this one is to get a
+VPS (Virtual Private Server) before peering with too many other guys.
+There are plenty of cheap ones (well under 10EUR or 10USD each month),
+and you can easily get a VPS in a different country.  An even better
+way of getting around this is to peer over i2p, if you don't mind
+installing Java on your routers.  If you're lucky, your ISP may
+SNAT outgoing traffic from its users, giving you a certain amount of
+"built-in" protection.  If you're not comfortable giving a peer your IP
+address and none of the above is an option, you may consider peering
+using TCP over tor or something.  In addition, it's also possible to
+exchange data using DNS, so if each of you has access to a DNS server
+and some method to automatically load TXT records into it, you can
+tunnel a VPN over it without either of you giving away his IP address.
+(This particular method can also get around restrictive firewalls, which
+may be independently useful.)  Other things you probably don't want
+to advertise are your name (especially not your full name), location,
+age, marital status, occupation, school, and hobbies.  Under normal
+circumstances, it's safest to assume that anything you tell anybody
+on AnoNet may be used by anybody else on AnoNet for triangulation or
+verification attacks, and so the only reliable method of preventing
+these types of attacks is to avoid leaking any verifiable information
+to anyone on AnoNet.  When that's not feasible, try to avoid giving
+multiple pieces of information to individuals.  For example, if you're
+coming in with UFO's CP, it's probably unwise to use his IRC server.
+(It's also smart not to come onto IRC as soon as you connect, since
+then UFO can guess that the guy who just joined IRC is probably the
+same guy who just connected to his CP.  To protect your anonymity from
+the organizers of a darknet, it's imperative that you peer with someone
+(preferably not an organizer) ASAP after joining.  The more often you
+come in through the CP, the higher the probability that an organizer
+will find you.  If you've come in over the CP more than a few times
+before getting peered, you'll probably want to at least change your IRC
+nickname before rejoining IRC after peering, so the darknet organizers
+at least can't trivially connect your IcannNet IP address with your
+AnoNet nickname.  If a darknet's organizers try to put you through a
+"hazing" period before they'll allow anybody to peer with you, that's
+a strong indication that they don't care much for I<your> anonymity.
+They may tell you that "nobody here trusts you enough yet to give you his
+IP address," but that's (at best) just a thinly veiled way of saying that
+"nobody here cares enough about your anonymity to have bothered to get
+himself a VPS for peering."  By making it difficult for new users to join,
+they're effectively dooming their darknet into forever being a small and
+incestuous club, a fraternity if you will, where everybody gradually gets
+to know everybody else quite well (since static analysis works quite well
+against rigid structures).  An anonymity-preserving darknet makes it easy
+for users to enter and exit at will, with the organizers keeping minimal
+(or no) tabs, in order to resist static analysis.)
+
+=head2 AnoNet2 vs. The Competition
+
+AnoNet2 aims to provide the best anonymity feasible with TCP/IP, through
+a variety of techniques:
+
+=over
+
+=item minimizing required direct information disclosure
+
+Most TCP/IP-based darknets require new users to submit a fair amount of
+information up-front.  Non-anonymizing darknets like dn42, for example,
+expect users to sign up for a wiki account to register resources, to join
+a mailing list for operational discussions, etc.  (dn42, incidentally,
+deserves special mention, as the resource database has recently been
+migrated over to a decentralized resdb-like registry.  In addition,
+there's now an NNTP gateway to the mailing list reachable from inside
+dn42, making it feasible to avoid giving away much information.)
+So-called "anonymizing" darknets, by comparison, tend to turn these types
+of expectations into policy requirements.  A case in point is AnoNet1,
+where new users are expected to go through a "hazing" process for 2-4
+weeks before anybody is supposed to peer with them.  During the "hazing"
+process, the new user is expected to answer questions like "what brings
+you here?" from an informal panel of existing members, and is expected
+to "participate in the discussion" for a couple of weeks to prove that
+he's serious about joining AnoNet1.  (The official excuses range from
+avoiding "drive-by peerings" to preventing infiltration by law enforcement
+officials.  The former commands a high price relative to the nuisance
+factor of a temporary peering, while the latter is just plain laughable.)
+AnoNet1 also requires members to maintain their resource registrations
+on a centralized wiki, making certain information available to crzydmnd.
+There is only one official client port (run by Kaos), and users are
+discouraged from setting up additional ones.  AnoNet2 gets this part
+right by making it very easy for new users to join, and to peer as early
+as technically possible.
+
+=item avoiding centralization of critical infrastructure
+
+Most TCP/IP-based darknets have a fair amount of centralized
+infrastructure.  Centralized infrastructure is problematic, since it
+creates a single point of control (or evesdropping), making it easy for
+the operator to learn information that's not intended for him, and/or
+alter transmissions that aren't intended for him.  Typical examples are
+things like resource databases, chatrooms, DNS, routing infrastructure,
+documentation stores, forums, mailing lists, and public Web pages.
+AnoNet1 is a model of centralized infrastructure, with centralized
+mechanisms in-place for pretty much all of the above minus routing
+(and even routing is quite centralized on AnoNet1, due to their peering
+policies).  Even dn42 (whose primary claim to fame is decentralization)
+retains centralized mechanisms for IRC, wiki, mailing list, and public
+Web pages.  AnoNet2 has only a single point of centralization, in the
+public Web pages here, and even they are easy for anybody on AnoNet2 to
+modify (although there's still a centralized point of control over what
+ends up getting published here and what doesn't, a point which has never
+been used so far (a fact that's very easy to prove in a decentralized
+way), and which will hopefully never be used).  In addition, users are
+encouraged to set up their own public Web pages and to put links to them
+here, in order to further reduce centralization of AnoNet2's Web presence.
+In addition to protecting your anonymity, this level of decentralization
+makes it far more likely for AnoNet2 to survive a splitbrain condition
+(where some bad guys take a number of central users out of the picture,
+leaving a few disconnected fragments with critical services missing),
+something that an anonymity-preserving darknet always has to plan for.
+If AnoNet1 were to become split, the "non-central" side would most
+likely wither away and die (a statistical fact that AnoNet1 used to
+try and destroy AnoNet2 before it ever got off the ground), whereas if
+AnoNet2 splits, the individual fragments should have no problem carrying
+on indefinitely as independent darknets, and little difficulty merging
+back together again if their paths cross at some point in the future.
+What git and monotone do for software development, AnoNet2 does for
+darknet development.
+
+=item not requiring resource registration
+
+AnoNet1 had a very powerful idea, of allowing people to mark a resource
+"reserved" without specifying who has reserved it, but like most good
+ideas in AnoNet1, this one also turned out incompatible with what
+AnoNet1 has become.  AnoNet2 takes this idea one step further: not only
+can you easily leave out the "owner" field in a resource registration,
+but you can even leave out the registration completely, and let someone
+who happens to notice the resource in use (presumably, someone who's
+scanning to make sure a resource is available before using it himself)
+add it himself as "apparently in use."
+
+=item not requiring resource exclusivity
+
+In fact, AnoNet2 takes it a step further, by having no conflict resolution
+policy for resources.  This means two users can use the same IP address,
+for example, and leave it up to routing to decide who "wins."  (Under
+normal circumstances that's not likely to happen, since at least one of
+the users will almost certainly prefer to renumber rather than fighting
+it out with the other guy.  If they both want to fight it out, though,
+there's no AnoNet2 rule that either of them is violating by refusing
+to "talk it out," even if it's trivial to prove which guy's claim came
+first.)  This is intended to be useful during darknet merges, but it can
+also aid in anonymity protection for cooperating users who agree among
+themselves on some algorithm to determine who gets the resource when,
+or perhaps they use the split routing to their advantage, SNATting (or
+proxying) through each other for locations they can't reach directly
+(or even for locations they I<can> reach directly, if they really
+want to confuse an attacker - and themselves, if they're not careful).
+The same thing goes for ASNs, domains, nicknames, etc.  Static analysis
+against any of these resource types is not guaranteed to yield useful
+information (i.e., excessive triangulation may yield strange results),
+and with only a little bit of coordination, a group of users can achieve
+true anonymity, if that's really what they want.
+
+=item avoiding bandwidth requirements for peering
+
+Not everybody can afford a VPS, but everybody should be able to enjoy his
+anonymity, not just as a leaf, but also as a transit.  Conversely, many
+users will want more path diversity, even if it means using slower links.
+Therefore, AnoNet2 defines no rules about minimum bandwidth for peering.
+Individual users can obviously do whatever they want, but there's no
+official policy for them to use as an excuse.  There's nothing wrong
+with a transit node being on dial-up.  If you prefer speed over path
+diversity, just tell your router to avoid any path going through that ASN.
+By the same token, if you have both VPSes and dial-up links and you want
+to make it easy for people to implement different policies for routes
+passing through each of them, it's probably wise to use different ASNs.
+
+=item avoiding I<all> censorship
+
+AnoNet1 officially sanctions some censorship, and unofficially practices
+much more.  The problem is that once you start complexifying the
+definition of censorship, where do you draw the line?  AnoNet2 has a very
+simple definition of censorship: interfering with communications of which
+you are not the (I<the>, not I<an>) intended recipient.  AnoNet2 doesn't
+impose anybody's morals (nor anybody's legal system) on you, so feel
+free to communicate anything you want.  If we don't like what you say,
+we can always just ignore you.
+
+=item avoiding arbitrary restrictions on freedom
+
+Working around restrictions wastes resources, so those who are determined
+to achieve their goals will still achieve them, while the rest of us
+suffer the consequences of a legal framework.  To avoid wasting your
+resources working around AnoNet2 rules, AnoNet2 simply avoids defining
+any rules.  Anything goes.  If you manage to annoy enough people (and
+you'll probably have to put in a serious effort, if you really want to
+annoy enough of us), you'll most likely wind up forking AnoNet2, which
+is probably what you'd want in that case, anyway.
+
+=back
