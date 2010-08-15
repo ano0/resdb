@@ -21,6 +21,13 @@ You may want to rethink your advertising strategy, though.)  You may
 also be able to get help in planning and/or building a new darknet on
 AnoNet IRC.
 
+Please keep in mind that this comparison is mostly focused on relative
+anonymity value, rather than, say, the quality of the available social
+networks.  If the latter is more important to you than the former, you're
+almost certainly wasting your time here.  If you'd like to understand
+more about the mechanics of anonymity, there's a whole separate page here
+(L<http://www.anonet2.org/anonymity>) devoted to that topic.
+
 =begin html
 
 <table>

@@ -1,5 +1,8 @@
 =head1 AnoNet, Take 2!
 
+(Note: There's now a page (L<http://www.anonet2.org/anonymity>) explaining
+a bit about anonymity in general and its place in AnoNet in particular.)
+
 (Note: There's now a darknet comparison page
 (L<http://www.anonet2.org/darknet_comparison>), where you can compare
 and contrast the various darknet options.)
@@ -130,7 +133,9 @@ connections between your online and offline identities. Unlike AnoNet1,
 we're not nazis about our rules, so if you don't feel the need to conceal
 your real-life identity, we won't get all mad at you. Just please be
 considerate of those who would like to stay anonymous ("pseudonomous,"
-technically), and everybody is happy.
+technically), and everybody is happy.  (For more discussion on
+this topic in particular, you may want to check out a separate page
+(L<http://www.anonet2.org/anonymity>) here.)
 
 A secondary reason for joining is to gain an opportunity to experiment
 with internet technologies without breaking "the real thing." While
