@@ -28,6 +28,16 @@ space is inappropriate for a public network, per RFC1918.  (If you'd
 like to connect to an internet that uses private address space anyway,
 you may want to try dn42 at L<http://www.dn42.net/>.)
 
+=item ICANN isn't mismanaging the IPv4-space.  IcannNet usage is just exploding faster than anybody ever predicted.
+
+L<http://www.networkworld.com/news/2010/081610-5billion-devices-internet.html>
+claims that the IcannNet only has about 5 billion total devices, of which
+only about 1 billion "regularly connect" (PCs, laptops, etc.).  There are
+plenty of possible addressing schemes that could accomodate a billion
+"regularly connecting" devices with an address space quadruple the size.
+ICANN clearly isn't using any of them.  By any sane technical definition,
+that would certainly qualify as "mismanagement."
+
 =item If you use 1.0.0.0/8, you're squatting on somebody else's resources.
 
 If you use 1.0.0.0/8 on the IcannNet, then your statement is correct,
@@ -46,14 +56,17 @@ steal it for some "public" network.)
 
 That last accusation has no logical basis.  Just because most AnoNet
 links are tunneled over the IcannNet doesn't give ICANN a right to rule
-the content of those tunnels.
+the content of those tunnels.  (In almost exactly the same way, just
+because most IcannNet links move over telecom equipment doesn't give the
+ITU a right to rule the content of those links.)  In fact, ICANN itself
+will happily confirm that it has neither authority nor ambition to rule
+the content of IcannNet communications between endpoints, inclusive of
+AnoNet tunnels.  Therefore, even if you buy the logical validity of your
+claim, ICANN will still shoot it down.
 
 =item You should move to IPv6, then.
 
-AnoNet has no rules, so you're more than welcome to move to IPv6, and/or
-to try to convince others to do the same.  As long as you don't start
-out with unrealistic expectations, you probably won't be disappointed
-with the results of your preaching effort.
+That's not the only logical conclusion, based on the above.  However, AnoNet has no rules, so you're more than welcome to move to IPv6, and/or to try to convince others to do the same.  As long as you don't start out with unrealistic expectations, you probably won't be disappointed with the results of your preaching effort.  [Update: It appears that IPv6 may have some deployment on AnoNet, now.  (Maybe somebody read the above as a challenge and decided to run with it.)  Perhaps the guys using it will fill in some details here.]
 
 =back
 
@@ -165,7 +178,7 @@ etc.), and he'll add them into his own nameservers.
 =item What can I do with my own domain?
 
 You can host Web pages, an FTP site, IRC, email, an online shop (but
-taking payments may not be simple), or anything else that strikes
+taking payments may not be so simple), or anything else that strikes
 your fancy.
 
 =back
@@ -243,11 +256,11 @@ sustained growth, while the AnoNet1 population growth is mostly flat.
 
 AnoNet2 lost peering with AnoNet1 because AnoNet1 is too centralized
 to avoid censorship.  AnoNet2, therefore, is essentially a reboot of
-AnoNet1, while paying careful attention to preventing another AnoNet
-split from ever being necessary.  (The irony, of course, is that the
-level of decentralization engineered into AnoNet2 makes it trivial for
-anyone in AnoNet2 to fork it.  Such a fork doesn't happen simply because
-"the management" hasn't made one necessary.)
+AnoNet1, while paying careful attention to preventing another AnoNet split
+from ever being necessary.  (The irony, of course, is that the level of
+decentralization engineered into AnoNet2 makes it trivial for anyone in
+AnoNet2 to split it.  Such a split doesn't happen simply because "the
+management" hasn't done anything stupid enough to make one necessary.)
 
 =item Who's "the management" in AnoNet2?  What prevents it from becoming evil when AnoNet2 grows closer to the size of AnoNet1?
 
@@ -324,7 +337,9 @@ address to anyone on AnoNet2.)
 
 =item How can I learn more about AnoNet1 vs. AnoNet2?
 
-L<http://www.anonet2.org/darknet_comparison>
+L<http://www.anonet2.org/darknet_comparison> gives a basic comparison.
+If you want more in-depth information about the relative anonymity value
+of each, L<http://www.anonet2.org/anonymity> may be what you're after.
 
 =back
 
