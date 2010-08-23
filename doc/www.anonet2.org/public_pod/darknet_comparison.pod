@@ -51,7 +51,7 @@ more about the mechanics of anonymity, there's a whole separate page here
  <tr><th>Resource Database</th><td>centralized (part of wiki)</td><td>decentralized (part of git-based resdb)</td><td>decentralized (part of monotone-based registry)</td><td>centralized (ask Borg)</td></tr>
  <tr><th>Documentation</th><td>centralized (crzydmnd's wiki)</td><td>decentralized (part of git-based resdb)</td><td>centralized (helios's wiki)</td><td>centralized (vanet.org)</td></tr>
  <tr><th>Chatroom</th><td>centralized (single IRCnet)</td><td>decentralized (ad-hoc relaying between IRC and Jabber chatrooms)</td><td>semicentralized (single IRCnet, with a Jabber chatroom relay)</td><td>decentralized (shared with AnoNet2)</td></tr>
- <tr><th>DNS</th><td>centralized (from wiki), several official "rootservers"</td><td>decentralized (from resdb), each user fields his own, public nameservers available for the lazy</td><td>decentralized (from registry), multiple competing deployments</td><td>centralized (from svn), multiple competing deployments</td></tr>
+ <tr><th>DNS</th><td>centralized (from wiki), several official "rootservers"</td><td>decentralized (from resdb), each user fields his own, public nameservers available for the lazy</td><td>decentralized (from registry), multiple competing deployments</td><td>centralized (from svn), centralized official deployment</td></tr>
 </table>
 
 =end html
