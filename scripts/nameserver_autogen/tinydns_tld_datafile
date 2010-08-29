@@ -2,8 +2,8 @@
 if ! ./scripts/check_db_safety; then
  exit 1
 fi
-tldsrvrname="$(./scripts/conf_var tinydns__tldsrvrname b30a3fc880c970d4b4f945dd82af4de2.ns.pragmo.ano)"
-tldsrvrip="$(./scripts/conf_var tinydns__tldsrvrip 1.0.16.100)"
+tldsrvrname="$(./scripts/conf_var tinydns__tldsrvrname uz5fvb7zdqyuz4q8ysjdfuf04kzd2lrt0l6fp4uyguxdg5tfut06ck.anons.somerandomnick.ano)"
+tldsrvrip="$(./scripts/conf_var tinydns__tldsrvrip 1.0.27.37)"
 for tld in db/ip/?? ; do
  if [ "x$(basename $tld)" != 'x??' ]; then
   first="$(basename $tld | ./scripts/hex2dec)"
