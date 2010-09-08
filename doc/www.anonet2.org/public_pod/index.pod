@@ -89,32 +89,56 @@ rules - it has no rules whatsoever.
 
 =head2 How to Join
 
-Disclaimer: If the following paragraph makes no sense to you, you can
-join our webchat at L<http://webchat.kwaaknet.org/?c=AnoNet> to have a
-real human help you get up and running in a hurry.  It's a lot easier
-(and not half as boring) to learn the technical details interactively,
-once you're online.
+There are many ways to join AnoNet.  If you just want to hang out with
+us and chat, it's very esay:
 
-Joining is pretty simple: If you know how to connect to a
-client port, UFO's CP (L<http://ix.ucis.nl/clientport.php>
-or L<http://www.qontrol.nl/anonet-cp.tgz>) will already
-land you in the right place.  (Once you're online, you
-can join "the club" at L<irc://1.3.3.7:6667/anonet>,
-or L<irc://irc.somerandomnick.ano:6667/RendezVous>
+=over
+
+=item webchat
+
+L<http://webchat.kwaaknet.org/?c=AnoNet>
+
+=item telnet chat
+
+L<telnet://ufo-net.nl:2323/>
+
+=item IRC chat
+
+L<irc://irc.kwaaknet.org:6667/anonet>
+
+=back
+
+If you're adventurous enough to connect, UFO has a client port at
+L<http://ix.ucis.nl/clientport.php>.
+
+Once you're online, you can reconnect to IRC from inside AnoNet:
+
+=over
+
+=item IRC
+
+L<irc://1.3.3.7:6667/anonet>
+
+=item IRC
+
+L<irc://irc.somerandomnick.ano:6667/RendezVous>
 (L<irc://1.0.27.103:6667/RendezVous>, if you don't have
-DNS for some reason), or L<irc://irc.pragmo.ano:6667/atomic>
-(L<irc://1.0.16.111:6667/atomic>, for the same reason as before and if you
-want you can use SSL on port 6697).  If you don't have an IRC client handy
-(or if you're too lazy to set it up to avoid leaking your real info),
-you can just telnet over to L<telnet://irc.somerandomnick.ano:2323/>
-(or L<telnet://ufo-net.nl:2323/>, from the outside).  Alternatively,
-you can point your Jabber client over to irc.somerandomnick.ano, or you
-can even use Jabber s2s to talk with everybody else by just joining the
-MUC room RendezVouz at irc.somerandomnick.ano.)  If OpenVPN is all Greek
-to you, UFO's IRC server is also reachable from the public Internet
-(L<irc://irc.kwaaknet.org:6667/anonet>).  If IRC is all Greek to you,
-you may want to talk to your favorite search engine about that, or just
-use KwaakNet's Webchat (L<http://webchat.kwaaknet.org/?c=AnoNet>).
+DNS for some reason)
+
+=item IRC
+
+L<irc://irc.pragmo.ano:6667/atomic> (L<irc://1.0.16.111:6667/atomic>, for the same reason as before and if you want you can use SSL on port 6697)
+
+=item telnet
+
+L<telnet://irc.somerandomnick.ano:2323/>
+
+=item Jabber
+
+irc.somerandomnick.ano (RendezVous MUC)
+
+=back
+
 (Note that if your only aim in joining AnoNet is to search Google
 anonymously, you can save yourself the hassle by just heading over to
 Scroogle (L<http://www.scroogle.org/>).  If you're looking to browse the
