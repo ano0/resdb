@@ -90,7 +90,7 @@ rules - it has no rules whatsoever.
 =head2 How to Join
 
 There are many ways to join AnoNet.  If you just want to hang out with
-us and chat, it's very esay:
+us and chat, it's very easy:
 
 =over
 
