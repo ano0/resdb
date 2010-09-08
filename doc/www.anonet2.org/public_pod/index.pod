@@ -64,11 +64,11 @@ irc.somerandomnick.ano (RendezVous MUC)
 
 =back
 
-(Note that if your only aim in joining AnoNet is to search Google
+Note that if your only aim in joining AnoNet is to search Google
 anonymously, you can save yourself the hassle by just heading over to
 Scroogle (L<http://www.scroogle.org/>).  If you're looking to browse the
 rest of the public Internet anonymously, though, we now have outbound
-proxies, which you're more than welcome to use.)
+proxies, which you're more than welcome to use.
 
 =head2 Why to Join
 
