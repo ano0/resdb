@@ -1,0 +1,88 @@
+=head1 AnoNet2 Introduction
+
+(Note: There's now a page (L<http://www.anonet2.org/anonymity>) explaining
+a bit about anonymity in general and its place in AnoNet in particular.)
+
+(Note: There's now a darknet comparison page
+(L<http://www.anonet2.org/darknet_comparison>), where you can compare
+and contrast the various darknet options.)
+
+(Note: There's now a separate page (L<http://www.anonet2.org/faq>),
+to answer all your AnoNet-related questions.)
+
+So, you came across anoNet and thought it sounded great, so you decided
+to join in order to check it out.
+
+...and found the (only) client port doesn't work half the time,
+
+...and most of the advertised services no longer exist,
+
+...and most of the people have left,
+
+...and those who are left can hardly be classified as friendly,
+
+...and so you left, and perhaps found another darknet instead.
+
+Well, you're not the only one who's been turned off, and a few of us
+have decided to take action and fix AnoNet.  Some of us are relatively
+new, while others joined AnoNet1 years ago, and left out of disgust.
+A number of features set version 2 apart from the original:
+
+=over
+
+=item No false advertising
+
+If you see something advertised here, it exists.  You won't see stuff
+that hasn't been up in years here.  (This page is easy to update from
+within AnoNet2 by anybody who has an update/correction to make, and
+changes normally propagate within no more than a few days.)
+
+=item No centralized network control
+
+You don't have to worry about Kaos waking up one morning and blocking
+your access to the whole network by deciding to filter private ASNs.
+You also don't have to worry about a couple of powerful guys getting
+together and "blacklisting" you from the network for some unspecified
+reason with an inquisition against your peers.
+
+=item No centralized IRC control
+
+You don't have to worry about risc g-lining you from the "official" IRC
+network for no apparent reason, and refusing to even admit to having
+g-lined you.  Since the whole purpose behind AnoNet was to create a
+censorship-resistant alternative to the government-censored "public"
+Internet, arbitrary censorship on the "official" AnoNet1 IRC network by
+anonymous government members is particularly troubling.  AnoNet2 has
+no "official" IRC network, and the servers most commonly used have
+interesting channels bridged with a relay bot, so even if you manage to
+annoy an IRC server operator to the point where he decides to g-line you
+from his whole "network," that doesn't automatically prevent you from
+connecting to another server and accessing one of the bridged channels.
+(Obviously, if you manage to annoy the operators of all the linked servers
+to the point where all of them g-line you from their respective "networks"
+and nobody wants to let you relay your own server in, then you're probably
+out of luck.  Of course, that doesn't prevent you from running your own
+IRC server, and those who want to hear you can still join it.)
+
+=item No resource mess
+
+We have one mechanism for resource management, a decentralized (not just
+distributed, but truly decentralized) resource database. You don't have
+to deal with half a zillion incompatible (and in the case of the wiki,
+down) services, run by guys who may not even be on the AnoNet tomorrow.
+Managing your resources is as simple as taking a VI to the appropriate
+files, doing a "git commit," and then just waiting for everybody else to
+pull your changes (either directly from you, or indirectly from others
+who pull from you).
+
+=item No arbitrary rules
+
+If you read the advertising for AnoNet, you probably think it's whatever
+you make of it. Sadly, there's a tiny handful of people who have control
+over most of the network, and make new (unwritten) rules whenever the
+mood strikes them. The sum of those rules is that AnoNet is whatever
+I<they> make of it. In version 2, we've undertaken to fix that, by both
+technical and administrative means.  AnoNet2 not only has no arbitrary
+rules - it has no rules whatsoever.
+
+=back

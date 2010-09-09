@@ -1,0 +1,9 @@
+#!/bin/sh
+
+#This script is necessary because head from GNU textutils 2.0 (on Borg's
+# machine) doesn't implement negative arguments for the -n and -c options.
+
+#FIXME: The emulation here fails if there's a newline at the end:
+#sed '$s/.$//'
+
+rev | tac | dd bs=1 skip=1 status=noxfer 2>/dev/null | tac | rev

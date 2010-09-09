@@ -1,4 +1,4 @@
-all: index.html links.html faq.html darknet_comparison.html anonymity.html
+all: index.html links.html faq.html darknet_comparison.html anonymity.html intro.html
 
 %.html: %.pod
 	pod2html --noindex < $< 2>/dev/null > $@.tmp

@@ -10,116 +10,65 @@ and contrast the various darknet options.)
 (Note: There's now a separate page (L<http://www.anonet2.org/faq>),
 to answer all your AnoNet-related questions.)
 
-So, you came across anoNet and thought it sounded great, so you decided
-to join in order to check it out.
-
-...and found the (only) client port doesn't work half the time,
-
-...and most of the advertised services no longer exist,
-
-...and most of the people have left,
-
-...and those who are left can hardly be classified as friendly,
-
-...and so you left, and perhaps found another darknet instead.
-
-Well, you're not the only one who's been turned off, and a few of us
-have decided to take action and fix AnoNet.  Some of us are relatively
-new, while others joined AnoNet1 years ago, and left out of disgust.
-A number of features set version 2 apart from the original:
-
-=over
-
-=item No false advertising
-
-If you see something advertised here, it exists.  You won't see stuff
-that hasn't been up in years here.  (This page is easy to update from
-within AnoNet2 by anybody who has an update/correction to make, and
-changes normally propagate within no more than a few days.)
-
-=item No centralized network control
-
-You don't have to worry about Kaos waking up one morning and blocking
-your access to the whole network by deciding to filter private ASNs.
-You also don't have to worry about a couple of powerful guys getting
-together and "blacklisting" you from the network for some unspecified
-reason with an inquisition against your peers.
-
-=item No centralized IRC control
-
-You don't have to worry about risc g-lining you from the "official" IRC
-network for no apparent reason, and refusing to even admit to having
-g-lined you.  Since the whole purpose behind AnoNet was to create a
-censorship-resistant alternative to the government-censored "public"
-Internet, arbitrary censorship on the "official" AnoNet1 IRC network by
-anonymous government members is particularly troubling.  AnoNet2 has
-no "official" IRC network, and the servers most commonly used have
-interesting channels bridged with a relay bot, so even if you manage to
-annoy an IRC server operator to the point where he decides to g-line you
-from his whole "network," that doesn't automatically prevent you from
-connecting to another server and accessing one of the bridged channels.
-(Obviously, if you manage to annoy the operators of all the linked servers
-to the point where all of them g-line you from their respective "networks"
-and nobody wants to let you relay your own server in, then you're probably
-out of luck.  Of course, that doesn't prevent you from running your own
-IRC server, and those who want to hear you can still join it.)
-
-=item No resource mess
-
-We have one mechanism for resource management, a decentralized (not just
-distributed, but truly decentralized) resource database. You don't have
-to deal with half a zillion incompatible (and in the case of the wiki,
-down) services, run by guys who may not even be on the AnoNet tomorrow.
-Managing your resources is as simple as taking a VI to the appropriate
-files, doing a "git commit," and then just waiting for everybody else to
-pull your changes (either directly from you, or indirectly from others
-who pull from you).
-
-=item No arbitrary rules
-
-If you read the advertising for AnoNet, you probably think it's whatever
-you make of it. Sadly, there's a tiny handful of people who have control
-over most of the network, and make new (unwritten) rules whenever the
-mood strikes them. The sum of those rules is that AnoNet is whatever
-I<they> make of it. In version 2, we've undertaken to fix that, by both
-technical and administrative means.  AnoNet2 not only has no arbitrary
-rules - it has no rules whatsoever.
-
-=back
+A quick introduction to darknets and anonymity in general and AnoNet2 in particular, is now on a separate page (L<http://www.anonet2.org/intro>).
 
 =head2 How to Join
 
-Disclaimer: If the following paragraph makes no sense to you, you can
-join our webchat at L<http://webchat.kwaaknet.org/?c=AnoNet> to have a
-real human help you get up and running in a hurry.  It's a lot easier
-(and not half as boring) to learn the technical details interactively,
-once you're online.
+There are many ways to join AnoNet.  If you just want to hang out with
+us and chat, it's very easy:
 
-Joining is pretty simple: If you know how to connect to a
-client port, UFO's CP (L<http://ix.ucis.nl/clientport.php>
-or L<http://www.qontrol.nl/anonet-cp.tgz>) will already
-land you in the right place.  (Once you're online, you
-can join "the club" at L<irc://1.3.3.7:6667/anonet>,
-or L<irc://irc.somerandomnick.ano:6667/RendezVous>
+=over
+
+=item webchat
+
+L<http://webchat.kwaaknet.org/?c=AnoNet>
+
+=item telnet chat
+
+L<telnet://ufo-net.nl:2323/>
+
+=item IRC chat
+
+L<irc://irc.kwaaknet.org:6667/anonet>
+
+=back
+
+If you're feeling adventurous enough to connect, UFO has a client port
+at L<http://ix.ucis.nl/clientport.php>.
+
+Once you're online, you can reconnect to IRC from inside AnoNet:
+
+=over
+
+=item IRC
+
+L<irc://1.3.3.7:6667/anonet>
+
+=item IRC
+
+L<irc://irc.somerandomnick.ano:6667/RendezVous>
 (L<irc://1.0.27.103:6667/RendezVous>, if you don't have
-DNS for some reason), or L<irc://irc.pragmo.ano:6667/atomic>
-(L<irc://1.0.16.111:6667/atomic>, for the same reason as before and if you
-want you can use SSL on port 6697).  If you don't have an IRC client handy
-(or if you're too lazy to set it up to avoid leaking your real info),
-you can just telnet over to L<telnet://irc.somerandomnick.ano:2323/>
-(or L<telnet://ufo-net.nl:2323/>, from the outside).  Alternatively,
-you can point your Jabber client over to irc.somerandomnick.ano, or you
-can even use Jabber s2s to talk with everybody else by just joining the
-MUC room RendezVouz at irc.somerandomnick.ano.)  If OpenVPN is all Greek
-to you, UFO's IRC server is also reachable from the public Internet
-(L<irc://irc.kwaaknet.org:6667/anonet>).  If IRC is all Greek to you,
-you may want to talk to your favorite search engine about that, or just
-use KwaakNet's Webchat (L<http://webchat.kwaaknet.org/?c=AnoNet>).
-(Note that if your only aim in joining AnoNet is to search Google
+DNS for some reason)
+
+=item IRC
+
+L<irc://irc.pragmo.ano:6667/atomic> (L<irc://1.0.16.111:6667/atomic>, for the same reason as before and if you want you can use SSL on port 6697)
+
+=item telnet
+
+L<telnet://irc.somerandomnick.ano:2323/>
+
+=item Jabber
+
+irc.somerandomnick.ano (RendezVous MUC)
+
+=back
+
+Note that if your only aim in joining AnoNet is to search Google
 anonymously, you can save yourself the hassle by just heading over to
 Scroogle (L<http://www.scroogle.org/>).  If you're looking to browse the
 rest of the public Internet anonymously, though, we now have outbound
-proxies, which you're more than welcome to use.)
+proxies, which you're more than welcome to use.
 
 =head2 Why to Join
 
