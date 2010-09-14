@@ -7,10 +7,11 @@ a bit about anonymity in general and its place in AnoNet in particular.)
 page|http://www.anonet2.org/darknet_comparison>), where you can compare
 and contrast the various darknet options.)
 
-(Note: There's now a separate page (L<http://www.anonet2.org/faq>),
-to answer all your AnoNet-related questions.)
+(Note: There's now L<a separate page to answer all your AnoNet-related
+questions|http://www.anonet2.org/faq>.)
 
-A quick introduction to darknets and anonymity in general and AnoNet2 in particular, is now on a separate page (L<http://www.anonet2.org/intro>).
+L<A quick introduction to darknets and anonymity in general and AnoNet2
+in particular, is now on a separate page.|http://www.anonet2.org/intro>
 
 =head2 How to Join
 
