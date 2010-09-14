@@ -30,29 +30,29 @@ here devoted to that topic|http://www.anonet2.org/anonymity>.
 
 =begin xhtml
 
-<table>
- <tr><th colspan='5'>Overview</th></tr>
- <tr><td>&nbsp</td><th>AnoNet1</th><th>AnoNet2</th><th>dn42</th><th>VAnet</th></tr>
- <tr><th>Claimed Purpose</th><td>anonymity to prevent censorship</td><td>anonymity to prevent censorship</td><td>have fun with BGP</td><td>freedom and network efficiency</td></tr>
- <tr><th>Claimed Government</th><td>nearly none</td><td>none</td><td>nearly none</td><td>backbone only</td></tr>
- <tr><th>Actual Government</th><td>oligarchy</td><td>none</td><td>nearly none</td><td>backbone only</td></tr>
- <tr><th>Actual Government betrays Claimed Purpose</th><td>yes</td><td>no</td><td>no</td><td>no</td></tr>
- <tr><th>Centralized Critical Infrastructure</th><td>wiki (includes resource database), client port, IRC</td><td>none</td><td>wiki, IRC</td><td>all</td></tr>
- <tr><th>Decentralized Critical Infrastructure</th><td>routing</td><td>all</td><td>routing, resource database</td><td>none</td></tr>
- <tr><th>Current Size</th><td>20-30</td><td>~10</td><td>40-50</td><td>&lt;5</td></tr>
- <tr><th>Average Monthly Growth</th><td>~0%</td><td>~20%</td><td>~5%</td><td>~10%</td></tr>
- <tr><th>Activity Level</th><td>medium</td><td>medium</td><td>medium</td><td>low</td></tr>
- <tr><th>Interdarknet Connectivity</th><td>censored access to AnoNet2 (must use AnoNet2 DNS), censored access to dn42 (must use AnoNet2 DNS)</td><td>full routing to part of AnoNet1, full routing to part of dn42, full routing to VAnet</td><td>censored access to AnoNet (1&amp;2, must use SRN's DNS), censored access to VAnet (must use SRN's DNS)</td><td>full routing to part of AnoNet1, full routing to AnoNet2, full routing to part of dn42</td></tr>
- <tr><th>DNS Coverage</th><td>AnoNet1</td><td>AnoNet (1&amp;2), dn42, VAnet, IcannNet</td><td>dn42, IcannNet</td><td>AnoNet (1&amp;2), dn42, VAnet, IcannNet</td></tr>
- <tr><th>Peering Prerequisites</th><td>OpenVPN, BGP daemon, sustained IRC participation for over a month</td><td>OpenVPN or tinc or quicktun, BGP daemon or static routing</td><td>OpenVPN, BGP daemon or static routing</td><td>depends on individual PoP policy</td></tr>
- <tr><th colspan='5'>Services</th></tr>
- <tr><td>&nbsp</td><th>AnoNet1</th><th>AnoNet2</th><th>dn42</th><th>VAnet</th></tr>
- <tr><th>Routing</th><td>decentralized</td><td>decentralized</td><td>decentralized</td><td>centralized</td>
- <tr><th>Resource Database</th><td>centralized (part of wiki)</td><td>decentralized (part of git-based resdb)</td><td>decentralized (part of monotone-based registry)</td><td>centralized (ask Borg)</td></tr>
- <tr><th>Documentation</th><td>centralized (crzydmnd's wiki)</td><td>decentralized (part of git-based resdb)</td><td>centralized (helios's wiki)</td><td>centralized (vanet.org)</td></tr>
- <tr><th>Chatroom</th><td>centralized (single IRCnet)</td><td>decentralized (ad-hoc relaying between IRC and Jabber chatrooms)</td><td>semicentralized (single IRCnet, with a Jabber chatroom relay)</td><td>decentralized (shared with AnoNet2)</td></tr>
- <tr><th>DNS</th><td>centralized (from wiki), several official "rootservers"</td><td>decentralized (from resdb), each user fields his own, public nameservers available for the lazy</td><td>decentralized (from registry), multiple competing deployments</td><td>centralized (from svn), centralized official deployment</td></tr>
- <tr><th>BitTorrent Trackers/Indexers</th><td>none?</td><td>1 centralized and 1 decentralized (git-based)</td><td>1 centralized</td><td>1 centralized</td></tr>
-</table>
+E<lt>table>
+ E<lt>tr>E<lt>th colspan='5'>OverviewE<lt>/th>E<lt>/tr>
+ E<lt>tr>E<lt>td>&nbspE<lt>/td>E<lt>th>AnoNet1E<lt>/th>E<lt>th>AnoNet2E<lt>/th>E<lt>th>dn42E<lt>/th>E<lt>th>VAnetE<lt>/th>E<lt>/tr>
+ E<lt>tr>E<lt>th>Claimed PurposeE<lt>/th>E<lt>td>anonymity to prevent censorshipE<lt>/td>E<lt>td>anonymity to prevent censorshipE<lt>/td>E<lt>td>have fun with BGPE<lt>/td>E<lt>td>freedom and network efficiencyE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Claimed GovernmentE<lt>/th>E<lt>td>nearly noneE<lt>/td>E<lt>td>noneE<lt>/td>E<lt>td>nearly noneE<lt>/td>E<lt>td>backbone onlyE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Actual GovernmentE<lt>/th>E<lt>td>oligarchyE<lt>/td>E<lt>td>noneE<lt>/td>E<lt>td>nearly noneE<lt>/td>E<lt>td>backbone onlyE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Actual Government betrays Claimed PurposeE<lt>/th>E<lt>td>yesE<lt>/td>E<lt>td>noE<lt>/td>E<lt>td>noE<lt>/td>E<lt>td>noE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Centralized Critical InfrastructureE<lt>/th>E<lt>td>wiki (includes resource database), client port, IRCE<lt>/td>E<lt>td>noneE<lt>/td>E<lt>td>wiki, IRCE<lt>/td>E<lt>td>allE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Decentralized Critical InfrastructureE<lt>/th>E<lt>td>routingE<lt>/td>E<lt>td>allE<lt>/td>E<lt>td>routing, resource databaseE<lt>/td>E<lt>td>noneE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Current SizeE<lt>/th>E<lt>td>20-30E<lt>/td>E<lt>td>~10E<lt>/td>E<lt>td>40-50E<lt>/td>E<lt>td>&lt;5E<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Average Monthly GrowthE<lt>/th>E<lt>td>~0%E<lt>/td>E<lt>td>~20%E<lt>/td>E<lt>td>~5%E<lt>/td>E<lt>td>~10%E<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Activity LevelE<lt>/th>E<lt>td>mediumE<lt>/td>E<lt>td>mediumE<lt>/td>E<lt>td>mediumE<lt>/td>E<lt>td>lowE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Interdarknet ConnectivityE<lt>/th>E<lt>td>censored access to AnoNet2 (must use AnoNet2 DNS), censored access to dn42 (must use AnoNet2 DNS)E<lt>/td>E<lt>td>full routing to part of AnoNet1, full routing to part of dn42, full routing to VAnetE<lt>/td>E<lt>td>censored access to AnoNet (1&amp;2, must use SRN's DNS), censored access to VAnet (must use SRN's DNS)E<lt>/td>E<lt>td>full routing to part of AnoNet1, full routing to AnoNet2, full routing to part of dn42E<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>DNS CoverageE<lt>/th>E<lt>td>AnoNet1E<lt>/td>E<lt>td>AnoNet (1&amp;2), dn42, VAnet, IcannNetE<lt>/td>E<lt>td>dn42, IcannNetE<lt>/td>E<lt>td>AnoNet (1&amp;2), dn42, VAnet, IcannNetE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>Peering PrerequisitesE<lt>/th>E<lt>td>OpenVPN, BGP daemon, sustained IRC participation for over a monthE<lt>/td>E<lt>td>OpenVPN or tinc or quicktun, BGP daemon or static routingE<lt>/td>E<lt>td>OpenVPN, BGP daemon or static routingE<lt>/td>E<lt>td>depends on individual PoP policyE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th colspan='5'>ServicesE<lt>/th>E<lt>/tr>
+ E<lt>tr>E<lt>td>&nbspE<lt>/td>E<lt>th>AnoNet1E<lt>/th>E<lt>th>AnoNet2E<lt>/th>E<lt>th>dn42E<lt>/th>E<lt>th>VAnetE<lt>/th>E<lt>/tr>
+ E<lt>tr>E<lt>th>RoutingE<lt>/th>E<lt>td>decentralizedE<lt>/td>E<lt>td>decentralizedE<lt>/td>E<lt>td>decentralizedE<lt>/td>E<lt>td>centralizedE<lt>/td>
+ E<lt>tr>E<lt>th>Resource DatabaseE<lt>/th>E<lt>td>centralized (part of wiki)E<lt>/td>E<lt>td>decentralized (part of git-based resdb)E<lt>/td>E<lt>td>decentralized (part of monotone-based registry)E<lt>/td>E<lt>td>centralized (ask Borg)E<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>DocumentationE<lt>/th>E<lt>td>centralized (crzydmnd's wiki)E<lt>/td>E<lt>td>decentralized (part of git-based resdb)E<lt>/td>E<lt>td>centralized (helios's wiki)E<lt>/td>E<lt>td>centralized (vanet.org)E<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>ChatroomE<lt>/th>E<lt>td>centralized (single IRCnet)E<lt>/td>E<lt>td>decentralized (ad-hoc relaying between IRC and Jabber chatrooms)E<lt>/td>E<lt>td>semicentralized (single IRCnet, with a Jabber chatroom relay)E<lt>/td>E<lt>td>decentralized (shared with AnoNet2)E<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>DNSE<lt>/th>E<lt>td>centralized (from wiki), several official "rootservers"E<lt>/td>E<lt>td>decentralized (from resdb), each user fields his own, public nameservers available for the lazyE<lt>/td>E<lt>td>decentralized (from registry), multiple competing deploymentsE<lt>/td>E<lt>td>centralized (from svn), centralized official deploymentE<lt>/td>E<lt>/tr>
+ E<lt>tr>E<lt>th>BitTorrent Trackers/IndexersE<lt>/th>E<lt>td>none?E<lt>/td>E<lt>td>1 centralized and 1 decentralized (git-based)E<lt>/td>E<lt>td>1 centralizedE<lt>/td>E<lt>td>1 centralizedE<lt>/td>E<lt>/tr>
+E<lt>/table>
 
 =end xhtml
