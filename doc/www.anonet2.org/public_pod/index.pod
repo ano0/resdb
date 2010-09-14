@@ -3,8 +3,8 @@
 (Note: There's now L<a page|http://www.anonet2.org/anonymity> explaining
 a bit about anonymity in general and its place in AnoNet in particular.)
 
-(Note: There's now a darknet comparison page
-(L<http://www.anonet2.org/darknet_comparison>), where you can compare
+(Note: There's now L<a darknet comparison
+page|http://www.anonet2.org/darknet_comparison>), where you can compare
 and contrast the various darknet options.)
 
 (Note: There's now a separate page (L<http://www.anonet2.org/faq>),
