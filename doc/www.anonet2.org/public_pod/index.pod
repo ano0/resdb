@@ -7,7 +7,7 @@ particular|http://www.anonet2.org/anonymity>
 
 L<darknet comparison page|http://www.anonet2.org/darknet_comparison>
 
-L<AnoNet FAQ|http://www.anonet2.org/faq>.
+L<AnoNet FAQ|http://www.anonet2.org/faq>
 
 L<quick introduction to darknets and anonymity in general and AnoNet2
 in particular|http://www.anonet2.org/intro>
