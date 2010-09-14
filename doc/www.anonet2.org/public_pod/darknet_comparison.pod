@@ -28,7 +28,7 @@ almost certainly wasting your time here.  If you'd like to understand
 more about the mechanics of anonymity, L<there's a whole separate page
 here devoted to that topic|http://www.anonet2.org/anonymity>.
 
-=begin html
+=begin xhtml
 
 <table>
  <tr><th colspan='5'>Overview</th></tr>
@@ -55,4 +55,4 @@ here devoted to that topic|http://www.anonet2.org/anonymity>.
  <tr><th>BitTorrent Trackers/Indexers</th><td>none?</td><td>1 centralized and 1 decentralized (git-based)</td><td>1 centralized</td><td>1 centralized</td></tr>
 </table>
 
-=end html
+=end xhtml
