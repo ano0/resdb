@@ -15,7 +15,7 @@ If none of the existing darknets suit your needs, you're encouraged
 to advertise your new one here.  You're also more than welcome to spam
 AnoNet IRC for new members, but if your advertisements get redundant and
 boring and redundant and repetitive and redundant after a while, don't
-be surprised if people start b</ignore>ing you.  (Please don't let that
+be surprised if people start B</ignore>ing you.  (Please don't let that
 discourage you, if you truly believe your new darknet is worth joining.
 You may want to rethink your advertising strategy, though.)  You may
 also be able to get help in planning and/or building a new darknet on
