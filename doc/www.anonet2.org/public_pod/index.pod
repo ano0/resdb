@@ -21,15 +21,15 @@ us and chat, it's very easy:
 
 =item webchat
 
-L<http://webchat.kwaaknet.org/?c=AnoNet>
+L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet> (doesn't hide your identity)
 
 =item telnet chat
 
-L<telnet://ufo-net.nl:2323/>
+L<SRN|telnet://ufo-net.nl:2323/> (hides your identity)
 
 =item IRC chat
 
-L<irc://irc.kwaaknet.org:6667/anonet>
+L<KwaakNet|irc://irc.kwaaknet.org:6667/anonet> (doesn't hide your identity)
 
 =back
 
@@ -42,21 +42,24 @@ Once you're online, you can reconnect to IRC from inside AnoNet:
 
 =item IRC
 
-L<irc://1.3.3.7:6667/anonet>
+L<KwaakNet|irc://1.3.3.7:6667/anonet> (doesn't automatically hide your identity)
 
 =item IRC
 
-L<irc://irc.somerandomnick.ano:6667/RendezVous>
-(L<irc://1.0.27.103:6667/RendezVous>, if you don't have
-DNS for some reason)
+L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous>
+(L<SRN|irc://1.0.27.103:6667/RendezVous>, if you don't have DNS for some
+reason) (automatically hides your identity)
 
 =item IRC
 
-L<irc://irc.pragmo.ano:6667/atomic> (L<irc://1.0.16.111:6667/atomic>, for the same reason as before and if you want you can use SSL on port 6697)
+L<pragmo|irc://irc.pragmo.ano:6667/atomic>
+(L<pragmo|irc://1.0.16.111:6667/atomic>, for the same reason as before
+and if you want you can use SSL on port 6697) (doesn't automatically
+hide your identity)
 
 =item telnet
 
-L<telnet://irc.somerandomnick.ano:2323/>
+L<SRN|telnet://irc.somerandomnick.ano:2323/>
 
 =item Jabber
 
@@ -182,6 +185,12 @@ Web-based resource database viewer: L<http://ix.ucis.ano/anonet/>
 
 Decentralized Web mirroring service (at least L<http://a.mirror.somerandomnick.ano>) (technical difficulties)
 
+=item *
+
+BitTorrent Tracker/Indexer (three separate ones, each with some cool
+features of its own - ask for details on IRC) (no need to worry about
+"Three Strikes" ISP policies)
+
 =back
 
 Here's a list of things that somebody claims to be working on:
@@ -233,11 +242,13 @@ such an animal on AnoNet2, but competition here is a good thing.
 =item IRC Servers
 
 IRC on AnoNet2 isn't one big network under centralized control.
-Rather, anybody who wants runs his own IRC (or other chat) server, and
-links whatever channels he wants to channels on other servers, using
-a collection of relay bots.  (Right now, UFO and pragmo field relays,
-and the scalability problems are becoming visible.  How relay bots may
-want to deal with this is still a topic for open discussion.)
+Rather, anybody who wants runs his own IRC (or other chat) server,
+and links whatever channels he wants to channels on other servers,
+using a collection of relay bots.  (Right now, UFO and pragmo field
+relays, and the scalability problems are becoming visible.  How relay
+bots may want to deal with this is still a topic for open discussion.
+Feel free to join in the discussion, or just do your own thing and let
+everyone else be damned.)
 
 =item Outbound HTTP Proxies
 
