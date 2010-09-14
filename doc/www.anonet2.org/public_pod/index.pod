@@ -1,6 +1,6 @@
 =head1 AnoNet, Take 2!
 
-(Note: There's now L<a page|L<http://www.anonet2.org/anonymity> explaining
+(Note: There's now L<a_page|L<http://www.anonet2.org/anonymity> explaining
 a bit about anonymity in general and its place in AnoNet in particular.)
 
 (Note: There's now a darknet comparison page
