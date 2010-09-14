@@ -34,8 +34,8 @@ L<irc://irc.kwaaknet.org:6667/anonet>
 
 =back
 
-If you're feeling adventurous enough to connect, UFO has a client port
-at L<http://ix.ucis.nl/clientport.php>.
+If you're feeling adventurous enough to connect, L<UFO has a client
+port|http://ix.ucis.nl/clientport.php>.
 
 Once you're online, you can reconnect to IRC from inside AnoNet:
 
@@ -66,15 +66,15 @@ irc.somerandomnick.ano (RendezVous MUC)
 =back
 
 Note that if your only aim in joining AnoNet is to search Google
-anonymously, you can save yourself the hassle by just heading over to
-Scroogle (L<http://www.scroogle.org/>).  If you're looking to browse the
-rest of the public Internet anonymously, though, we now have outbound
-proxies, which you're more than welcome to use.
+anonymously, you can save yourself the hassle L<by just heading over to
+Scroogle|http://www.scroogle.org/>.  If you're looking to browse the rest
+of the public Internet anonymously, though, we now have outbound proxies,
+which you're more than welcome to use.
 
 =head2 Why to Join
 
-(Note: There's now a separate page (L<http://www.anonet2.org/links>)
-with links to many more reasons to join AnoNet.)
+(Note: There's now L<a separate page with links to many more reasons to
+join AnoNet|http://www.anonet2.org/links>.)
 
 You'd want to join AnoNet2 for the same reasons as you'd want to join
 AnoNet1: to exercise your freedom of speech and action, without having
@@ -169,7 +169,7 @@ PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (i
 
 =item *
 
-git (including a decentralized "wiki" replacement) (L<git://git1.somerandomnick.ano/>, L<http://anogit.ucis.ano/.git/>, L<git://1.22.48.100/>, L<git://pragmo.ano/>, L<git://1.0.18.1/>, L<git://1.0.111.1/>, and possibly other repos)
+git (including a decentralized "wiki" replacement) (L<SRN|git://git1.somerandomnick.ano/>, L<UFO|http://anogit.ucis.ano/.git/>, L<cronix|git://1.22.48.100/>, L<pragmo|git://pragmo.ano/>, L<quintum|git://1.0.18.1/>, L<wakawaka|git://1.0.111.1/>, and possibly other repos)
 
 =item *
 
@@ -259,14 +259,14 @@ in addition to - AnoNet.
 
 =over
 
-=item dn42 - L<http://www.dn42.net/>
+=item L<dn42|http://www.dn42.net/>
 
 dn42 is another highly decentralized darknet, and it's also quite
 friendly.  The main differences are that it doesn't claim anonymity as
 a goal, and that it's significantly larger than AnoNet.  A number of
 AnoNet members are also active in dn42.
 
-=item VAnet - L<http://www.vanet.org/>
+=item L<VAnet|http://www.vanet.org/>
 
 VAnet is a strange animal.  It's a highly I<centralized> darknet, making
 the curious claim that centralization actually aids in privacy protection.
@@ -275,7 +275,7 @@ technical perspective, due to its centralization.  VAnet's official IRC
 is part of the AnoNet IRC monster for now, so the easiest way to find out
 more about VAnet is actually just to join AnoNet IRC and ask about VAnet.
 
-=item UCIS IX - L<http://ix.ucis.nl/>
+=item L<UCIS IX|http://ix.ucis.nl/>
 
 The UCIS Internet eXchange is an attempt to link a bunch of darknets
 together.  If you connect using UFO's CP, you're already on the UCIS IX.
