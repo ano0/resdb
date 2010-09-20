@@ -102,20 +102,110 @@ looking at an "official" reason for joining, but nobody owns AnoNet, so
 "official" is an artificial term 'round here.
 
 Finally, you may be getting a bit nervous at the amount of regulation
-piling up around the world against the public Internet. Since the "public"
-Internet is owned and managed by a number of multinational corporations,
-it's fairly easy for governments to regulate it. Part of the main
-purpose behind AnoNet has always been to get away from those private
-control points, in order to create a truly public internet. In AnoNet1,
-anybody who can regulate crzydmnd can regulate AnoNet1's "official"
-wiki (and by extension, its resource "database"), and anybody who can
-regulate Kaos can regulate AnoNet1's "official" client port (and by
-extension, all new AnoNet1 users), so the private control point problem
-hasn't quite been solved there. AnoNet2 is still largely controlled by
-UFO and somerandomnick, but we have both technical and administrative
-measures in place to ensure that as the network grows, the two of us
-will no longer have enough control to destroy the network, even if our
-own governments ever decide to try regulating us.
+piling up around the world against the public Internet.  Since the
+"public" Internet is owned and managed by a number of multinational
+corporations, it's fairly easy for governments to regulate it.  Part of
+the main purpose behind AnoNet has always been to get away from those
+private control points, in order to create a truly public internet.
+In AnoNet1, anybody who can regulate crzydmnd can regulate AnoNet1's
+"official" wiki (and by extension, its resource "database"), and
+anybody who can regulate Kaos can regulate AnoNet1's "official" client
+port (and by extension, all new AnoNet1 users), so the private control
+point problem hasn't quite been solved there.  AnoNet2 is still largely
+controlled by UFO and somerandomnick, but we have both technical and
+administrative measures in place to ensure that as the network grows,
+the two of us will no longer have enough control to destroy the network,
+even if our own governments ever decide to try regulating us.
+
+=head2 The AnoNet Advantage
+
+You may be wondering what AnoNet buys you, relative to IcannNet.  The answer obviously depends on what you tend to do on IcannNet.  Here are some points to note:
+
+=over
+
+=item Read Headlines
+
+If you only read the headlines from your local news (without clicking
+through to interesting stories, etc.), your anonymity on AnoNet is
+actually significantly _worse_ than on IcannNet, because you're giving
+away geolocation information that your IcannNet ISP already knows but
+that AnoNet probably doesn't.
+
+=item Read News
+
+Once you start clicking around for "interesting" stories, you're giving away information that your ISP probably wouldn't already know.  However, if you read local news it's probably still wise to avoid AnoNet.  (You can still use tor directly.)
+
+=item Do Research
+
+AnoNet shines here.  Governments can force Google to cough up your search history, but only if Google can figure out which searches you're responsible for.  If you use Scroogle (HTTPS) through one of AnoNet's HTTP proxies, the proxy doesn't know what you're looking for, Scroogle has no clue who you are, and by the time the search makes its way to Google, connecting it to you is all but hopeless.
+
+=item Share Files
+
+BitTorrent doesn't hide your IP address, so seeding files for L<TPB|http://www.thepiratebay.org/> is not necessarily safe.  BitTorrent on AnoNet doesn't hide your IP address either, but the authorities can't easily connect your AnoNet IP address with your IcannNet IP address (in order to get your ISP to reveal your identity).
+
+=item Speak Out
+
+If you know something that you'd like other people to know, and you fear retribution from those who would prefer for others not to know what you know, traditional IcannNet forums can be forced to turn over your IP address, which can then identify you.  On AnoNet, it's comparatively easy to cover your tracks, in such a way that even your own peers would have a hard time figuring out who said whatever it was.
+
+=item Blog
+
+If your blog is easy to connect to your offline identity (say, it
+has your name and address, and/or dwells primarily on local issues),
+then moving it to AnoNet obviously won't gain you much anonymity.
+On the other hand, if it's "just another random blog," AnoNet has the
+potential to keep it that way.  For example, if you like to tell readers
+about your experience with various products, you always run the risk of
+having to defend yourself against a lawsuit if a corporate lawyer decides
+his client would be better served if your critical review went away.
+Now, since defending yourself in any court of law is never a trivial
+matter (since the judges in nearly all first-world countries assume
+that you know all the laws, regulations, relevant case histories,
+civil procedures, etc. - you know, the stuff you'd normally spend
+years in law school learning how to make sense of), you may decide
+that publishing your blog on IcannNet simply isn't worth the risk.
+On AnoNet, your blog is pretty well-protected against civil liability
+lawsuits, since before a lawyer can sue you, he first has to find you.
+(While there are legal mechanisms in place in many countries to allow a
+lawsuit to get started even when the defendant is unknown, it should be
+pretty obvious that a court will need to find out who you are before it
+can meaningfully involve you in a case.  If you've done your homework,
+the cost of finding you will far outweigh the benefit, especially if the
+plaintiff knows he has no real case against you and was simply hoping to
+intimidate you.)  In addition, the company hosting your IcannNet blog
+almost certainly allows itself to delete (any part of) your blog in
+its own sole discretion without even notifying you.  That potentially
+allows a lawyer with an upset client to take a shortcut and bypass you
+entirely, simply "asking" your blog hosting provider to remove (that part
+of) your blog.  To avoid having to activate its own lawyers, your blog
+hosting provider may very well decide to pull (that part of) your blog,
+especially if you're paying little or nothing to host your blog.  In fact,
+if your blog is on its own domain, there's yet another canidate for the
+weakest link, in that anybody who wants your blog gone can simply appeal
+to your domain's registrar.  (Recall the WikiLeaks case, for example.)
+On AnoNet, you can easily host your own blog, forcing attacks against
+your hosting arrangements to go through you (or at least through _all_
+of your peers).  Your domain is even harder to attack, since wiping your
+domain off of a single resdb repository would only prevent one AnoNet
+user from seeing it (and a simple git rollback would fix the situation
+even for that individual user).  Moreover, the deletion would quickly
+propagate throughout AnoNet, potentially raising alarms everywhere.
+(Even if only a single user notices the attack and re-adds your domain,
+his own re-addition will quickly propagate throughout AnoNet, restoring
+access to your domain for everybody.)
+
+=item Publish
+
+If you thought publishing blogs was tricky, try publishing a book.  ("Alms for Jihad" comes to mind as one obvious example, where the publisher went so far as to delete the book from its own database and buried the copyright.)  While physical books may not be so simple to publish on AnoNet (although you can certainly raise awareness of them by speaking out about them on AnoNet), e-books enjoy considerable anti-censorship advantages on AnoNet.
+
+=item Teach
+
+You may want to teach disciplines that can get you into friction with "the authorities" in a tyrannical regime.  (Judges in prominent first-world countries have ruled, for example, that knowing your way around a computer is an indication that you may be involved in computer-related crimes.)  AnoNet gives you an opportunity to teach without your students being able to point you out to the authorities, even under pain of torture.
+
+=item Report
+
+You may find yourself in the middle of a news story, but other parts of that news story may not appreciate your reports.  When you report something to WikiLeaks without going through tor, you're leaving a long trail that may lead to you.  With AnoNet, you can hide that trail to a certain extent, if you don't want to use tor.  (WikiLeaks over tor will still give you better protection than AnoNet, if you're worried about your government's intelligence agencies getting involved.  AnoNet's optimization towards pseudonymity with common IcannNet protocols is the weakness, here.  We're working on that, but in the meantime you have L<tor|http://www.torproject.org/>, L<i2p|http://www.i2p2.de/>, L<Freenet|http://freenetproject.org/>, L<GNUnet|http://gnunet.org/>, and others.)
+
+=back
 
 =head2 Why Not to Join
 
