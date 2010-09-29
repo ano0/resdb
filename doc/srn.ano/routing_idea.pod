@@ -1,0 +1,36 @@
+=head1 Some Random Routing Mechanism
+
+Here's my first draft for a new routing mechanism, designed to offer true anonymity to anybody who wants it, while still keeping the focus on our current pseudonymous system.  I've taken many ideas from UFO's anti-anonymity mechanism, and messed them up them beyond recognition.
+
+=head2 Basic Design
+
+Routing is handled by nodes.  A node has no more than one keypair (and may or may not silently drop packets addressed to it without encryption).  Nodes connect to each other with links.  Links are unidirectional, but it's obviously quite simple to put a pair of links in opposite directions on a single UDP or TCP "connection."  Outgoing links from a node are identified by a 7-bit PID (Port ID), with the upper bit set (effective range of 128-254).
+
+A link can be anything that enables a node to send packets to another node.  A packet is a 1024-bit block of data.  A link may be an on-demand link (sending packets whenever packets are available), or it may be a CDR (constant data rate) link (sending garbage packets when real ones aren't available, and throttling when too many packets are available).
+
+A packet header is simply a collection of hops.  Any hop with the upper bit set is a single byte denoting a port, while a hop with the upper bit cleared is a 32-byte public key.  An all-ones hop is the local host, in which case the rest of the packet is the unencrypted actual data.  A router receiving a packet with its own key in the header decrypts the remainder of the packet, and then interprets the result as a packet.  (If the packet contains the actual data intended for the local host, the first hop in the decrypted packet will be all-ones.)
+
+Packets are routed by whoever wants to route them.  In particular, the source is normally expected to provide the first few hops of a route with every packet.  A router along the way is expected to pass a packet on to its next hop, but it may look for a key if it has its own recipe to reach the destination node that it knows to be more reliable than the one given.  (In practice, it normally shouldn't override the given path unless the packet would be otherwise unroutable for some reason.)  Unroutable packets are silently dropped, leaving higher layers to fend for themselves.  (While it's true that routing problems now become virtually impossible to diagnose, working around them is remarkably simple.)
+
+=head2 Packet Types
+
+The "actual data" in a packet may be any number of different data types, depending on a variety of factors.  The first byte identifies the data type:
+01 => raw Ethernet
+11 => raw IP
+21 => UDP data
+ 2-byte port, actual data
+31 => TCP data
+ 2-byte port, 4-byte offset, actual data
+32 => TCP ack
+33 => TCP syn
+34 => TCP rst
+41 => angel
+ hoplist
+42 => angel request
+ 32-byte srckey, 32-byte destkey, 8-bit ttl, (growing) hoplist
+
+The raw packet types 01 and 11 correspond directly to tap and tun packets, respectively.  The UDP and TCP types reimplement simplified versions of UDP and TCP, in order to avoid information leaks from the native TCP/IP stack.  Finally, the  angel types cooperate to relay routing information between nodes that would like to find efficient paths between themselves.  An angel request is flooded throughout the network as long as the TTL is still good, until the nodes involved get tired of sending it on (or until the destination node is reached, of course).  When the intended destination receives an angel request, it has in the hoplist a recipe for the given source to reach it, so it puts the hoplist into an angel, which it then sends back to the source by some method (normally to all links, several times with short pauses, in order to increase the chances of receipt).  Sending angels requires a fair amount of up-front overhead, but when high bandwidth and/or low latency are required for a particular exchange, the best routes available are guaranteed to be among the angels.  Note, BTW, that just like everything else here, angels are unidirectional.  If an optimal route is desired for the other direction, then the other side must send out its own angel requests.
+
+The link-level is a unidirectional
+
+The link-level is handled by any method that provides reliable streams.  (If the send buffers fill up while the receive buffers are empty and the situation doesn't correct itself within a short time, it's normally wise to assume the connection is dead and to close(2) it.)  A certain outgoing flow rate is configured, and the link does everything in its power to avoid going over or under the configured rate.  (If no router sends it something
