@@ -119,27 +119,31 @@ even if our own governments ever decide to try regulating us.
 
 Here's an interesting exchange:
 
-Relay> [Ivo @ KN] governments do not intend to harm everybody
+=over
 
-Relay> [Ivo @ KN] some criminals just intend harm everybody
+=item Relay> [Ivo @ KN] governments do not intend to harm everybody
 
-somerandomnick> and some governments do, too
+=item Relay> [Ivo @ KN] some criminals just intend harm everybody
 
-Relay> [Ivo @ KN] they usually at least pretend to be good for some people
+=item somerandomnick> and some governments do, too
 
-somerandomnick> People are people.
+=item Relay> [Ivo @ KN] they usually at least pretend to be good for some people
 
-Relay> [anonno @ KN] right now they can eavesdrop on telephones, and they like it... if we all move to encrypted voip, they're in trouble
+=item somerandomnick> People are people.
 
-somerandomnick> It doesn't really matter that much what hat a guy is wearing.
+=item Relay> [anonno @ KN] right now they can eavesdrop on telephones, and they like it... if we all move to encrypted voip, they're in trouble
 
-somerandomnick> A government is just a pretty face for a person to hide behind.
+=item somerandomnick> It doesn't really matter that much what hat a guy is wearing.
 
-somerandomnick> It doesn't actually mean anything beyond "I'm stronger than you, so I make decisions for you."
+=item somerandomnick> A government is just a pretty face for a person to hide behind.
 
-somerandomnick> A person's government should be his own brain.  You should never outsource your free choice.
+=item somerandomnick> It doesn't actually mean anything beyond "I'm stronger than you, so I make decisions for you."
 
-Relay> [anonno @ KN] you know what, you could use this as a marketing tool for anonet ;)
+=item somerandomnick> A person's government should be his own brain.  You should never outsource your free choice.
+
+=item Relay> [anonno @ KN] you know what, you could use this as a marketing tool for anonet ;)
+
+=back
 
 =head2 The AnoNet Advantage
 
