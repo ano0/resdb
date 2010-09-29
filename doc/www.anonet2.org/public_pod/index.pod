@@ -118,16 +118,27 @@ the two of us will no longer have enough control to destroy the network,
 even if our own governments ever decide to try regulating us.
 
 Here's an interesting exchange:
+
 Relay> [Ivo @ KN] governments do not intend to harm everybody
+
 Relay> [Ivo @ KN] some criminals just intend harm everybody
+
 somerandomnick> and some governments do, too
+
 Relay> [Ivo @ KN] they usually at least pretend to be good for some people
+
 somerandomnick> People are people.
+
 Relay> [anonno @ KN] right now they can eavesdrop on telephones, and they like it... if we all move to encrypted voip, they're in trouble
+
 somerandomnick> It doesn't really matter that much what hat a guy is wearing.
+
 somerandomnick> A government is just a pretty face for a person to hide behind.
+
 somerandomnick> It doesn't actually mean anything beyond "I'm stronger than you, so I make decisions for you."
+
 somerandomnick> A person's government should be his own brain.  You should never outsource your free choice.
+
 Relay> [anonno @ KN] you know what, you could use this as a marketing tool for anonet ;)
 
 =head2 The AnoNet Advantage
