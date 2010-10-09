@@ -264,6 +264,13 @@ having to set anything up yourself):
 =over
 
 =item *
+Pastebin (without time-zone leaks, L<http://www.sevilnatas.ano/pastebin/>)
+
+=item *
+
+Encode/Decode text, binary, hex, base64, and dec/char (L<http://sevilnatas.ano/translator/>)  
+
+=item *
 
 Live WorldCup Stream (offline until next year)
 
