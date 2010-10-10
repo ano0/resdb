@@ -39,7 +39,7 @@ Z<><table>
  Z<><tr>Z<><th>Actual Government betrays Claimed PurposeZ<></th>Z<><td>yesZ<></td>Z<><td>noZ<></td>Z<><td>noZ<></td>Z<><td>noZ<></td>Z<></tr>
  Z<><tr>Z<><th>Centralized Critical InfrastructureZ<></th>Z<><td>wiki (includes resource database), client port, IRCZ<></td>Z<><td>noneZ<></td>Z<><td>wiki, IRCZ<></td>Z<><td>allZ<></td>Z<></tr>
  Z<><tr>Z<><th>Decentralized Critical InfrastructureZ<></th>Z<><td>routingZ<></td>Z<><td>allZ<></td>Z<><td>routing, resource databaseZ<></td>Z<><td>noneZ<></td>Z<></tr>
- Z<><tr>Z<><th>Current SizeZ<></th>Z<><td>20-30Z<></td>Z<><td>~10Z<></td>Z<><td>40-50Z<></td>Z<><td>&lt;5Z<></td>Z<></tr>
+ Z<><tr>Z<><th>Current SizeZ<></th>Z<><td>20-30Z<></td>Z<><td>~15Z<></td>Z<><td>40-50Z<></td>Z<><td>&lt;5Z<></td>Z<></tr>
  Z<><tr>Z<><th>Average Monthly GrowthZ<></th>Z<><td>~0%Z<></td>Z<><td>~20%Z<></td>Z<><td>~5%Z<></td>Z<><td>~10%Z<></td>Z<></tr>
  Z<><tr>Z<><th>Activity LevelZ<></th>Z<><td>mediumZ<></td>Z<><td>mediumZ<></td>Z<><td>mediumZ<></td>Z<><td>lowZ<></td>Z<></tr>
  Z<><tr>Z<><th>Interdarknet ConnectivityZ<></th>Z<><td>censored access to AnoNet2 (must use AnoNet2 DNS), censored access to dn42 (must use AnoNet2 DNS)Z<></td>Z<><td>full routing to part of AnoNet1, full routing to part of dn42, full routing to VAnetZ<></td>Z<><td>censored access to AnoNet (1&amp;2, must use SRN's DNS), censored access to VAnet (must use SRN's DNS)Z<></td>Z<><td>full routing to part of AnoNet1, full routing to AnoNet2, full routing to part of dn42Z<></td>Z<></tr>
