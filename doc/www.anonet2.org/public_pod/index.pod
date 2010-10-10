@@ -265,6 +265,10 @@ having to set anything up yourself):
 
 =item *
 
+L<Some Random Wiki|http://www.somerandomwiki.ano/>
+
+=item *
+
 Pastebin (without time-zone leaks, L<http://www.sevilnatas.ano/pastebin/>)
 
 =item *
