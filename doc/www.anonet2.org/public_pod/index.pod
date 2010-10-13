@@ -305,7 +305,7 @@ git (including a decentralized "wiki" replacement) (L<SRN|git://git1.somerandomn
 
 =item *
 
-outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/> and L<http://b.privoxy.somerandomnick.ano:8118/>)
+outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/>, L<http://b.privoxy.somerandomnick.ano:8118/>, L<http://a.polipo.somerandomnick.ano:8118/> and L<http://a.polipo.somerandomnick.ano:8118/>)
 
 =item *
 
@@ -382,8 +382,8 @@ everyone else be damned.)
 
 =item Outbound HTTP Proxies
 
-SRN runs two right now and ryuk runs one, but that means between the two
-of them they can snoop on all HTTP traffic from AnoNet2 to IcannNet.
+SRN runs three right now and ryuk runs one, but that means between the
+two of them they can snoop on all HTTP traffic from AnoNet2 to IcannNet.
 Having more proxies gives you an alternative to blindly trusting SRN
 and ryuk not to sell your click-through data to Google, invert the order
 of search results to your queries, and inject malicious JavaScript into
