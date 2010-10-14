@@ -265,6 +265,10 @@ having to set anything up yourself):
 
 =item *
 
+Webchat (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)
+
+=item *
+
 L<WikiLeaks Mirror|http://wikileaks.ucis.ano/> (The real WikiLeaks may be down, but not our mirror!)
 
 =item *
