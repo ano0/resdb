@@ -265,6 +265,10 @@ having to set anything up yourself):
 
 =item *
 
+Webchat (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)
+
+=item *
+
 Pastebin (without time-zone leaks, L<http://www.sevilnatas.ano/pastebin/>)
 
 =item *
