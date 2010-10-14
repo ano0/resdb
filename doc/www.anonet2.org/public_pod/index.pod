@@ -313,7 +313,7 @@ git (including a decentralized "wiki" replacement) (L<SRN|git://git1.somerandomn
 
 =item *
 
-outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/>, L<http://b.privoxy.somerandomnick.ano:8118/>, L<http://a.polipo.somerandomnick.ano:8118/> and L<http://a.polipo.somerandomnick.ano:8118/>)
+outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/>, L<http://b.privoxy.somerandomnick.ano:8118/> (doesn't work) and L<http://a.polipo.somerandomnick.ano:8118/> (doesn't work))
 
 =item *
 
