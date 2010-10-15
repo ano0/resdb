@@ -23,6 +23,14 @@ us and chat, it's very easy:
 
 L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet> (doesn't hide your identity)
 
+=item IRC chat
+
+L<SRN|telnet://ufo-net.nl:2324/> (hides your identity)
+
+=item IRC chat
+
+L<UFO|telnet://ufo-net.nl:2325/> (partly hides your identity)
+
 =item telnet chat
 
 L<SRN|telnet://ufo-net.nl:2323/> (hides your identity)
@@ -240,16 +248,14 @@ You may find yourself in the middle of a news story, but other parts of that new
 If you're looking for a ready-made community, where you just show up and
 "browse," AnoNet (either 1 or 2) is probably not quite what you're after.
 The whole concept behind AnoNet is that it's whatever you make it.
-That's not to say you'll have to build everything from scratch (and
-in fact, it's a bit too late for that, unless you want to I<re>build
-stuff that others have already built - and if you can do better than the
-original, people will probably switch to your version), but if you want to
-be happy here, you're best off bringing your creativity along rather than
-leaving it behind when you join.  (If you've been around darknets before,
-you're probably quite familiar with "design by committee."  On AnoNet,
-you're more than welcome to invite a committee to discuss anything you
-want, but you don't have to.  If you already know what you're doing,
-just "build it and they will come.")
+Of course, that's not to say you'll have to build everything from
+scratch, but if you want to be happy here, you're best off bringing
+your creativity along rather than leaving it behind when you join.
+(If you've been around darknets before, you're probably quite familiar
+with "design by committee."  On AnoNet, you're more than welcome to
+invite a committee to discuss anything you want, but you don't have to
+organize onebefore doing anything.  If you already (think you) know what
+you're doing, just "build it and they will come.")
 
 =head2 What You Can Do
 
