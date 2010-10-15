@@ -270,6 +270,10 @@ having to set anything up yourself):
 
 =item *
 
+L<AnoNet1 Wiki Mirror|http://1.82.98.27/mediawiki> (You got that right: AnoNet1 can't seem to keep their own wiki up, so we decided to do it for them.)
+
+=item *
+
 Webchat (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)
 
 =item *
