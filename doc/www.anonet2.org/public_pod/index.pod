@@ -41,8 +41,7 @@ L<KwaakNet|irc://irc.kwaaknet.org:6667/anonet> (doesn't hide your identity)
 
 =back
 
-If you're feeling adventurous enough to connect, L<UFO has a client
-port|http://ix.ucis.nl/clientport.php>.
+If you're feeling adventurous enough to connect at the IP level, L<UFO has a client port|http://ix.ucis.nl/clientport.php>.
 
 Once you're online, you can reconnect to IRC from inside AnoNet:
 
