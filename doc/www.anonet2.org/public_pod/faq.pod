@@ -76,17 +76,18 @@ That's not the only logical conclusion, based on the above.  However, AnoNet has
 
 =item What is peering all about?
 
-AnoNet is an internet.  An internet means an internetwork, or a network
-that connects between networks.  An internetwork is normally constructed
-by making links between the different networks, and then carrying
-internetwork traffic along those links.  (If network A has a link to
-network B, then traffic from A to B or from B to A should probably pass
-through that link.)  Such a link is called a "peering," and the two
-sides of that link are called "peers."  On the IcannNet, peerings are
-normally done over leased lines, but due to the nature of AnoNet, using
-leased lines isn't much of an option for most peerings.  Therefore, most
-peerings are done over tunnels on the IcannNet.  The most common software
-for AnoNet tunnels is OpenVPN, although tinc and quicktuns are also used.
+AnoNet is an internet.  An internet means an internetwork, or a
+network that connects between networks.  An internetwork is normally
+constructed by making links between the different networks, and then
+carrying internetwork traffic along those links.  (If network A has
+a link to network B, then traffic from A to B or from B to A should
+probably pass through that link.)  Such a link is called a "peering,"
+and the two sides of that link are called "peers."  On the IcannNet,
+peerings are normally done over leased lines, but due to the nature of
+AnoNet, using leased lines isn't much of an option for most peerings.
+Therefore, most peerings are done over tunnels on the IcannNet.
+The most common software for AnoNet tunnels is OpenVPN, although
+tinc and L<quicktun|http://wiki.qontrol.nl/QuickTun> are also used.
 (tinc in particular deserves special attention: it can create a mesh
 between participants, sacrificing anonymity to achieve lower latency.)
 
