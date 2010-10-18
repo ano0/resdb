@@ -270,7 +270,7 @@ having to set anything up yourself):
 
 =item *
 
-L<AnoNet1 Wiki Mirror|http://1.82.98.27/mediawiki> (You got that right: AnoNet1 can't seem to keep their own wiki up, so we decided to do it for them.)
+L<AnoNet1 Wiki Mirror|http://1.82.98.27/mediawiki> (You got that right: AnoNet1 can't seem to keep their own wiki (at wiki.ano) up, so we decided to do it for them.)
 
 =item *
 
