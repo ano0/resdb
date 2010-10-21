@@ -389,13 +389,13 @@ such an animal on AnoNet2, but competition here is a good thing.
 =item IRC Servers
 
 IRC on AnoNet2 isn't one big network under centralized control.
-Rather, anybody who wants runs his own IRC (or other chat) server,
-and links whatever channels he wants to channels on other servers,
-using a collection of relay bots.  (Right now, UFO and pragmo field
-relays, and the scalability problems are becoming visible.  How relay
-bots may want to deal with this is still a topic for open discussion.
-Feel free to join in the discussion, or just do your own thing and let
-everyone else be damned.)
+Rather, anybody who wants runs his own IRC (or other chat) server, and
+links whatever channels he wants to channels on other servers, using a
+collection of relay bots.  (Right now, UFO, pragmo and SRN field relays,
+and the scalability problems are becoming visible.  How relay bots may
+want to deal with this is still a topic for open discussion.  Feel free
+to join in the discussion, or just do your own thing and let everyone
+else be damned.)
 
 =item Outbound HTTP Proxies
 

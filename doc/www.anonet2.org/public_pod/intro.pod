@@ -1,19 +1,17 @@
 =head1 AnoNet2 Introduction
 
-(Note: There's now a page (L<http://www.anonet2.org/anonymity>) explaining
-a bit about anonymity in general and its place in AnoNet in particular.)
+(Note: There's now L<a page explaining a bit about anonymity in general and its place in AnoNet in particular|http://www.anonet2.org/anonymity>.)
 
-(Note: There's now a darknet comparison page
-(L<http://www.anonet2.org/darknet_comparison>), where you can compare
-and contrast the various darknet options.)
+(Note: There's now L<a darknet comparison page, where you can compare and contrast the various darknet options|http://www.anonet2.org/darknet_comparison>).)
 
-(Note: There's now a separate page (L<http://www.anonet2.org/faq>),
-to answer all your AnoNet-related questions.)
+(Note: There's now L<a separate page, to answer all your AnoNet-related questions|http://www.anonet2.org/faq>).)
 
 So, you came across anoNet and thought it sounded great, so you decided
 to join in order to check it out.
 
 ...and found the (only) client port doesn't work half the time,
+
+...and the (only) official wiki doesn't work the other half of the time,
 
 ...and most of the advertised services no longer exist,
 
@@ -63,6 +61,10 @@ to the point where all of them g-line you from their respective "networks"
 and nobody wants to let you relay your own server in, then you're probably
 out of luck.  Of course, that doesn't prevent you from running your own
 IRC server, and those who want to hear you can still join it.)
+
+=item No centralized wiki control
+
+AnoNet2 doesn't have an official wiki, and two (L<this one|http://www.anonet2.org/> and L<some random wiki|http://www.somerandomwiki.ano/>) out of the three well-known wikis on AnoNet2 use git for their underlying storage, and are therefore very easy for anybody to proxy, mirror, fork, etc.  (The last one is L<UFO's wiki|http://wiki.ucis.ano/>, and UFO is addicted to MediaWiki.)  (BTW, we now have a fourth "well-known" wiki, L<our AnoNet1 Wiki Mirror|Http://1.82.98.27/mediawiki/>: Since AnoNet1's official wiki seems to have more downtime than uptime, we figured we might as well donate a mirror to the cause.)
 
 =item No resource mess
 
