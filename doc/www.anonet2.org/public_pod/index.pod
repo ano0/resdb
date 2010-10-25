@@ -21,6 +21,10 @@ us and chat, it's very easy:
 
 =item webchat
 
+L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous> (partially hides your identity)
+
+=item webchat
+
 L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet> (doesn't hide your identity)
 
 =item IRC chat
@@ -47,15 +51,23 @@ Once you're online, you can reconnect to IRC from inside AnoNet:
 
 =over
 
-=item IRC
+=item webchat
 
-L<KwaakNet|irc://1.3.3.7:6667/anonet> (doesn't automatically hide your identity)
+L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous> (partially hides your identity)
+
+=item webchat
+
+L<sevilNatas (KwaakNet)|[http://www.sevilnatas.ano/chat.html> (doesn't automatically hide your identity)
 
 =item IRC
 
 L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous>
 (L<SRN|irc://1.0.27.103:6667/RendezVous>, if you don't have DNS for some
 reason) (automatically hides your identity)
+
+=item IRC
+
+L<KwaakNet|irc://1.3.3.7:6667/anonet> (doesn't automatically hide your identity)
 
 =item IRC
 
@@ -66,7 +78,7 @@ hide your identity)
 
 =item telnet
 
-L<SRN|telnet://irc.somerandomnick.ano:2323/>
+L<SRN|telnet://irc.somerandomnick.ano:2323/> (automatically hides your identity)
 
 =item Jabber
 
@@ -74,11 +86,7 @@ irc.somerandomnick.ano (RendezVous MUC)
 
 =back
 
-Note that if your only aim in joining AnoNet is to search Google
-anonymously, you can save yourself the hassle L<by just heading over to
-Scroogle|http://www.scroogle.org/>.  If you're looking to browse the rest
-of the public Internet anonymously, though, we now have outbound proxies,
-which you're more than welcome to use.
+Note that if your only aim in joining AnoNet is to search Google anonymously, you can save yourself the hassle L<by just heading over to Scroogle|http://www.scroogle.org/>.  If you're looking to browse the rest of the public Internet anonymously, though, we now have outbound proxies, which you're more than welcome to use.  (L<Here's a service that tries to show you what you're likely to be leaking, right now.|http://what-is-my-ip-address.anonymous-proxy-servers.net/>)
 
 =head2 Why to Join
 
@@ -107,6 +115,17 @@ network, although nobody uses it for what should be obvious reasons),
 or you may want to create your own social scene. Again, you're not
 looking at an "official" reason for joining, but nobody owns AnoNet, so
 "official" is an artificial term 'round here.
+
+You may be looking for help with your Mathematics, Physics or Computer
+Science homework.  Due to AnoNet's nature, many of the guys who hang
+out here have an academic background in one (or more) of the above,
+and most are quite happy to help students.
+
+If you're interested in starting your own darknet, you can get plenty of
+advice here.  In addition, the AnoNet2 infrastructure is easy to reuse
+for any other darknet, by design.  (Technical ease of forking is a core
+goal of AnoNet2.  We avoid forks only by being good enough so nobody
+feels the need to fork AnoNet2.)
 
 Finally, you may be getting a bit nervous at the amount of regulation
 piling up around the world against the public Internet.  Since the
@@ -168,19 +187,36 @@ that AnoNet probably doesn't.
 
 =item Read News
 
-Once you start clicking around for "interesting" stories, you're giving away information that your ISP probably wouldn't already know.  However, if you read local news it's probably still wise to avoid AnoNet.  (You can still use tor directly.)
+Once you start clicking around for "interesting" stories, you're
+giving away information that your ISP probably wouldn't already know.
+However, if you read local news it's probably still wise to avoid AnoNet.
+(You can still use tor directly.)
 
 =item Do Research
 
-AnoNet shines here.  Governments can force Google to cough up your search history, but only if Google can figure out which searches you're responsible for.  If you use Scroogle (HTTPS) through one of AnoNet's HTTP proxies, the proxy doesn't know what you're looking for, Scroogle has no clue who you are, and by the time the search makes its way to Google, connecting it to you is all but hopeless.
+AnoNet shines here.  Governments can force Google to cough up your
+search history, but only if Google can figure out which searches you're
+responsible for.  If you use Scroogle (HTTPS) through one of AnoNet's
+HTTP proxies, the proxy doesn't know what you're looking for, Scroogle
+has no clue who you are, and by the time the search makes its way to
+Google, connecting it to you is all but hopeless.
 
 =item Share Files
 
-BitTorrent doesn't hide your IP address, so seeding files for L<TPB|http://www.thepiratebay.org/> is not necessarily safe.  BitTorrent on AnoNet doesn't hide your IP address either, but the authorities can't easily connect your AnoNet IP address with your IcannNet IP address (in order to get your ISP to reveal your identity).
+BitTorrent doesn't hide your IP address, so seeding files for
+L<TPB|http://www.thepiratebay.org/> is not necessarily safe.  BitTorrent
+on AnoNet doesn't hide your IP address either, but the authorities can't
+easily connect your AnoNet IP address with your IcannNet IP address
+(in order to get your ISP to reveal your identity).
 
 =item Speak Out
 
-If you know something that you'd like other people to know, and you fear retribution from those who would prefer for others not to know what you know, traditional IcannNet forums can be forced to turn over your IP address, which can then identify you.  On AnoNet, it's comparatively easy to cover your tracks, in such a way that even your own peers would have a hard time figuring out who said whatever it was.
+If you know something that you'd like other people to know, and you fear
+retribution from those who would prefer for others not to know what
+you know, traditional IcannNet forums can be forced to turn over your
+IP address, which can then identify you.  On AnoNet, it's comparatively
+easy to cover your tracks, in such a way that even your own peers would
+have a hard time figuring out who said whatever it was.
 
 =item Blog
 
@@ -230,15 +266,37 @@ access to your domain for everybody.)
 
 =item Publish
 
-If you thought publishing blogs was tricky, try publishing a book.  ("Alms for Jihad" comes to mind as one obvious example, where the publisher went so far as to delete the book from its own database and buried the copyright.)  While physical books may not be so simple to publish on AnoNet (although you can certainly raise awareness of them by speaking out about them on AnoNet), e-books enjoy considerable anti-censorship advantages on AnoNet.
+If you thought publishing blogs was tricky, try publishing a book.
+("Alms for Jihad" comes to mind as one obvious example, where the
+publisher went so far as to delete the book from its own database and
+buried the copyright.)  While physical books may not be so simple to
+publish on AnoNet (although you can certainly raise awareness of them
+by speaking out about them on AnoNet), e-books enjoy considerable
+anti-censorship advantages on AnoNet.
 
 =item Teach
 
-You may want to teach disciplines that can get you into friction with "the authorities" in a tyrannical regime.  (Judges in prominent first-world countries have ruled, for example, that knowing your way around a computer is an indication that you may be involved in computer-related crimes.)  AnoNet gives you an opportunity to teach without your students being able to point you out to the authorities, even under pain of torture.
+You may want to teach disciplines that can get you into friction with "the
+authorities" in a tyrannical regime.  (Judges in prominent first-world
+countries have ruled, for example, that knowing your way around a computer
+is an indication that you may be involved in computer-related crimes.)
+AnoNet gives you an opportunity to teach without your students being
+able to point you out to the authorities, even under pain of torture.
 
 =item Report
 
-You may find yourself in the middle of a news story, but other parts of that news story may not appreciate your reports.  When you report something to WikiLeaks without going through tor, you're leaving a long trail that may lead to you.  With AnoNet, you can hide that trail to a certain extent, if you don't want to use tor.  (WikiLeaks over tor will still give you better protection than AnoNet, if you're worried about your government's intelligence agencies getting involved.  AnoNet's optimization towards pseudonymity with common IcannNet protocols is the weakness, here.  We're working on that, but in the meantime you have L<tor|http://www.torproject.org/>, L<i2p|http://www.i2p2.de/>, L<Freenet|http://freenetproject.org/>, L<GNUnet|http://gnunet.org/>, and others.)
+You may find yourself in the middle of a news story, but other parts
+of that news story may not appreciate your reports.  When you report
+something to WikiLeaks without going through tor, you're leaving a long
+trail that may lead to you.  With AnoNet, you can hide that trail to
+a certain extent, if you don't want to use tor directly.  (WikiLeaks
+over tor will still give you better protection than AnoNet, if you're
+worried about your government's intelligence agencies getting involved.
+AnoNet's optimization towards pseudonymity with common IcannNet protocols
+is the weakness, here.  We're working on that, but in the meantime you
+have L<tor|http://www.torproject.org/>, L<i2p|http://www.i2p2.de/>,
+L<Freenet|http://freenetproject.org/>, L<GNUnet|http://gnunet.org/>,
+and others.)
 
 =back
 
@@ -253,8 +311,8 @@ your creativity along rather than leaving it behind when you join.
 (If you've been around darknets before, you're probably quite familiar
 with "design by committee."  On AnoNet, you're more than welcome to
 invite a committee to discuss anything you want, but you don't have to
-organize onebefore doing anything.  If you already (think you) know what
-you're doing, just "build it and they will come.")
+organize one before doing anything.  If (you think) you already know
+what you're doing, just "build it and they will come.")
 
 =head2 What You Can Do
 
@@ -270,11 +328,12 @@ having to set anything up yourself):
 
 =item *
 
-L<AnoNet1 Wiki Mirror|http://1.82.98.27/mediawiki> (You got that right: AnoNet1 can't seem to keep their own wiki (at wiki.ano) up, so we decided to do it for them.  Update: It looks like we can't keep our own version of the AnoNet1 wiki up, either.  Our own wikis are all still up, though.  Update: It's back online again.)
+L<AnoNet1 Wiki Mirror|http://1.82.98.27/mediawiki> (You got that right: AnoNet1 can't seem to keep their own wiki (at wiki.ano) up, so we decided to do it for them.)
 
 =item *
 
 Webchat (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)
+Webchat (L<http://www.sevilnatas.ano/chat.html>)
 
 =item *
 
@@ -318,11 +377,11 @@ PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (i
 
 =item *
 
-git (including a decentralized "wiki" replacement) (L<SRN|git://git1.somerandomnick.ano/>, L<UFO|http://anogit.ucis.ano/.git/>, L<cronix|git://1.22.48.100/>, L<pragmo|git://pragmo.ano/>, L<quintum|git://1.0.18.1/>, L<wakawaka|git://1.0.111.1/>, and possibly other repos)
+git-based resdb (including a decentralized "wiki" replacement) (L<SRN|git://git1.somerandomnick.ano/>, L<UFO|http://anogit.ucis.ano/.git/>, L<cronix|git://1.22.48.100/>, L<pragmo|git://pragmo.ano/>, L<quintum|git://1.0.18.1/>, L<wakawaka|git://1.0.111.1/>, L<harald|git://1.0.169.1/ano2.git>, and possibly other repos)
 
 =item *
 
-outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/>, L<http://b.privoxy.somerandomnick.ano:8118/> (doesn't work) and L<http://a.polipo.somerandomnick.ano:8118/> (doesn't work))
+outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/> (works well), L<http://b.privoxy.somerandomnick.ano:8118/> (doesn't work) and L<http://a.polipo.somerandomnick.ano:8118/> (doesn't work))
 
 =item *
 
@@ -340,17 +399,34 @@ features of its own - ask for details on IRC) (no need to worry about
 
 =back
 
-Here's a list of things that somebody claims to be working on:
+=head2 What You Can't Yet Do
 
 =over
 
-=item *
+=item A-Mail
 
-email
+Somebody is going to have to bring up a public email server before a-mail
+will be generally accessible on AnoNet.  SRN has abandoned an attempt
+to bring a public mail server online.
 
-=item *
+=item Newsgroups (Usenet)
 
-news (NNTP) (guy appears to have died)
+The guy who said he was bringing usenet to anonet seems to have died,
+and the project apparently died with him.
+
+=item A-Commerce
+
+Getting Anonymous Commerce right takes a bit of effort, since nearly
+all governments regulate the exchange of anything that has value, in an
+attempt to preserve their power structure.  A-Commerce is a core goal
+of AnoNet, though, and we hope to achieve it someday.
+
+=item Watch TV
+
+While the AnoNet backbone, at this point, is capable of sustaining
+real-time video streaming, there are still some technical and
+anonymity-preservation problems to solve before anybody here is likely
+to feel safe broadcasting TV.
 
 =back
 
@@ -363,10 +439,10 @@ you'll probably have an easy time recruiting guys to help you out.)
 
 Well, each of us has his own wishlist, but most of us are working on
 moving stuff from our TODO lists to our DONE lists, so you're looking
-at a bit of a moving target.  You're more than welcome to contribute
-anthing you want, and if it's interesting and/or useful, it'll probably
-attract a following.  That said, here are a number of things that would
-benefit the AnoNet as a whole:
+at a bit of a moving (and highly subjective) target.  You're more than
+welcome to contribute anything you want, and if it's interesting and/or
+useful, it'll probably attract a following.  That said, here are a number
+of things that would benefit the AnoNet as a whole:
 
 =over
 
@@ -379,12 +455,12 @@ local government decides to try regulating it).
 
 =item Public Email Services
 
-Currently, every AnoNet user who wants an email address on AnoNet has
-to set up his own mailserver.  AnoNet1 used to have a public email
-service so people could get email addresses without running their own
-mail servers, but it hasn't been online in nearly a year (although the
-AnoNet1 Web continues to advertise it).  SRN is working on setting up
-such an animal on AnoNet2, but competition here is a good thing.
+Currently, every AnoNet user who wants an email address on AnoNet has to
+set up his own mailserver.  AnoNet1 used to have a public email service so
+people could get email addresses without running their own mail servers,
+but it hasn't been online in nearly a year (although AnoNet1 continues to
+advertise it).  SRN is working on setting up such an animal on AnoNet2,
+but competition here is a good thing.
 
 =item IRC Servers
 
