@@ -57,7 +57,7 @@ L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous> (partially hides
 
 =item webchat
 
-L<sevilNatas (KwaakNet)|[http://www.sevilnatas.ano/chat.html> (doesn't automatically hide your identity)
+L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (doesn't automatically hide your identity)
 
 =item IRC
 
