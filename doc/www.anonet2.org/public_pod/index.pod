@@ -318,8 +318,9 @@ L<AnoNet1 Wiki Mirror|http://1.82.98.27/mediawiki> (You got that right: AnoNet1 
 
 =item *
 
-Webchat (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)
-Webchat (L<http://www.sevilnatas.ano/chat.html>)
+IRC Webchat Client (L<http://www.sevilnatas.ano/chat.html>)
+IRC-Like Chat Rooms [NO ACTIVATION OR VALID EMAILS REQUIRED (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)]
+
 
 =item *
 
