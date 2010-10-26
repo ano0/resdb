@@ -21,6 +21,10 @@ us and chat, it's very easy:
 
 =item webchat
 
+L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (automatically hide your identity)
+
+=item webchat
+
 L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous> (partially hides your identity)
 
 =item webchat
@@ -54,10 +58,6 @@ Once you're online, you can reconnect to IRC from inside AnoNet:
 =item webchat
 
 L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous> (partially hides your identity)
-
-=item webchat
-
-L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (doesn't automatically hide your identity)
 
 =item IRC
 
@@ -332,8 +332,9 @@ L<AnoNet1 Wiki Mirror|http://1.82.98.27/mediawiki> (You got that right: AnoNet1 
 
 =item *
 
-Webchat (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)
-Webchat (L<http://www.sevilnatas.ano/chat.html>)
+IRC Webchat Client (L<http://www.sevilnatas.ano/chat.html>)
+IRC-Like Chat Rooms [NO ACTIVATION OR VALID EMAILS REQUIRED (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)]
+
 
 =item *
 
