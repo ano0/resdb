@@ -4,6 +4,8 @@ Back to homepage - L<http://www.anonet2.org/>
 
 This is a collection of links that you may find interesting:
 
+20101026 - L<http://www.privacy.net/> (L<direct link to a web browser privacy test|http://analyze.privacy.net/test.asp?RequestCookies=&Requestdate=&refer=http://network-tools.com/analyze/>)
+
 20101024 - L<http://abcnews.go.com/2020/Stossel/story?id=4400537&page=1>
 
 20101024 - L<https://financialcryptography.com/mt/archives/001081.html>
