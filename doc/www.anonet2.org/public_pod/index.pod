@@ -20,10 +20,7 @@ us and chat, it's very easy:
 =over
 
 =item webchat
-L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous> (anonymous)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (automatically hide your identity)
 
 =item webchat
@@ -33,23 +30,22 @@ L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous> (partiall
 =item webchat
 
 L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet> (doesn't hide your identity)
-=======
-L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet> (not anonymous)
->>>>>>> 38fdf66238d67bb4e04b57e19bdcb4507c23c313
-=======
-L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet> (not anonymous)
->>>>>>> 303adb66a2ac12428a90362187ba7ba6f6822333
 
 =item IRC chat
-L<SRN|irc://anortr.ucis.nl:8804/RendezVous> (hides your identity)
 
-L<UFO|irc://anortr.ucis.nl:8805/anonet> (hides your identity)
+L<SRN|telnet://ufo-net.nl:2324/> (hides your identity)
 
-L<KwaakNet|irc://irc.kwaaknet.org:6667/anonet> (doesn't hide your identity)
+=item IRC chat
+
+L<UFO|telnet://ufo-net.nl:2325/> (partly hides your identity)
 
 =item telnet chat
 
-L<SRN|telnet://anortr.ucis.nl:8803> (hides your identity)
+L<SRN|telnet://ufo-net.nl:2323/> (hides your identity)
+
+=item IRC chat
+
+L<KwaakNet|irc://irc.kwaaknet.org:6667/anonet> (doesn't hide your identity)
 
 =back
 
@@ -61,19 +57,7 @@ Once you're online, you can reconnect to IRC from inside AnoNet:
 
 =item webchat
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous> (partially hides your identity)
-=======
-L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous> (hides your identity)
-
-L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (doesn't automatically hide your identity)
->>>>>>> 38fdf66238d67bb4e04b57e19bdcb4507c23c313
-=======
-L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous> (hides your identity)
-
-L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (doesn't automatically hide your identity)
->>>>>>> 303adb66a2ac12428a90362187ba7ba6f6822333
 
 =item IRC
 
@@ -81,7 +65,11 @@ L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous>
 (L<SRN|irc://1.0.27.103:6667/RendezVous>, if you don't have DNS for some
 reason) (automatically hides your identity)
 
+=item IRC
+
 L<KwaakNet|irc://1.3.3.7:6667/anonet> (doesn't automatically hide your identity)
+
+=item IRC
 
 L<pragmo|irc://irc.pragmo.ano:6667/atomic>
 (L<pragmo|irc://1.0.16.111:6667/atomic>, for the same reason as before
