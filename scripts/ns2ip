@@ -1,0 +1,15 @@
+#!/bin/sh
+
+opt="$1"
+if [ "x$opt" = "x-f" ]; then
+ shift
+elif ! ./scripts/check_db_safety; then
+ exit 1
+fi
+ns="$1"
+
+path="`find db/dom/ -ipath '*/ns/'\"$ns\" -size +1c | head -n 1`"
+if [ "x$path" = "x" ]; then
+ exit 1
+fi
+cat "$path"
