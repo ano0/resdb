@@ -17,6 +17,9 @@ in particular|http://www.anonet2.org/intro>
 There are many ways to join AnoNet.  If you just want to hang out with
 us and chat, it's very easy:
 
+If you need some assistance in joining, we have an Internet accesable 
+webIRC client up at L<http://anonet.serveirc.com/>.
+
 =over
 
 =item webchat
@@ -333,6 +336,9 @@ L<AnoNet1 Wiki Mirror|http://1.82.98.27/mediawiki> (You got that right: AnoNet1 
 =item *
 
 IRC Webchat Client (L<http://www.sevilnatas.ano/chat.html>)
+
+=item *
+
 IRC-Like Chat Rooms [NO ACTIVATION OR VALID EMAILS REQUIRED (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)]
 
 
