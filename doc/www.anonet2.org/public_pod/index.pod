@@ -17,46 +17,30 @@ in particular|http://www.anonet2.org/intro>
 There are many ways to join AnoNet.  If you just want to hang out with
 us and chat, it's very easy:
 
-If you need some assistance in joining, we have an Internet accesable 
-webIRC client up at L<http://anonet.serveirc.com/>.
+=begin xhtml
 
-=over
+Z<><table>
+ <tr><th>Protocol</th><th>Service</th><th>Anonymity</th></tr>
+ <tr><td>HTTPZ<></td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>????</td></tr>
+ <tr><td>HTTPZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>a?y?</td></tr>
+ <tr><td>HTTPZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>n???</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>aaoa</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>a?oo</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>nooo</td></tr>
+ <tr><td>telnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>aaya</td></tr>
+</table>
 
-=item webchat
-
-L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (automatically hide your identity)
-
-=item webchat
-
-L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous> (partially hides your identity)
-
-=item webchat
-
-L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet> (doesn't hide your identity)
-
-=item IRC chat
-
-L<SRN|telnet://ufo-net.nl:2324/> (hides your identity)
-
-=item IRC chat
-
-L<UFO|telnet://ufo-net.nl:2325/> (partly hides your identity)
-
-=item telnet chat
-
-L<SRN|telnet://ufo-net.nl:2323/> (hides your identity)
-
-=item IRC chat
-
-L<KwaakNet|irc://irc.kwaaknet.org:6667/anonet> (doesn't hide your identity)
-
-=back
+=end xhtml
 
 If you're feeling adventurous enough to connect at the IP level, L<UFO has a client port|http://ix.ucis.nl/clientport.php>.
 
 Once you're online, you can reconnect to IRC from inside AnoNet:
 
 =over
+
+=item webchat
+
+L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (automatically hide your identity)
 
 =item webchat
 
