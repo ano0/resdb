@@ -19,15 +19,15 @@ us and chat, it's very easy:
 
 =begin xhtml
 
-<table>
+Z<><table>
  <tr><th>Protocol</th><th>Service</th><th>Anonymity</th></tr>
- <tr><td>HTTP</td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>????</td></tr>
- <tr><td>HTTP</td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>a?y?</td></tr>
- <tr><td>HTTP</td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>n???</td></tr>
- <tr><td>IRC</td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>aaoa</td></tr>
- <tr><td>IRC</td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>a?oo</td></tr>
- <tr><td>IRC</td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>nooo</td></tr>
- <tr><td>telnet</td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>aaya</td></tr>
+ <tr><td>HTTPZ<></td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>????</td></tr>
+ <tr><td>HTTPZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>a?y?</td></tr>
+ <tr><td>HTTPZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>n???</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>aaoa</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>a?oo</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>nooo</td></tr>
+ <tr><td>telnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>aaya</td></tr>
 </table>
 
 =end xhtml
