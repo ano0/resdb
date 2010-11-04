@@ -15,11 +15,11 @@ for a in $($LS db/ip/); do
 	for b in $($LS db/ip/${a}); do
 		for c in $($LS db/ip/${a}/${b}); do
 			if [ -d db/ip/${a}/${b}/${c}/ns/ ]; then
-			 	for ns in $(cat db/ip/${a}/${b}/${c}/ns/*); do
+			 	for ns in $($LS db/ip/${a}/${b}/${c}/ns/); do
 					A1=$(scripts/hex2dec ${a})
 					B1=$(scripts/hex2dec ${b})
 					C1=$(scripts/hex2dec ${c})
-					STR="server=/${C1}.${B1}.${A1}.in-addr.arpa/${ns}"
+					STR="server=/${C1}.${B1}.${A1}.in-addr.arpa/$(scripts/ns2ip -f ${ns})"
 					echo $STR
 				done
 			fi
@@ -31,8 +31,8 @@ echo
 
 for tld in $($LS db/dom/); do 
 	for domain in $($LS db/dom/${tld}/); do 
-		for ns in $(cat db/dom/${tld}/${domain}/ns/*); do 
-			STR="server=/${domain}.${tld}/${ns}"
+		for ns in $($LS db/dom/${tld}/${domain}/ns/); do 
+			STR="server=/${domain}.${tld}/$(scripts/ns2ip -f ${ns})"
 			echo $STR
 		done; 
 	done; 
