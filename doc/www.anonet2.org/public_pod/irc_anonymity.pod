@@ -1,0 +1,55 @@
+=head1 IRC Anonymity
+
+IRC is a very chatty protocol, and between the user, the client and the client's connection to the server, a lot of user information comes into the hands of the server, and much of it becomes available to other users.  AnoNet has many IRC interfaces, and each has its own way of dealing with various bits of user information.  This page tries to help you make sense out of everything.
+
+=head2 IP Address
+
+Your IP address provides the strongest clue towards destroying your anonymity, especially if you're connecting from IcannNet.  An IRC server will normally tell all other users your IP address.
+
+=head2 Username
+
+Your username is another piece of information normally given to the IRC server, and the server normally passes it on to other users.  By default, this will often be your username on your own machine.  If you're using your regular non-AnoNet account, the username may hold clues towards identifying you.
+
+=head2 Nick
+
+Your nick is normally the most visible part of your IRC identity.  Quite often, IRC clients will use your regular username as the default nick.  (See L<Username|/Username> above.)
+
+=head2 Real Name
+
+Your Real Name shows up for /who commands run by others in the same channel.  If your IRC client knows your real name, it will probably send it to the server by default.  How dangerous this is to your anonymity will obviously depend on how uncommon your real name is and how much of an "online presence" you have, but in general, giving away your real name makes it far simpler to locate you.  One miht even argue that in the average case, a real name is a more dangerous leak than a home IP address.
+
+=head1 IRC Anonymity Key
+
+Anytime that an IRC interface is mentioned here, you'll see some letters after it.  Those letters mean something.  They tell you how well that interface protects different types of information.  The first letter says how the interface treats your IP address, the second letter says how the interface treats your username, the third letter says how the interface treats your nick, and the fourth letter says how the interface treats your real name.  Now each letter can be one of:
+
+=over
+
+=item a (automatic)
+
+The interface automatically protects your anonymity.
+
+=item y (yes)
+
+The interface asks you to enter the information, so you can enter anything you want.
+
+=item o (optional)
+
+The interface allows you to protect your anonymity, but you need to tell it to do so.  (The difference between 'y' and 'o' is that with 'y' you are presented with a prompt before you compromise your identity, while with 'o' you need to find the right configuration menu yourself.)
+
+=item n (no)
+
+The interface offers no simple option to hide your identity.  (You probably want to mitigate the risk by some external method.)
+
+=item ? (unknown)
+
+The interface may or may not protect your anonymity.  Who knows?
+
+=back
+
+=head2 Examples
+
+L<SRN's IcannNet-accessible IRC interface|irc://anortr.ucis.nl:8804/RendezVous> is aaoa.  That means it doesn't allow anybody else to see your IP address, your username, or your real name.  In addition, it allows you to change your nick (by using your standard client functionality), if you're interested.
+
+The L<anonymous version of KwaakNet|irc://anortr.ucis.nl:8805/anonet> is a?oo.  That means it doesn't allow anybody else to see your IP address.  It may or may not protect your username.  If you want to mask your nick or your real name, you'll have to do that in your IRC client.
+
+L<SRN's IcannNet-accessible telnet interface|telnet://anortr.ucis.nl:8803/> protects your anonymity better than any of the other options, with a rating of aaya.  (The only thing it doesn't automatically hide is your nick, which it prompts you to enter manually.)  Unfortunately, scoring high in anonymity doesn't increase your chances of scoring high in usability.  Users mostly agree that the telnet interface is very annoying and difficult to use, so you probably won't want to use it as anything but a last resort.
