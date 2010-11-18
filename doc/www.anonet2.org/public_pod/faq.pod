@@ -8,10 +8,10 @@ Back to homepage - L<http://www.anonet2.org/>
 
 =item Why do you use 1.0.0.0/8?  It's been assigned to APNIC.  You should use private (RFC1918) address space like 10.0.0.0/8.
 
-AnoNet is a public network, and as such it should use public address
+AnoNet is a public internet, and as such it should use public address
 space.  ICANN (a private corporation) controls the public resources on
 the IcannNet (a.k.a. the "public" Internet), and has delegated 1.0.0.0/8
-on the IcannNet to APNIC.  AnoNet is a separate public network, that
+on the IcannNet to APNIC.  AnoNet is a separate public internet, that
 doesn't answer to ICANN (nor to anybody else, for that matter).  Now,
 that said, when AnoNet started using 1.0.0.0/8 it was reserved (i.e.,
 not to be allocated), but because of ICANN's mismanagement of the IPv4
@@ -24,19 +24,35 @@ AnoNet did attempt to avoid directly conflicting with IcannNet addresses,
 ICANN ultimately made sure that attempt would fail.  (If you'd like to
 connect to an internet with address space that's still in the ICANN
 "reserved" pool, you may want to try VAnet.)  Using private address
-space is inappropriate for a public network, per RFC1918.  (If you'd
+space is inappropriate for a public internet, per RFC1918.  (If you'd
 like to connect to an internet that uses private address space anyway,
 you may want to try dn42 at L<http://www.dn42.net/>.)
+
+=item You should register 1.0.0.0/8, before you use it.
+
+By the same logic, ICANN should register 0.0.0.0/0, before it uses it.
+ICANN claims divine authority over 0.0.0.0/8, and allows people to use
+parts of it if they meet certain conditions set by the IETF and ICANN.
+The IETF conditions are reasonable if you don't assume that Internet
+is owned by ICANN.  The ICANN conditions, on the other hand, are highly
+unfair and actively hurt people who want their freedom (by requiring them
+to give up their anonymity, to sign a restrictive agreement, and to have a
+relationship with a regulated company with its own restrictive agreement).
+Therefore, ICANN is not a suitable government for a free internet.
+The AnoNet1 government claims "trust us instead," but AnoNet2 doesn't
+require you to trust anybody.  That's the only way for you to guarantee
+that AnoNet will never mismanage IP space the same way that ICANN does.
 
 =item ICANN isn't mismanaging the IPv4-space.  IcannNet usage is just exploding faster than anybody ever predicted.
 
 L<http://www.networkworld.com/news/2010/081610-5billion-devices-internet.html>
-claims that the IcannNet only has about 5 billion total devices, of which
-only about 1 billion "regularly connect" (PCs, laptops, etc.).  There are
-plenty of possible addressing schemes that could accomodate a billion
-"regularly connecting" devices with an address space quadruple the size.
-ICANN clearly isn't using any of them.  By any sane technical definition,
-that would certainly qualify as "mismanagement."
+claims that the IcannNet only has about 5 billion total devices, of
+which only about 1 billion "regularly connect" (PCs, laptops, etc.).
+There are plenty of possible addressing schemes that could accomodate a
+billion "regularly connecting" devices with an address space quadruple
+the size (even without NAT, if you want).  ICANN clearly isn't using
+any of them.  By any sane technical definition, that would certainly
+qualify as "mismanagement."
 
 =item If you use 1.0.0.0/8, you're squatting on somebody else's resources.
 
@@ -63,6 +79,10 @@ will happily confirm that it has neither authority nor ambition to rule
 the content of IcannNet communications between endpoints, inclusive of
 AnoNet tunnels.  Therefore, even if you buy the logical validity of your
 claim, ICANN will still shoot it down.
+
+=item Okay, you're not squatting, but now that 1.0.0.0/8 is being actively used on IcannNet, you should move to 10.0.0.0/8 to avoid conflicts.
+
+AnoNet is under no obligation to shrink its address space just because IcannNet decided to create a conflict.  Also, moving to 10.0.0.0/8 will create more conflicts than staying in 1.0.0.0/8 (since 10.0.0.0/8 is far more congested than 1.0.0.0/8 will ever be).
 
 =item You should move to IPv6, then.
 
