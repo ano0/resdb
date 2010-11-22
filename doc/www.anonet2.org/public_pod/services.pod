@@ -1,0 +1,93 @@
+=head1 Services
+
+Since AnoNet uses the same protocols as the public Internet, anything
+that's possible on the public Internet is theoretically possible on
+AnoNet. In practice, we don't have anything that nobody bothered to
+provide on AnoNet.
+
+Here's a list of things you can currently do on AnoNet2 (i.e., without
+having to set anything up yourself):
+
+=over
+
+=item *
+
+L<AnoNet1 Wiki Mirror|http://1.0.49.10/wiki/> (You got that right: AnoNet1 can't seem to keep their own wiki (at wiki.ano) up, so we decided to do it for them.)
+
+=item *
+
+IRC Webchat Client (L<http://www.sevilnatas.ano/chat.html>)
+
+=item *
+
+IRC-Like Chat Rooms [NO ACTIVATION OR VALID EMAILS REQUIRED (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)]
+
+
+=item *
+
+L<WikiLeaks Mirror|http://wikileaks.ucis.ano/> (The real WikiLeaks may be down, but not our mirror!)
+
+=item *
+
+L<Some Random Wiki|http://www.somerandomwiki.ano/>
+
+=item *
+
+Pastebin (without time-zone leaks, L<http://www.sevilnatas.ano/pastebin/>)
+
+=item *
+
+Encode/Decode text, binary, hex, base64, and dec/char (L<http://sevilnatas.ano/translator/>)  
+
+=item *
+
+Live WorldCup Stream (offline until next year)
+
+=item *
+
+DNS (Recursive: 1.0.27.38 & 1.3.3.64; TLD: 1.0.27.37 & 1.3.3.66; Root: 1.0.27.39 & 1.3.3.65)
+
+=item *
+
+IRC (L<irc://1.3.3.7/anonet> or L<irc://irc.somerandomnick.ano/RendezVous>)
+
+=item *
+
+Jabber (irc.somerandomnick.ano)
+
+=item *
+
+Web (for example, L<http://www.somerandomnick.ano/>)
+
+=item *
+
+PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (irc.somerandomnick.ano)
+
+=item *
+
+git-based resdb (including a decentralized "wiki" replacement) (L<SRN|git://git1.somerandomnick.ano/>, L<UFO|http://anogit.ucis.ano/.git/>, L<cronix|git://1.22.48.100/>, L<pragmo|git://pragmo.ano/>, L<quintum|git://1.0.18.1/>, L<wakawaka|git://1.0.111.1/>, L<harald|git://1.0.169.1/ano2.git>, and possibly other repos)
+
+=item *
+
+outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/> (works well), L<http://b.privoxy.somerandomnick.ano:8118/> (doesn't work) and L<http://a.polipo.somerandomnick.ano:8118/> (doesn't work))
+
+=item *
+
+Web-based resource database viewer: L<http://ix.ucis.ano/anonet/>
+
+=item *
+
+L<Turtle island|http://www.turtleisland.ano> (A repository of books for geeks)
+
+=item *
+
+Decentralized Web mirroring service (at least L<http://a.mirror.somerandomnick.ano>) (technical difficulties)
+
+=item *
+
+BitTorrent Tracker/Indexer (three separate ones, each with some cool
+features of its own - ask for details on IRC) (no need to worry about
+"Three Strikes" ISP policies)
+
+=back
+
