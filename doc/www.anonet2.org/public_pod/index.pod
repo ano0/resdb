@@ -38,6 +38,10 @@ Once you're online, you can reconnect to IRC from inside AnoNet:
 
 =over
 
+=item IRC (on the udpmsg3 cloud)
+
+L<SRN (NickNet)|irc://irc2.srn.ano:6667/anonet> (L<SRN (NickNet)|irc://1.0.27.110:6667/anonet>, if you don't have DNS for some reason) (automatically hides your identity)
+
 =item webchat
 
 L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (automatically hide your identity)
@@ -379,6 +383,11 @@ want to deal with this is still a topic for open discussion.  Feel free
 to join in the discussion, or just do your own thing and let everyone
 else be damned.)
 
+Update: UFO implemented udpmsg3 (inspired by r101's udpmsg protocol),
+and UFO, SRN, and sevilNatas all have IRC servers connecting to the
+udpmsg3 "cloud" now.  The nice thing about udpmsg3 is that it's truly
+decentralized, and very difficult to censor.
+
 =item Outbound HTTP Proxies
 
 SRN runs three right now and ryuk runs one, but that means between the
@@ -387,6 +396,14 @@ Having more proxies gives you an alternative to blindly trusting SRN
 and ryuk not to sell your click-through data to Google, invert the order
 of search results to your queries, and inject malicious JavaScript into
 your Hotmail homepage.
+
+=item IcannNet mailinglist Proxies
+
+AnoNet uses a lot of software in new and interesting ways, so AnoNet
+users find "accidental features" quite often.  If there were an easy
+way to join the official mailing lists for some of this software, AnoNet
+users would probably submit many more bug reports, resulting in better
+quality software being available for us.
 
 =back
 

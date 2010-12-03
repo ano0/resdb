@@ -267,11 +267,9 @@ slowly decaying.
 
 =item Is AnoNet1 dead, then?
 
-AnoNet1 is far from dead.  In fact, it still has roughly twice the
-user-base of AnoNet2.  However, AnoNet2 has more services online, at this
-stage.  (Most of the old AnoNet1 services are long defunct, by now, as
-are many of its users.)  AnoNet2 has also been experiencing rather solid
-sustained growth, while the AnoNet1 population growth is mostly flat.
+AnoNet1 isn't dead yet.  It's currently about the same size as AnoNet2.
+However, AnoNet2 has more services online, and AnoNet2 is still growing,
+while AnoNet1 is getting smaller.
 
 =item What's the difference between AnoNet1 and AnoNet2, then?
 
@@ -315,7 +313,11 @@ kicked from AnoNet1.)  Again, you get bonus points if you can figure out
 what that reason is.  (Hint: crzydmnd and risc likely know the reason,
 but good luck getting them to spill the beans.  Censoring the question
 seems to be their favorite "answer.")  Suffice it to say that if AnoNet1
-wanted to merge with AnoNet2, AnoNet2 wouldn't object.
+wanted to merge with AnoNet2, nobody on AnoNet2 is likely to object.
+
+Update: AnoNet1 and AnoNet2 now have full routing again, but some
+AnoNet1 members still filter most AnoNet2 routes locally (and for
+downstream peers).
 
 =item Do I have to choose between AnoNet1 and AnoNet2, or is there a way to join both?
 
@@ -326,6 +328,10 @@ If you're currently getting to AnoNet1 through the official AnoNet1 CP
 (run by Kaos), simply switch to UFO's CP, and you'll automatically be
 connected to both, so you can check them both out and figure out at your
 own pace what you want to do.
+
+Update: Both CPs can now access both sides of AnoNet, so you can come
+in from the AnoNet1 CP and chat on AnoNet2 IRC, or you can come in from
+UFO's AnoNet2 CP and chat on AnoNet1 IRC.
 
 =item Which darknet preserves my anonymity better, AnoNet1 or AnoNet2?
 

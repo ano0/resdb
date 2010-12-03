@@ -12,6 +12,10 @@ having to set anything up yourself):
 
 =item *
 
+L<IRC server on the udpmsg3 cloud|irc://irc2.srn.ano/anonet>
+
+=item *
+
 L<AnoNet1 Wiki Mirror|http://1.0.49.10/wiki/> (You got that right: AnoNet1 can't seem to keep their own wiki (at wiki.ano) up, so we decided to do it for them.)
 
 =item *
