@@ -56,7 +56,7 @@ echo "(Default: $git_email)" >&2
 echo -n "Email? " >&2
 read new_git_email
 if [ x"$new_git_email" != x ]; then
- git_name="$new_git_email"
+ git_email="$new_git_email"
 fi
 
 echo -n "Would you like to configure the tinydns datafile generator? " >&2
