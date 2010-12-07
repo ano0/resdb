@@ -12,7 +12,15 @@ having to set anything up yourself):
 
 =item *
 
-L<IRC server on the udpmsg3 cloud|irc://irc2.srn.ano/anonet>
+L<IRC server on the udpmsg3 cloud (lex)|irc://1.3.9.1/anonet>
+
+=item *
+
+L<Public Email Server|http://www.turtleisland.ano/mail.html>
+
+=item *
+
+L<IRC server on the udpmsg3 cloud (SRN)|irc://irc2.srn.ano/anonet>
 
 =item *
 
