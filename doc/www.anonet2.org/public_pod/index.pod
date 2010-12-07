@@ -313,12 +313,6 @@ See the L<Services|http://www.anonet2.org/services> page
 
 =over
 
-=item A-Mail
-
-Somebody is going to have to bring up a public email server before a-mail
-will be generally accessible on AnoNet.  SRN has abandoned an attempt
-to bring a public mail server online.
-
 =item Newsgroups (Usenet)
 
 The guy who said he was bringing usenet to anonet seems to have died,
@@ -365,12 +359,9 @@ local government decides to try regulating it).
 
 =item Public Email Services
 
-Currently, every AnoNet user who wants an email address on AnoNet has to
-set up his own mailserver.  AnoNet1 used to have a public email service so
-people could get email addresses without running their own mail servers,
-but it hasn't been online in nearly a year (although AnoNet1 continues to
-advertise it).  SRN is working on setting up such an animal on AnoNet2,
-but competition here is a good thing.
+Nomius runs a public mail service, and lex is working on another one.
+While more than 2 public mail services clearly aren't necessary at this
+stage, too many is better than too few.
 
 =item IRC Servers
 
