@@ -12,7 +12,7 @@ having to set anything up yourself):
 
 =item *
 
-L<IRC server on the udpmsg3 cloud (lex)|irc://lynx.ano/anonet>
+L<IRC server on the udpmsg3 cloud (lex)|irc://lynx.ano/anonet> (runs L<SRN's improved version of UFO's package|http://www.srn.ano/udpmsg3/>)
 
 =item *
 
@@ -20,7 +20,7 @@ L<Public Email Server|http://www.turtleisland.ano/mail.html>
 
 =item *
 
-L<IRC server on the udpmsg3 cloud (SRN)|irc://irc2.srn.ano/anonet>
+L<IRC server on the udpmsg3 cloud (SRN)|irc://irc2.srn.ano/anonet> (runs L<SRN's improved version of UFO's package|http://www.srn.ano/udpmsg3/>)
 
 =item *
 
