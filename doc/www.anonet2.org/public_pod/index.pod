@@ -401,6 +401,10 @@ quality software being available for us.
 
 =back
 
+=head2 Assholes
+
+We finally found L<our first asshole|http://www.anonet2.org/assholes>.
+
 =head2 See Also
 
 If AnoNet sounds good but not perfect, don't despair: there are a number
