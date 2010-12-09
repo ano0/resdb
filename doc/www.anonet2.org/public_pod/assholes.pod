@@ -153,4 +153,4 @@ j> yeah
 Ivo> hmm.. interesting hobby
 j> off to tweak my script.
 
-After this, UFO censored j by blocking access to IRC from IcannNet.
+After this, UFO censored j by blocking access to IRC from IcannNet.  Hidden tor services have been opened (L<on the main page|http://www.anonet2.org/>), so j can come back and try spamming again.
