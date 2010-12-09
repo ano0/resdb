@@ -1,0 +1,156 @@
+=head1 Assholes
+
+We weren't expecting to find an asshole this early, but here's part of
+the IRC log from #dn42:
+
+j> spam
+somerandomnick> j: I'd suggest not spamming here ;-)
+somerandomnick> Feel free to spam #anonet :-)
+j> sorry, died for a bit
+j> I'm working on updating my spamming script to target here
+j> I just need to add a cupple lines
+j> Why not?
+somerandomnick> because dn42 doesn't like spam
+j> What will they do about it?
+somerandomnick> They will complain to me :-)
+j> What keeps me from spamming them directly, not through here?
+somerandomnick> j: That's between you and them.
+somerandomnick> but if you spam them through here, they will complain to me
+j> Yes but I need you for telnet
+j> Otherwise this won't work
+somerandomnick> j: then I suggest staying with #anonet
+somerandomnick> j: You can spam #anonet as much as you want.  I don't mind.
+j> fine, you spoil all my fun. Later
+j> I"ll get a good few spams in here later on
+Ivo> j, why?
+j> but not to many
+somerandomnick> j: LOL, sorry ;-)
+j> well, if I succeed in annoying two networks so they part from each other, I've succeeded.
+Ivo> uh?
+somerandomnick> LOL
+Ivo> what two networks?
+somerandomnick> j: I don't think we're about to part from each other.
+j> I haven't been spamming here yet
+somerandomnick> but if I get complaints from dn42 about you, I think anonet will have to part from you
+j> how?
+lex> j: Exactly why are you even interested in spamming? It is not considered a gracious activity in the slightest
+j> I just do it to annoy the shit out of everyone.
+lex> j: And you take some kind of crazy pleasure from annoying other people?
+Ivo> j, I really don't understand why you would do that
+j> It's just base64-encoded /dev/urandom, but it'll fill up screens, irc logs, and make it hard to have  areal conversation with that going on.
+somerandomnick> j: What's wrong?
+somerandomnick> You come to anonet to test your spam script, I say no problem,
+somerandomnick> and offer to help.
+somerandomnick> I didn't even hear 1 "thank you" and never asked for one either.
+j> well
+j> You can't stop me even if you wanted to
+somerandomnick> If your goal is to have a contest, I'm willing to take your challenge.
+j> I'm just out to cause problems for anonet and be an asshole. Later
+
+somerandomnick> Sorry, guys, for the spam ;-)
+somerandomnick> alice: Sorry about unlinking your server.  I shut down the relay until we can fix the spam problem.
+
+j> did it work?
+somerandomnick> yes
+somerandomnick> Now, dn42 will depeer us.
+somerandomnick> ;-P
+j> good
+somerandomnick> I think you need to try a bit harder ;-)
+j> full scale?
+somerandomnick> still not sure what exactly you're trying to achieve
+somerandomnick> sure, why not?
+j> mission goals to annoy people.
+somerandomnick> If that's your only goal, you aren't doing too bad ;-)
+somerandomnick> but I think you can guess my goal ;-)
+j> what is your goal
+somerandomnick> You can't guess it?
+j> to stop me, maybe.
+somerandomnick> well
+somerandomnick> What would your goal be, if you were in my place and I were in your place?
+j> I would try to limit the damage one spammer could do.
+somerandomnick> good guess :-)
+Ivo> j, I don't understand why you do this
+Ivo> you want to break some darknets apart?
+j> yeah!
+Ivo> which ones?
+j> I don't know.
+somerandomnick> LOL
+Ivo> so, what do you know about darknets?
+j> nothing.
+somerandomnick> um
+Ivo> ok, so why do this?
+Ivo> why not annoy some other people?
+Ivo> Im sure you can easily annoy more people on a large irc network
+j> This is easier. I just telnet to anortr.ucis.nl 8803 and spam.
+somerandomnick> and how does it help you?
+j> It doesn't.
+Ivo> so, what's so much fun ?
+Ivo> btw, do I know you?
+j> no
+Ivo> oh cool
+Ivo> so how did you find out about anonet?
+j> what's anonet?
+j> I just telnet here and start
+Ivo> how did you find out about this place?
+j> I found it while searching for telnet servers somewhere.
+somerandomnick> ;-)
+Ivo> oh right
+Ivo> sounds like fun
+Ivo> so, you were looking for telnet chat servers to send spam ?
+j> yes
+j> Is there another one that's more popular?
+Ivo> damn.
+somerandomnick> Nobody really uses telnet anymore for chat ;-)
+somerandomnick> hehe
+somerandomnick> but if you don't mind writing to IRC, you can use any IRC server ;-)
+j> irc servers can ban you though.
+somerandomnick> right
+somerandomnick> It's possible to ban here too, but it's a bit harder ;-)
+somerandomnick> You need to get everyone mad at you before it's really possible to ban you here.
+somerandomnick> but if you succeed, it's equally hard to unban you later
+Ivo> do you feel good now?
+Ivo> oh yes, definitely
+Ivo> oh come on...
+Ivo> j, I can easily ban you
+somerandomnick> Ivo: That's a technical accident.
+Ivo> don't care.
+j> Youd' have to ban whole of tor.
+Ivo> :)
+somerandomnick> How easy or hard it is to ban him isn't the point.
+Ivo> oh well, we have dns blacklists now
+somerandomnick> Most IRC networks ban tor, and anonet can also, if necessary.
+somerandomnick> UFO has full control over that, so even if I prefer to let you stay here, if you annoy UFO enough you're history, and there's nothing I can do about it.
+j> What, UFO can change the etlnet port?
+Ivo> :)
+Ivo> oh yes
+somerandomnick> He can block tor from the telnet port.
+j> shit.
+somerandomnick> He can shut it down completely.
+somerandomnick> ;-)
+somerandomnick> and me liking you won't help
+Ivo> j, where are you from ?
+j> That isn't important.
+Ivo> no it isn't
+Ivo> I'm just interested
+somerandomnick> j: If you succeed in annoying all ~20 of us on anonet, what does it add to your life?
+j> nothing.
+somerandomnick> then why do you want to waste your time on it?
+j> Because I can.
+somerandomnick> You enjoy getting banned?
+j> It's tor, not me.
+somerandomnick> You're part of tor.
+somerandomnick> and even in that, we don't have to ban tor completely
+j> shit.
+somerandomnick> You just create a little more work for us in spam countermeasures.
+somerandomnick> You're 1, and we're about 20.
+j> Pretty soon, you'll get tired of my spam and close anonet.
+somerandomnick> We can probably develop countermeasures faster than you can develop measures, right?
+j> right.
+somerandomnick> j: I won't get tired of your spam for the rest of my life.
+Ivo> so, do you do this all the time, j?
+somerandomnick> I love spam.
+j> yeah
+Ivo> hmm.. interesting hobby
+j> off to tweak my script.
+
+After this, UFO censored j by blocking access to IRC from IcannNet.
