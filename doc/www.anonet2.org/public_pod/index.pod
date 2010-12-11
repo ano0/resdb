@@ -30,6 +30,7 @@ Z<><table>
  <tr><td>IRCZ<></td><td>L<SRN2 (tor)|irc://w53qxqs27amlrwnm.onion/anonet></td><td>aaoa</td></tr>
  <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>a?oo</td></tr>
  <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>nooo</td></tr>
+ <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc.sevilnatas.ano:6667/anonet></td><td></td></tr>
  <tr><td>telnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>aaya</td></tr>
 </table>
 
