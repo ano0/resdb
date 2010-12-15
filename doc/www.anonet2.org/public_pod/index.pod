@@ -379,9 +379,12 @@ to join in the discussion, or just do your own thing and let everyone
 else be damned.)
 
 Update: UFO implemented udpmsg3 (inspired by r101's udpmsg protocol),
-and UFO, SRN, and sevilNatas all have IRC servers connecting to the
-udpmsg3 "cloud" now.  The nice thing about udpmsg3 is that it's truly
-decentralized, and very difficult to censor.
+and UFO, SRN, sevilNatas and lex all have IRC servers connecting to the
+udpmsg3 "cloud" now.  The primary advantages of udpmsg3 are that it's
+truly decentralized, very difficult to censor, fails over gracefully in
+case of hardware/software failures without dropping messages and without
+duplicating messages, and avoids the long relay chains that normally
+take up half your screen.
 
 =item Outbound HTTP Proxies
 
