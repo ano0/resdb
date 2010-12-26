@@ -187,6 +187,16 @@ giving away information that your ISP probably wouldn't already know.
 However, if you read local news it's probably still wise to avoid AnoNet.
 (You can still use tor directly.)
 
+=item Just Browse
+
+If you just surf aimlessly for hours, you are giving away a lot of
+profiling information to your ISP.  With the AnoNet proxies, you can
+avoid giving your ISP any of this information.  (You are still giving the
+same information to the AnoNet proxies if you don't use SSL tunneling,
+but AnoNet proxies can't connect the profiling information with your
+real-life identity, while your ISP (and anybody who can get your ISP
+records) certainly can.)
+
 =item Do Research
 
 AnoNet shines here.  Governments can force Google to cough up your
@@ -206,12 +216,7 @@ easily connect your AnoNet IP address with your IcannNet IP address
 
 =item Speak Out
 
-If you know something that you'd like other people to know, and you fear
-retribution from those who would prefer for others not to know what
-you know, traditional IcannNet forums can be forced to turn over your
-IP address, which can then identify you.  On AnoNet, it's comparatively
-easy to cover your tracks, in such a way that even your own peers would
-have a hard time figuring out who said whatever it was.
+If you know something that you'd like other people to know, and you fear retribution from those who would prefer for others not to know what you know, traditional IcannNet forums can be forced to turn over your IP address, which can then identify you.  If your email address is with Gmail, L<you have other problems|http://mirror.wikileaks.info/wiki/Gmail_may_hand_over_IP_addresses_of_journalists/>.  On AnoNet, it's comparatively easy to cover your tracks, in such a way that even your own peers would have a hard time figuring out who said whatever it was.
 
 =item Blog
 
