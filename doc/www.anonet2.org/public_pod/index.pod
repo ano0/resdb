@@ -197,6 +197,14 @@ but AnoNet proxies can't connect the profiling information with your
 real-life identity, while your ISP (and anybody who can get your ISP
 records) certainly can.)
 
+=item Browse WikiLeaks
+
+If you're located in a totalitarian regime, your ISP may not allow you
+to access WikiLeaks.  Even if you are located in a less totalitarian
+regime, your government may monitor your WikiLeaks browsing habits.
+AnoNet allows you to browse WikiLeaks without your ISP preventing or
+monitoring your visits.
+
 =item Do Research
 
 AnoNet shines here.  Governments can force Google to cough up your
