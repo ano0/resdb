@@ -195,7 +195,9 @@ avoid giving your ISP any of this information.  (You are still giving the
 same information to the AnoNet proxies if you don't use SSL tunneling,
 but AnoNet proxies can't connect the profiling information with your
 real-life identity, while your ISP (and anybody who can get your ISP
-records) certainly can.)
+records) certainly can.)  Surfing with AnoNet also means that you don't
+need to worry about your government filtering policies getting in your
+way while you surf.
 
 =item Browse WikiLeaks
 
@@ -213,6 +215,20 @@ responsible for.  If you use Scroogle (HTTPS) through one of AnoNet's
 HTTP proxies, the proxy doesn't know what you're looking for, Scroogle
 has no clue who you are, and by the time the search makes its way to
 Google, connecting it to you is all but hopeless.
+
+=item Discuss the WikiLeaks insurance.aes256 File
+
+If you and your friends were hoping to talk together
+about your experience trying to decrypt the file on
+abovetopsecret's forums, you probably saw L<this complaint from a
+moderator|http://www.abovetopsecret.com/forum/thread598787/pg23#pid9331623>.
+After quoting from L<the terms and conditions
+page|http://www.abovetopsecret.com/forum/thread6688/pg1>, he says:
+B<Going forward, please remember that we cannot discuss how to "break"
+this file open. We're only allowed to discuss the topic at hand, which
+is the posting of the encrypted document itself, and what it I<may>
+contain.>  AnoNet doesn't have a terms and conditions page, so you're
+"allowed" to discuss whatever you want.
 
 =item Share Files
 
