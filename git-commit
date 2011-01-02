@@ -1,3 +1,4 @@
 #!/bin/sh
 git add configure db doc git-commit gitd scripts contrib
 git commit
+/usr/lib/git-core/git-update-server-info
