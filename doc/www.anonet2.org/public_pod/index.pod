@@ -1,5 +1,7 @@
 =head1 AnoNet, Take 2!
 
+Welcome to AnoNet! AnoNet is a highly decentralized darknet, aiming to create a censorship resistant network free from government influence and restrictions. AnoNet uses an IP network to accomplish this, as an alternative to the existing internet.
+
 =head2 Theory
 
 L<anonymity in general and its place in AnoNet in
@@ -14,24 +16,23 @@ in particular|http://www.anonet2.org/intro>
 
 =head2 How to Join
 
-There are many ways to join AnoNet.  If you just want to hang out with
+There are many ways to join AnoNet. If you just want to hang out with
 us and chat, it's very easy:
 
 =begin xhtml
 
 Z<><table>
  <tr><th>Protocol</th><th>Service</th><th>Anonymity</th></tr>
- <tr><td>HTTPZ<></td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>????</td></tr>
- <tr><td>HTTPZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>a?y?</td></tr>
- <tr><td>HTTPZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>n???</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>aaoa</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN (tor)|irc://2dmrunyyp6bp53th.onion/RendezVous></td><td>aaoa</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN2|irc://anortr.ucis.nl:8806/anonet></td><td>aaoa</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN2 (tor)|irc://w53qxqs27amlrwnm.onion/anonet></td><td>aaoa</td></tr>
- <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>a?oo</td></tr>
- <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>nooo</td></tr>
- <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc.sevilnatas.ano:6667/anonet></td><td></td></tr>
- <tr><td>telnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>aaya</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>Hidden IP and username, custom nickname</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>Hidden IP and username, custom nickname</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>Visible IP and username, custom nickname (warning!)</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>Hidden IP and username</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN (tor)|irc://2dmrunyyp6bp53th.onion/RendezVous></td><td>Hidden IP and username</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN2|irc://anortr.ucis.nl:8806/anonet></td><td>Hidden IP and username</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN2 (tor)|irc://w53qxqs27amlrwnm.onion/anonet></td><td>Hidden IP and username</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>Hidden IP, visible username</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>Visible IP and username (warning!)</td></tr>
+ <tr><td>TelnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>Hidden IP and username, custom nickname</td></tr>
 </table>
 
 =end xhtml
@@ -42,42 +43,20 @@ Once you're online, you can reconnect to IRC from inside AnoNet:
 
 =over
 
-=item IRC (on the udpmsg3 cloud)
+Z<><table>
+ <tr><th>Protocol</th><th>Service using DNS</th><th>Service using IP (no DNS)</th><th>Anonymity</th></tr>
+ <tr><td>HTTP WebChat</td><td>L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html></td><td></td><td>Hidden IP and username, custom nickname</td></tr>
+ <tr><td>HTTP WebChat</td><td>L<KwaakNet|http://anortr.ucis.ano:8086/?channels=anonet&nick=Anonymous></td><td>L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous></td><td>Hidden IP and username, custom nickname</td></tr>
+ <tr><td>IRC</td><td>L<SRN (NickNet)|irc://irc2.srn.ano:6667/anonet></td><td>L<SRN (NickNet)|irc://1.0.27.110:6667/anonet></td><td>Hidden IP and username</td></tr>
+ <tr><td>IRC</td><td>L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous></td><td>L<SRN|irc://1.0.27.103:6667/RendezVous></td><td>Hidden IP and username</td></tr>
+ <tr><td>IRC</td><td>L<sevilNatas|irc://irc.sevilnatas.ano:6667/anonet></td><td></td><td>Unknown</td></tr>
+ <tr><td>IRC</td><td>L<KwaakNet|irc://irc.ucis.ano:6667/anonet></td><td>L<KwaakNet|irc://1.3.3.7:6667/anonet></td><td>Visible IP and username</td></tr>
+ <tr><td>IRC</td><td>L<pragmo|irc://irc.pragmo.ano:6667/atomic></td><td>L<pragmo|irc://1.0.16.111:6667/atomic></td><td>Unknown</td></tr>
+ <tr><td>Telnet</td><td>L<SRN|telnet://irc.somerandomnick.ano:2323/></td><td></td><td>Hidden IP and username, custom nickname</td></tr>
+ <tr><td>Jabber</td><td>irc.somerandomnick.ano (RendezVous MUC)</td><td></td><td>Unknown</td></tr>
+</table>
 
-L<SRN (NickNet)|irc://irc2.srn.ano:6667/anonet> (L<SRN (NickNet)|irc://1.0.27.110:6667/anonet>, if you don't have DNS for some reason) (automatically hides your identity)
-
-=item webchat
-
-L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (automatically hide your identity)
-
-=item webchat
-
-L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous> (partially hides your identity)
-
-=item IRC
-
-L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous>
-(L<SRN|irc://1.0.27.103:6667/RendezVous>, if you don't have DNS for some
-reason) (automatically hides your identity)
-
-=item IRC
-
-L<KwaakNet|irc://1.3.3.7:6667/anonet> (doesn't automatically hide your identity)
-
-=item IRC
-
-L<pragmo|irc://irc.pragmo.ano:6667/atomic>
-(L<pragmo|irc://1.0.16.111:6667/atomic>, for the same reason as before
-and if you want you can use SSL on port 6697) (doesn't automatically
-hide your identity)
-
-=item telnet
-
-L<SRN|telnet://irc.somerandomnick.ano:2323/> (automatically hides your identity)
-
-=item Jabber
-
-irc.somerandomnick.ano (RendezVous MUC)
+For more information about anonimity on IRC, see L<this page|irc_anonimity>.
 
 =back
 
