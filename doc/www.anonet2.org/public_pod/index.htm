@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>AnoNet - The anonymous IP darknet</title>
+</head><body>
+<div>
+<h1>AnoNet, Take 2!</h1>
+<p>Welcome to AnoNet! AnoNet is a highly decentralized darknet, aiming to create a censorship resistant network free from government influence and restrictions. AnoNet uses an IP network to accomplish this, as an alternative to the existing internet.</p>
+
+<p>You can read more information about AnoNet below, or on <a href="http://wiki.ucis.nl/Anonet">http://wiki.ucis.nl/Anonet</a>.</p>
+</div>
+
+<div>
+<h2>Theory</h2>
+<ul>
+	<li><a href="http://www.anonet2.org/anonymity">anonymity in general and its place in AnoNet in particular</a></li>
+	<li><a href="http://www.anonet2.org/darknet_comparison">darknet comparison page</a></li>
+	<li><a href="http://www.anonet2.org/faq">AnoNet FAQ</a></li>
+	<li><a href="http://www.anonet2.org/intro">quick introduction to darknets and anonymity in general and AnoNet2 in particular</a></li>
+</ul>
+</div>
+
+<h2>How to Join</h2>
+<p>There are many ways to join AnoNet. If you just want to hang out with us and chat, it's very easy:</p>
+<table>
+ <tr><th>Protocol</th><th>Service</th><th>Anonymity</th></tr>
+ <tr><td>HTTP WebChat</td><td><a href="http://anonet.serveirc.com/">KwaakNet</a></td><td>Hidden IP, username and realname, custom nickname (note 1)</td></tr>
+ <tr><td>HTTP WebChat</td><td><a href="http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous">KwaakNet</a>></td><td>Hidden IP, username and realname, custom nickname (note 1)</td></tr>
+ <tr><td>HTTP WebChat</td><td><a href="http://webchat.kwaaknet.org/?c=AnoNet">KwaakNet</a></td><td>Visible IP, hidden username and realname, custom nickname (warning!) (note 1)</td></tr>
+ <tr><td>IRCZ</td><td><a href="irc://anortr.ucis.nl:8804/RendezVous">SRN</a></td><td>Hidden IP, username and realname (note 2)</td></tr>
+ <tr><td>IRC</td><td><a href="irc://2dmrunyyp6bp53th.onion/RendezVous">SRN (tor)</a></td><td>Hidden IP, username and realname (note 2)</td></tr>
+ <tr><td>IRC</td><td><a href="irc://anortr.ucis.nl:8806/anonet">SRN</a></td><td>Hidden IP, username and realname (note 2)</td></tr>
+ <tr><td>IRC</td><td><a href="irc://w53qxqs27amlrwnm.onion/anonet">SRN (tor)</a></td><td>Hidden IP, username and realname (note 2)</td></tr>
+ <tr><td>IRC</td><td><a href="irc://anortr.ucis.nl:8805/anonet">KwaakNet</a></td><td>Hidden IP, visible username and realname</td></tr>
+ <tr><td>IRC</td><td><a href="irc://irc.kwaaknet.org:6667/anonet">KwaakNet</a></td><td>Visible IP, username and realname (warning!)</td></tr>
+ <tr><td>Telnet</td><td><a href="telnet://anortr.ucis.nl:8803/">SRN</a></td><td>Hidden IP and username, custom nickname</td></tr>
+</table>
+
+<ul>
+	<li>Note 1: your browser may send information that can be used to identify you. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet.</li>
+	<li>Note 2: your IRC client always sends your configured username, realname and possibly also hostname. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet. You should therefore always properly configure your IRC client!</li>
+</ul>
+
+If you're feeling adventurous enough to connect at the IP level, <a href="http://ix.ucis.nl/clientport.php">UFO has a client port</a>. Once you're online, you can reconnect to IRC from inside AnoNet:
+
+<table>
+ <tr><th>Protocol</th><th>Service using DNS</th><th>Service using IP (no DNS)</th><th>Anonymity</th></tr>
+ <tr><td>HTTP WebChat</td><td><a href="http://www.sevilnatas.ano/chat.html">sevilNatas (KwaakNet)</a></td><td></td><td>Hidden IP, username and realname, custom nickname (note 1)</td></tr>
+ <tr><td>HTTP WebChat</td><td><a href="http://anortr.ucis.ano:8086/?channels=anonet&nick=Anonymous">KwaakNet</a></td><td><a href="http://1.3.3.2:8086/?channels=anonet&nick=Anonymous">KwaakNet</a></td><td>Hidden IP, username and realname, custom nickname (note 1)</td></tr>
+ <tr><td>IRC</td><td><a href="irc://irc2.srn.ano:6667/anonet">SRN (NickNet)</a></td><td><a href="irc://1.0.27.110:6667/anonet">SRN (NickNet)</a></td><td>Hidden IP, username and realname (note 2)</td></tr>
+ <tr><td>IRC</td><td><a href="irc://irc.somerandomnick.ano:6667/RendezVous">SRN</a></td><td><a href="irc://1.0.27.103:6667/RendezVous">SRN</a></td><td>Hidden IP, username and realname (note 2)</td></tr>
+ <tr><td>IRC</td><td><a href="irc://irc.sevilnatas.ano:6667/anonet">sevilNatas</a></td><td></td><td>Unknown</td></tr>
+ <tr><td>IRC</td><td><a href="irc://irc.ucis.ano:6667/anonet">KwaakNet</a></td><td><a href="irc://1.3.3.7:6667/anonet">KwaakNet</a></td><td>Visible IP, username and realname</td></tr>
+ <tr><td>IRC</td><td><a href="irc://irc.pragmo.ano:6667/atomic">pragmo</a></td><td><a href="irc://1.0.16.111:6667/atomic">pragmo</a></td><td>Unknown</td></tr>
+ <tr><td>Telnet</td><td><a href="telnet://irc.somerandomnick.ano:2323/">SRN</a></td><td></td><td>Hidden IP and username, custom nickname</td></tr>
+ <tr><td>Jabber</td><td>irc.somerandomnick.ano (RendezVous MUC)</td><td></td><td>Unknown</td></tr>
+</table>
+
+<ul>
+	<li>Note 1: your browser may send information that can be used to identify you. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet.</li>
+	<li>Note 2: your IRC client always sends your configured username, realname and possibly also hostname. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet. You should therefore always properly configure your IRC client!</li>
+</ul>
+
+<h2>Why to Join</h2>
+<p>Note: There's now <a href="links">a separate page with links to many more reasons tojoin AnoNet</a></p>
+
+<p>You'd want to join AnoNet2 for the same reasons as you'd want to join
+AnoNet1: to exercise your freedom of speech and action, without having
+to worry too much about people who don't like you making too many
+connections between your online and offline identities. Unlike AnoNet1,
+we're not nazis about our rules, so if you don't feel the need to conceal
+your real-life identity, we won't get all mad at you. Just please be
+considerate of those who would like to stay anonymous ("pseudonomous,"
+technically), and everybody is happy.  (For more discussion on this
+topic in particular, you may want to check out <a href="anonimity">separate page
+here</a>.</p>
+
+<p>A secondary reason for joining is to gain an opportunity to experiment
+with internet technologies without breaking "the real thing." While
+that's not the purpose behind AnoNet, it seems to be a common reason
+for joining, and as long as you don't break too much with your fun,
+you're more than welcome to have your fun here.</p>
+
+<p>You may want to join for the social scene (we even have our own social
+network, although nobody uses it for what should be obvious reasons),
+or you may want to create your own social scene. Again, you're not
+looking at an "official" reason for joining, but nobody owns AnoNet, so
+"official" is an artificial term 'round here.</p>
+
+<p>You may be looking for help with your Mathematics, Physics or Computer
+Science homework.  Due to AnoNet's nature, many of the guys who hang
+out here have an academic background in one (or more) of the above,
+and most are quite happy to help students.</p>
+
+<p>If you're interested in starting your own darknet, you can get plenty of
+advice here.  In addition, the AnoNet2 infrastructure is easy to reuse
+for any other darknet, by design.  (Technical ease of forking is a core
+goal of AnoNet2.  We avoid forks only by being good enough so nobody
+feels the need to fork AnoNet2.)</p>
+
+<p>Finally, you may be getting a bit nervous at the amount of regulation
+piling up around the world against the public Internet.  Since the
+"public" Internet is owned and managed by a number of multinational
+corporations, it's fairly easy for governments to regulate it.  Part of
+the main purpose behind AnoNet has always been to get away from those
+private control points, in order to create a truly public internet.
+In AnoNet1, anybody who can regulate crzydmnd can regulate AnoNet1's
+"official" wiki (and by extension, its resource "database"), and
+anybody who can regulate Kaos can regulate AnoNet1's "official" client
+port (and by extension, all new AnoNet1 users), so the private control
+point problem hasn't quite been solved there.  AnoNet2 is still largely
+controlled by UFO and somerandomnick, but we have both technical and
+administrative measures in place to ensure that as the network grows,
+the two of us will no longer have enough control to destroy the network,
+even if our own governments ever decide to try regulating us.</p>
+
+<h2>The AnoNet Advantage</h2>
+
+<p>You may be wondering what AnoNet buys you, relative to IcannNet.  The answer obviously depends on what you tend to do on IcannNet.  Here are some points to note:</p>
+
+<h2>Read Headlines</h3>
+<p>If you only read the headlines from your local news (without clicking
+through to interesting stories, etc.), your anonymity on AnoNet is
+actually significantly _worse_ than on IcannNet, because you're giving
+away geolocation information that your IcannNet ISP already knows but
+that AnoNet probably doesn't.</p>
+
+<h3>Read News</h3>
+<p>Once you start clicking around for "interesting" stories, you're
+giving away information that your ISP probably wouldn't already know.
+However, if you read local news it's probably still wise to avoid AnoNet.
+(You can still use tor directly.)</p>
+
+<h3>Just Browse</h3>
+<p>If you just surf aimlessly for hours, you are giving away a lot of
+profiling information to your ISP.  With the AnoNet proxies, you can
+avoid giving your ISP any of this information.  (You are still giving the
+same information to the AnoNet proxies if you don't use SSL tunneling,
+but AnoNet proxies can't connect the profiling information with your
+real-life identity, while your ISP (and anybody who can get your ISP
+records) certainly can.)  Surfing with AnoNet also means that you don't
+need to worry about your government filtering policies getting in your
+way while you surf.</p>
+
+<h3>Browse WikiLeaks</h3>
+<p>If you're located in a totalitarian regime, your ISP may not allow you
+to access WikiLeaks.  Even if you are located in a less totalitarian
+regime, your government may monitor your WikiLeaks browsing habits.
+AnoNet allows you to browse WikiLeaks without your ISP preventing or
+monitoring your visits.</p>
+
+<h3>Do Research</h3>
+<p>AnoNet shines here.  Governments can force Google to cough up your
+search history, but only if Google can figure out which searches you're
+responsible for.  If you use Scroogle (HTTPS) through one of AnoNet's
+HTTP proxies, the proxy doesn't know what you're looking for, Scroogle
+has no clue who you are, and by the time the search makes its way to
+Google, connecting it to you is all but hopeless.</p>
+
+<h3>Share Files</h3>
+<p>BitTorrent doesn't hide your IP address, so seeding files for
+http://www.thepiratebay.org/ is not necessarily safe.  BitTorrent
+on AnoNet doesn't hide your IP address either, but the authorities can't
+easily connect your AnoNet IP address with your IcannNet IP address
+(in order to get your ISP to reveal your identity).</p>
+
+<h3>Speak Out</h3>
+<p>If you know something that you'd like other people to know, and you fear retribution from those who would prefer for others not to know what you know, traditional IcannNet forums can be forced to turn over your IP address, which can then identify you.  If your email address is with Gmail, <a href="http://mirror.wikileaks.info/wiki/Gmail_may_hand_over_IP_addresses_of_journalists/">you have other problems</a>.  On AnoNet, it's comparatively easy to cover your tracks, in such a way that even your own peers would have a hard time figuring out who said whatever it was.</p>
+
+<h3>Blog</h3>
+<p>If your blog is easy to connect to your offline identity (say, it
+has your name and address, and/or dwells primarily on local issues),
+then moving it to AnoNet obviously won't gain you much anonymity.
+On the other hand, if it's "just another random blog," AnoNet has the
+potential to keep it that way.  For example, if you like to tell readers
+about your experience with various products, you always run the risk of
+having to defend yourself against a lawsuit if a corporate lawyer decides
+his client would be better served if your critical review went away.
+Now, since defending yourself in any court of law is never a trivial
+matter (since the judges in nearly all first-world countries assume
+that you know all the laws, regulations, relevant case histories,
+civil procedures, etc. - you know, the stuff you'd normally spend
+years in law school learning how to make sense of), you may decide
+that publishing your blog on IcannNet simply isn't worth the risk.
+On AnoNet, your blog is pretty well-protected against civil liability
+lawsuits, since before a lawyer can sue you, he first has to find you.
+(While there are legal mechanisms in place in many countries to allow a
+lawsuit to get started even when the defendant is unknown, it should be
+pretty obvious that a court will need to find out who you are before it
+can meaningfully involve you in a case.  If you've done your homework,
+the cost of finding you will far outweigh the benefit, especially if the
+plaintiff knows he has no real case against you and was simply hoping to
+intimidate you.)  In addition, the company hosting your IcannNet blog
+almost certainly allows itself to delete (any part of) your blog in
+its own sole discretion without even notifying you.  That potentially
+allows a lawyer with an upset client to take a shortcut and bypass you
+entirely, simply "asking" your blog hosting provider to remove (that part
+of) your blog.  To avoid having to activate its own lawyers, your blog
+hosting provider may very well decide to pull (that part of) your blog,
+especially if you're paying little or nothing to host your blog.  In fact,
+if your blog is on its own domain, there's yet another canidate for the
+weakest link, in that anybody who wants your blog gone can simply appeal
+to your domain's registrar.  (Recall the WikiLeaks case, for example.)
+On AnoNet, you can easily host your own blog, forcing attacks against
+your hosting arrangements to go through you (or at least through _all_
+of your peers).  Your domain is even harder to attack, since wiping your
+domain off of a single resdb repository would only prevent one AnoNet
+user from seeing it (and a simple git rollback would fix the situation
+even for that individual user).  Moreover, the deletion would quickly
+propagate throughout AnoNet, potentially raising alarms everywhere.
+(Even if only a single user notices the attack and re-adds your domain,
+his own re-addition will quickly propagate throughout AnoNet, restoring
+access to your domain for everybody.)</p>
+
+<h3>Publish</h3>
+<p>If you thought publishing blogs was tricky, try publishing a book.
+("Alms for Jihad" comes to mind as one obvious example, where the
+publisher went so far as to delete the book from its own database and
+buried the copyright.)  While physical books may not be so simple to
+publish on AnoNet (although you can certainly raise awareness of them
+by speaking out about them on AnoNet), e-books enjoy considerable
+anti-censorship advantages on AnoNet.</p>
+
+<h3>Teach</h3>
+<p>You may want to teach disciplines that can get you into friction with "the
+authorities" in a tyrannical regime.  (Judges in prominent first-world
+countries have ruled, for example, that knowing your way around a computer
+is an indication that you may be involved in computer-related crimes.)
+AnoNet gives you an opportunity to teach without your students being
+able to point you out to the authorities, even under pain of torture.</p>
+
+<h3>Report</h3>
+<p>You may find yourself in the middle of a news story, but other parts
+of that news story may not appreciate your reports.  When you report
+something to WikiLeaks without going through tor, you're leaving a long
+trail that may lead to you.  With AnoNet, you can hide that trail to
+a certain extent, if you don't want to use tor directly.  (WikiLeaks
+over tor will still give you better protection than AnoNet, if you're
+worried about your government's intelligence agencies getting involved.
+AnoNet's optimization towards pseudonymity with common IcannNet protocols
+is the weakness, here.  We're working on that, but in the meantime you
+have <a href="http://www.torproject.org/">tor</a>, <a href="http://www.i2p2.de/">i2p</a>,
+<a href="http://freenetproject.org/">Freenet</a>, <a href="http://gnunet.org/">GNUnet</a>,
+and others.)</p>
+
+<h2>Why Not to Join</h2>
+<p>If you're looking for a ready-made community, where you just show up and
+"browse," AnoNet (either 1 or 2) is probably not quite what you're after.
+The whole concept behind AnoNet is that it's whatever you make it.
+Of course, that's not to say you'll have to build everything from
+scratch, but if you want to be happy here, you're best off bringing
+your creativity along rather than leaving it behind when you join.
+(If you've been around darknets before, you're probably quite familiar
+with "design by committee."  On AnoNet, you're more than welcome to
+invite a committee to discuss anything you want, but you don't have to
+organize one before doing anything.  If (you think) you already know
+what you're doing, just "build it and they will come.")</p>
+
+<h2>What You Can Do</h2>
+<p>See the <a href="services">Services</a> page</p>
+
+<h2>What You Can Contribute</h2>
+<p>Well, each of us has his own wishlist, but most of us are working on
+moving stuff from our TODO lists to our DONE lists, so you're looking
+at a bit of a moving (and highly subjective) target.  You're more than
+welcome to contribute anything you want, and if it's interesting and/or
+useful, it'll probably attract a following. That said, here are a number
+of things that would benefit the AnoNet as a whole:</p>
+
+<h3>Client Ports</h3>
+<p>When a new user wants to connect, he'll normally come in through a
+client port.  The more client ports are available, the harder it is for
+any individual client port to abuse its position (for example, if the
+local government decides to try regulating it).</p>
+
+<h3>Public Email Services</h3>
+<p>Nomius runs a public mail service, and lex is working on another one.
+While more than 2 public mail services clearly aren't necessary at this
+stage, too many is better than too few.</p>
+
+<h3>IRC Servers</h3>
+<p>IRC on AnoNet2 isn't one big network under centralized control.
+Rather, anybody who wants runs his own IRC (or other chat) server, and
+links whatever channels he wants to channels on other servers, using a
+collection of relay bots.  (Right now, UFO, pragmo and SRN field relays,
+and the scalability problems are becoming visible.  How relay bots may
+want to deal with this is still a topic for open discussion.  Feel free
+to join in the discussion, or just do your own thing and let everyone
+else be damned.)</p>
+
+<p>Update: UFO implemented udpmsg3 (inspired by r101's udpmsg protocol),
+and UFO, SRN, sevilNatas and lex all have IRC servers connecting to the
+udpmsg3 "cloud" now.  The primary advantages of udpmsg3 are that it's
+truly decentralized, very difficult to censor, fails over gracefully in
+case of hardware/software failures without dropping messages and without
+duplicating messages, and avoids the long relay chains that normally
+take up half your screen.</p>
+
+<h3>Outbound HTTP Proxies</h3>
+<p>SRN runs three right now and ryuk runs one, but that means between the
+two of them they can snoop on all HTTP traffic from AnoNet2 to IcannNet.
+Having more proxies gives you an alternative to blindly trusting SRN
+and ryuk not to sell your click-through data to Google, invert the order
+of search results to your queries, and inject malicious JavaScript into
+your Hotmail homepage.</p>
+
+<h3>IcannNet mailinglist Proxies</h3>
+<p>AnoNet uses a lot of software in new and interesting ways, so AnoNet
+users find "accidental features" quite often.  If there were an easy
+way to join the official mailing lists for some of this software, AnoNet
+users would probably submit many more bug reports, resulting in better
+quality software being available for us.</p>
+
+<h2>See Also</h2>
+<p>If AnoNet sounds good but not perfect, don't despair: there are a number
+of other projects that may interest you either instead of - or possibly
+in addition to - AnoNet.</p>
+
+<h3><a href="http://www.dn42.net/">dn42</a></h3>
+<p>dn42 is another highly decentralized darknet, and it's also quite
+friendly.  The main differences are that it doesn't claim anonymity as
+a goal, and that it's significantly larger than AnoNet.  A number of
+AnoNet members are also active in dn42.</p>
+
+<h3><a href="http://www.vanet.org/">VAnet</a></h3>
+<p>VAnet is a strange animal.  It's a highly <i>centralized</i> darknet, making
+the curious claim that centralization actually aids in privacy protection.
+It's still quite small, but it should scale extremely well from a
+technical perspective, due to its centralization.  VAnet's official IRC
+is part of the AnoNet IRC monster for now, so the easiest way to find out
+more about VAnet is actually just to join AnoNet IRC and ask about VAnet.</p>
+
+<h3><a href="http://ix.ucis.nl/">UCIS IX</a></h3>
+<p>The UCIS Internet eXchange is an attempt to link a bunch of darknets
+together.  If you connect using UFO's CP, you're already on the UCIS IX.</p>
+
+</body></html>
