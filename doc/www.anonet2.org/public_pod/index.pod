@@ -1,77 +1,104 @@
 =head1 AnoNet, Take 2!
+
 Welcome to AnoNet! AnoNet is a highly decentralized darknet, aiming to create a censorship resistant network free from government influence and restrictions. AnoNet uses an IP network to accomplish this, as an alternative to the existing internet.
 
 You can read more information about AnoNet below, or on L<http://wiki.ucis.nl/Anonet>.
 
 =head2 Theory
+
 =over
+
 =item *
+
 L<anonymity in general and its place in AnoNet in particular|http://www.anonet2.org/anonymity>
+
 =item *
+
 L<darknet comparison page|http://www.anonet2.org/darknet_comparison>
+
 =item *
+
 L<AnoNet FAQ|http://www.anonet2.org/faq>
+
 =item *
+
 L<quick introduction to darknets and anonymity in general and AnoNet2 in particular|http://www.anonet2.org/intro>
+
 =back
 
 =head2 How to Join
-There are many ways to join AnoNet. If you just want to hang out with
+
+There are many ways to join AnoNet.  If you just want to hang out with
 us and chat, it's very easy:
 
 =begin xhtml
+
 Z<><table>
  <tr><th>Protocol</th><th>Service</th><th>Anonymity</th></tr>
- <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>Hidden IP, username and realname, custom nickname (note 1)</td></tr>
- <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>Hidden IP, username and realname, custom nickname (note 1)</td></tr>
- <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>Visible IP, hidden username and realname, custom nickname (warning!) (note 1)</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>Hidden IP, username and realname (note 2)</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN (tor)|irc://2dmrunyyp6bp53th.onion/RendezVous></td><td>Hidden IP, username and realname (note 2)</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN2|irc://anortr.ucis.nl:8806/anonet></td><td>Hidden IP, username and realname (note 2)</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN2 (tor)|irc://w53qxqs27amlrwnm.onion/anonet></td><td>Hidden IP, username and realname (note 2)</td></tr>
- <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>Hidden IP, visible username and realname</td></tr>
- <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>Visible IP, username and realname (warning!)</td></tr>
- <tr><td>TelnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>Hidden IP and username, custom nickname</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>L<naya|http://www.anonet2.org/irc_anonymity> (Visible IP, hidden username and realname, custom nickname (warning!) (note 1))</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN (tor)|irc://2dmrunyyp6bp53th.onion/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN2|irc://anortr.ucis.nl:8806/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN2 (tor)|irc://w53qxqs27amlrwnm.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>L<aooo|http://www.anonet2.org/irc_anonymity> (Hidden IP, visible username and realname)</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname (warning!))</td></tr>
+ <tr><td>TelnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
 </table>
+
 =end xhtml
 
 =over
+
 =item *
+
 Note 1: your browser may send information that can be used to identify you. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet.
+
 =item *
+
 Note 2: your IRC client always sends your configured username, realname and possibly also hostname. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet. You should therefore always properly configure your IRC client!
+
 =back
 
 If you're feeling adventurous enough to connect at the IP level, L<UFO has a client port|http://ix.ucis.nl/clientport.php>. Once you're online, you can reconnect to IRC from inside AnoNet:
 
-=over
+=begin xhtml
+
 Z<><table>
  <tr><th>ProtocolZ<></th><th>Service using DNSZ<></th><th>Service using IP (no DNS)</th><th>Anonymity</th></tr>
- <tr><td>HTTP WebChatZ<></td><td>L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html></td><td></td><td>Hidden IP, username and realname, custom nickname (note 1)</td></tr>
- <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.ano:8086/?channels=anonet&nick=Anonymous></td><td>L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous></td><td>Hidden IP, username and realname, custom nickname (note 1)</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN (NickNet)|irc://irc2.srn.ano:6667/anonet></td><td>L<SRN (NickNet)|irc://1.0.27.110:6667/anonet></td><td>Hidden IP, username and realname (note 2)</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous></td><td>L<SRN|irc://1.0.27.103:6667/RendezVous></td><td>Hidden IP, username and realname (note 2)</td></tr>
- <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc.sevilnatas.ano:6667/anonet></td><td></td><td>Unknown</td></tr>
- <tr><td>IRCZ<></td><td>L<KwaakNet|irc://irc.ucis.ano:6667/anonet></td><td>L<KwaakNet|irc://1.3.3.7:6667/anonet></td><td>Visible IP, username and realname</td></tr>
- <tr><td>IRCZ<></td><td>L<pragmo|irc://irc.pragmo.ano:6667/atomic></td><td>L<pragmo|irc://1.0.16.111:6667/atomic></td><td>Unknown</td></tr>
- <tr><td>TelnetZ<></td><td>L<SRN|telnet://irc.somerandomnick.ano:2323/></td><td></td><td>Hidden IP and username, custom nickname</td></tr>
- <tr><td>JabberZ<></td><td>irc.somerandomnick.ano (RendezVous MUC)</td><td></td><td>Unknown</td></tr>
+ <tr><td>UDPMSG3Z<></td><td>L<SRN (UDPMSG3 cloud)|udpmsg3://irc2.srn.ano:15387/chat/anonet></td><td>L<SRN (UDPMSG3 cloud)|udpmsg3://1.0.27.110:15387/chat/anonet></td><td>UDPMSG3 is anonymous by design.</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.ano:8086/?channels=anonet&nick=Anonymous></td><td>L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN (NickNet)|irc://irc2.srn.ano:6667/anonet></td><td>L<SRN (NickNet)|irc://1.0.27.110:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous></td><td>L<SRN|irc://1.0.27.103:6667/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
+ <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc.sevilnatas.ano:6667/anonet></td><td></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
+ <tr><td>IRCZ<></td><td>L<KwaakNet|irc://irc.ucis.ano:6667/anonet></td><td>L<KwaakNet|irc://1.3.3.7:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname)</td></tr>
+ <tr><td>IRCZ<></td><td>L<pragmo|irc://irc.pragmo.ano:6667/atomic></td><td>L<pragmo|irc://1.0.16.111:6667/atomic></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
+ <tr><td>TelnetZ<></td><td>L<SRN|telnet://irc.somerandomnick.ano:2323/></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
+ <tr><td>JabberZ<></td><td>irc.somerandomnick.ano (RendezVous MUC)</td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
 </table>
 
+=end xhtml
+
 =over
+
 =item *
+
 Note 1: your browser may send information that can be used to identify you. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet.
+
 =item *
+
 Note 2: your IRC client always sends your configured username, realname and possibly also hostname. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet. You should therefore always properly configure your IRC client!
-=back
-
-For more information about anonimity on IRC, see L<this page|irc_anonimity>.
 
 =back
+
+For more information about anonimity on IRC, see L<this page|http://www.anonet2.org/irc_anonymity>.
 
 Note that if your only aim in joining AnoNet is to search Google anonymously, you can save yourself the hassle L<by just heading over to Scroogle|http://www.scroogle.org/>.  If you're looking to browse the rest of the public Internet anonymously, though, we now have outbound proxies, which you're more than welcome to use.  (L<Here's a service that tries to show you what you're likely to be leaking, right now.|http://what-is-my-ip-address.anonymous-proxy-servers.net/>)
 
 =head2 Why to Join
+
 (Note: There's now L<a separate page with links to many more reasons to
 join AnoNet|http://www.anonet2.org/links>.)
 
@@ -436,9 +463,9 @@ in addition to - AnoNet.
 =item L<dn42|http://www.dn42.net/>
 
 dn42 is another highly decentralized darknet, and it's also quite
-friendly.  The main differences are that it doesn't claim anonymity as
-a goal, and that it's significantly larger than AnoNet.  A number of
-AnoNet members are also active in dn42.
+friendly.  The main differences are that it doesn't claim anonymity as a
+goal (it is mostly intended for learning BGP), and that it's significantly
+larger than AnoNet.  A number of AnoNet members are also active in dn42.
 
 =item L<VAnet|http://www.vanet.org/>
 
