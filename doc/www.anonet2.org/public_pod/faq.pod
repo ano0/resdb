@@ -287,12 +287,15 @@ AnoNet2 (like AnoNet1) has no official government.  Unlike AnoNet1,
 though, AnoNet2's technical construction is such that the unofficial
 government members (primarily UFO and SRN, at this point) don't have
 enough power to force their way (not to mention that they don't really
-_want_ to force their way, anyway).  A recent practical example of
-this anarchy appears to be IPv6: SRN has made no secret of his strong
-opposition to IPv6, but that doesn't seem to be stopping an enterprising
-new AnoNet2 user from deploying it himself and even soliciting support
-from others, even after "the management" (both UFO and SRN) flatly
-refused to participate.
+_want_ to force their way, anyway).  A recent practical example of this
+anarchy is IPv6: SRN has made no secret of his strong opposition to IPv6,
+but that didn't stop an enterprising new AnoNet2 user from deploying
+it himself and connecting with others, even after "the management"
+(both UFO and SRN) flatly refused to participate.
+
+Update: The IPv6 version of AnoNet2 now has 4 members, and lex is
+providing data to feed SRN's new IPv6 graphs, which are only reachable
+over IPv4.  (After lex grew the network to 3, UFO joined.)
 
 =item Why don't AnoNet1 and AnoNet2 merge again?
 
@@ -315,23 +318,27 @@ but good luck getting them to spill the beans.  Censoring the question
 seems to be their favorite "answer.")  Suffice it to say that if AnoNet1
 wanted to merge with AnoNet2, nobody on AnoNet2 is likely to object.
 
-Update: AnoNet1 and AnoNet2 now have full routing again, but some
-AnoNet1 members still filter most AnoNet2 routes locally (and for
-downstream peers).
+Update: AnoNet1 and AnoNet2 now have full routing again, but some AnoNet1
+members still filter most AnoNet2 routes locally (and for downstream
+peers).  The "official" AnoNet1 wiki, for example, is unreachable from
+most of AnoNet2.
 
 =item Do I have to choose between AnoNet1 and AnoNet2, or is there a way to join both?
 
-There's no need to choose one or the other.  As long as you don't
-advertise AnoNet2 routes into AnoNet1, you should be fine: their Salem
-witch hunt against "dual citizens" seems to have died off by now.
-If you're currently getting to AnoNet1 through the official AnoNet1 CP
-(run by Kaos), simply switch to UFO's CP, and you'll automatically be
-connected to both, so you can check them both out and figure out at your
-own pace what you want to do.
+On the IP level, when you join one you automatically join the other.
+The easiest way to claim resources is with the AnoNet2 resdb.  It is
+the only complete database of AnoNet resources, and it is the only
+decentralized resource database.  You can join IRC on AnoNet1 or AnoNet2
+or both (but crzydmnd and risc kick people from AnoNet1 IRC, apparently
+for fun).  You can contribute to the AnoNet1 wiki or the AnoNet2 wikis,
+or you can make your own.
 
-Update: Both CPs can now access both sides of AnoNet, so you can come
-in from the AnoNet1 CP and chat on AnoNet2 IRC, or you can come in from
-UFO's AnoNet2 CP and chat on AnoNet1 IRC.
+=item If the two parts of AnoNet are connected again, why are they still being advertized separately?
+
+Currently, there is still a single point of failure connecting AnoNet1
+and AnoNet2 at the IP level.  In addition, AnoNet1 and AnoNet2 still
+have completely separate governments.  (AnoNet1 has a government, while
+AnoNet2 doesn't.)
 
 =item Which darknet preserves my anonymity better, AnoNet1 or AnoNet2?
 
