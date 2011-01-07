@@ -77,7 +77,7 @@ PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (i
 
 =item *
 
-git-based resdb (including a decentralized "wiki" replacement) (L<SRN|git://git1.somerandomnick.ano/>, L<UFO|http://anogit.ucis.ano/.git/>, L<cronix|git://1.22.48.100/>, L<pragmo|git://pragmo.ano/>, L<quintum|git://1.0.18.1/>, L<wakawaka|git://1.0.111.1/>, L<harald|git://1.0.169.1/ano2.git>, and possibly other repos)
+git-based resdb (including a decentralized "wiki" replacement) (L<SRN|git://git1.somerandomnick.ano/>, L<UFO|http://anogit.ucis.ano/.git/>, L<lex|git://lynx.ano/>, L<cronix|git://1.22.48.100/>, L<pragmo|git://pragmo.ano/>, L<quintum|git://1.0.18.1/>, L<wakawaka|git://1.0.111.1/>, L<harald|git://1.0.169.1/ano2.git>, and possibly other repos)
 
 =item *
 
