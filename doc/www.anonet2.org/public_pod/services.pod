@@ -44,6 +44,9 @@ L<WikiLeaks Mirror|http://wikileaks.ucis.ano/> (The real WikiLeaks may be down, 
 L<Some Random Wiki|http://www.somerandomwiki.ano/>
 
 =item *
+L<lynx|http://lynx.ano/> (lex's wiki)
+
+=item *
 
 Pastebin (without time-zone leaks, L<http://www.sevilnatas.ano/pastebin/>)
 
