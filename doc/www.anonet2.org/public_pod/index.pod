@@ -360,11 +360,6 @@ See the L<Services|http://www.anonet2.org/services> page
 
 =over
 
-=item Newsgroups (Usenet)
-
-The guy who said he was bringing usenet to anonet seems to have died,
-and the project apparently died with him.
-
 =item A-Commerce
 
 Getting Anonymous Commerce right takes a bit of effort, since nearly

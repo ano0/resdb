@@ -20,6 +20,10 @@ L<Public Email Server|http://www.turtleisland.ano/mail.html>
 
 =item *
 
+L<Public Newsgroups|http://lynx.ano/.news/> (L<or if you don't have DNS|http://1.3.9.1/.news/>, NNTP is also directly accessible at 1.3.9.1)
+
+=item *
+
 L<IRC server on the udpmsg3 cloud (SRN)|irc://irc2.srn.ano/anonet> (runs L<SRN's improved version of UFO's package|http://www.srn.ano/udpmsg3/>)
 
 =item *
