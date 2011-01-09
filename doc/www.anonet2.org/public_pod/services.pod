@@ -20,7 +20,11 @@ L<Public Email Server|http://www.turtleisland.ano/mail.html>
 
 =item *
 
-L<Public Newsgroups|http://lynx.ano/.news/> (L<or if you don't have DNS|http://1.3.9.1/.news/>, NNTP is also directly accessible at 1.3.9.1)
+L<Public Newsgroups Web Access|http://lynx.ano/.news/> (L<or if you don't have DNS|http://1.3.9.1/.news/>, NNTP is also directly accessible at 1.3.9.1)
+
+=item *
+
+There is also an NNTP leafnode at 1.3.3.64 which serves ano.*, anonet2.* and dn42.* newsgroups, along with read-only access to some internet newsgroups.
 
 =item *
 
@@ -38,7 +42,6 @@ IRC Webchat Client (L<http://www.sevilnatas.ano/chat.html>)
 
 IRC-Like Chat Rooms [NO ACTIVATION OR VALID EMAILS REQUIRED (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)]
 
-
 =item *
 
 L<WikiLeaks Mirror|http://wikileaks.ucis.ano/> (The real WikiLeaks may be down, but not our mirror!)
@@ -49,7 +52,7 @@ L<Some Random Wiki|http://www.somerandomwiki.ano/>
 
 =item *
 
-L<lynx|http://lynx.ano/> (lex's wiki)
+L<Lynx Wiki|http://lynx.ano/>
 
 =item *
 
