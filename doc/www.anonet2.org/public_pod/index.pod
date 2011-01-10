@@ -61,7 +61,26 @@ Note 2: your IRC client always sends your configured username, realname and poss
 
 =back
 
-If you're feeling adventurous enough to connect at the IP level, L<UFO has a client port|http://ix.ucis.nl/clientport.php>. Once you're online, you can reconnect to IRC from inside AnoNet:
+If you're feeling adventurous enough to connect at the IP level, there
+are a few options available:
+
+=over
+
+=item *
+
+L<UFO has a client port.|http://ix.ucis.nl/clientport.php>  (You will
+need openvpn for this option, but there is no need for routing software.)
+
+=item *
+
+It is possible to negotiate your first peering on IRC, completely
+bypassing the client port.  (For this option you can use quicktun,
+openvpn, or tinc.  You will also need routing software, for example bird
+or zebra.  If you are on Windows, DnRouter can do everything.)
+
+=back
+
+Once you're online, you can reconnect to IRC from inside AnoNet:
 
 =begin xhtml
 
