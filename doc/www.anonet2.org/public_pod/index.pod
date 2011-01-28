@@ -4,6 +4,17 @@ Welcome to AnoNet! AnoNet is a highly decentralized darknet, aiming to create a 
 
 You can read more information about AnoNet below, or on L<http://wiki.ucis.nl/Anonet>.
 
+=head2 Urgent Appeal
+
+As you may already know, Egypt cut nearly all international Internet
+access last night.  However, phone lines still work.  SRN would like to
+encourage someone who doesn't care about his own anonymity to run pppd
+on a phone line, as a dialup AnoNet ISP for Egyptians who can't access
+AnoNet by the regular methods.  All you need is a Unix (GNU/Linux,
+*BSD, etc. - anything that can run pppd) computer with a fax/modem and
+an available telephone line (incoming calls only).  If you can help,
+please find SRN on IRC (no technical knowledge necessary).
+
 =head2 Theory
 
 =over
