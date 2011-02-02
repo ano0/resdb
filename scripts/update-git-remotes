@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Creates git remotes from the user db
+# TODO: detect users' git address changes
+#
+
+if ! ./scripts/check_db_safety; then
+ exit 1
+fi
+
+USR_DB_DIR=./db/usr
+GIT_REPO=./.git
+GIT_REMOTES_DIR=$GIT_REPO/refs/remotes
+
+for u in `ls -1 $USR_DB_DIR`; do
+  git_url_file="$USR_DB_DIR/$u/git"
+
+  if [ -f $git_url_file ]; then
+    git_url=`cat $git_url_file`
+    git_remote_name="anonet_$u"
+
+    if [ -d $GIT_REMOTES_DIR/$git_remote_name ]; then
+      # The remote already exists;
+      # TODO: Update it if it has changed.
+      echo "skipping $u" >&2
+
+    else
+      git remote add -t master -m master $git_remote_name $git_url
+
+    fi
+
+  fi
+done
