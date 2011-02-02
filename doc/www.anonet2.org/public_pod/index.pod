@@ -15,6 +15,9 @@ AnoNet by the regular methods.  All you need is a Unix (GNU/Linux,
 an available telephone line (incoming calls only).  If you can help,
 please find SRN on IRC (no technical knowledge necessary).
 
+Well, we are too late.  L<Egypt is back online
+again.|http://www.bbc.co.uk/news/technology-12346929>
+
 =head2 Theory
 
 =over
