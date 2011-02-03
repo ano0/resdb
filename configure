@@ -1,6 +1,6 @@
 #!/bin/sh
 
-vars="gitd_ip gitd_basepath tinydns_config tinydns__tldsrvrname tinydns__tldsrvrip"
+vars="gitd_ip gitd_basepath git_name git_email tinydns_config tinydns__tldsrvrname tinydns__tldsrvrip"
 
 echo "Welcome to the resdb configurator!" >&2
 echo >&2
@@ -10,6 +10,12 @@ for var in $vars ; do
 done
 if [ x"$gitd_basepath" = x ]; then
  gitd_basepath="$(pwd)/"
+fi
+if [ x"$git_name" = x ]; then
+ git_name="Anonymous Coward"
+fi
+if [ x"$git_email" = x ]; then
+ git_email="nobody@nowhere"
 fi
 if [ x"$tinydns_config" = x ]; then
  tinydns_config=n
@@ -35,6 +41,22 @@ echo -n "BasePath? " >&2
 read new_gitd_basepath
 if [ x"$new_gitd_basepath" != x ]; then
  gitd_basepath="$new_gitd_basepath"
+fi
+
+echo "Please enter your name." >&2
+echo "(Default: $git_name)" >&2
+echo -n "Name? " >&2
+read new_git_name
+if [ x"$new_git_name" != x ]; then
+ git_name="$new_git_name"
+fi
+
+echo "Please enter your email." >&2
+echo "(Default: $git_email)" >&2
+echo -n "Email? " >&2
+read new_git_email
+if [ x"$new_git_email" != x ]; then
+ git_email="$new_git_email"
 fi
 
 echo -n "Would you like to configure the tinydns datafile generator? " >&2
@@ -67,7 +89,15 @@ done
 echo -n "To write the configuration, hit RETURN.  To abort, hit ^C: " >&2
 read write_config
 
+echo -n "Writing configuration... " >&2
 mkdir -p conf || exit 1
 for var in $vars ; do
  echo "${!var}" > conf/"$var" || exit 1
 done
+echo "Done" >&2
+
+echo -n "Updating git configuration... " >&2
+cd "$(cat ./conf/gitd_basepath)" || exit 1
+git config user.name "$(cat ./conf/git_name)" || exit 1
+git config user.email "$(cat ./conf/git_email)" || exit 1
+echo "Done" >&2

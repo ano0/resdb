@@ -1,16 +1,44 @@
 =head1 AnoNet, Take 2!
 
+Welcome to AnoNet! AnoNet is a highly decentralized darknet, aiming to create a censorship resistant network free from government influence and restrictions. AnoNet uses an IP network to accomplish this, as an alternative to the existing internet.
+
+You can read more information about AnoNet below, or on L<http://wiki.ucis.nl/Anonet>.
+
+=head2 Urgent Appeal
+
+As you may already know, Egypt cut nearly all international Internet
+access last night.  However, phone lines still work.  SRN would like to
+encourage someone who doesn't care about his own anonymity to run pppd
+on a phone line, as a dialup AnoNet ISP for Egyptians who can't access
+AnoNet by the regular methods.  All you need is a Unix (GNU/Linux,
+*BSD, etc. - anything that can run pppd) computer with a fax/modem and
+an available telephone line (incoming calls only).  If you can help,
+please find SRN on IRC (no technical knowledge necessary).
+
+Well, we are too late.  L<Egypt is back online
+again.|http://www.bbc.co.uk/news/technology-12346929>
+
 =head2 Theory
 
-L<anonymity in general and its place in AnoNet in
-particular|http://www.anonet2.org/anonymity>
+=over
+
+=item *
+
+L<anonymity in general and its place in AnoNet in particular|http://www.anonet2.org/anonymity>
+
+=item *
 
 L<darknet comparison page|http://www.anonet2.org/darknet_comparison>
 
+=item *
+
 L<AnoNet FAQ|http://www.anonet2.org/faq>
 
-L<quick introduction to darknets and anonymity in general and AnoNet2
-in particular|http://www.anonet2.org/intro>
+=item *
+
+L<quick introduction to darknets and anonymity in general and AnoNet2 in particular|http://www.anonet2.org/intro>
+
+=back
 
 =head2 How to Join
 
@@ -21,57 +49,84 @@ us and chat, it's very easy:
 
 Z<><table>
  <tr><th>Protocol</th><th>Service</th><th>Anonymity</th></tr>
- <tr><td>HTTPZ<></td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>????</td></tr>
- <tr><td>HTTPZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>a?y?</td></tr>
- <tr><td>HTTPZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>n???</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>aaoa</td></tr>
- <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>a?oo</td></tr>
- <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>nooo</td></tr>
- <tr><td>telnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>aaya</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>L<naya|http://www.anonet2.org/irc_anonymity> (Visible IP, hidden username and realname, custom nickname (warning!) (note 1))</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN (tor)|irc://2dmrunyyp6bp53th.onion/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN2|irc://anortr.ucis.nl:8806/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN2 (tor)|irc://w53qxqs27amlrwnm.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>L<aooo|http://www.anonet2.org/irc_anonymity> (Hidden IP, visible username and realname)</td></tr>
+ <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname (warning!))</td></tr>
+ <tr><td>TelnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
 </table>
 
 =end xhtml
 
-If you're feeling adventurous enough to connect at the IP level, L<UFO has a client port|http://ix.ucis.nl/clientport.php>.
+=over
 
-Once you're online, you can reconnect to IRC from inside AnoNet:
+=item *
+
+Note 1: your browser may send information that can be used to identify you. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet.
+
+=item *
+
+Note 2: your IRC client always sends your configured username, realname and possibly also hostname. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet. You should therefore always properly configure your IRC client!
+
+=back
+
+If you're feeling adventurous enough to connect at the IP level, there
+are a few options available:
 
 =over
 
-=item webchat
+=item *
 
-L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html> (automatically hide your identity)
+L<UFO has a client port.|http://ix.ucis.nl/clientport.php>  (You will
+need openvpn for this option, but there is no need for routing software.)
 
-=item webchat
+=item *
 
-L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous> (partially hides your identity)
-
-=item IRC
-
-L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous>
-(L<SRN|irc://1.0.27.103:6667/RendezVous>, if you don't have DNS for some
-reason) (automatically hides your identity)
-
-=item IRC
-
-L<KwaakNet|irc://1.3.3.7:6667/anonet> (doesn't automatically hide your identity)
-
-=item IRC
-
-L<pragmo|irc://irc.pragmo.ano:6667/atomic>
-(L<pragmo|irc://1.0.16.111:6667/atomic>, for the same reason as before
-and if you want you can use SSL on port 6697) (doesn't automatically
-hide your identity)
-
-=item telnet
-
-L<SRN|telnet://irc.somerandomnick.ano:2323/> (automatically hides your identity)
-
-=item Jabber
-
-irc.somerandomnick.ano (RendezVous MUC)
+It is possible to negotiate your first peering on IRC, completely
+bypassing the client port.  (For this option you can use quicktun,
+openvpn, or tinc.  You will also need routing software, for example bird
+or zebra.  If you are on Windows, DnRouter can do everything.)
 
 =back
+
+Once you're online, you can reconnect to IRC from inside AnoNet:
+
+=begin xhtml
+
+Z<><table>
+ <tr><th>ProtocolZ<></th><th>Service using DNSZ<></th><th>Service using IP (no DNS)</th><th>Anonymity</th></tr>
+ <tr><td>UDPMSG3Z<></td><td>L<SRN (UDPMSG3 cloud)|udpmsg3://irc2.srn.ano:15387/chat/anonet></td><td>L<SRN (UDPMSG3 cloud)|udpmsg3://1.0.27.110:15387/chat/anonet></td><td>UDPMSG3 is anonymous by design.</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.ano:8086/?channels=anonet&nick=Anonymous></td><td>L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN (NickNet)|irc://irc2.srn.ano:6667/anonet></td><td>L<SRN (NickNet)|irc://1.0.27.110:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous></td><td>L<SRN|irc://1.0.27.103:6667/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
+ <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc.sevilnatas.ano:6667/anonet></td><td></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
+ <tr><td>IRCZ<></td><td>L<KwaakNet|irc://irc.ucis.ano:6667/anonet></td><td>L<KwaakNet|irc://1.3.3.7:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname)</td></tr>
+ <tr><td>IRCZ<></td><td>L<pragmo|irc://irc.pragmo.ano:6667/atomic></td><td>L<pragmo|irc://1.0.16.111:6667/atomic></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
+ <tr><td>TelnetZ<></td><td>L<SRN|telnet://irc.somerandomnick.ano:2323/></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
+ <tr><td>JabberZ<></td><td>irc.somerandomnick.ano (RendezVous MUC)</td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
+</table>
+
+=end xhtml
+
+=over
+
+=item *
+
+Note 1: your browser may send information that can be used to identify you. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet.
+
+=item *
+
+Note 2: your IRC client always sends your configured username, realname and possibly also hostname. Although this information is not directly visible to other chat users, it may be sent in clear text over the internet and over anonet. You should therefore always properly configure your IRC client!
+
+=back
+
+For more information about anonimity on IRC, see L<this page|http://www.anonet2.org/irc_anonymity>.
 
 Note that if your only aim in joining AnoNet is to search Google anonymously, you can save yourself the hassle L<by just heading over to Scroogle|http://www.scroogle.org/>.  If you're looking to browse the rest of the public Internet anonymously, though, we now have outbound proxies, which you're more than welcome to use.  (L<Here's a service that tries to show you what you're likely to be leaking, right now.|http://what-is-my-ip-address.anonymous-proxy-servers.net/>)
 
@@ -179,6 +234,26 @@ giving away information that your ISP probably wouldn't already know.
 However, if you read local news it's probably still wise to avoid AnoNet.
 (You can still use tor directly.)
 
+=item Just Browse
+
+If you just surf aimlessly for hours, you are giving away a lot of
+profiling information to your ISP.  With the AnoNet proxies, you can
+avoid giving your ISP any of this information.  (You are still giving the
+same information to the AnoNet proxies if you don't use SSL tunneling,
+but AnoNet proxies can't connect the profiling information with your
+real-life identity, while your ISP (and anybody who can get your ISP
+records) certainly can.)  Surfing with AnoNet also means that you don't
+need to worry about your government filtering policies getting in your
+way while you surf.
+
+=item Browse WikiLeaks
+
+If you're located in a totalitarian regime, your ISP may not allow you
+to access WikiLeaks.  Even if you are located in a less totalitarian
+regime, your government may monitor your WikiLeaks browsing habits.
+AnoNet allows you to browse WikiLeaks without your ISP preventing or
+monitoring your visits.
+
 =item Do Research
 
 AnoNet shines here.  Governments can force Google to cough up your
@@ -187,6 +262,20 @@ responsible for.  If you use Scroogle (HTTPS) through one of AnoNet's
 HTTP proxies, the proxy doesn't know what you're looking for, Scroogle
 has no clue who you are, and by the time the search makes its way to
 Google, connecting it to you is all but hopeless.
+
+=item Discuss the WikiLeaks insurance.aes256 File
+
+If you and your friends were hoping to talk together
+about your experience trying to decrypt the file on
+abovetopsecret's forums, you probably saw L<this complaint from a
+moderator|http://www.abovetopsecret.com/forum/thread598787/pg23#pid9331623>.
+After quoting from L<the terms and conditions
+page|http://www.abovetopsecret.com/forum/thread6688/pg1>, he says:
+B<Going forward, please remember that we cannot discuss how to "break"
+this file open. We're only allowed to discuss the topic at hand, which
+is the posting of the encrypted document itself, and what it I<may>
+contain.>  AnoNet doesn't have a terms and conditions page, so you're
+"allowed" to discuss whatever you want.
 
 =item Share Files
 
@@ -198,12 +287,7 @@ easily connect your AnoNet IP address with your IcannNet IP address
 
 =item Speak Out
 
-If you know something that you'd like other people to know, and you fear
-retribution from those who would prefer for others not to know what
-you know, traditional IcannNet forums can be forced to turn over your
-IP address, which can then identify you.  On AnoNet, it's comparatively
-easy to cover your tracks, in such a way that even your own peers would
-have a hard time figuring out who said whatever it was.
+If you know something that you'd like other people to know, and you fear retribution from those who would prefer for others not to know what you know, traditional IcannNet forums can be forced to turn over your IP address, which can then identify you.  If your email address is with Gmail, L<you have other problems|http://mirror.wikileaks.info/wiki/Gmail_may_hand_over_IP_addresses_of_journalists/>.  On AnoNet, it's comparatively easy to cover your tracks, in such a way that even your own peers would have a hard time figuring out who said whatever it was.
 
 =item Blog
 
@@ -303,107 +387,11 @@ what you're doing, just "build it and they will come.")
 
 =head2 What You Can Do
 
-Since AnoNet uses the same protocols as the public Internet, anything
-that's possible on the public Internet is theoretically possible on
-AnoNet. In practice, we don't have anything that nobody bothered to
-provide on AnoNet.
-
-Here's a list of things you can currently do on AnoNet2 (i.e., without
-having to set anything up yourself):
-
-=over
-
-=item *
-
-L<AnoNet1 Wiki Mirror|http://1.0.49.10/wiki/> (You got that right: AnoNet1 can't seem to keep their own wiki (at wiki.ano) up, so we decided to do it for them.)
-
-=item *
-
-IRC Webchat Client (L<http://www.sevilnatas.ano/chat.html>)
-
-=item *
-
-IRC-Like Chat Rooms [NO ACTIVATION OR VALID EMAILS REQUIRED (looking to relay to IRC, L<http://www.sevilnatas.ano/chat/>)]
-
-
-=item *
-
-L<WikiLeaks Mirror|http://wikileaks.ucis.ano/> (The real WikiLeaks may be down, but not our mirror!)
-
-=item *
-
-L<Some Random Wiki|http://www.somerandomwiki.ano/>
-
-=item *
-
-Pastebin (without time-zone leaks, L<http://www.sevilnatas.ano/pastebin/>)
-
-=item *
-
-Encode/Decode text, binary, hex, base64, and dec/char (L<http://sevilnatas.ano/translator/>)  
-
-=item *
-
-Live WorldCup Stream (offline until next year)
-
-=item *
-
-DNS (Recursive: 1.0.27.38 & 1.3.3.64; TLD: 1.0.27.37 & 1.3.3.66; Root: 1.0.27.39 & 1.3.3.65)
-
-=item *
-
-IRC (L<irc://1.3.3.7/anonet> or L<irc://irc.somerandomnick.ano/RendezVous>)
-
-=item *
-
-Jabber (irc.somerandomnick.ano)
-
-=item *
-
-Web (for example, L<http://www.somerandomnick.ano/>)
-
-=item *
-
-PSYC (psyced: IRC, Jabber, social networking, "twittering," newsgroups, etc.) (irc.somerandomnick.ano)
-
-=item *
-
-git-based resdb (including a decentralized "wiki" replacement) (L<SRN|git://git1.somerandomnick.ano/>, L<UFO|http://anogit.ucis.ano/.git/>, L<cronix|git://1.22.48.100/>, L<pragmo|git://pragmo.ano/>, L<quintum|git://1.0.18.1/>, L<wakawaka|git://1.0.111.1/>, L<harald|git://1.0.169.1/ano2.git>, and possibly other repos)
-
-=item *
-
-outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/> (works well), L<http://b.privoxy.somerandomnick.ano:8118/> (doesn't work) and L<http://a.polipo.somerandomnick.ano:8118/> (doesn't work))
-
-=item *
-
-Web-based resource database viewer: L<http://ix.ucis.ano/anonet/>
-
-=item *
-
-Decentralized Web mirroring service (at least L<http://a.mirror.somerandomnick.ano>) (technical difficulties)
-
-=item *
-
-BitTorrent Tracker/Indexer (three separate ones, each with some cool
-features of its own - ask for details on IRC) (no need to worry about
-"Three Strikes" ISP policies)
-
-=back
+See the L<Services|http://www.anonet2.org/services> page
 
 =head2 What You Can't Yet Do
 
 =over
-
-=item A-Mail
-
-Somebody is going to have to bring up a public email server before a-mail
-will be generally accessible on AnoNet.  SRN has abandoned an attempt
-to bring a public mail server online.
-
-=item Newsgroups (Usenet)
-
-The guy who said he was bringing usenet to anonet seems to have died,
-and the project apparently died with him.
 
 =item A-Commerce
 
@@ -446,12 +434,9 @@ local government decides to try regulating it).
 
 =item Public Email Services
 
-Currently, every AnoNet user who wants an email address on AnoNet has to
-set up his own mailserver.  AnoNet1 used to have a public email service so
-people could get email addresses without running their own mail servers,
-but it hasn't been online in nearly a year (although AnoNet1 continues to
-advertise it).  SRN is working on setting up such an animal on AnoNet2,
-but competition here is a good thing.
+Nomius runs a public mail service, and lex is working on another one.
+While more than 2 public mail services clearly aren't necessary at this
+stage, too many is better than too few.
 
 =item IRC Servers
 
@@ -464,6 +449,14 @@ want to deal with this is still a topic for open discussion.  Feel free
 to join in the discussion, or just do your own thing and let everyone
 else be damned.)
 
+Update: UFO implemented udpmsg3 (inspired by r101's udpmsg protocol),
+and UFO, SRN, sevilNatas and lex all have IRC servers connecting to the
+udpmsg3 "cloud" now.  The primary advantages of udpmsg3 are that it's
+truly decentralized, very difficult to censor, fails over gracefully in
+case of hardware/software failures without dropping messages and without
+duplicating messages, and avoids the long relay chains that normally
+take up half your screen.
+
 =item Outbound HTTP Proxies
 
 SRN runs three right now and ryuk runs one, but that means between the
@@ -473,7 +466,19 @@ and ryuk not to sell your click-through data to Google, invert the order
 of search results to your queries, and inject malicious JavaScript into
 your Hotmail homepage.
 
+=item IcannNet mailinglist Proxies
+
+AnoNet uses a lot of software in new and interesting ways, so AnoNet
+users find "accidental features" quite often.  If there were an easy
+way to join the official mailing lists for some of this software, AnoNet
+users would probably submit many more bug reports, resulting in better
+quality software being available for us.
+
 =back
+
+=head2 Assholes
+
+We finally found L<our first asshole|http://www.anonet2.org/assholes>.
 
 =head2 See Also
 
@@ -486,9 +491,9 @@ in addition to - AnoNet.
 =item L<dn42|http://www.dn42.net/>
 
 dn42 is another highly decentralized darknet, and it's also quite
-friendly.  The main differences are that it doesn't claim anonymity as
-a goal, and that it's significantly larger than AnoNet.  A number of
-AnoNet members are also active in dn42.
+friendly.  The main differences are that it doesn't claim anonymity as a
+goal (it is mostly intended for learning BGP), and that it's significantly
+larger than AnoNet.  A number of AnoNet members are also active in dn42.
 
 =item L<VAnet|http://www.vanet.org/>
 

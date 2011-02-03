@@ -8,10 +8,10 @@ Back to homepage - L<http://www.anonet2.org/>
 
 =item Why do you use 1.0.0.0/8?  It's been assigned to APNIC.  You should use private (RFC1918) address space like 10.0.0.0/8.
 
-AnoNet is a public network, and as such it should use public address
+AnoNet is a public internet, and as such it should use public address
 space.  ICANN (a private corporation) controls the public resources on
 the IcannNet (a.k.a. the "public" Internet), and has delegated 1.0.0.0/8
-on the IcannNet to APNIC.  AnoNet is a separate public network, that
+on the IcannNet to APNIC.  AnoNet is a separate public internet, that
 doesn't answer to ICANN (nor to anybody else, for that matter).  Now,
 that said, when AnoNet started using 1.0.0.0/8 it was reserved (i.e.,
 not to be allocated), but because of ICANN's mismanagement of the IPv4
@@ -24,19 +24,35 @@ AnoNet did attempt to avoid directly conflicting with IcannNet addresses,
 ICANN ultimately made sure that attempt would fail.  (If you'd like to
 connect to an internet with address space that's still in the ICANN
 "reserved" pool, you may want to try VAnet.)  Using private address
-space is inappropriate for a public network, per RFC1918.  (If you'd
+space is inappropriate for a public internet, per RFC1918.  (If you'd
 like to connect to an internet that uses private address space anyway,
 you may want to try dn42 at L<http://www.dn42.net/>.)
+
+=item You should register 1.0.0.0/8, before you use it.
+
+By the same logic, ICANN should register 0.0.0.0/0, before it uses it.
+ICANN claims divine authority over 0.0.0.0/8, and allows people to use
+parts of it if they meet certain conditions set by the IETF and ICANN.
+The IETF conditions are reasonable if you don't assume that Internet
+is owned by ICANN.  The ICANN conditions, on the other hand, are highly
+unfair and actively hurt people who want their freedom (by requiring them
+to give up their anonymity, to sign a restrictive agreement, and to have a
+relationship with a regulated company with its own restrictive agreement).
+Therefore, ICANN is not a suitable government for a free internet.
+The AnoNet1 government claims "trust us instead," but AnoNet2 doesn't
+require you to trust anybody.  That's the only way for you to guarantee
+that AnoNet will never mismanage IP space the same way that ICANN does.
 
 =item ICANN isn't mismanaging the IPv4-space.  IcannNet usage is just exploding faster than anybody ever predicted.
 
 L<http://www.networkworld.com/news/2010/081610-5billion-devices-internet.html>
-claims that the IcannNet only has about 5 billion total devices, of which
-only about 1 billion "regularly connect" (PCs, laptops, etc.).  There are
-plenty of possible addressing schemes that could accomodate a billion
-"regularly connecting" devices with an address space quadruple the size.
-ICANN clearly isn't using any of them.  By any sane technical definition,
-that would certainly qualify as "mismanagement."
+claims that the IcannNet only has about 5 billion total devices, of
+which only about 1 billion "regularly connect" (PCs, laptops, etc.).
+There are plenty of possible addressing schemes that could accomodate a
+billion "regularly connecting" devices with an address space quadruple
+the size (even without NAT, if you want).  ICANN clearly isn't using
+any of them.  By any sane technical definition, that would certainly
+qualify as "mismanagement."
 
 =item If you use 1.0.0.0/8, you're squatting on somebody else's resources.
 
@@ -63,6 +79,10 @@ will happily confirm that it has neither authority nor ambition to rule
 the content of IcannNet communications between endpoints, inclusive of
 AnoNet tunnels.  Therefore, even if you buy the logical validity of your
 claim, ICANN will still shoot it down.
+
+=item Okay, you're not squatting, but now that 1.0.0.0/8 is being actively used on IcannNet, you should move to 10.0.0.0/8 to avoid conflicts.
+
+AnoNet is under no obligation to shrink its address space just because IcannNet decided to create a conflict.  Also, moving to 10.0.0.0/8 will create more conflicts than staying in 1.0.0.0/8 (since 10.0.0.0/8 is far more congested than 1.0.0.0/8 will ever be).
 
 =item You should move to IPv6, then.
 
@@ -247,11 +267,9 @@ slowly decaying.
 
 =item Is AnoNet1 dead, then?
 
-AnoNet1 is far from dead.  In fact, it still has roughly twice the
-user-base of AnoNet2.  However, AnoNet2 has more services online, at this
-stage.  (Most of the old AnoNet1 services are long defunct, by now, as
-are many of its users.)  AnoNet2 has also been experiencing rather solid
-sustained growth, while the AnoNet1 population growth is mostly flat.
+AnoNet1 isn't dead yet.  It's currently about the same size as AnoNet2.
+However, AnoNet2 has more services online, and AnoNet2 is still growing,
+while AnoNet1 is getting smaller.
 
 =item What's the difference between AnoNet1 and AnoNet2, then?
 
@@ -269,12 +287,15 @@ AnoNet2 (like AnoNet1) has no official government.  Unlike AnoNet1,
 though, AnoNet2's technical construction is such that the unofficial
 government members (primarily UFO and SRN, at this point) don't have
 enough power to force their way (not to mention that they don't really
-_want_ to force their way, anyway).  A recent practical example of
-this anarchy appears to be IPv6: SRN has made no secret of his strong
-opposition to IPv6, but that doesn't seem to be stopping an enterprising
-new AnoNet2 user from deploying it himself and even soliciting support
-from others, even after "the management" (both UFO and SRN) flatly
-refused to participate.
+_want_ to force their way, anyway).  A recent practical example of this
+anarchy is IPv6: SRN has made no secret of his strong opposition to IPv6,
+but that didn't stop an enterprising new AnoNet2 user from deploying
+it himself and connecting with others, even after "the management"
+(both UFO and SRN) flatly refused to participate.
+
+Update: The IPv6 version of AnoNet2 now has 4 members, and lex is
+providing data to feed SRN's new IPv6 graphs, which are only reachable
+over IPv4.  (After lex grew the network to 3, UFO joined.)
 
 =item Why don't AnoNet1 and AnoNet2 merge again?
 
@@ -295,17 +316,29 @@ kicked from AnoNet1.)  Again, you get bonus points if you can figure out
 what that reason is.  (Hint: crzydmnd and risc likely know the reason,
 but good luck getting them to spill the beans.  Censoring the question
 seems to be their favorite "answer.")  Suffice it to say that if AnoNet1
-wanted to merge with AnoNet2, AnoNet2 wouldn't object.
+wanted to merge with AnoNet2, nobody on AnoNet2 is likely to object.
+
+Update: AnoNet1 and AnoNet2 now have full routing again, but some AnoNet1
+members still filter most AnoNet2 routes locally (and for downstream
+peers).  The "official" AnoNet1 wiki, for example, is unreachable from
+most of AnoNet2.
 
 =item Do I have to choose between AnoNet1 and AnoNet2, or is there a way to join both?
 
-There's no need to choose one or the other.  As long as you don't
-advertise AnoNet2 routes into AnoNet1, you should be fine: their Salem
-witch hunt against "dual citizens" seems to have died off by now.
-If you're currently getting to AnoNet1 through the official AnoNet1 CP
-(run by Kaos), simply switch to UFO's CP, and you'll automatically be
-connected to both, so you can check them both out and figure out at your
-own pace what you want to do.
+On the IP level, when you join one you automatically join the other.
+The easiest way to claim resources is with the AnoNet2 resdb.  It is
+the only complete database of AnoNet resources, and it is the only
+decentralized resource database.  You can join IRC on AnoNet1 or AnoNet2
+or both (but crzydmnd and risc kick people from AnoNet1 IRC, apparently
+for fun).  You can contribute to the AnoNet1 wiki or the AnoNet2 wikis,
+or you can make your own.
+
+=item If the two parts of AnoNet are connected again, why are they still being advertized separately?
+
+Currently, there is still a single point of failure connecting AnoNet1
+and AnoNet2 at the IP level.  In addition, AnoNet1 and AnoNet2 still
+have completely separate governments.  (AnoNet1 has a government, while
+AnoNet2 doesn't.)
 
 =item Which darknet preserves my anonymity better, AnoNet1 or AnoNet2?
 

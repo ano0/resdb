@@ -8,11 +8,14 @@ foreach ($names as $name) {
  $servers = scandir($name.'/ns/');
  foreach ($servers as $server) {
   if ($server[0] == '.') continue;
-  print($name.' IN NS '.$server."\n");
+  if (substr($name, -4) == ".ano") $name .= ".";
+  $fqserver = $server;
+  if (substr($server, -4) == ".ano") $fqserver .= ".";
+  print($name.' IN NS '.$fqserver."\n");
   $ips = file($name.'/ns/'.$server, FILE_IGNORE_NEW_LINES |
    FILE_SKIP_EMPTY_LINES);
   foreach ($ips as $ip) {
-   print($server.' IN A '.$ip."\n");
+   print($fqserver.' IN A '.$ip."\n");
   }
  }
 }
