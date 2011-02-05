@@ -30,10 +30,7 @@ function static_nodename ($node) { switch ($node) {
 function nodenickname ($node) { switch ($node) {
  case '64731': return 'SRN';
  case '64766': return 'UFO';
- case '64768': return 'yang';
- case '64738': return 'welterde';
- case '64827': return 'deelkar';
- case '64680': case '64692': return rtrim(`echo $node | ./asn2descr`);
+ case '3090': return 'lex';
 }; return NULL; };
 
 function nodename ($node) {
@@ -41,7 +38,7 @@ function nodename ($node) {
  if (($name=static_nodename($node))!==NULL) return $name;
  $nameparts=array();
  if (($nick=nodenickname($node))!==NULL) $nameparts[]=$nick;
- $name=rtrim(`echo $node | ./asn2adminc | ./hdl2person`);
+ $name=""; // rtrim(`echo $node | ./asn2adminc | ./hdl2person`);
  if (empty($name)) $name='AS'.$node; else $name="AS$node ($name)";
  $nameparts[]=$name;
 return join(' - ',$nameparts); };
