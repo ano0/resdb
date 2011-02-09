@@ -1,4 +1,0 @@
-This IP subnet is in use by VANet (http://www.vanet.org). For compatibility
-reasons, it is not recommended to use this subnet directly. To prevent
-conflicts, addresses in this subnet should only be used if they are assigned
-by VANet.
