@@ -4,20 +4,6 @@ Welcome to AnoNet! AnoNet is a highly decentralized darknet, aiming to create a 
 
 You can read more information about AnoNet below, or on L<http://wiki.ucis.nl/Anonet>.
 
-=head2 Urgent Appeal
-
-As you may already know, Egypt cut nearly all international Internet
-access last night.  However, phone lines still work.  SRN would like to
-encourage someone who doesn't care about his own anonymity to run pppd
-on a phone line, as a dialup AnoNet ISP for Egyptians who can't access
-AnoNet by the regular methods.  All you need is a Unix (GNU/Linux,
-*BSD, etc. - anything that can run pppd) computer with a fax/modem and
-an available telephone line (incoming calls only).  If you can help,
-please find SRN on IRC (no technical knowledge necessary).
-
-Well, we are too late.  L<Egypt is back online
-again.|http://www.bbc.co.uk/news/technology-12346929>
-
 =head2 Theory
 
 =over
@@ -128,9 +114,40 @@ Note 2: your IRC client always sends your configured username, realname and poss
 
 For more information about anonimity on IRC, see L<this page|http://www.anonet2.org/irc_anonymity>.
 
-Note that if your only aim in joining AnoNet is to search Google anonymously, you can save yourself the hassle L<by just heading over to Scroogle|http://www.scroogle.org/>.  If you're looking to browse the rest of the public Internet anonymously, though, we now have outbound proxies, which you're more than welcome to use.  (L<Here's a service that tries to show you what you're likely to be leaking, right now.|http://what-is-my-ip-address.anonymous-proxy-servers.net/>)
+=head2 IRC Channels
+
+The activity level on #anonet got a bit too high (especially with all the bots), so some new channels have been added.  Here are the currently known channels:
+
+=over
+
+=item #anonet (chat/anonet)
+
+This is the main channel for AnoNet-related discussion.  All AnoNet2 IRC servers carry this channel.
+
+=item #talk (chat/talk)
+
+This is a new channel for general talk, and at least for now it is the home of most of our bots.  Only sevil and SRN IRC servers carry this channel.
+
+=item #1984 (chat/1984)
+
+This is a channel that BrainBox requested.  Some SRN IRC servers carry it.
+
+=back
+
+Creating a new channel is done the traditional way (just /join it),
+but linking the channel through the udpmsg3 cloud requires a little
+bit of configuration for all current udpmsg3 clients.  SRN is happy to
+reconfigure his stuff for any new channel.
 
 =head2 Why to Join
+
+Note that if your only aim in joining AnoNet is to search Google
+anonymously, you can save yourself the hassle L<by just heading over
+to Scroogle|http://www.scroogle.org/>.  If you're looking to browse
+the rest of the public Internet anonymously, though, we now have
+outbound proxies, which you're more than welcome to use.  (L<Here's a
+service that tries to show you what you're likely to be leaking, right
+now.|http://what-is-my-ip-address.anonymous-proxy-servers.net/>)
 
 (Note: There's now L<a separate page with links to many more reasons to
 join AnoNet|http://www.anonet2.org/links>.)
