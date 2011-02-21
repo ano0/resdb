@@ -391,6 +391,10 @@ have L<tor|http://www.torproject.org/>, L<i2p|http://www.i2p2.de/>,
 L<Freenet|http://freenetproject.org/>, L<GNUnet|http://gnunet.org/>,
 and others.)
 
+=item Sell Stuff Online
+
+Well, even if you don't care about your anonymity and in fact _want_ everyone to know who you are, doing business on IcannNet isn't so safe, L<because you never know when a misguided government will sieze your domain for no real reason, without even admitting its mistake|http://torrentfreak.com/u-s-government-shuts-down-84000-websites-by-mistake-110216/>.  AnoNet domains are a safer investment, because it is far more difficult for someone to sieze an AnoNet domain.  In addition, L<PowerfulProxy|http://www.powerfulproxy.com/> now makes it possible to reach many AnoNet domains directly from IcannNet.
+
 =back
 
 =head2 Why Not to Join
