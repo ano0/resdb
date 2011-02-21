@@ -12,6 +12,10 @@ having to set anything up yourself):
 
 =item *
 
+L<IRC server on the udpmsg4 cloud (SRN)|irc://irc3.srn.ano/anonet> (runs L<SRN's new package|http://www.powerfulproxy.com/do_it.php/http/www.srw.ano/udpmsg4ircd>)
+
+=item *
+
 L<IRC server on the udpmsg3 cloud (lex)|irc://lynx.ano/anonet> (runs L<SRN's improved version of UFO's package|http://www.srn.ano/udpmsg3/>)
 
 =item *
