@@ -132,7 +132,7 @@ This is a new channel for general talk, and at least for now it is the home of m
 
 =item #1984 (chat/1984)
 
-This is a channel that BrainBox requested.  Some SRN IRC servers carry it.
+This is a channel that BrainBox requested.  Most SRN IRC servers carry it.
 
 =back
 
@@ -390,6 +390,15 @@ is the weakness, here.  We're working on that, but in the meantime you
 have L<tor|http://www.torproject.org/>, L<i2p|http://www.i2p2.de/>,
 L<Freenet|http://freenetproject.org/>, L<GNUnet|http://gnunet.org/>,
 and others.)
+
+Even if your reports are perfectly legal in your country,
+you still may become the victim of identity theft, L<like
+some journalists reporting on the HP board leak a few years
+ago|http://www.wired.com/politics/security/news/2006/09/71749> (and
+with governments "reaching out" to corporations more now, it gets worse
+before it gets better).  It's harder to find the identity of an anonymous
+journalist, so naturally it is harder to steal it.  It's also harder to
+find your anonymous sources.
 
 =item Sell Stuff Online
 
