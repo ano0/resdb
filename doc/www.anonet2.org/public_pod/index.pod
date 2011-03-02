@@ -35,9 +35,10 @@ us and chat, it's very easy:
 
 Z<><table>
  <tr><th>Protocol</th><th>Service</th><th>Anonymity</th></tr>
- <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anonet.serveirc.com/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<sevilIRC|http://anonet.serveirc.com/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
  <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
  <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>L<naya|http://www.anonet2.org/irc_anonymity> (Visible IP, hidden username and realname, custom nickname (warning!) (note 1))</td></tr>
+ <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc0.sevilnatas.ano:6667/anoNet></td><td>L<aaao|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname, SSL enabled)</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN (tor)|irc://2dmrunyyp6bp53th.onion/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN2|irc://anortr.ucis.nl:8806/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
@@ -88,12 +89,12 @@ Z<><table>
  <tr><th>ProtocolZ<></th><th>Service using DNSZ<></th><th>Service using IP (no DNS)</th><th>Anonymity</th></tr>
  <tr><td>UDPMSG4Z<></td><td>L<SRN (UDPMSG4 cloud)|udpmsg4://irc3.srn.ano:15783/chat/anonet></td><td>L<SRN (UDPMSG4 cloud)|udpmsg4://1.0.27.111:15783/chat/anonet></td><td>UDPMSG4 is anonymous by design.  L<You can run your own IRC server.|http://www.powerfulproxy.com/do_it.php/http/www.srw.ano/udpmsg4ircd></td></tr>
  <tr><td>UDPMSG3Z<></td><td>L<SRN (UDPMSG3 cloud)|udpmsg3://irc2.srn.ano:15387/chat/anonet></td><td>L<SRN (UDPMSG3 cloud)|udpmsg3://1.0.27.110:15387/chat/anonet></td><td>UDPMSG3 is anonymous by design.</td></tr>
- <tr><td>HTTP WebChatZ<></td><td>L<sevilNatas (KwaakNet)|http://www.sevilnatas.ano/chat.html></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
+ <tr><td>HTTP WebChatZ<></td><td>L<sevilIRC (Relaying on #anoNet)|http://www.sevilnatas.ano/chat.html></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
  <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.ano:8086/?channels=anonet&nick=Anonymous></td><td>L<KwaakNet|http://1.3.3.2:8086/?channels=anonet&nick=Anonymous></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN (NewNickNet)|irc://irc3.srn.ano:6667/anonet></td><td>L<SRN (NickNet)|irc://1.0.27.111:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN (NickNet)|irc://irc2.srn.ano:6667/anonet></td><td>L<SRN (NickNet)|irc://1.0.27.110:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous></td><td>L<SRN|irc://1.0.27.103:6667/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
- <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc.sevilnatas.ano:6667/anonet></td><td></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
+ <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc0.sevilnatas.ano:6667/anonet></td><td></td><td>L<aaao|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname, SSL enabled)</td></tr>
  <tr><td>IRCZ<></td><td>L<KwaakNet|irc://irc.ucis.ano:6667/anonet></td><td>L<KwaakNet|irc://1.3.3.7:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname)</td></tr>
  <tr><td>IRCZ<></td><td>L<pragmo|irc://irc.pragmo.ano:6667/atomic></td><td>L<pragmo|irc://1.0.16.111:6667/atomic></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
  <tr><td>TelnetZ<></td><td>L<SRN|telnet://irc.somerandomnick.ano:2323/></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
