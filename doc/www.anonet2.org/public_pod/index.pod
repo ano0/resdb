@@ -94,13 +94,9 @@ Z<><table>
  <tr><td>IRCZ<></td><td>L<SRN (NewNickNet)|irc://irc3.srn.ano:6667/anonet></td><td>L<SRN (NickNet)|irc://1.0.27.111:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN (NickNet)|irc://irc2.srn.ano:6667/anonet></td><td>L<SRN (NickNet)|irc://1.0.27.110:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous></td><td>L<SRN|irc://1.0.27.103:6667/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
-<<<<<<< HEAD
  <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc0.sevilnatas.ano:6667/anonet></td><td></td><td>L<aaao|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname, SSL enabled)</td></tr>
  <tr><td>IRCZ<></td><td>L<KwaakNet|irc://irc.ucis.ano:6667/anonet></td><td>L<KwaakNet|irc://1.3.3.7:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname)</td></tr>
-=======
- <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc.sevilnatas.ano:6667/anonet></td><td></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
  <tr><td>IRCZ<></td><td>L<KwaakNet|irc://irc.kwaaknet.ano:6667/anonet></td><td>Server L<1|irc://1.3.3.7:6667/anonet>, L<2|irc://1.3.9.1:6667/anonet>, L<3|irc://1.3.3.8:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname)</td></tr>
->>>>>>> d20b178ca63541f88382891d3c1fb6bef9793bb7
  <tr><td>IRCZ<></td><td>L<pragmo|irc://irc.pragmo.ano:6667/atomic></td><td>L<pragmo|irc://1.0.16.111:6667/atomic></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
  <tr><td>TelnetZ<></td><td>L<SRN|telnet://irc.somerandomnick.ano:2323/></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
  <tr><td>JabberZ<></td><td>irc.somerandomnick.ano (RendezVous MUC)</td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
