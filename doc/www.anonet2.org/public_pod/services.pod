@@ -32,7 +32,7 @@ There is also an NNTP leafnode at 1.3.3.64 which serves ano.*, anonet2.* and dn4
 
 =item *
 
-L<IRC server on the udpmsg3 cloud (SRN)|irc://irc2.srn.ano/anonet> (runs L<SRN's improved version of UFO's package|http://www.srn.ano/udpmsg3/>)
+L<IRC server on the udpmsg4 cloud (SRN)|irc://irc4.srn.ano/anonet> (runs L<SRN's upgraded version of UFO's package|http://www.srn.ano/udpmsg4/ufo/ircd/>)
 
 =item *
 
