@@ -35,7 +35,6 @@ us and chat, it's very easy:
 
 Z<><table>
  <tr><th>Protocol</th><th>Service</th><th>Anonymity</th></tr>
- <tr><td>HTTP WebChatZ<></td><td>L<sevilIRC|http://anonet.serveirc.com/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
  <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
  <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>L<naya|http://www.anonet2.org/irc_anonymity> (Visible IP, hidden username and realname, custom nickname (warning!) (note 1))</td></tr>
  <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc0.sevilnatas.ano:6667/anoNet></td><td>L<aaao|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname, SSL enabled)</td></tr>
@@ -177,11 +176,16 @@ you're more than welcome to have your fun here.
 
 If you saw L<this article about people getting arrested on false accusations from one guy|http://uk.finance.yahoo.com/news/Cyberactivists-warned-arrest-ftimes-3487898538.html?x=0>, then you may want to make yourself a bit more difficult to find.  (L<Do you really want to get raided by the FBI just because some "security researcher" thinks you're a co-founder of Anonymous?|http://pastebin.com/raw.php?i=x69Akp5L>)  AnoNet can help.
 
-You may want to join for the social scene (we even have our own social
-network, although nobody uses it for what should be obvious reasons),
-or you may want to create your own social scene. Again, you're not
-looking at an "official" reason for joining, but nobody owns AnoNet, so
-"official" is an artificial term 'round here.
+You may want to join for the social scene (we even have our own
+social network, although nobody uses it for what should be obvious
+reasons), or you may want to create your own social scene.  Even if
+you don't care about your anonymity, L<you don't need to worry
+about our social network "owner" deleting your identity for "private"
+reasons|http://technolog.msnbc.msn.com/_news/2010/09/02/5033412-booted-from-facebook-woman-sues>,
+because our social network is decentralised and resists censorship,
+like most of the core AnoNet services.  Again, you're not looking at an
+"official" reason for joining, but nobody owns AnoNet, so "official"
+is an artificial term 'round here.
 
 You may be looking for help with your Mathematics, Physics or Computer
 Science homework.  Due to AnoNet's nature, many of the guys who hang
