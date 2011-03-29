@@ -1,16 +1,23 @@
 =head1 Thejetset's client port
+
 If you're looking to access AnoNet but don't have the luxury of some box 
 that you can run routing software on reliably then never fear! You can 
 use this client port to access the depths of AnoNet using IP.
 
-=over
-
 =head2 How to access
 
+=over
+
 =item Server: anonet.it.cx
+
 =item Username: anonymous
+
 =item Password: anonymous
+
 =item VPN type: PPTP
-=item Please ensure that you DO NOT USE this as your default route. 
-Only 
-use as a route for 1.0.0.0/8
+
+=back
+
+Please ensure that you DO NOT USE this as your default route. 
+
+Only use as a route for 1.0.0.0/8
