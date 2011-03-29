@@ -69,7 +69,11 @@ are a few options available:
 
 L<UFO has a client port.|http://ix.ucis.nl/clientport.php>  (You will
 need openvpn for this option, but there is no need for routing software.)
-L<Thejetset's client port|http://www.anonet2.org/thejetset_clientport>
+
+=item *
+
+L<Thejetset's client 
+port|http://www.anonet2.org/thejetset_clientport>
 
 =item *
 
