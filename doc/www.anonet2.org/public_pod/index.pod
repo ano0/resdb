@@ -72,6 +72,11 @@ need openvpn for this option, but there is no need for routing software.)
 
 =item *
 
+L<Thejetset's client 
+port|http://www.anonet2.org/thejetset_clientport>
+
+=item *
+
 It is possible to negotiate your first peering on IRC, completely
 bypassing the client port.  (For this option you can use quicktun,
 openvpn, or tinc.  You will also need routing software, for example bird
