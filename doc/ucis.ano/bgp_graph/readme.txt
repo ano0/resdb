@@ -3,7 +3,7 @@ These scripts can be used to graph the BGP peering connections in a network usin
 Some of the scripts will communicate with the BGP software, another script can be used to export the obtained information to a .dot file, which can then be converted to a graph file using graphviz. The scripts can run on different machines, and it is recommended to use routing information from multiple routes, to obtain an accurate view of the network.
 
 Depending on the BGP software, one of the following scripts must be used to acquire the data:
-- bgp_path_list_birg.sh (or .php) for the bird routing daemon
+- bgp_path_list_bird.sh (or .php) for the bird routing daemon
 - bgp_path_list_quagga.sh (or .php) for the quagga/zebra routing daemon
 - bgp_path_list_xml.php to convert existing dn42/diac42 .xml data
 
