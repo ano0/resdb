@@ -10,5 +10,7 @@ use this client port to access the depths of AnoNet using IP.
 =item Server: anonet.it.cx
 =item Username: anonymous
 =item Password: anonymous
-=item Please ensure that you DO NOT USE this as your default route. Only 
+=item VPN type: PPTP
+=item Please ensure that you DO NOT USE this as your default route. 
+Only 
 use as a route for 1.0.0.0/8
