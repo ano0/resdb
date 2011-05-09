@@ -293,9 +293,12 @@ but that didn't stop an enterprising new AnoNet2 user from deploying
 it himself and connecting with others, even after "the management"
 (both UFO and SRN) flatly refused to participate.
 
-Update: The IPv6 version of AnoNet2 now has 4 members, and lex is
-providing data to feed SRN's new IPv6 graphs, which are only reachable
-over IPv4.  (After lex grew the network to 3, UFO joined.)
+Update: The IPv6 version of AnoNet2 now has 6 members over roughly 11
+IPv6-capable hosts, and lex is providing data to feed SRN's new IPv6
+graphs, which are only reachable over IPv4. (After lex grew the network to
+3, UFO joined.) lex also provides transit between IPv6 Anonet and dn42,
+carrying traffic inside ULA ranges between the two darknets. Services are
+starting to become available over IPv6.
 
 =item Why don't AnoNet1 and AnoNet2 merge again?
 
