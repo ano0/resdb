@@ -1,107 +1,79 @@
 <?php
 // Copyright Atiti, 2011
 // Version 0.1-2
+// Heavily modified by Ivo <Ivo@UCIS.nl>
 
-// Where are we at?
+if (!isset($_SERVER['PATH_INFO'])) die('PATH_INFO is not set');
+$pall = explode("/", $_SERVER['PATH_INFO']);
+if (count($pall) <= 1) die('Unexpected path format');
+array_shift($pall);
+$proto = array_shift($pall);
+$host = array_shift($pall);
+$path = implode('/', $pall);
+array_pop($pall);
+$rp = implode('/', $pall);
+
+/* CONFIGURATION */
 $SERVICEURL = "http://powerfulproxy.com/do_it.php/";
-// Do da request
-function get_url($url, $data) {
-	if (!$url) {
-		echo "Invalid use!";
-		die;
+
+$REWRITE_CONTENT_TYPES = array('text/html', 'text/xml', 'text/plain');
+$REWRITE_PATTERNS = array(
+/* Rewrite complete http/https URLs, enable one of the tree, and no more! */
+//	'@(https?)://(([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@i' => $SERVICEURL.'$1/$2',
+//	'@(src|href|action)\s*=\s*(\'|")(https?)://([^\'"]*)\2@i' => '$1=$2'.$SERVICEURL.'$3/$4$2',
+	'@(<[^>]*)(src|href|action)\s*=\s*(\'|")(https?)://([^\'"]*)\3@i' => '$1$2=$3'.$SERVICEURL.'$4/$5$3',
+/* Rewrite URLs relative to site root, enable one of the tree, and no more! */
+//	'@(src|href|action)\s*=\s*(\'|")/([^\'"]*)\2@i' => '$1=$2'.$SERVICEURL.$proto.'/'.$host.'/$3$2',
+	'@(<[^>]*)(src|href|action)\s*=\s*(\'|")/([^\'"]*)\3@i' => '$1$2=$3'.$SERVICEURL.$proto.'/'.$host.'/$4$3',
+);
+$CURL_OPTIONS = array(
+	CURLOPT_USERAGENT	=> "AnoNet proxy",
+	CURLOPT_AUTOREFERER	=> TRUE,
+	CURLOPT_CONNECTTIMEOUT	=> 15,
+	CURLOPT_TIMEOUT		=> 28,
+	CURLOPT_MAXREDIRS	=> 10,
+	CURLOPT_FAILONERROR	=> FALSE,
+	CURLOPT_HEADER		=> 1,
+	CURLOPT_FOLLOWLOCATION	=> FALSE,
+//	CURLOPT_INTERFACE	=> '0.0.0.0',
+//	CURLOPT_PROXY		=> "http://b.polipo.srn.ano:8000/",
+//	CURLOPT_PROXYUSERPWD	=> 'username:password',
+);
+/* END OF CONFIGURATION */
+
+$url = $proto."://".$host."/".$path;
+if (isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING'])) $url .= "?".$_SERVER['QUERY_STRING'];
+$ch = curl_init($url);
+curl_setopt_array($ch, $CURL_OPTIONS);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+//curl_setopt($ch, CURLOPT_HEADER, FALSE);
+if (count($_POST)) {
+	curl_setopt($ch, CURLOPT_POST, TRUE);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
+}
+$response = curl_exec($ch);
+list($header, $data) = explode("\r\n\r\n", $response, 2); 
+if ($error = curl_error($ch)) die('CURL ERROR: '.$error);
+$info = curl_getinfo($ch);
+
+header('Status: '.$info['http_code']);
+header('Content-Type: '.$info['content_type']);
+
+$redirurl = "";
+if ($info['http_code'] === 301) {
+	$headers = explode("\r\n", $header);
+	foreach($headers as $h) {
+		$cur_header = explode(": ", $h);
+		if ($cur_header[0] == "Location") {
+			$redirurl = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@', $SERVICEURL.str_replace("http://", "http/", "$1"), $cur_header[1]);
+			$redirurl = str_replace(".php/http://", ".php/http/", $redirurl);
+			header('Location: '.$redirurl);
+		}
 	}
-   	 $options = array(
-        	CURLOPT_RETURNTRANSFER => true,     // return web page
-        	CURLOPT_HEADER         => false,    // don't return headers
-        	CURLOPT_FOLLOWLOCATION => true,     // follow redirects
-       		CURLOPT_ENCODING       => "",       // handle all encodings
-        	CURLOPT_USERAGENT      => "AnoNet proxy", // who am i
-        	CURLOPT_AUTOREFERER    => true,     // set referer on redirect
-        	CURLOPT_CONNECTTIMEOUT => 15,      // timeout on connect
-        	CURLOPT_TIMEOUT        => 28,      // timeout on response
-        	CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
-		CURLOPT_FAILONERROR    => true,
-//		CURLOPT_PROXY	       => "http://b.polipo.srn.ano:8000/",
-   	 );
-	$ch = curl_init ($url);
-	curl_setopt_array( $ch, $options );
-	$fields_string = "";
-	if (count($data)) {
-		foreach($data as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-		rtrim($fields_string,'&');
-		curl_setopt($ch, CURLOPT_POST, count($data));
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-	}
-	$ret  = curl_exec ($ch);
-	if ($error = curl_error($ch)) 
-		echo 'ERROR: ',$error;
-	$info = curl_getinfo($ch);
-	return array("data"=>$ret,"info"=>$info);
+} else {
+	if (in_array(strtok($info['content_type'], ';'), $REWRITE_CONTENT_TYPES)) $data = preg_replace(array_keys($REWRITE_PATTERNS), array_values($REWRITE_PATTERNS), $data, -1, $count);
 }
-// Rewrite relative paths
-function rewriteRelative($html, $base) {
-	$server = preg_replace('@^([^\:]*)://([^/*]*)(/|$).*@', '\1://\2/', $base);
-	$html = preg_replace('@\<([^>]*) (href|src)="/([^"]*)"@i', '<\1 \2="' . $server . '\3"', $html);
-	$html = preg_replace('@\<([^>]*) (href|src)="(([^\:"])*|([^"]*:[^/"].*))"@i', '<\1 \2="' . $base . '\3"', $html);
-	return $html;
-}
-if (isset($_SERVER["PATH_INFO"]))
-	$p = $_SERVER["PATH_INFO"];
-if (isset($_SERVER["QUERY_STRING"]))
-	$q = $_SERVER["QUERY_STRING"];
-$postdata = $_POST;
-$pall = explode("/", $p);
-if (count($pall) <= 1) {
-	echo "Wrong host format? or smtg.";
-	die;
-}
-$proto = $pall[1];
-$host = $pall[2];
-unset($pall[0]);
-unset($pall[1]);
-unset($pall[2]);
-$path = implode("/", $pall);
-// Figure out relative paths
-$pi = pathinfo($path);
-if ($pi) {
-	$rp = @$pi["dirname"];
-} else
-	$rp = "";
-if (!$rp)
-	$rp = $path;
-// Construct request url
-$geturl = $proto."://".$host."/".$path;
-if ($q)
-	$geturl .= "?".$q; // Append query string
 
-$d = get_url($geturl, $postdata);
-$data = $d["data"];
-$ct = $d["info"]["content_type"];
-$ct_s = explode(";", $ct);
-$found = false;
-$match_ct = array("text/html", "text/xml", "text/plain");
-foreach($match_ct as $m) {
-	if ($ct_s[0] == $m)
-		$found = true;
-}
-if ($found) { // Only rewrite for proper content
-	$ret = rewriteRelative($data, $proto."://".$host."/".$rp."/");
-	$ret = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@', $SERVICEURL.str_replace("http://", "http/", "$1"), $ret);
-	$ret = str_replace(".php/http://", ".php/http/", $ret);
-	$ret = str_replace(".php/https://", ".php/https/", $ret);
-
-	$ret = str_replace("../", "", $ret);
-	$items = Array("/src='\/(.*)'/", "/src=\"\/(.*)\"/", "/href='\/(.*)'/", "/href=\"\/(.*)\"/");
-	$ret = preg_replace($items, "src='".$SERVICEURL.$proto."/".$host."/$1'", $ret);
-	$ret = preg_replace("/action=\"\/\"/i", "action=\"".$SERVICEURL.$proto."/".$host."/\"", $ret);
-
-} else
-	$ret = "";
-// Output da shit
-header("Content-Type: ".$ct);
-if (strlen($ret) == 0)
-	echo $data;
-else
-	echo $ret;
-
+header('Content-Length: '.strlen($data));
+echo $data;
 ?>
