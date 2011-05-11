@@ -62,6 +62,8 @@ Note 2: your IRC client always sends your configured username, realname and poss
 
 =back
 
+If you want to browse around first, there's a tor gateway available at L<http://mkdopl6dniqykj2y.onion/>.  (You will need tor for that link to work.)
+
 If you're feeling adventurous enough to connect at the IP level, there
 are a few options available:
 
