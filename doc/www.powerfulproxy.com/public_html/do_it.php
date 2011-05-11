@@ -10,7 +10,7 @@ array_shift($pall);
 $proto = array_shift($pall);
 $host = array_shift($pall);
 $hostparts = explode('.', $host);
-if (ip2long(long2ip($host))===$host) {
+if (long2ip(ip2long($host))===$host) {
  if ($hostparts[0]!='1') die('Bad IP');
 } elseif (!preg_match("/ano|ntwrk$/",array_pop($hostparts))) die('Bad host');
 $path = implode('/', $pall);
