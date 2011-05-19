@@ -80,6 +80,9 @@ L<Thejetset's client
 port|http://www.anonet2.org/thejetset_clientport>
 
 =item *
+L<lex's lynx client port|http://lynx.vanet.org/ClientPort>, which also provides connectivity to IPv6 Anonet
+
+=item *
 
 It is possible to negotiate your first peering on IRC, completely
 bypassing the client port.  (For this option you can use quicktun,
