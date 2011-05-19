@@ -80,6 +80,7 @@ L<Thejetset's client
 port|http://www.anonet2.org/thejetset_clientport>
 
 =item *
+
 L<lex's lynx client port|http://lynx.vanet.org/ClientPort>, which also provides connectivity to IPv6 Anonet
 
 =item *
