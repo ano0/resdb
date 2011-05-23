@@ -96,7 +96,7 @@ git-based resdb (including a decentralized "wiki" replacement) (L<SRN|git://git1
 
 =item *
 
-outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/> (works well), L<http://b.privoxy.somerandomnick.ano:8118/> (doesn't work) and L<http://a.polipo.somerandomnick.ano:8118/> (doesn't work))
+outbound HTTP proxies to the public Internet (L<http://a.privoxy.somerandomnick.ano:8118/>, L<http://b.privoxy.somerandomnick.ano:8118/> and L<http://a.polipo.somerandomnick.ano:8118/>)
 
 =item *
 
@@ -117,4 +117,3 @@ features of its own - ask for details on IRC) (no need to worry about
 "Three Strikes" ISP policies)
 
 =back
-
