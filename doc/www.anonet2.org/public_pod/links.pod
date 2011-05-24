@@ -4,6 +4,8 @@ Back to homepage - L<http://www.anonet2.org/>
 
 This is a collection of links that you may find interesting:
 
+20110524 - L<BT cheerfully admits snooping on customer LANs|http://www.theregister.co.uk/2011/05/24/bt_snooping/>
+
 20110523 - L<The Day I Infringed My Own Copyright|http://waveformless.blogspot.com/2010/03/day-i-infringed-my-own-copyright.html>
 
 20110228 - L<HP Dragnet Grabbed 9 Reporters|http://www.wired.com/politics/security/news/2006/09/71749>
