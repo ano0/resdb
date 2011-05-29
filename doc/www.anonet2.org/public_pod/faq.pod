@@ -267,13 +267,13 @@ slowly decaying.
 
 =item Is AnoNet1 dead, then?
 
-AnoNet1 isn't dead yet.  It's currently about the same size as AnoNet2.
-However, AnoNet2 has more services online, and AnoNet2 is still growing,
-while AnoNet1 is getting smaller.
+AnoNet1 isn't dead yet.  It's currently about half the size of AnoNet2.
+AnoNet2 has more services online, and AnoNet2 is still growing, while
+AnoNet1 is getting smaller.
 
 =item What's the difference between AnoNet1 and AnoNet2, then?
 
-AnoNet2 lost peering with AnoNet1 because AnoNet1 is too centralized
+AnoNet2 lost peering with AnoNet1 because AnoNet1 was too centralized
 to avoid censorship.  AnoNet2, therefore, is essentially a reboot of
 AnoNet1, while paying careful attention to preventing another AnoNet split
 from ever being necessary.  (The irony, of course, is that the level of
@@ -302,48 +302,34 @@ starting to become available over IPv6.
 
 =item Why don't AnoNet1 and AnoNet2 merge again?
 
-The short answer is that a number of people have tried to do just that,
-but AnoNet1 has adopted an exclusionary policy towards AnoNet2, for some
-unspecified reason.  You get bonus points if you can figure out what that
-reason is.  (AnoNet2 has been very careful to avoid collisions in resource
-allocations with AnoNet1, even though AnoNet1 has deliberately removed
-its own record of AnoNet2 resources in a recent "cleanup" of the DNS.
-If AnoNet1 ever decides to reconnect with AnoNet2, no technical problems
-should result.)
+We finally merged again.  Routing between AnoNet1 and AnoNet2 is
+fully integrated.  AnoNet1 IRC is now linked into the L<UDPMSG4
+cloud|http://www.powerfulproxy.com/do_it.php/http/www.srw.ano/udpmsg4>.
+The remaining AnoNet1 "rootservers" use resdb.  Some AnoNet1 users still
+have BGP filters against part of AnoNet2, but they are now a minority.
 
 =item Why does AnoNet2 filter advertisements to AnoNet1?  Doesn't that prevent the two darknets from ever merging again?
 
-AnoNet1 has deemed the filters necessary, for some unspecified reason.
-(Advertising AnoNet2 routes on AnoNet1 is a great way to get yourself
-kicked from AnoNet1.)  Again, you get bonus points if you can figure out
-what that reason is.  (Hint: crzydmnd and risc likely know the reason,
-but good luck getting them to spill the beans.  Censoring the question
-seems to be their favorite "answer.")  Suffice it to say that if AnoNet1
-wanted to merge with AnoNet2, nobody on AnoNet2 is likely to object.
-
-Update: AnoNet1 and AnoNet2 now have full routing again, but some AnoNet1
-members still filter most AnoNet2 routes locally (and for downstream
-peers).  The "official" AnoNet1 wiki, for example, is unreachable from
-most of AnoNet2.
+AnoNet2 no longer filters advertisements to AnoNet1.  AnoNet1 users that
+do not want AnoNet2 routes filter them if they care.
 
 =item Do I have to choose between AnoNet1 and AnoNet2, or is there a way to join both?
 
-On the IP level, when you join one you automatically join the other.
-The easiest way to claim resources is with the AnoNet2 resdb.  It is
-the only complete database of AnoNet resources, and it is the only
-decentralized resource database.  You can join IRC on AnoNet1 or AnoNet2
-or both (but crzydmnd and risc kick people from AnoNet1 IRC, apparently
-for fun).  You can contribute to the AnoNet1 wiki or the AnoNet2 wikis,
-or you can make your own.
+On the IP level, when you join one you automatically join the other.  The
+easiest way to claim resources is with the AnoNet2 resdb.  It is the only
+complete database of AnoNet resources, and it is the only decentralized
+resource database.  AnoNet1 IRC is now connected to L<the AnoNet2 chat
+cloud|http://www.powerfulproxy.com/do_it.php/http/www.srw.ano/udpmsg4>.
+You can contribute to the AnoNet1 wiki or the AnoNet2 wikis, or you can
+make your own.
 
 =item If the two parts of AnoNet are connected again, why are they still being advertized separately?
 
-Currently, there is still a single point of failure connecting AnoNet1
-and AnoNet2 at the IP level.  In addition, AnoNet1 and AnoNet2 still
-have completely separate governments.  (AnoNet1 has a government, while
-AnoNet2 doesn't.)
+We still did not combine marketing again ;-)
 
 =item Which darknet preserves my anonymity better, AnoNet1 or AnoNet2?
+
+[Update: This question is no longer relevant.]
 
 Well, AnoNet1 has stricter rules (and more centralization, as a
 prerequisite to rule enforcement), so as long as you trust "the powers
@@ -402,5 +388,10 @@ In the short-term, though, it'd be highly unlikely for IcannNet to
 disappear even in the hypothetical case where everyone were to move to
 AnoNet tomorrow, since the overwhelming majority of AnoNet peering is
 tunneled over IcannNet.
+
+=item Sometimes in IcannNet I don't want to be anonymous.  Can I replace IcannNet for then also?
+
+Nobody can force you to be anonymous.  If you protect the anonymity of
+your peers then it is not a problem that you don't protect your anonymity.
 
 =back
