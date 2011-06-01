@@ -81,6 +81,13 @@ of the options physically available to an attacker, even if they're not
 "legally" available to him.  You certainly don't want your anonymity
 dependent on an adversary "playing by the rules," do you?)
 
+As L<the world's current trend towards totalitarianism continues to
+develop|http://www.theregister.co.uk/2011/03/11/us_tpp_proposal_leaked/>,
+it will only become easier for others to invade your privacy on IcannNet.
+It's really just a matter of time in our accounting-centered world before
+your legal right to anonymity converges to zero.  This is why it becomes
+even more important to learn how to protect your anonymity.
+
 =head2 A Bit More Formality
 
 A very powerful science for dealing with these types of problems is
