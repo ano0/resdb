@@ -211,19 +211,20 @@ for any other darknet, by design.  (Technical ease of forking is a core
 goal of AnoNet2.  We avoid forks only by being good enough so nobody
 feels the need to fork AnoNet2.)
 
-Finally, you may be getting a bit nervous at the amount of regulation
-piling up around the world against the public Internet.  Since the
-"public" Internet is owned and managed by a number of multinational
-corporations, it's fairly easy for governments to regulate it.  Part of
-the main purpose behind AnoNet has always been to get away from those
-private control points, in order to create a truly public internet.
-In AnoNet1, anybody who can regulate crzydmnd can regulate AnoNet1's
-"official" wiki (and by extension, its resource "database"), and
-anybody who can regulate Kaos can regulate AnoNet1's "official" client
-port (and by extension, all new AnoNet1 users), so the private control
-point problem hasn't quite been solved there.  AnoNet2 is still largely
-controlled by UFO and somerandomnick, but we have both technical and
-administrative measures in place to ensure that as the network grows,
+Finally, L<you may be getting a bit nervous at the
+amount of regulation piling up around the world against the public
+Internet|http://www.telegraph.co.uk/technology/news/8481330/Alarm-over-EU-Great-Firewall-proposal.html>.
+Since the "public" Internet is owned and managed by a number of
+multinational corporations, it's fairly easy for governments to regulate
+it.  Part of the main purpose behind AnoNet has always been to get away
+from those private control points, in order to create a truly public
+internet.  In AnoNet1, anybody who can regulate crzydmnd can regulate
+AnoNet1's "official" wiki (and by extension, its resource "database"),
+and anybody who can regulate Kaos can regulate AnoNet1's "official"
+client port (and by extension, all new AnoNet1 users), so the private
+control point problem hasn't quite been solved there.  AnoNet2 is still
+largely controlled by UFO and somerandomnick, but we have both technical
+and administrative measures in place to ensure that as the network grows,
 the two of us will no longer have enough control to destroy the network,
 even if our own governments ever decide to try regulating us.
 
@@ -513,11 +514,11 @@ duplicating messages, and avoids the long relay chains that normally
 take up half your screen.
 
 Update: SRN implemented udpmsg4 (a modification to udpmsg3 to
-support binary data without escaping, and to reduce code size and CPU
-cycles to read and write the protocol), and SRN and sevilNatas now
+support binary data without escaping, and to reduce code size and
+CPU cycles to read and write the protocol), and a few users now
 have IRC servers connecting to the udpmsg4 cloud (running L<SRN's new
 IRCd|http://www.powerfulproxy.com/do_it.php/http/www.srw.ano/udpmsg4ircd>).
-SRN also runs a udpmsg3 bridge.
+SRN and sevilNatas also run udpmsg3 bridges.
 
 =item Outbound HTTP Proxies
 
