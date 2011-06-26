@@ -1,0 +1,13 @@
+=head1 ICANN
+
+=head2 Background
+
+ICANN has exclusive authority over not just the IcannNet's DNS (L<as many people assume|http://www.guardian.co.uk/commentisfree/cifamerica/2011/jun/23/icann-internet-domain-names>), but also its IPs, ASNs, and other names and numbers.
+
+=head2 The Problem
+
+ICANN is a centralised authority that's abused its power in the past, and there is no reason to expect that it won't continue to abuse its power in the future.
+
+=head2 The Solution
+
+resdb is a decentralised resource database, with simple forks and merges.  Claiming resources is free and simple, and market forces decide who will accept your claims and who will ignore them.  Domain parking farms are irrelevant in resdb, because most users are happy to accept patches that eliminate them.  If the US government tries to claim several /8s (16 million addresses each), a patch to eliminate them will be popular.

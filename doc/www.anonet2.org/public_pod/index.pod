@@ -24,6 +24,10 @@ L<AnoNet FAQ|http://www.anonet2.org/faq>
 
 L<quick introduction to darknets and anonymity in general and AnoNet2 in particular|http://www.anonet2.org/intro>
 
+=item *
+
+L<the problem with allowing ICANN to control your internet|http://www.anonet2.org/icann>
+
 =back
 
 =head2 How to Join
