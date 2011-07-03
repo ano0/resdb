@@ -39,14 +39,14 @@ Z<><table>
  Z<><tr>Z<><th>Actual Government betrays Claimed PurposeZ<></th>Z<><td>yesZ<></td>Z<><td>noZ<></td>Z<><td>noZ<></td>Z<><td>noZ<></td>Z<></tr>
  Z<><tr>Z<><th>Centralized Critical InfrastructureZ<></th>Z<><td>wiki (includes resource database), client port, IRCZ<></td>Z<><td>noneZ<></td>Z<><td>wiki, IRCZ<></td>Z<><td>allZ<></td>Z<></tr>
  Z<><tr>Z<><th>Decentralized Critical InfrastructureZ<></th>Z<><td>routingZ<></td>Z<><td>allZ<></td>Z<><td>routing, resource databaseZ<></td>Z<><td>noneZ<></td>Z<></tr>
- Z<><tr>Z<><th>Current SizeZ<></th>Z<><td>10-15Z<></td>Z<><td>30-45Z<></td>Z<><td>60-75Z<></td>Z<><td>&lt;5Z<></td>Z<></tr>
- Z<><tr>Z<><th>Average Monthly GrowthZ<></th>Z<><td>~0%Z<></td>Z<><td>~5%Z<></td>Z<><td>~0%Z<></td>Z<><td>~0%Z<></td>Z<></tr>
+ Z<><tr>Z<><th>Current SizeZ<></th>Z<><td>10-15Z<></td>Z<><td>35-45Z<></td>Z<><td>60-75Z<></td>Z<><td>&lt;5Z<></td>Z<></tr>
+ Z<><tr>Z<><th>Average Monthly GrowthZ<></th>Z<><td>~0%Z<></td>Z<><td>~10%Z<></td>Z<><td>~0%Z<></td>Z<><td>~0%Z<></td>Z<></tr>
  Z<><tr>Z<><th>Activity LevelZ<></th>Z<><td>lowZ<></td>Z<><td>mediumZ<></td>Z<><td>mediumZ<></td>Z<><td>noneZ<></td>Z<></tr>
  Z<><tr>Z<><th>Interdarknet ConnectivityZ<></th>Z<><td>censored access to AnoNet2 (must use AnoNet2 DNS), censored access to dn42 (must use AnoNet2 DNS)Z<></td>Z<><td>full routing to most of AnoNet1, full routing to part of dn42, full routing to VAnetZ<></td>Z<><td>censored access to AnoNet (1&amp;2, must use SRN's DNS), censored access to VAnet (must use SRN's DNS)Z<></td>Z<><td>full routing to part of AnoNet1, full routing to AnoNet2, full routing to part of dn42Z<></td>Z<></tr>
  Z<><tr>Z<><th>DNS CoverageZ<></th>Z<><td>AnoNet1Z<></td>Z<><td>AnoNet (1&amp;2), dn42, VAnet, IcannNetZ<></td>Z<><td>dn42, IcannNetZ<></td>Z<><td>AnoNet (1&amp;2), dn42, VAnet, IcannNetZ<></td>Z<></tr>
  Z<><tr>Z<><th>Proxy CoverageZ<></th>Z<><td>AnoNet1Z<></td>Z<><td>AnoNet (1&amp;2), IcannNetZ<></td>Z<><td>noneZ<></td>Z<><td>noneZ<></td>Z<></tr>
  Z<><tr>Z<><th>Web-Based Proxy CoverageZ<></th>Z<><td>noneZ<></td>Z<><td>AnoNet (1&amp;2), IcannNetZ<></td>Z<><td>noneZ<></td>Z<><td>noneZ<></td>Z<></tr>
- Z<><tr>Z<><th>Peering PrerequisitesZ<></th>Z<><td>OpenVPN, BGP daemon, sustained IRC participation for over a month, and a miracleZ<></td>Z<><td>OpenVPN or tinc or L<quicktun|http://wiki.ucis.nl/QuickTun>, BGP daemon or static routingZ<></td>Z<><td>OpenVPN or tinc or L<quicktun|http://wiki.ucis.nl/QuickTun>, BGP daemon or static routing, and an available subnetZ<></td>Z<><td>depends on individual PoP policyZ<></td>Z<></tr>
+ Z<><tr>Z<><th>Peering PrerequisitesZ<></th>Z<><td>OpenVPN, BGP daemon, sustained IRC participation for over a month, and a miracleZ<></td>Z<><td>OpenVPN or tinc or L<quicktun|http://wiki.ucis.nl/QuickTun>, BGP daemon or static routingZ<></td>Z<><td>OpenVPN or tinc or L<quicktun|http://wiki.ucis.nl/QuickTun>, BGP daemon or static routing, and an available subnet, and a big-block owner that will not change the ownership of your subnet to someone elseZ<></td>Z<><td>depends on individual PoP policyZ<></td>Z<></tr>
  Z<><tr>Z<><th colspan='5'>ServicesZ<></th>Z<></tr>
  Z<><tr>Z<><td>&nbspZ<></td>Z<><th>AnoNet1Z<></th>Z<><th>AnoNet2Z<></th>Z<><th>dn42Z<></th>Z<><th>VAnetZ<></th>Z<></tr>
  Z<><tr>Z<><th>RoutingZ<></th>Z<><td>decentralizedZ<></td>Z<><td>decentralizedZ<></td>Z<><td>decentralizedZ<></td>Z<><td>centralizedZ<></td>
