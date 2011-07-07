@@ -15,6 +15,7 @@ for tld in db/dom/* ; do
    domain="$(basename $dom).$(basename $tld)"
    echo "There's a bad nameserver under $domain." >&2
    echo "You probably don't want to run any shell scripts." >&2
+   exit 1
   fi
   for ns in $dom/ns/* ; do
    if [ "$(cat $ns | tr -d '0-9.\n' | wc -c | tr -d ' \t')" != 0 ]; then
@@ -23,6 +24,7 @@ for tld in db/dom/* ; do
     echo "There's a bad nameserver IP under $domain, for" >&2
     echo " $nsname" >&2
     echo "You probably don't want to run any shell scripts." >&2
+    exit 1
    fi
   done
  done
@@ -46,6 +48,7 @@ if [ "$(ls db/ip/ | tr -d 'A-F0-9\n' | wc -c | tr -d ' \t')" != 0 ]; then
       ip="$(basename $first).$(basename $second).$(basename $third).0/24"
       echo "There's a bad nameserver under $ip." >&2
       echo "You probably don't want to run any shell scripts." >&2
+      exit 1
      fi
      for ns in $third/ns/* ; do
       if [ "$(cat $ns | tr -d '0-9.\n' | wc -c | tr -d ' \t')" != 0 ]; then
@@ -54,6 +57,7 @@ if [ "$(ls db/ip/ | tr -d 'A-F0-9\n' | wc -c | tr -d ' \t')" != 0 ]; then
        echo "There's a bad nameserver IP under $ip, for" >&2
        echo " $nsname" >&2
        echo "You probably don't want to run any shell scripts." >&2
+       exit 1
       fi
      done
     done
