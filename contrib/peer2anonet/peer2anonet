@@ -43,14 +43,8 @@ TEST[0]=$PEERNAME; TEST[1]=$YOURNET; TEST[2]=$YOURROUTE; TEST[3]=$YOURIP
 TEST[4]=$REMOTEIP; TEST[5]=$PEERIP; TEST[6]=$YOURPORT; TEST[7]=$PEERPORT
        TEST[8]=$YOURASN; TEST[9]=$PEERASN; TEST[10]=$PUBKEY
 
-if [[ $(echo ${TEST[0]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[0]}
-"
- exit 1
-fi
-     
-for((X=1;X<=5;X++)); do
-if [[ $(echo ${TEST[$X]} | tr -d 'a-zA-Z0-9.' | wc -c) -gt 1 ]]; then
+for((X=0;X<=5;X++)); do
+if [[ $(echo ${TEST[$X]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
 echo ${TEST[$X]} | tr -d 'a-zA-Z0-9' | wc -c
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
 "
