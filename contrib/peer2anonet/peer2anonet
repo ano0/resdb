@@ -14,14 +14,13 @@ mkdir -p /service
 
 #########################################################################
 # Generate new keys:
-KEYS=`quicktun.keypair</dev/random`
-SECKEY=`echo $KEYS | head -1`
-YPUBKEY=`echo $KEYS | head -2 | tail -1`
+KEYS=`quicktun.keypair</dev/random | head -2`
+SECKEY=`echo "${KEYS/SECRET: /}" | head -1`
+YPUBKEY=`echo "${KEYS/PUBLIC: /}" | head -2 | tail -1`
 echo "
 peer2anonet: your public key is:
-
-$YPUBKEY
-
+"
+echo "$YPUBKEY
 "
 
 #########################################################################
@@ -41,8 +40,8 @@ read -p "Enter your peer's public key: " PUBKEY
 #########################################################################
 # Do some security checks on variables:
 TEST[0]=$PEERNAME; TEST[1]=$YOURNET; TEST[2]=$YOURROUTE; TEST[3]=$YOURIP
-TEST[4]=$YOURPORT; TEST[5]=$YOURASN; TEST[6]=$REMOTEIP; TEST[7]=$PEERIP
-       TEST[8]=$PEERPORT; TEST[9]=$PEERASN; TEST[10]=$PUBKEY
+TEST[4]=$REMOTEIP; TEST[5]=$PEERIP; TEST[6]=$YOURPORT; TEST[7]=$PEERPORT
+       TEST[8]=$YOURASN; TEST[9]=$PEERASN; TEST[10]=$PUBKEY
 
 if [[ $(echo ${TEST[0]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[0]}
@@ -51,7 +50,8 @@ if [[ $(echo ${TEST[0]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
 fi
      
 for((X=1;X<=5;X++)); do
-if [[ $(echo ${TEST[$X]} | tr -d '0-9.' | wc -c) -gt 1 ]]; then
+if [[ $(echo ${TEST[$X]} | tr -d 'a-zA-Z0-9.' | wc -c) -gt 1 ]]; then
+echo ${TEST[$X]} | tr -d 'a-zA-Z0-9' | wc -c
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
 "
  exit 1
@@ -60,7 +60,7 @@ done
 
 for((X=6;X<=9;X++)); do
 if [[ $(echo ${TEST[$X]} | tr -d '0-9' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
+ echo "peer2anonet: fatal error: unacceptable data:$X ${TEST[$X]}
 "
  exit 1
 fi
@@ -69,7 +69,7 @@ done
 if [[ $(echo ${TEST[10]} | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[11]}
 "
- exit 1
+exit 1
 fi
 
 #########################################################################
@@ -154,7 +154,7 @@ echo "#!/bin/sh
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$YOURPORT
-export PRIVATE_KEY=${SECKEY/'SECRET: /}
+export PRIVATE_KEY=$SECKEY
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
 export INTERFACE=ppp-$PEERNAME

@@ -108,6 +108,9 @@ CHANGES:
         showing offending info for violating data detections.
       * security checks more specific
 
+      Sun Jul 10 17:04:36 CDT 2011 - d3v1150m471c
+      * security check and key bugs patched.
+
 
 
       
