@@ -7,6 +7,8 @@
 
 SYNOPSIS:
      peer2anonet
+        -OR-
+     peer2anonet < autoconfig
 
 
 DESCRIPTION:
@@ -50,6 +52,31 @@ INSTALL AND UNINSTALL:
 
       make install-deb
 
+USAGE:
+      You may execute peer2anonet and answer configuration questions
+      via interface or pipe a file containing the new peering
+      session's specifications to the executable. peer2anonet has
+      some security checks but it is highly recommended you check
+      a autoconfig file manually before using to prevent malicious
+      attacks. An autoconfig file should be in the following format:
+      Plain text file, one block of data per line, no spaces, and
+      without including the following '<-- comments'.
+
+================== Not Actual Line on File ============================
+anon        <--your peer's alias
+1.2.3.0       <--your new anonet network address
+1.2.3.1       <--your new anonet router address
+1.2.3.2       <--your new anonet ip
+1001          <--your new anonet client port
+1230          <--you new asn
+11.22.33.44   <--your peer's remote ip
+3.5.7.9       <--your peer's anonet ip
+3571          <--your peer's client port
+3570          <--your peer's asn
+3c6e0b8a9c15224a8228b9a98ca1531d <--your peer's public key
+================== Not Actual Line on File ============================ 
+
+
 CHANGES:
       Sat Jul  9 06:48:58 CDT 2011 - d3v1150m471c
       * quicktun's "EXPORT DEBUG=1" removed on peering script.
@@ -63,4 +90,15 @@ CHANGES:
       * bash added to dependencies
       * file tests with mkdir changed to `mkdir -p`... .
       * peering file removed, passes directly to run file now.
+
+      Sun Jul 10 05:47:22 CDT 2011 - d3v1150m471c
+      * makefile changed to Makefile
+      * parse quicktun.keypair</dev/random directly to seckey variable.
+      * removed y/n questions with file tests and automatic
+        configuration.
+      * README file updated
+      * ported for autoconfig file pipes
+      * some security checks created
+
+
       

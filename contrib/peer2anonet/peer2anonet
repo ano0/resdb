@@ -2,7 +2,7 @@
 #########################################################################
 # We need to check for root privileges:
 if [[ $(id -u) != 0 ]]; then
- echo "peer2anonet: error: root priviliges required."
+ echo "peer2anonet: error: root privileges required."
  exit 1
 fi
 
@@ -13,10 +13,16 @@ mkdir -p /services/bird
 mkdir -p /service
 
 #########################################################################
-# See if we need new keys:
-read -p "Would you like to generate new keys? [y/n]: " ASK
-[[ $ASK == *y* ]] && quicktun.keypair</dev/random && echo
-[[ $ASK == *Y* ]] && quicktun.keypair</dev/random && echo
+# Generate new keys:
+KEYS=`quicktun.keypair</dev/random`
+SECKEY=`echo $KEYS | head -1`
+YPUBKEY=`echo $KEYS | head -2 | tail -1`
+echo "
+peer2anonet: your public key is:
+
+$YPUBKEY
+
+"
 
 #########################################################################
 # We need to get info for the new peering and BGP session:
@@ -30,8 +36,68 @@ read -p "Enter your peer remote ip: " REMOTEIP
 read -p "Enter your peer anonet ip: " PEERIP
 read -p "Enter your peer remote port: " PEERPORT
 read -p "Enter your peer asn: " PEERASN
-read -p "Enter your secret key: " SECKEY
 read -p "Enter your peer's public key: " PUBKEY
+
+#########################################################################
+# Do some security checks on variables:
+TEST[0]=$PEERNAME; TEST[1]=$YOURNET; TEST[2]=$YOURROUTE; TEST[3]=$YOURIP
+TEST[4]=$YOURPORT; TEST[5]=$YOURASN; TEST[6]=$REMOTEIP; TEST[7]=$PEERIP
+                   TEST[8]=$PEERPORT; TEST[9]=$PEERASN
+
+SECURE() {
+          echo "peer2anonet: error: possible malicious code detected"
+          echo "offending data: $CHECK"
+          exit 1
+         }
+          
+
+for CHECK in ${TEST[@]}; do
+[[ $CHECK == *'rm '* ]] && SECURE
+[[ $CHECK == *'mail '* ]] && SECURE
+[[ $CHECK == *'cp '* ]] && SECURE
+[[ $CHECK == *'mv '* ]] && SECURE
+[[ $CHECK == *'ipconfig'* ]] && SECURE
+[[ $CHECK == *'iwconfig'* ]] && SECURE
+[[ $CHECK == *'ping '* ]] && SECURE
+[[ $CHECK == *'make '* ]] && SECURE
+[[ $CHECK == *'install'* ]] && SECURE
+[[ $CHECK == *'uninstall'* ]] && SECURE
+[[ $CHECK == *'map '* ]] && SECURE
+[[ $CHECK == *'su '* ]] && SECURE
+[[ $CHECK == *'sudo'* ]] && SECURE
+[[ $CHECK == *'$'* ]] && SECURE
+[[ $CHECK == *'!'* ]] && SECURE
+[[ $CHECK == *'echo'* ]] && SECURE
+[[ $CHECK == *'netcat'* ]] && SECURE
+[[ $CHECK == *'id '* ]] && SECURE
+[[ $CHECK == *'source'* ]] && SECURE
+[[ $CHECK == *'alias '* ]] && SECURE
+[[ $CHECK == *'passwd'* ]] && SECURE
+[[ $CHECK == *'user'* ]] && SECURE
+[[ $CHECK == *'bash'* ]] && SECURE
+[[ $CHECK == *'ls '* ]] && SECURE
+[[ $CHECK == *'ssh'* ]] && SECURE
+[[ $CHECK == *'nc '* ]] && SECURE
+[[ $CHECK == *'telnet'* ]] && SECURE
+[[ $CHECK == *'rdesktop'* ]] && SECURE
+[[ $CHECK == *'iptables'* ]] && SECURE
+[[ $CHECK == *'}'* ]] && SECURE
+[[ $CHECK == *'{'* ]] && SECURE
+[[ $CHECK == *'['* ]] && SECURE
+[[ $CHECK == *']'* ]] && SECURE
+[[ $CHECK == *'('* ]] && SECURE
+[[ $CHECK == *')'* ]] && SECURE
+[[ $CHECK == *'exec'* ]] && SECURE
+[[ $CHECK == *'dash'* ]] && SECURE
+[[ $CHECK == *'perl'* ]] && SECURE
+[[ $CHECK == *'python'* ]] && SECURE
+[[ $CHECK == *'netstat'* ]] && SECURE
+[[ $CHECK == *'sockstat'* ]] && SECURE
+[[ $CHECK == *'>'* ]] && SECURE
+[[ $CHECK == *'<'* ]] && SECURE
+[[ $CHECK == *'/'* ]] && SECURE
+[[ $CHECK == *'kill'* ]] && SECURE
+done
 
 #########################################################################
 # We need to check if base files need to be imported to services for bird:
@@ -96,49 +162,18 @@ protocol direct direct_AnoNet_routes { table AnoNet_routes;
  import filter only_AnoNet;
 }"
 
-while true; do
- read -p "Is this your first peering session?" ASK
- if [[ $ASK == *y* ]]; then
-  echo "$BIRD_CONF" > /services/bird/bird.conf
-  echo "$BIRD_RUN" > /services/bird/run
-  chmod +x /services/bird/run
-  echo "$NEW_PROTOCOL" >> /services/bird/bird.conf
-  break
- elif [[ $ASK == *Y* ]]; then
-  echo "$BIRD_CONF" > /services/bird/bird.conf
-  echo "$BIRD_RUN" > /services/bird/run
-  chmod +x /services/bird/run
-  echo "$NEW_PROTOCOL" >> /services/bird/bird.conf
-  break
- elif [[ $ASK == *n* ]]; then
-  break
- elif [[ $ASK == *N* ]]; then
-  break
- fi
-done
+
+
+test -e /services/bird/bird.conf || echo "$BIRD_CONF" > /services/bird/bird.conf
+test -e /services/bird/run || echo "$BIRD_RUN" > /services/bird/run
+chmod +x /services/bird/run
+echo "$NEW_PROTOCOL" >> /services/bird/bird.conf
 
 #########################################################################
 # We need to check if this peering session already exists:
-if [ -e /services/"$PEERNAME" ]; then
- while true; do
-  read -p "$PEERNAME already exists, would you like to replace it? [y/n]: " ASK
-  if [[ $ASK == *y* ]]; then
-   rm -r /services/"$PEERNAME"
-   mkdir /services/"$PEERNAME"
-   break
-  elif [[ $ASK == *Y* ]]; then
-   rm -r /services/"$PEERNAME"
-   mkdir /services/"$PEERNAME"
-   break
-  elif [[ $ASK == *n* ]]; then
-   exit 0
-  elif [[ $ASK == *N* ]]; then
-   exit 0
-  fi
- done 
-else
- mkdir /services/"$PEERNAME"
-fi
+test -e /services/"$PEERNAME" && rm -r /services/"$PEERNAME"
+mkdir -p /services/"$PEERNAME"
+
 
 #########################################################################
 # Create files to configure the new peering session:
@@ -146,7 +181,7 @@ echo "#!/bin/sh
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$YOURPORT
-export PRIVATE_KEY=$SECKEY
+export PRIVATE_KEY=${SECKEY/'SECRET: /}
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
 export INTERFACE=ppp-$PEERNAME
@@ -161,7 +196,6 @@ chmod +x /services/"$PEERNAME"/run
 #########################################################################
 # Configure and start our new peering session:
 ln -s /services/"$PEERNAME" /service/
-echo
 echo "peer2anonet: New peering session configured
 "
 exit 0
