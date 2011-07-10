@@ -30,11 +30,11 @@ read -p "Enter your peer name/interface: " PEERNAME
 read -p "Enter your new network address: " YOURNET
 read -p "Enter your new network router address: " YOURROUTE
 read -p "Enter your new network ip address: " YOURIP
-read -p "Enter your new local port: " YOURPORT
-read -p "Enter your new asn: " YOURASN
 read -p "Enter your peer remote ip: " REMOTEIP
 read -p "Enter your peer anonet ip: " PEERIP
+read -p "Enter your new local port: " YOURPORT
 read -p "Enter your peer remote port: " PEERPORT
+read -p "Enter your new asn: " YOURASN
 read -p "Enter your peer asn: " PEERASN
 read -p "Enter your peer's public key: " PUBKEY
 
@@ -50,7 +50,7 @@ if [[ $(echo ${TEST[0]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
  exit 1
 fi
      
-for((X=1;X<=8;X++)); do
+for((X=1;X<=5;X++)); do
 if [[ $(echo ${TEST[$X]} | tr -d '0-9.' | wc -c) -gt 1 ]]; then
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
 "
@@ -58,8 +58,16 @@ if [[ $(echo ${TEST[$X]} | tr -d '0-9.' | wc -c) -gt 1 ]]; then
 fi
 done
 
-if [[ $(echo ${TEST[9]} | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[9]}
+for((X=6;X<=9;X++)); do
+if [[ $(echo ${TEST[$X]} | tr -d '0-9' | wc -c) -gt 1 ]]; then
+ echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
+"
+ exit 1
+fi
+done
+
+if [[ $(echo ${TEST[10]} | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
+ echo "peer2anonet: fatal error: unacceptable data: ${TEST[11]}
 "
  exit 1
 fi

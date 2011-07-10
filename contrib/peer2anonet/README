@@ -63,15 +63,15 @@ USAGE:
       without including the following '<-- comments'.
 
 ================== Not Actual Line on File ============================
-anon        <--your peer's alias
+anon          <--your peer's alias
 1.2.3.0       <--your new anonet network address
 1.2.3.1       <--your new anonet router address
 1.2.3.2       <--your new anonet ip
-1001          <--your new anonet client port
-1230          <--you new asn
 11.22.33.44   <--your peer's remote ip
 3.5.7.9       <--your peer's anonet ip
+1001          <--your new anonet client port
 3571          <--your peer's client port
+1230          <--you new asn
 3570          <--your peer's asn
 3c6e0b8a9c15224a8228b9a98ca1531d <--your peer's public key
 ================== Not Actual Line on File ============================ 
@@ -106,6 +106,7 @@ CHANGES:
       Sun Jul 10 08:13:17 CDT 2011 - d3v1150m471c
       * security checks changed to check acceptable data and exits
         showing offending info for violating data detections.
+      * security checks more specific
 
 
 
