@@ -1,0 +1,12 @@
+Source: peer2anonet
+Priority: optional
+Maintainer: d3v1150m471c
+Version: 1.0-0
+Package: peer2anonet
+Architecture: all
+Depends: quicktun (>= 2.1), bird (>= 1.3), bird6 (>= 1.3), bash(>= 4.1)
+Description: peer2anonet 1.0-0
+ peer2anonet is an autoconfiguration utility to easily establish a
+ peering session with BGP on anonet2.
+
+

@@ -1,0 +1,173 @@
+#!/bin/bash
+#########################################################################
+# We need to check for root privileges:
+if [[ $(id -u) != 0 ]]; then
+ echo "peer2anonet: error: root priviliges required."
+ exit 1
+fi
+
+#########################################################################
+# We need to see if service(s) directories exist:
+mkdir -p /services
+mkdir -p /services/bird
+mkdir -p /service
+
+#########################################################################
+# See if we need new keys:
+read -p "Would you like to generate new keys? [y/n]: " ASK
+[[ $ASK == *y* ]] && quicktun.keypair</dev/random && echo
+[[ $ASK == *Y* ]] && quicktun.keypair</dev/random && echo
+
+#########################################################################
+# We need to get info for the new peering and BGP session:
+read -p "Enter your peer name/interface: " PEERNAME
+read -p "Enter your new network address: " YOURNET
+read -p "Enter your new network router address: " YOURROUTE
+read -p "Enter your new network ip address: " YOURIP
+read -p "Enter your new local port: " YOURPORT
+read -p "Enter your new asn: " YOURASN
+read -p "Enter your peer remote ip: " REMOTEIP
+read -p "Enter your peer anonet ip: " PEERIP
+read -p "Enter your peer remote port: " PEERPORT
+read -p "Enter your peer asn: " PEERASN
+read -p "Enter your secret key: " SECKEY
+read -p "Enter your peer's public key: " PUBKEY
+
+#########################################################################
+# We need to check if base files need to be imported to services for bird:
+NEW_PROTOCOL="
+protocol bgp $PEERNAME'_bgp' { table AnoNet_routes;
+ local as $YOURASN;
+ neighbor $PEERIP as $PEERASN;
+ source address $YOURIP;
+ import filter only_AnoNet_ebgp;
+ export filter only_AnoNet_ebgp_export;
+}"
+
+BIRD_RUN='#!/bin/sh
+exec bird -c bird.conf -d'
+
+BIRD_CONF="function n_AnoNet_mine (prefix arg) {
+ if arg ~ [ $YOURNET/24+ ] then return true;
+return false; };
+
+function n_AnoNet (prefix arg) {
+ if arg ~ [ 1.0.0.0/8+ ] then return true;
+return false; };
+
+filter only_AnoNet_ebgp {
+ if n_AnoNet(net) then
+  if !n_AnoNet_mine(net) then
+   accept \"AnoNet\";
+  else reject \"mine\";
+reject \"non-AnoNet\"; };
+
+filter only_AnoNet_ebgp_export {
+ if n_AnoNet(net) then accept \"AnoNet\";
+reject \"non-AnoNet\"; };
+
+filter only_AnoNet {
+ if n_AnoNet(net) then accept \"AnoNet\";
+reject \"non-AnoNet\"; };
+
+table AnoNet_routes;
+
+protocol pipe pipe_AnoNet_routes { peer table AnoNet_routes; mode transparent;
+ import filter only_AnoNet;
+ export filter only_AnoNet;
+};
+
+protocol static static_AnoNet_routes { table AnoNet_routes;
+ route $YOURROUTE/24 drop;
+}
+
+protocol kernel {
+ scan time 10;
+ import all;
+ export all;
+}
+
+protocol device {
+ scan time 900;
+}
+
+protocol direct direct_AnoNet_routes { table AnoNet_routes;
+ interface \"eth0\";
+ import filter only_AnoNet;
+}"
+
+while true; do
+ read -p "Is this your first peering session?" ASK
+ if [[ $ASK == *y* ]]; then
+  echo "$BIRD_CONF" > /services/bird/bird.conf
+  echo "$BIRD_RUN" > /services/bird/run
+  chmod +x /services/bird/run
+  echo "$NEW_PROTOCOL" >> /services/bird/bird.conf
+  break
+ elif [[ $ASK == *Y* ]]; then
+  echo "$BIRD_CONF" > /services/bird/bird.conf
+  echo "$BIRD_RUN" > /services/bird/run
+  chmod +x /services/bird/run
+  echo "$NEW_PROTOCOL" >> /services/bird/bird.conf
+  break
+ elif [[ $ASK == *n* ]]; then
+  break
+ elif [[ $ASK == *N* ]]; then
+  break
+ fi
+done
+
+#########################################################################
+# We need to check if this peering session already exists:
+if [ -e /services/"$PEERNAME" ]; then
+ while true; do
+  read -p "$PEERNAME already exists, would you like to replace it? [y/n]: " ASK
+  if [[ $ASK == *y* ]]; then
+   rm -r /services/"$PEERNAME"
+   mkdir /services/"$PEERNAME"
+   break
+  elif [[ $ASK == *Y* ]]; then
+   rm -r /services/"$PEERNAME"
+   mkdir /services/"$PEERNAME"
+   break
+  elif [[ $ASK == *n* ]]; then
+   exit 0
+  elif [[ $ASK == *N* ]]; then
+   exit 0
+  fi
+ done 
+else
+ mkdir /services/"$PEERNAME"
+fi
+
+#########################################################################
+# Create files to configure the new peering session:
+echo "#!/bin/sh
+export REMOTE_ADDRESS=$REMOTEIP
+export REMOTE_PORT=$PEERPORT
+export LOCAL_PORT=$YOURPORT
+export PRIVATE_KEY=$SECKEY
+export PUBLIC_KEY=$PUBKEY
+export TUN_MODE=1
+export INTERFACE=ppp-$PEERNAME
+( sleep 5;
+ ip addr add $YOURIP peer $PEERIP/32 dev \$INTERFACE scope link
+ ip addr add $YOURROUTE/32 dev \$INTERFACE scope global
+ ip link set dev \$INTERFACE up
+) &
+exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run
+chmod +x /services/"$PEERNAME"/run
+
+#########################################################################
+# Configure and start our new peering session:
+ln -s /services/"$PEERNAME" /service/
+echo
+echo "peer2anonet: New peering session configured
+"
+exit 0
+
+
+
+
+
+
