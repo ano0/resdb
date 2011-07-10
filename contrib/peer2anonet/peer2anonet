@@ -35,7 +35,6 @@ read -p "Enter your new local port: " YOURPORT
 read -p "Enter your peer remote port: " PEERPORT
 read -p "Enter your new asn: " YOURASN
 read -p "Enter your peer asn: " PEERASN
-read -p "Enter your peer's public key: " PUBKEY
 
 #########################################################################
 # Do some security checks on variables:
@@ -59,12 +58,6 @@ if [[ $(echo ${TEST[$X]} | tr -d '0-9' | wc -c) -gt 1 ]]; then
  exit 1
 fi
 done
-
-if [[ $(echo ${TEST[10]} | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[11]}
-"
-exit 1
-fi
 
 #########################################################################
 # We need to check if base files need to be imported to services for bird:
@@ -149,7 +142,7 @@ export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$YOURPORT
 export PRIVATE_KEY=$SECKEY
-export PUBLIC_KEY=$PUBKEY
+export PUBLIC_KEY=\"$(cat pubkey)\"
 export TUN_MODE=1
 export INTERFACE=ppp-$PEERNAME
 ( sleep 5;
@@ -162,6 +155,8 @@ chmod +x /services/"$PEERNAME"/run
 
 #########################################################################
 # Configure and start our new peering session:
+read -p "Enter your peer's public key: " PUBKEY
+echo "$PUBKEY" > /services/"$PEERNAME"/pubkey
 ln -s /services/"$PEERNAME" /service/
 echo "peer2anonet: New peering session configured
 "

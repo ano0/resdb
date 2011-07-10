@@ -111,6 +111,9 @@ CHANGES:
       Sun Jul 10 17:04:36 CDT 2011 - d3v1150m471c
       * security check and key bugs patched.
 
+      Sun Jul 10 18:50:31 CDT 2011 - d3v1150m471c
+      * public key prompt altered to avoid complications.
+
 
 
       
