@@ -155,11 +155,11 @@ chmod +x /services/"$PEERNAME"/run
 
 #########################################################################
 # Configure and start our new peering session:
-read -p "Enter your peer's public key: " PUBKEY
-echo "$PUBKEY" > /services/"$PEERNAME"/pubkey
 ln -s /services/"$PEERNAME" /service/
 echo "peer2anonet: New peering session configured
 "
+read -p "Enter your peer's public key: " PUBKEY
+echo "$PUBKEY" > /services/"$PEERNAME"/pubkey
 exit 0
 
 
