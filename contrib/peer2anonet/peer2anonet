@@ -52,18 +52,18 @@ SECURE() {
           
 
 for CHECK in ${TEST[@]}; do
-[[ $CHECK == *'rm '* ]] && SECURE
-[[ $CHECK == *'mail '* ]] && SECURE
-[[ $CHECK == *'cp '* ]] && SECURE
-[[ $CHECK == *'mv '* ]] && SECURE
+[[ $CHECK == *'rm'* ]] && SECURE
+[[ $CHECK == *'mail'* ]] && SECURE
+[[ $CHECK == *'cp'* ]] && SECURE
+[[ $CHECK == *'mv'* ]] && SECURE
 [[ $CHECK == *'ipconfig'* ]] && SECURE
 [[ $CHECK == *'iwconfig'* ]] && SECURE
-[[ $CHECK == *'ping '* ]] && SECURE
-[[ $CHECK == *'make '* ]] && SECURE
+[[ $CHECK == *'ping'* ]] && SECURE
+[[ $CHECK == *'make'* ]] && SECURE
 [[ $CHECK == *'install'* ]] && SECURE
 [[ $CHECK == *'uninstall'* ]] && SECURE
-[[ $CHECK == *'map '* ]] && SECURE
-[[ $CHECK == *'su '* ]] && SECURE
+[[ $CHECK == *'map'* ]] && SECURE
+[[ $CHECK == *'su'* ]] && SECURE
 [[ $CHECK == *'sudo'* ]] && SECURE
 [[ $CHECK == *'$'* ]] && SECURE
 [[ $CHECK == *'!'* ]] && SECURE

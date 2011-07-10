@@ -100,5 +100,7 @@ CHANGES:
       * ported for autoconfig file pipes
       * some security checks created
 
+      Sun Jul 10 07:25:42 CDT 2011 - d3v1150m471c
+      * security checks, whitespace removed after some data
 
       
