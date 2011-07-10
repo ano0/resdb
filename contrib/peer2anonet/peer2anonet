@@ -42,7 +42,7 @@ read -p "Enter your peer's public key: " PUBKEY
 # Do some security checks on variables:
 TEST[0]=$PEERNAME; TEST[1]=$YOURNET; TEST[2]=$YOURROUTE; TEST[3]=$YOURIP
 TEST[4]=$YOURPORT; TEST[5]=$YOURASN; TEST[6]=$REMOTEIP; TEST[7]=$PEERIP
-                   TEST[8]=$PEERPORT; TEST[9]=$PEERASN
+       TEST[8]=$PEERPORT; TEST[9]=$PEERASN; TEST[10]=$PUBKEY
 
 if [[ $(echo ${TEST[0]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[0]}
