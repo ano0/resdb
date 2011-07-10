@@ -44,60 +44,25 @@ TEST[0]=$PEERNAME; TEST[1]=$YOURNET; TEST[2]=$YOURROUTE; TEST[3]=$YOURIP
 TEST[4]=$YOURPORT; TEST[5]=$YOURASN; TEST[6]=$REMOTEIP; TEST[7]=$PEERIP
                    TEST[8]=$PEERPORT; TEST[9]=$PEERASN
 
-SECURE() {
-          echo "peer2anonet: error: possible malicious code detected"
-          echo "offending data: $CHECK"
-          exit 1
-         }
-          
-
-for CHECK in ${TEST[@]}; do
-[[ $CHECK == *'rm'* ]] && SECURE
-[[ $CHECK == *'mail'* ]] && SECURE
-[[ $CHECK == *'cp'* ]] && SECURE
-[[ $CHECK == *'mv'* ]] && SECURE
-[[ $CHECK == *'ipconfig'* ]] && SECURE
-[[ $CHECK == *'iwconfig'* ]] && SECURE
-[[ $CHECK == *'ping'* ]] && SECURE
-[[ $CHECK == *'make'* ]] && SECURE
-[[ $CHECK == *'install'* ]] && SECURE
-[[ $CHECK == *'uninstall'* ]] && SECURE
-[[ $CHECK == *'map'* ]] && SECURE
-[[ $CHECK == *'su'* ]] && SECURE
-[[ $CHECK == *'sudo'* ]] && SECURE
-[[ $CHECK == *'$'* ]] && SECURE
-[[ $CHECK == *'!'* ]] && SECURE
-[[ $CHECK == *'echo'* ]] && SECURE
-[[ $CHECK == *'netcat'* ]] && SECURE
-[[ $CHECK == *'id '* ]] && SECURE
-[[ $CHECK == *'source'* ]] && SECURE
-[[ $CHECK == *'alias '* ]] && SECURE
-[[ $CHECK == *'passwd'* ]] && SECURE
-[[ $CHECK == *'user'* ]] && SECURE
-[[ $CHECK == *'bash'* ]] && SECURE
-[[ $CHECK == *'ls '* ]] && SECURE
-[[ $CHECK == *'ssh'* ]] && SECURE
-[[ $CHECK == *'nc '* ]] && SECURE
-[[ $CHECK == *'telnet'* ]] && SECURE
-[[ $CHECK == *'rdesktop'* ]] && SECURE
-[[ $CHECK == *'iptables'* ]] && SECURE
-[[ $CHECK == *'}'* ]] && SECURE
-[[ $CHECK == *'{'* ]] && SECURE
-[[ $CHECK == *'['* ]] && SECURE
-[[ $CHECK == *']'* ]] && SECURE
-[[ $CHECK == *'('* ]] && SECURE
-[[ $CHECK == *')'* ]] && SECURE
-[[ $CHECK == *'exec'* ]] && SECURE
-[[ $CHECK == *'dash'* ]] && SECURE
-[[ $CHECK == *'perl'* ]] && SECURE
-[[ $CHECK == *'python'* ]] && SECURE
-[[ $CHECK == *'netstat'* ]] && SECURE
-[[ $CHECK == *'sockstat'* ]] && SECURE
-[[ $CHECK == *'>'* ]] && SECURE
-[[ $CHECK == *'<'* ]] && SECURE
-[[ $CHECK == *'/'* ]] && SECURE
-[[ $CHECK == *'kill'* ]] && SECURE
+if [[ $(echo ${TEST[0]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
+ echo "peer2anonet: fatal error: unacceptable data: ${TEST[0]}
+"
+ exit 1
+fi
+     
+for((X=1;X<=8;X++)); do
+if [[ $(echo ${TEST[$X]} | tr -d '0-9.' | wc -c) -gt 1 ]]; then
+ echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
+"
+ exit 1
+fi
 done
+
+if [[ $(echo ${TEST[9]} | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
+ echo "peer2anonet: fatal error: unacceptable data: ${TEST[9]}
+"
+ exit 1
+fi
 
 #########################################################################
 # We need to check if base files need to be imported to services for bird:
