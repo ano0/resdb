@@ -142,7 +142,7 @@ export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$YOURPORT
 export PRIVATE_KEY=$SECKEY
-export PUBLIC_KEY=\"$(cat pubkey)\"
+export PUBLIC_KEY=\"\$(cat pubkey)\"
 export TUN_MODE=1
 export INTERFACE=ppp-$PEERNAME
 ( sleep 5;
