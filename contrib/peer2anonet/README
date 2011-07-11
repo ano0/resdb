@@ -74,7 +74,11 @@ anon          <--your peer's alias
 1230          <--you new asn
 3570          <--your peer's asn
 3c6e0b8a9c15224a8228b9a98ca1531d <--your peer's public key
-================== Not Actual Line on File ============================ 
+================== Not Actual Line on File ============================
+
+     At your discretion, you may exclude the public key from the
+     bottom of an autoconfig file and post installation of your new
+     peer service, peer2anonet will prompt for it.
 
 
 CHANGES:
