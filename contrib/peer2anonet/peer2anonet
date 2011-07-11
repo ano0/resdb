@@ -13,34 +13,24 @@ mkdir -p /services/bird
 mkdir -p /service
 
 #########################################################################
-# Generate new keys:
-KEYS=`quicktun.keypair</dev/random | head -2`
-SECKEY=`echo "${KEYS/SECRET: /}" | head -1`
-YPUBKEY=`echo "${KEYS/PUBLIC: /}" | head -2 | tail -1`
-echo "
-peer2anonet: your public key is:
-"
-echo "$YPUBKEY
-"
-
-#########################################################################
 # We need to get info for the new peering and BGP session:
-read -p "Enter your peer name/interface: " PEERNAME
+read -p "Enter your peer's name/interface: " PEERNAME
 read -p "Enter your new network address: " YOURNET
 read -p "Enter your new network router address: " YOURROUTE
 read -p "Enter your new network ip address: " YOURIP
-read -p "Enter your peer remote ip: " REMOTEIP
-read -p "Enter your peer anonet ip: " PEERIP
+read -p "Enter your peer's remote ip: " REMOTEIP
+read -p "Enter your peer's anonet ip: " PEERIP
 read -p "Enter your new local port: " YOURPORT
-read -p "Enter your peer remote port: " PEERPORT
+read -p "Enter your peer's remote port: " PEERPORT
 read -p "Enter your new asn: " YOURASN
-read -p "Enter your peer asn: " PEERASN
+read -p "Enter your peer's asn: " PEERASN
+read -p "Enter your peer's public key: " PUBKEY
 
 #########################################################################
 # Do some security checks on variables:
 TEST[0]=$PEERNAME; TEST[1]=$YOURNET; TEST[2]=$YOURROUTE; TEST[3]=$YOURIP
 TEST[4]=$REMOTEIP; TEST[5]=$PEERIP; TEST[6]=$YOURPORT; TEST[7]=$PEERPORT
-       TEST[8]=$YOURASN; TEST[9]=$PEERASN;
+       TEST[8]=$YOURASN; TEST[9]=$PEERASN
 
 for((X=0;X<=5;X++)); do
 if [[ $(echo ${TEST[$X]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
@@ -58,6 +48,12 @@ if [[ $(echo ${TEST[$X]} | tr -d '0-9' | wc -c) -gt 1 ]]; then
  exit 1
 fi
 done
+
+if [[ $(echo "$PUBKEY" | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
+ echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
+"
+ exit 1
+fi
 
 #########################################################################
 # We need to check if base files need to be imported to services for bird:
@@ -141,8 +137,8 @@ echo "#!/bin/sh
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$YOURPORT
-export PRIVATE_KEY=$SECKEY
-export PUBLIC_KEY=\"\$(cat pubkey)\"
+export PRIVATE_KEY=\"\$(cat seckey)\"
+export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
 export INTERFACE=ppp-$PEERNAME
 ( sleep 5;
@@ -155,18 +151,13 @@ chmod +x /services/"$PEERNAME"/run
 
 #########################################################################
 # Configure and start our new peering session:
-ln -s /services/"$PEERNAME" /service/
-echo "peer2anonet: New peering session configured
+test -L "/service/$PEERNAME" && rm -r "/service/$PEERNAME"
+ln -s "/services/$PEERNAME" /service/
+echo 'Secret Key Goes Here!' > "/services/$PEERNAME/seckey"
+echo "peer2anonet: New peering session configured.
+Please place your secret key in: /services/$PEERNAME/seckey
 "
-read -p "Enter your peer's public key: " PUBKEY
-if [[ $(echo "$PUBKEY" | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: $PUBKEY
-"
- exit 1
-fi
-echo "$PUBKEY" > /services/"$PEERNAME"/pubkey
 
-exit 0
 
 
 

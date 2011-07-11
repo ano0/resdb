@@ -6,10 +6,17 @@
 |_|
 
 SYNOPSIS:
+     # Interactive prompt:
      peer2anonet
-        -OR-
-     peer2anonet < autoconfig
 
+     # Accept pipe from file:
+     peer2anonet < autoconfig.txt 
+
+     # Accept netcat pipe:
+     nc -l 1337 | peer2anonet 
+
+     # Send a netcat pipe:
+     nc 1337 192.168.1.0 < autoconfig.txt 
 
 DESCRIPTION:
      peer2anonet is an autoconfiguration utility to easily establish a
@@ -117,6 +124,11 @@ CHANGES:
 
       Sun Jul 10 18:50:31 CDT 2011 - d3v1150m471c
       * public key prompt altered to avoid complications.
+
+      Sun Jul 10 22:01:12 CDT 2011 - d3v1150m471c
+      * key inputs changed. peer2anonet no longer generates
+        key pairs so they can be manually created prior to 
+        using peer2anonet, for expedience.
 
 
 
