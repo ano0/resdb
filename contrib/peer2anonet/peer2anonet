@@ -7,6 +7,10 @@ if [[ $(id -u) != 0 ]]; then
 fi
 
 #########################################################################
+# We need to source our peer2anonet variables
+source /etc/peer2anonet/p2a.conf
+
+#########################################################################
 # We need to see if service(s) directories exist:
 mkdir -p /services
 mkdir -p /services/bird
@@ -15,24 +19,18 @@ mkdir -p /service
 #########################################################################
 # We need to get info for the new peering and BGP session:
 read -p "Enter your peer's name/interface: " PEERNAME
-read -p "Enter your new network address: " YOURNET
-read -p "Enter your new network router address: " YOURROUTE
-read -p "Enter your new network ip address: " YOURIP
 read -p "Enter your peer's remote ip: " REMOTEIP
 read -p "Enter your peer's anonet ip: " PEERIP
-read -p "Enter your new local port: " YOURPORT
 read -p "Enter your peer's remote port: " PEERPORT
-read -p "Enter your new asn: " YOURASN
 read -p "Enter your peer's asn: " PEERASN
 read -p "Enter your peer's public key: " PUBKEY
 
 #########################################################################
 # Do some security checks on variables:
-TEST[0]=$PEERNAME; TEST[1]=$YOURNET; TEST[2]=$YOURROUTE; TEST[3]=$YOURIP
-TEST[4]=$REMOTEIP; TEST[5]=$PEERIP; TEST[6]=$YOURPORT; TEST[7]=$PEERPORT
-       TEST[8]=$YOURASN; TEST[9]=$PEERASN
+TEST[0]=$PEERNAME; TEST[1]=$REMOTEIP; TEST[2]=$PEERIP
+        TEST[3]=$PEERPORT; TEST[4]=$PEERASN
 
-for((X=0;X<=5;X++)); do
+for((X=0;X<=2;X++)); do
 if [[ $(echo ${TEST[$X]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
 echo ${TEST[$X]} | tr -d 'a-zA-Z0-9' | wc -c
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
@@ -41,7 +39,7 @@ echo ${TEST[$X]} | tr -d 'a-zA-Z0-9' | wc -c
 fi
 done
 
-for((X=6;X<=9;X++)); do
+for((X=4;X<=5;X++)); do
 if [[ $(echo ${TEST[$X]} | tr -d '0-9' | wc -c) -gt 1 ]]; then
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
 "
@@ -55,13 +53,15 @@ if [[ $(echo "$PUBKEY" | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
  exit 1
 fi
 
+ADDPORT="2$(($PEERASN % 10000))"
+
 #########################################################################
 # We need to check if base files need to be imported to services for bird:
 NEW_PROTOCOL="
 protocol bgp $PEERNAME'_bgp' { table AnoNet_routes;
- local as $YOURASN;
+ local as $P2A_ASN;
  neighbor $PEERIP as $PEERASN;
- source address $YOURIP;
+ source address $P2A_IP;
  import filter only_AnoNet_ebgp;
  export filter only_AnoNet_ebgp_export;
 }"
@@ -70,7 +70,7 @@ BIRD_RUN='#!/bin/sh
 exec bird -c bird.conf -d'
 
 BIRD_CONF="function n_AnoNet_mine (prefix arg) {
- if arg ~ [ $YOURNET/24+ ] then return true;
+ if arg ~ [ $P2A_NET/24+ ] then return true;
 return false; };
 
 function n_AnoNet (prefix arg) {
@@ -100,7 +100,7 @@ protocol pipe pipe_AnoNet_routes { peer table AnoNet_routes; mode transparent;
 };
 
 protocol static static_AnoNet_routes { table AnoNet_routes;
- route $YOURROUTE/24 drop;
+ route $P2A_ROUTE/24 drop;
 }
 
 protocol kernel {
@@ -136,14 +136,14 @@ mkdir -p /services/"$PEERNAME"
 echo "#!/bin/sh
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
-export LOCAL_PORT=$YOURPORT
+export LOCAL_PORT=$ADDPORT
 export PRIVATE_KEY=\"\$(cat seckey)\"
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
 export INTERFACE=ppp-$PEERNAME
 ( sleep 5;
- ip addr add $YOURIP peer $PEERIP/32 dev \$INTERFACE scope link
- ip addr add $YOURROUTE/32 dev \$INTERFACE scope global
+ ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
+ ip addr add $P2A_ROUTE/32 dev \$INTERFACE scope global
  ip link set dev \$INTERFACE up
 ) &
 exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run

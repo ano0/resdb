@@ -71,14 +71,9 @@ USAGE:
 
 ================== Not Actual Line on File ============================
 anon          <--your peer's alias
-1.2.3.0       <--your new anonet network address
-1.2.3.1       <--your new anonet router address
-1.2.3.2       <--your new anonet ip
 11.22.33.44   <--your peer's remote ip
 3.5.7.9       <--your peer's anonet ip
-1001          <--your new anonet client port
 3571          <--your peer's client port
-1230          <--you new asn
 3570          <--your peer's asn
 3c6e0b8a9c15224a8228b9a98ca1531d <--your peer's public key
 ================== Not Actual Line on File ============================
@@ -129,6 +124,14 @@ CHANGES:
       * key inputs changed. peer2anonet no longer generates
         key pairs so they can be manually created prior to 
         using peer2anonet, for expedience.
+
+      Wed Jul 13 04:17:03 CDT 2011 - d3v1150m471c
+      * added env variables that are configured on installation
+      * uses env variables for certain settings to uncomplicate the
+        peering process. A peer now only needs to send you pertinent
+        data pertaining to his/her system in order for you to
+        configure a new peering session, or vice versa.
+
 
 
 

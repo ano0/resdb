@@ -11,6 +11,7 @@ install-deb:
 	cp peer2anonet DEBIAN/peer2anonet/usr/bin/peer2anonet
 	chmod +x DEBIAN/peer2anonet/usr/bin/peer2anonet
 	cp LICENSE DEBIAN/peer2anonet/etc/peer2anonet/LICENSE
+	DEBIAN/configure
 	dpkg-deb --build DEBIAN/peer2anonet
 	dpkg -i DEBIAN/peer2anonet.deb
 	rm -rf DEBIAN/peer2anonet DEBIAN/peer2anonet.deb
@@ -20,6 +21,7 @@ install:
 	chmod +x /usr/bin/peer2anonet
 	mkdir /etc/peer2anonet
 	cp LICENSE /etc/peer2anonet/LICENSE
+	./configure
 
 uninstall:
 	rm -r /usr/bin/peer2anonet /etc/peer2anonet
