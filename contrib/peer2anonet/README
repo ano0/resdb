@@ -80,7 +80,15 @@ anon          <--your peer's alias
 
      At your discretion, you may exclude the public key from the
      bottom of an autoconfig file and post installation of your new
-     peer service, peer2anonet will prompt for it.
+     peer service, peer2anonet will prompt for it. PLEASE NOTE:
+     peer2anonet will set YOUR local port for peering as:
+ 
+     2<last four of your peer's asn>.
+
+     Therefore, send them the remote port as above, and vice versa.
+     This helps later when networking to easily identify and debug
+     problems. If you need to change the ports, go to:
+     /services/$PEERNAME/run and change the values.
 
 
 CHANGES:
