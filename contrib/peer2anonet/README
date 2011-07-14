@@ -73,7 +73,6 @@ USAGE:
 anon          <--your peer's alias
 11.22.33.44   <--your peer's remote ip
 3.5.7.9       <--your peer's anonet ip
-3571          <--your peer's client port
 3570          <--your peer's asn
 3c6e0b8a9c15224a8228b9a98ca1531d <--your peer's public key
 ================== Not Actual Line on File ============================
@@ -81,13 +80,15 @@ anon          <--your peer's alias
      At your discretion, you may exclude the public key from the
      bottom of an autoconfig file and post installation of your new
      peer service, peer2anonet will prompt for it. PLEASE NOTE:
-     peer2anonet will set YOUR local port for peering as:
+     peer2anonet will set client ports for peering as:
  
+     #REMOTE:
+     2<last four of your asn>.
+
+     #LOCAL:
      2<last four of your peer's asn>.
 
-     Therefore, send them the remote port as above, and vice versa.
-     This helps later when networking to easily identify and debug
-     problems. If you need to change the ports, go to:
+     If you need to change the ports, go to:
      /services/$PEERNAME/run and change the values.
 
 
@@ -140,6 +141,9 @@ CHANGES:
         data pertaining to his/her system in order for you to
         configure a new peering session, or vice versa.
 
+      Thu Jul 14 09:09:07 CDT 2011 - d3v1150m471c
+      * client local/remote ports simplified using peers' asn's.
+        see above for details.
 
 
 

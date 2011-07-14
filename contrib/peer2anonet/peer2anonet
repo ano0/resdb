@@ -21,14 +21,12 @@ mkdir -p /service
 read -p "Enter your peer's name/interface: " PEERNAME
 read -p "Enter your peer's remote ip: " REMOTEIP
 read -p "Enter your peer's anonet ip: " PEERIP
-read -p "Enter your peer's remote port: " PEERPORT
 read -p "Enter your peer's asn: " PEERASN
 read -p "Enter your peer's public key: " PUBKEY
 
 #########################################################################
 # Do some security checks on variables:
 TEST[0]=$PEERNAME; TEST[1]=$REMOTEIP; TEST[2]=$PEERIP
-        TEST[3]=$PEERPORT; TEST[4]=$PEERASN
 
 for((X=0;X<=2;X++)); do
 if [[ $(echo ${TEST[$X]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
@@ -39,9 +37,8 @@ echo ${TEST[$X]} | tr -d 'a-zA-Z0-9' | wc -c
 fi
 done
 
-for((X=4;X<=5;X++)); do
-if [[ $(echo ${TEST[$X]} | tr -d '0-9' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
+if [[ $(echo "$PEERASN" | tr -d '0-9' | wc -c) -gt 1 ]]; then
+ echo "peer2anonet: fatal error: unacceptable data: "$PEERASN"
 "
  exit 1
 fi
@@ -54,7 +51,7 @@ if [[ $(echo "$PUBKEY" | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
 fi
 
 ADDPORT="2$(($PEERASN % 10000))"
-
+REM_PORT="2$(($P2A_ASN % 10000))"
 #########################################################################
 # We need to check if base files need to be imported to services for bird:
 NEW_PROTOCOL="
@@ -135,7 +132,7 @@ mkdir -p /services/"$PEERNAME"
 # Create files to configure the new peering session:
 echo "#!/bin/sh
 export REMOTE_ADDRESS=$REMOTEIP
-export REMOTE_PORT=$PEERPORT
+export REMOTE_PORT=$REM_PORT
 export LOCAL_PORT=$ADDPORT
 export PRIVATE_KEY=\"\$(cat seckey)\"
 export PUBLIC_KEY=$PUBKEY
