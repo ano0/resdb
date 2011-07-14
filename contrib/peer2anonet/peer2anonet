@@ -54,7 +54,7 @@ REM_PORT="2$(($P2A_ASN % 10000))"
 #########################################################################
 # We need to check if base files need to be imported to services for bird:
 NEW_PROTOCOL="
-protocol bgp $PEERNAME'_bgp' { table AnoNet_routes;
+protocol bgp $PEERNAME\_bgp { table AnoNet_routes;
  local as $P2A_ASN;
  neighbor $PEERIP as $PEERASN;
  source address $P2A_IP;
