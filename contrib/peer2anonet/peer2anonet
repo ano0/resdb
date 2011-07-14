@@ -42,7 +42,6 @@ if [[ $(echo "$PEERASN" | tr -d '0-9' | wc -c) -gt 1 ]]; then
 "
  exit 1
 fi
-done
 
 if [[ $(echo "$PUBKEY" | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
@@ -55,7 +54,7 @@ REM_PORT="2$(($P2A_ASN % 10000))"
 #########################################################################
 # We need to check if base files need to be imported to services for bird:
 NEW_PROTOCOL="
-protocol bgp $PEERNAME'_bgp' { table AnoNet_routes;
+protocol bgp $PEERNAME\_bgp { table AnoNet_routes;
  local as $P2A_ASN;
  neighbor $PEERIP as $PEERASN;
  source address $P2A_IP;
