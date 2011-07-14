@@ -42,7 +42,6 @@ if [[ $(echo "$PEERASN" | tr -d '0-9' | wc -c) -gt 1 ]]; then
 "
  exit 1
 fi
-done
 
 if [[ $(echo "$PUBKEY" | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
  echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
