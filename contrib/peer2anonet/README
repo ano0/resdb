@@ -16,7 +16,7 @@ SYNOPSIS:
      nc -l 1337 | peer2anonet 
 
      # Send a netcat pipe:
-     nc 1337 192.168.1.0 < autoconfig.txt 
+     nc 192.168.1.0 1337 < autoconfig.txt 
 
 DESCRIPTION:
      peer2anonet is an autoconfiguration utility to easily establish a
