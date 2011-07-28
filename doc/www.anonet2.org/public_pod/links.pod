@@ -4,6 +4,8 @@ Back to homepage - L<http://www.anonet2.org/>
 
 This is a collection of links that you may find interesting:
 
+20110728 - L<Film studios thrash BT in Newzbin site-block test case|http://www.theregister.co.uk/2011/07/28/site_blocking_bt_and_newzbin2/>
+
 20110708 - L<Copyright alert system planned by studios, ISPs|http://www.cbc.ca/news/technology/story/2011/07/08/copyright-warnings.html>
 
 20110705 - L<Afghans Build Open-Source Internet From Trash|http://www.shareable.net/blog/afghans-build-open-source-internet-from-trash-0>

@@ -217,10 +217,18 @@ like most of the core AnoNet services.  Again, you're not looking at an
 "official" reason for joining, but nobody owns AnoNet, so "official"
 is an artificial term 'round here.
 
+Related to the previous reason, AnoNet is a community with one active
+IRC channel and a lot of mostly inactive channels.  It's possible to
+find someone at almost any hour, and most of us are friendly most times.
+Some AnoNet users use AnoNet only for chat or almost only for chat.
+
 You may be looking for help with your Mathematics, Physics or Computer
 Science homework.  Due to AnoNet's nature, many of the guys who hang
 out here have an academic background in one (or more) of the above,
 and most are quite happy to help students.
+
+At least one AnoNet user uses AnoNet for remote access to his home
+computer that is behind a NAT that is behind a restrictive ISP.
 
 If you're interested in starting your own darknet, you can get plenty of
 advice here.  In addition, the AnoNet2 infrastructure is easy to reuse
