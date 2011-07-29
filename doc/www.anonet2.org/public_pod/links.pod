@@ -4,6 +4,8 @@ Back to homepage - L<http://www.anonet2.org/>
 
 This is a collection of links that you may find interesting:
 
+20110729 - L<UK Cops 'duped' into arresting wrong LulzSec suspect|http://www.theregister.co.uk/2011/07/28/topiary_arrest_rumor/>
+
 20110729 - L<Pwned HBGary boss cancels public debate after legal threats|http://www.theregister.co.uk/2011/07/28/ex_hbgary_boss_cancels_blackhat_gig/>
 
 20110728 - L<Film studios thrash BT in Newzbin site-block test case|http://www.theregister.co.uk/2011/07/28/site_blocking_bt_and_newzbin2/>
