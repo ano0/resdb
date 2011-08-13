@@ -4,6 +4,10 @@ Back to homepage - L<http://www.anonet2.org/>
 
 This is a collection of links that you may find interesting:
 
+20110813 - L<Microsoft bans open source license trio from WinPhone|http://www.theregister.co.uk/2011/02/17/microsoft_bans_opensource_windows_phone/>
+
+20110813 - L<Google lands patent for, um, estimating shipment time|http://www.theregister.co.uk/2011/08/12/google_customer_notification_patent/>
+
 20110729 - L<UK Cops 'duped' into arresting wrong LulzSec suspect|http://www.theregister.co.uk/2011/07/28/topiary_arrest_rumor/>
 
 20110729 - L<Pwned HBGary boss cancels public debate after legal threats|http://www.theregister.co.uk/2011/07/28/ex_hbgary_boss_cancels_blackhat_gig/>
