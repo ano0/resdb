@@ -4,6 +4,8 @@ Back to homepage - L<http://www.anonet2.org/>
 
 This is a collection of links that you may find interesting:
 
+20110814 - L<Should access to Twitter and Facebook be curbed when they're used to plot crime?|http://www.cbc.ca/news/yourcommunity/2011/08/should-access-to-twitter-and-facebook-be-curbed-when-theyre-used-to-plot-crime.html>
+
 20110813 - L<Microsoft bans open source license trio from WinPhone|http://www.theregister.co.uk/2011/02/17/microsoft_bans_opensource_windows_phone/>
 
 20110813 - L<Google lands patent for, um, estimating shipment time|http://www.theregister.co.uk/2011/08/12/google_customer_notification_patent/>
