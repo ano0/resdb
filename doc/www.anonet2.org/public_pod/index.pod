@@ -369,9 +369,7 @@ Here is a recent chatlog from #anonet:
 
 =item /A1/TIBS01> http://www.wiihacks.com
 
-=item /A1/TIBS01> http://www.wiihacks.com/recommended-faqs-guides-tutorials-o
-
-=item nly/60921-guide-softmod-any-wii.html
+=item /A1/TIBS01> http://www.wiihacks.com/recommended-faqs-guides-tutorials-only/60921-guide-softmod-any-wii.html
 
 =item /A1/TIBS01> if i was you i would take a law suit against these hackers..
 
