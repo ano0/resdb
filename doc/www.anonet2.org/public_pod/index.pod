@@ -345,6 +345,100 @@ HTTP proxies, the proxy doesn't know what you're looking for, Scroogle
 has no clue who you are, and by the time the search makes its way to
 Google, connecting it to you is all but hopeless.
 
+Here is a recent chatlog from #anonet:
+
+=over
+
+=item /A1/R> [TIBS01 @ KN] i got pissed off with wiihacks
+
+=item /A1/TIBS01> there all knobs
+
+=item /A1/TIBS01> and reported them
+
+=item /A1/TIBS01> to nintendo
+
+=item /A1/TIBS01> Dear sir/madam
+
+=item /A1/TIBS01> im just contacting you about some hacks that i have come across that some little hackers have used to exploit your firmware  please find these sites listed below
+
+=item /A1/TIBS01> for future firmware releases i hope u can patch these hacks because they crash peoples wii;s and they also hang the wii and make the rom chip unreadable.
+
+=item /A1/TIBS01> i will list these sites i have come cross that have these hacks so u can have alook and patch the software..
+
+=item /A1/TIBS01> http://please.hackmii.com/
+
+=item /A1/TIBS01> http://www.wiihacks.com
+
+=item /A1/TIBS01> http://www.wiihacks.com/recommended-faqs-guides-tutorials-o
+
+=item nly/60921-guide-softmod-any-wii.html
+
+=item /A1/TIBS01> if i was you i would take a law suit against these hackers..
+
+=item /A1/TIBS01> yours thankfully
+
+=item /A1/TIBS01> steve gibbs
+
+=item /A1/TIBS01> get rid of the wankers
+
+=item /A1/TIBS01> at wiihacks
+
+=item /A1/TIBS01> i might even launch a DDos attack against them
+
+=item /NNN/somerandomnick> censorship?
+
+=item /A1/TIBS01> ?
+
+=item /NNN/somerandomnick> They do not have a right that they will tell that they want?
+
+=item /A1/TIBS01> oooer
+
+=item /A1/TIBS01> just contacted there domain provider
+
+=item /A1/TIBS01> hahaha
+
+=item /A1/TIBS01> they fucked with the wrong person
+
+=item /A1/TIBS01> next server isp
+
+=item /NNN/somerandomnick> /A1/TIBS01: What they did to you?
+
+=item /A1/TIBS01> basicly no help
+
+=item /A1/TIBS01> ban me from the forums and irc chat
+
+=item /A1/TIBS01> and giving me newbie abuse shit
+
+=item /A1/TIBS01> so now its pay back
+
+=item /MuffinNET/On3m0r3> hf
+
+=item /NNN/somerandomnick> so you threat that if they will ban you from the forums and irc chat then you will ask that the government will censor them?
+
+=item /SVC/srnbot> government really sucks.
+
+=item /NNN/somerandomnick> and they also must help you?
+
+=item /NNN/somerandomnick> IMHO you are not fair.
+
+=item /MuffinNET/On3m0r3> beat them with the own weapons
+
+=item /NNN/somerandomnick> If you want to attack to their webserver and add a note in top that they ban users from forums and irc chat then I do not complain ;-)
+
+=item /A1/R> [TIBS01 @ KN] lol
+
+=item /A1/TIBS01> they are wankers
+
+=item /A1/TIBS01> i just submitted a ticket for there isp...
+
+=item /MuffinNET/On3m0r3> ok, but when their servers are so vulnerable thats so easy and no important informations are hidden inside the LAN behind or so then it is a simple way to tell them to be friendly to all
+
+=item /A1/TIBS01> irc.wiihacks.com
+
+=item /NNN/somerandomnick> /MuffinNET/On3m0r3: agree
+
+=back
+
 =item Discuss the WikiLeaks insurance.aes256 File
 
 If you and your friends were hoping to talk together
