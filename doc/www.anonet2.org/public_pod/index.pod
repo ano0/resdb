@@ -49,7 +49,9 @@ Z<><table>
  <tr><td>IRCZ<></td><td>L<SRN4 (tor)|irc://wllef6hh2mt6uoi4.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
  <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>L<aooo|http://www.anonet2.org/irc_anonymity> (Hidden IP, visible username and realname)</td></tr>
  <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname (warning!))</td></tr>
+ <tr><td>IRC<></td><td>L<d3v11|hlzfripz3yzsqsoz.onion</td><td>L<aaoa|http://irc.d3v11.ano> (Hidden IP, username and realname)$kname)</td></tr>
  <tr><td>TelnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
+
 </table>
 
 =end xhtml
