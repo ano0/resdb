@@ -1,0 +1,22 @@
+#!/bin/sh
+if [ x"$2" = x ]; then
+ echo "Usage: $0 <path> <owner> <key>" >&2; exit 255
+fi
+path="$1"
+owner="$2"
+key="$3"
+if [ "$(echo -n "$path" | tr -d '/A-Za-z0-9_-' | wc -c | tr -d ' \t')" != 0 ]; then
+ echo "udpmsg4 paths do not allow funny chars." >&2; exit 255
+fi
+if [ "$(echo "$path" | head -c1)" != / ]; then
+ echo "udpmsg4 paths start with a slash." >&2; exit 255
+fi
+fullpath=db/udpmsg4"$path"
+mkdir -p "$fullpath" || exit 1
+mkdir "$fullpath/@" || exit 1
+echo "$key" >"$fullpath/@/default.key"
+echo "$path" >"$fullpath/@/path"
+echo "$owner" >"$fullpath/@/owner"
+echo "temp.keys" >"$fullpath/@/.gitignore"
+mkdir "$fullpath/@/temp.keys"
+mkdir "$fullpath/@/blacklisted.keys"
