@@ -31,9 +31,11 @@ echo
 
 for tld in $($LS db/dom/); do 
 	for domain in $($LS db/dom/${tld}/); do 
-		for ns in $($LS db/dom/${tld}/${domain}/ns/); do 
-			STR="server=/${domain}.${tld}/$(scripts/ns2ip -f ${ns})"
-			echo $STR
-		done; 
+		if [ -d $($LS db/dom/${tld}/{$domain}/ns/ ]; then
+			for ns in $($LS db/dom/${tld}/${domain}/ns/); do 
+				STR="server=/${domain}.${tld}/$(scripts/ns2ip -f ${ns})"
+				echo $STR
+			done; 
+		fi
 	done; 
 done
