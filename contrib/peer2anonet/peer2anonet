@@ -136,6 +136,7 @@ mkdir -p /services/"$PEERNAME"
 #########################################################################
 # Create files to configure the new peering session:
 echo "#!/bin/sh
+export REMOTE_FLOAT=1
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$ADDPORT
