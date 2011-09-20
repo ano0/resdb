@@ -1,0 +1,13 @@
+#!/bin/bash
+GETIP() {
+        while true; do
+        wget `cat ../wimi.com` -O index.html
+        sleep 5m
+        done
+        }
+
+[ -e SHARE ] || mkdir SHARE
+cd SHARE
+../serve &
+GETIP
+
