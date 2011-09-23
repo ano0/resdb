@@ -56,15 +56,15 @@ uninstall:
 	rm  -f /usr/bin/splice3-deshadow
 
 update-tor:
-	usewithtor wget http://nbafkr7odek2wh6r.onion/splice3.tgz -O ../splice3.tar.gz
-	tar -xvf ../splice3.tar.gz --directory='../'
-	rm ../splice3.tar.gz
+	usewithtor wget http://nbafkr7odek2wh6r.onion/splice3.tgz -O ../splice3.tgz
+	tar -xvf ../splice3.tgz --directory='../'
+	rm ../splice3.tgz
 	cat CHANGES
 
 update:
-	wget http://www.d3v11.ano/splice3.tgz -O ../splice3.tar.gz
-	tar -xvf ../splice3.tar.gz --directory='../'
-	rm ../splice3.tar.gz
+	wget http://www.d3v11.ano/splice3.tgz -O ../splice3.tgz
+	tar -xvf ../splice3.tgz --directory='../'
+	rm ../splice3.tgz
 	cat CHANGES
 
 clean:
