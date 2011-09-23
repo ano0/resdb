@@ -30,9 +30,12 @@ $REWRITE_PATTERNS = array(
 //	'@(src|href|action)\s*=\s*(\'|")/([^\'"]*)\2@i' => '$1=$2'.$SERVICEURL.$proto.'/'.$host.'/$3$2',
 	'@(<[^>]*)(src|href|action)\s*=\s*(\'|")/([^\'"]*)\3@i' => '$1$2=$3'.$SERVICEURL.$proto.'/'.$host.'/$4$3',
 );
-$CURL_OPTIONS = array(
-	CURLOPT_USERAGENT	=> "AnoNet proxy",
+if (file_exists("do_it.inc")) include "do_it.inc";
+if (!isset($CURL_OPTIONS)) $CURL_OPTIONS = array(
+//	CURLOPT_USERAGENT	=> "AnoNet proxy",
+	CURLOPT_USERAGENT	=> $_SERVER["HTTP_USER_AGENT"]." AnoNetProxy",
 	CURLOPT_AUTOREFERER	=> TRUE,
+	CURLOPT_REFERER		=> $_SERVER["HTTP_REFERER"],
 	CURLOPT_CONNECTTIMEOUT	=> 15,
 	CURLOPT_TIMEOUT		=> 28,
 	CURLOPT_MAXREDIRS	=> 10,
@@ -40,7 +43,7 @@ $CURL_OPTIONS = array(
 	CURLOPT_HEADER		=> 1,
 	CURLOPT_FOLLOWLOCATION	=> FALSE,
 //	CURLOPT_INTERFACE	=> '0.0.0.0',
-//	CURLOPT_PROXY		=> "http://b.polipo.srn.ano:8000/",
+	CURLOPT_PROXY		=> "http://b.polipo.srn.ano:8000/",
 //	CURLOPT_PROXYUSERPWD	=> 'username:password',
 );
 /* END OF CONFIGURATION */
