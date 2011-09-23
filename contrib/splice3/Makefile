@@ -15,8 +15,8 @@ install-deb:
 	chmod +x DEBIAN/splice3/usr/bin/splice3
 	chmod +x DEBIAN/splice3/usr/bin/splice3-deshadow
 	cp SPLICE3/splice3.list DEBIAN/splice3/etc/splice3/splice3.list
-	#cp LINUX/manual DEBIAN/splice3/etc/splice3/splice3.1
-	#gzip DEBIAN/splice3/etc/splice3/splice3.1
+	cp LINUX/manual DEBIAN/splice3/etc/splice3/splice3.1
+	gzip DEBIAN/splice3/etc/splice3/splice3.1
 	#cp SPLICE3/LICENSE DEBIAN/splice3/etc/splice3/LICENSE
 	cp SPLICE3/splice3.L DEBIAN/splice3/etc/splice3/splice3.L
 	cp SPLICE3/splice3.N DEBIAN/splice3/etc/splice3/splice3.N
