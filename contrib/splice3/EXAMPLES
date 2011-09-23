@@ -1,0 +1,43 @@
+# This is rather basic so best to start here.
+
+splice3 -c"unrar -pPASSWORD t file.rar" -t"All OK" -ACLNRS
+
+# or
+
+splice3 -command='unrar -pPASSWORD t file.rar' -t'All OK' -R
+
+
+# you can then add a wordlist of your own :-)
+# using the appropriate options
+
+-d 'wordlist.txt'
+--dictionary='wordlist.txt'
+
+# create a dictionary
+
+--create
+
+
+# you can use some nice bash flexibility with a command like this.
+# the option --flags should make sense on their own. if not
+# --rtfm works ;-). splice3 is reasonably documented.
+
+splice3\
+--command='echo PASSWORD | aircrack-ng -b 00:11:22:33:44:55 -w - *.cap'\
+--wep-5 --wep-13 --no-char --dictionary='MyWords.txt'\
+--test='KEY FOUND'
+
+
+#some funny things you can do with splice3 ;-)
+splice3 --command='figlet PASSWORD' -L
+
+##use splice3 as a simple daemon
+##!/bin/bash
+#
+#MyFunction() {
+#	while true; do
+#	      splice3 --command='ping -c1 www.example.com ; sleep 1 # PASSWORD' --test='some output' --exh-n
+#	done
+
+
+

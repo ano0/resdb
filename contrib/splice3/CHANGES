@@ -1,0 +1,52 @@
+CHANGES:
+     Fri Sep  9 2011
+     d3v11 added timed iterations to bruteforcing algorithms.
+           This allows that a user can pause the attacks for
+           "X" seconds after every "N" tries.
+
+     Sat Sep 10 2011
+     d3v11 fixed bugs associated with previous iteration
+           controls.
+
+           fixed an old bug from splice* projects that gave
+           invalid speed output. 
+
+           --debug feature was also added. This allows 
+           python traceback which identifies errors on
+           line(s) from the non-compiled source code.
+
+           --socen changed to --se-create. code associated
+           with this option was also given some minor tweaks
+           so that more useful passwords are generated from
+           user input.
+
+           unused modules and libraries trimmed from import
+           on splice3.py and *deshadow.py .
+
+     Sun Sep 11 2011
+     d3v11 fixed --stdout
+
+           added --no-char flag to override appending
+           characters to passwords.
+
+           added --wep-5 and --wep-13 to generate WEP key
+           compatible passwords.
+
+     Thu Sep 15 2011
+     d3v11 fixed Makefile
+
+           added --usernames for -u.
+
+           added --exh-custom.
+ 
+           added `make update`.
+
+     Sun Sep 18 2011
+     d3v11 Changed Makefile to prevent install/uninstall
+           bugs.
+
+           Made some changes to the manual pages.
+ 
+           added `make clean`.
+
+           

@@ -1,0 +1,15 @@
+#!/usr/bin/python2.7
+from py_compile import compile
+from sys import exit
+
+try:
+    compile('LINUX/splice3-deshadow.py', 'LINUX/splice3-deshadow.pyc')
+except:
+    print '***ERROR*** splice3: splice3-deshadow.py failed to compile :-('
+    exit('quitting...')
+
+try:
+    compile('LINUX/splice3.py', 'LINUX/splice3.pyc')
+except:
+    print '***ERROR*** splice3: splice3.py failed to compile'
+    exit('quitting...')
