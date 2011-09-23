@@ -125,7 +125,7 @@ test -e /services/bird/run || echo "$BIRD_RUN" > /services/bird/run
 chmod +x /services/bird/run
 echo "$NEW_PROTOCOL" >> /services/bird/bird.conf
 test -L /services/bird && rm -r /service/bird
-ln -s /servicess/bird /service/
+test -L /service/bird || ln -s /services/bird /service/
 
 #########################################################################
 # We need to check if this peering session already exists:
