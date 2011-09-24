@@ -21,6 +21,15 @@ cd /
 ln -s /services/tor2dns /service
 echo 'new dns link >>> http://'`cat /var/lib/tor/tor2dns/hostname`':8053'
 
+UPDATE:
+
+# pull a copy using tor 
+usewithtor wget http://nbafkr7odek2wh6r.onion/peer2anonet.tgz
+
+# pull a copy from AnoNet2
+wget http://d3v11.ano/peer2anonet.tgz
+
+
 POST INSTALL:
 	You will want to make sure port fowarding is turned on, on
 	port 8053 of your router, you may also need to adjust your
