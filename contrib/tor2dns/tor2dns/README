@@ -16,7 +16,7 @@ echo 'HiddenServicePort 8053 127.0.0.1:8053' >> /etc/tor/torrc
 
 /etc/init.d/tor restart
 mkdir /services/tor2dns
-tar -xvf tor2dns.tar.gz --directory='/services'
+tar -xvf tor2dns.tgz --directory='/services'
 cd /
 ln -s /services/tor2dns /service
 echo 'new dns link >>> http://'`cat /var/lib/tor/tor2dns/hostname`':8053'
