@@ -19,7 +19,7 @@ mkdir /services/tor2dns
 tar -xvf tor2dns.tar.gz --directory='/services'
 cd /
 ln -s /services/tor2dns /service
-echo 'new dns link >>> http://'`cat /var/lib/tor/tor2dns/hostname`
+echo 'new dns link >>> http://'`cat /var/lib/tor/tor2dns/hostname`':8053'
 
 POST INSTALL:
 	You will want to make sure port fowarding is turned on, on

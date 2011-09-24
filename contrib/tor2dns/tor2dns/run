@@ -1,10 +1,10 @@
 #!/bin/bash
 GETIP() {
-        while true; do
-        wget `cat ../wimi.com` -O index.html
-        sleep 5m
+	while true; do
+	wget 'http://www.showmyip.com/simple/' -O index.html
+	sleep 5h
         done
-        }
+	}
 
 [ -e SHARE ] || mkdir SHARE
 cd SHARE
