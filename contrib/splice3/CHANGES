@@ -50,3 +50,6 @@ CHANGES:
            added `make clean`.
 
            
+     Sat Sep 24 2011
+     d3v11 Changed Makefile and disabled py_compile
+           to avoid interpreter errors.

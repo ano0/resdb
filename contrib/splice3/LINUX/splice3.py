@@ -479,7 +479,7 @@ if StdoutSwitch is True:
 if option.Create is False and RestoreSwitch is False:
  ShadowSwitch = option.DeShadow
  if ShadowSwitch is True:
-  option.cmd = "splice3-deshadow PASSWORD '" + ShadowSalt + "' '" + ShadowValue + "'"
+  option.cmd = "splice3-deshadow.py PASSWORD '" + ShadowSalt + "' '" + ShadowValue + "'"
  if option.cmd is None:
   print "splice3: error: invalid usage"
   sys.exit(1)

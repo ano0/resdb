@@ -9,15 +9,13 @@ install-deb:
 	mkdir DEBIAN/splice3/etc
 	mkdir DEBIAN/splice3/etc/splice3
 	cp DEBIAN/control DEBIAN/splice3/DEBIAN/control
-	./LINUX/splice3.compile
-	mv LINUX/splice3.pyc DEBIAN/splice3/usr/bin/splice3
-	mv LINUX/splice3-deshadow.pyc DEBIAN/splice3/usr/bin/splice3-deshadow
+	cp LINUX/splice3.py DEBIAN/splice3/usr/bin/splice3
+	cp LINUX/splice3-deshadow.py DEBIAN/splice3/usr/bin/splice3-deshadow
 	chmod +x DEBIAN/splice3/usr/bin/splice3
 	chmod +x DEBIAN/splice3/usr/bin/splice3-deshadow
 	cp SPLICE3/splice3.list DEBIAN/splice3/etc/splice3/splice3.list
 	cp LINUX/manual DEBIAN/splice3/etc/splice3/splice3.1
 	gzip DEBIAN/splice3/etc/splice3/splice3.1
-	#cp SPLICE3/LICENSE DEBIAN/splice3/etc/splice3/LICENSE
 	cp SPLICE3/splice3.L DEBIAN/splice3/etc/splice3/splice3.L
 	cp SPLICE3/splice3.N DEBIAN/splice3/etc/splice3/splice3.N
 	cp SPLICE3/splice3.S DEBIAN/splice3/etc/splice3/splice3.S
@@ -32,9 +30,8 @@ install-deb:
 install:
 	make clean
 	make uninstall
-	./LINUX/splice3.compile
-	mv LINUX/splice3.pyc /usr/bin/splice3
-	mv LINUX/splice3-deshadow.pyc /usr/bin/splice3-deshadow
+	cp LINUX/splice3.py /usr/bin/splice3
+	cp LINUX/splice3-deshadow.py /usr/bin/splice3-deshadow
 	chmod +x /usr/bin/splice3
 	chmod +x /usr/bin/splice3-deshadow
 	mkdir /etc/splice3
@@ -48,7 +45,6 @@ install:
 	cp SPLICE3/splice3.LS /etc/splice3/splice3.LS
 	cp SPLICE3/splice3.NS /etc/splice3/splice3.NS
 	cp SPLICE3/splice3.LNS /etc/splice3/splice3.LNS
-	#cp SPLICE3/LICENSE /etc/splice3/LICENSE
 
 uninstall:
 	rm -rf /etc/splice3
@@ -68,5 +64,5 @@ update:
 	cat CHANGES
 
 clean:
-	rm */*.pyc DEBIAN/splice3 DEBIAN/*.deb -rf
+	rm DEBIAN/splice3 DEBIAN/*.deb -rf
 
