@@ -29,7 +29,6 @@ for tld in db/ip/?? ; do
 done
 for tld in db/dom/* ; do
  tldname="$(basename $tld)"
- echo "+$tldsrvrname:$tldsrvrip:3600"
  echo ".$tldname::$tldsrvrname"
  for zone in $tld/* ; do
   for ns in $zone/ns/* ; do
