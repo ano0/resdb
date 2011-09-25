@@ -136,7 +136,7 @@ mkdir -p /services/"$PEERNAME"
 #########################################################################
 # Create files to configure the new peering session:
 echo "#!/bin/sh
-\#export REMOTE_FLOAT=1
+#export REMOTE_FLOAT=1
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$ADDPORT
@@ -161,7 +161,7 @@ echo "peer2anonet: New peering session configured.
 Please place your secret key in: /services/$PEERNAME/seckey
 
 To allow remote floating:
-sed -i 's/\\#//\' /services/$peername/run "
+uncomment REMOTE_FLOAT=1 in /services/$PEERNAME/run"
 
 
 
