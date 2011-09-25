@@ -4,11 +4,11 @@ if ! ./scripts/check_db_safety; then
 fi
 tldsrvrname="$(./scripts/conf_var tinydns__tldsrvrname uz5fvb7zdqyuz4q8ysjdfuf04kzd2lrt0l6fp4uyguxdg5tfut06ck.anons.somerandomnick.ano)"
 tldsrvrip="$(./scripts/conf_var tinydns__tldsrvrip 1.0.27.37)"
+echo "+$tldsrvrname:$tldsrvrip:3600"
 for tld in db/ip/?? ; do
  if [ "x$(basename $tld)" != 'x??' ]; then
   first="$(basename $tld | ./scripts/hex2dec)"
   tldname="$first.in-addr.arpa"
-  echo "+$tldsrvrname:$tldsrvrip:3600"
   echo ".$tldname::$tldsrvrname"
   for ip in $tld/??/?? ; do
    if [ "x$(basename $ip)" != 'x??' ]; then
