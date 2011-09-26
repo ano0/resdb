@@ -1,0 +1,11 @@
+#!/bin/sh
+rootsrvrname="$(./scripts/conf_var tinydns__rootsrvrname uz5hn5hz5x5bp09p5z2806x4gngcw1k5j2wk88fuvkth5pp2hw4t2d.rootns.somerandomnick.ano)"
+rootsrvrip="$(./scripts/conf_var tinydns__rootsrvrip 1.0.27.39)"
+tldsrvrname="$(./scripts/conf_var tinydns__tldsrvrname uz5fvb7zdqyuz4q8ysjdfuf04kzd2lrt0l6fp4uyguxdg5tfut06ck.anons.somerandomnick.ano)"
+tldsrvrip="$(./scripts/conf_var tinydns__tldsrvrip 1.0.27.37)"
+echo "+$rootsrvrname:$rootsrvrip:3600"
+echo "+$tldsrvrname:$tldsrvrip:3600"
+echo "&.::$rootsrvrname:518400"
+echo "&ano.::$tldsrvrname:172800"
+echo "&1.in-addr.arpa.::$tldsrvrname:172800"
+cat ./doc/srn.ano/root.data
