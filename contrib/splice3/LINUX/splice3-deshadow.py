@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!PYTHON
 import sys; sys.tracebacklimit = 0
 from crypt import crypt
 TestHash = crypt(sys.argv[1], sys.argv[2])

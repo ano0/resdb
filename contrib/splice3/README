@@ -27,7 +27,7 @@ LICENSE:
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 DEPENDS ON:
-      python2.7
+      python2.7, man
 
 INSTALL AND UNINSTALL:
       To install, `cd' to the extracted splice folder.

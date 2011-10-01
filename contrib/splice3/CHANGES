@@ -53,3 +53,8 @@ CHANGES:
      Sat Sep 24 2011
      d3v11 Changed Makefile and disabled py_compile
            to avoid interpreter errors.
+
+     Sat Oct  1 2011
+     d3v11 added setup and setup-deb with Makefile
+           to check for dependencies and set the
+           correct environment paths.

@@ -2,6 +2,7 @@
 
 install-deb:
 	make clean
+	./setup-deb
 	mkdir DEBIAN/splice3
 	mkdir DEBIAN/splice3/DEBIAN
 	mkdir DEBIAN/splice3/usr
@@ -9,8 +10,9 @@ install-deb:
 	mkdir DEBIAN/splice3/etc
 	mkdir DEBIAN/splice3/etc/splice3
 	cp DEBIAN/control DEBIAN/splice3/DEBIAN/control
-	cp LINUX/splice3.py DEBIAN/splice3/usr/bin/splice3
-	cp LINUX/splice3-deshadow.py DEBIAN/splice3/usr/bin/splice3-deshadow
+	cp LINUX/splice3.cp DEBIAN/splice3/usr/bin/splice3
+	cp LINUX/splice3-deshadow.cp DEBIAN/splice3/usr/bin/splice3-deshadow
+	rm -rf LINUX/*.cp
 	chmod +x DEBIAN/splice3/usr/bin/splice3
 	chmod +x DEBIAN/splice3/usr/bin/splice3-deshadow
 	cp SPLICE3/splice3.list DEBIAN/splice3/etc/splice3/splice3.list
@@ -29,9 +31,11 @@ install-deb:
 
 install:
 	make clean
+	./setup
 	make uninstall
-	cp LINUX/splice3.py /usr/bin/splice3
-	cp LINUX/splice3-deshadow.py /usr/bin/splice3-deshadow
+	cp LINUX/splice3.cp /usr/bin/splice3
+	cp LINUX/splice3-deshadow.cp /usr/bin/splice3-deshadow
+	rm -rf LINUX/*.cp
 	chmod +x /usr/bin/splice3
 	chmod +x /usr/bin/splice3-deshadow
 	mkdir /etc/splice3
@@ -51,18 +55,10 @@ uninstall:
 	rm  -f /usr/bin/splice3
 	rm  -f /usr/bin/splice3-deshadow
 
-update-tor:
-	usewithtor wget http://nbafkr7odek2wh6r.onion/splice3.tgz -O ../splice3.tgz
-	tar -xvf ../splice3.tgz --directory='../'
-	rm ../splice3.tgz
-	cat CHANGES
-
 update:
 	wget http://www.d3v11.ano/splice3.tgz -O ../splice3.tgz
 	tar -xvf ../splice3.tgz --directory='../'
 	rm ../splice3.tgz
-	cat CHANGES
 
 clean:
 	rm DEBIAN/splice3 DEBIAN/*.deb -rf
-

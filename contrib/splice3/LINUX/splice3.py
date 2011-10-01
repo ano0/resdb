@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!PYTHON
 
 import os
 import re
