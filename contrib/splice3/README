@@ -48,8 +48,6 @@ UPDATE:
 
       make update
 
-      make update-tor
-
 HELP AND USAGE:
      To obtain additional information on how to use splice3
      enter either of the following commands after installation:
