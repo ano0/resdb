@@ -1,0 +1,784 @@
+.TH splice3 "1" "sep 2011" "splice3" "Brute Force Utilities"
+.SH
+NAME
+splice3 - manual page for splice3
+
+.SH
+DESCRIPTION
+
+Brute Force Utilities For The Linux Shell.
+
+.SH
+OPTIONS
+-h, --help show the help message and exit
+
+-c, Parse passwords to this command
+.br
+Command must contain regexp PASSWORD.
+.br
+splice3 -c"command PASSWORD"
+
+-d Path to custom dictionary(wordlist)
+.br
+splice3 -d"/home/user/wordlist"
+.br
+If this option is unset then splice3
+.br
+will use its default dictionary.
+
+--rtfm Show manual page and exit
+
+-r Path to restore file
+.br
+splice3 -r"/home/user/splice3.save"
+.br
+DO NOT USE MODIFIED OR NON-SPLICE
+.br
+SAVE FILES.
+
+-s Directory path to create save file
+.br
+splice3 -s"/home/user"
+
+-t Test output of -c's command
+.br
+splice3 -t"All OK"
+
+--time Manipulate timed iterations
+.br
+splice3 can pause its attack for 
+.br
+a specified amount of seconds per
+.br
+every specified amount of iterations.
+.br
+splice3 --time="12, 360"
+.br
+The above will tell splice3 to pause
+.br
+360 seconds after trying every 12 passwords.
+
+-u Path to username list
+.br
+splice3 -u"/home/user/userlist"
+.br
+If you use this command the regexp
+.br
+`USERNAME' will be required in the
+.br
+given -c command. See -c flag for
+.br
+details.
+
+.br
+--exh-l Use an exhaustive attack with letters only
+
+.br
+--exh-n Use an exhaustive attack with numbers only
+
+.br
+--exh-s Use an exhaustive attack with special characters only
+
+.br
+--exh-ln Use an exhaustive attack with letters and numbers only
+
+.br
+--exh-ls Use an exhaustive attack with letters and special
+.br
+characters only
+
+.br
+--exh-ns Use an exhaustive attack with numbers and special
+.br
+characters only
+
+--exh-lns Use an exhaustive attack with all characters
+
+--exh-custom Use an exhaustive attack with custom characters
+.br
+splice3 --exh-custom='character list'
+
+--stdout Print only passwords to stdout
+
+-A Use alphabetical mixing module
+
+-B Use backwards module
+
+-C Use alternating caps module
+
+-L Use "L337" speak module
+
+-M Use MD5 module
+
+-N Use numerical mixing module
+
+-R Use regular words module
+
+-S Use special mixing module
+
+-U Use custom mixing module
+.br
+splice3 -U"/home/user/list"
+
+--wep-5 Use 5 char WEP module
+.br
+splice3 will strip 5 char words
+.br
+from the dictionary and convert
+.br
+them to WEP compatible passwords.
+
+--wep-13 Use 13 char WEP module
+.br
+splice3 will strip 13 char words
+.br
+from the dictionary and convert
+.br
+them to WEP compatible passwords.
+
+--letters Use letter characters
+
+--numbers Use number characters
+
+--specials Use special characters
+
+--no-char Override character usage
+
+--custom Use custom characters
+.br
+splice3 --custom="/home/user/list"
+
+--deshadow Crack shadow hash sums
+
+--getshadow Get the shadow info for a user
+.br
+splice3 --getshadow="username"
+.br
+See deshadow below for details.
+
+--setshadow Use the shadow info from a file
+.br
+splice3 --setshadow="/home/user/shadow"
+.br
+See deshadow below for details.
+
+--se-create a weird modular dictionary option.
+.br
+splice3 will create concatenated words from
+.br
+dictionary as "splice3.se" and then load
+.br
+it with selected modules.
+
+--create Create a dictionary and exit. splice3
+.br
+will create a dictionary with a user
+.br
+selected wordlist and the selected 
+.br
+Modules. The new dictionary will be
+.br
+created in your current directory as
+.br
+splice3.create
+
+-v, --version Show splice3's version number and exit
+
+--debug Enable debugging
+.br
+Allows debugging and traceback reporting from splice3.
+
+.SH
+DICTIONARIES
+
+splice3 comes equipped with its own dictionary but is
+.br
+designed to use custom dictionaries as well. The
+.br
+dictionary should be in the following format: a plain
+.br
+text file with one word per line, no spaces between
+.br
+words, letters only. You do not have to follow the
+.br
+above guideline exactly but it is strongly suggested.
+.br
+IE:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+qwerty
+.br
+john
+.br
+linux
+.br
+newpass
+.br
+princess
+.br
+hacker
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
+.SH
+USERNAMES
+
+splice3 is capable of cycling through usernames as it
+.br
+would a dictionary. There is no default username list
+.br
+on splice3. The username list should be in the 
+.br
+following format: a plain text file with one word per 
+.br
+line, no spaces between words, letters only. You do 
+.br
+not have to follow the above guideline exactly but it
+.br
+is strongly suggested.
+.br
+IE:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+john
+.br
+admin
+.br
+root
+.br
+david
+.br
+fred
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
+.SH
+SAVING AND RESTORING
+
+splice3 is capable of restarting where it was stopped
+.br
+by using the -r switch followed by the full path to
+.br
+a splice3.save file. DO NOT modify these files or
+.br
+splice3 may receive an error or not load at all. 
+.br
+When restoring, if you set the -t switch you must
+.br
+manually set it again or splice3 will not test for
+.br
+specified output. If saving splice3's status, then
+.br
+splice3 will save to the specified directory as
+.br
+splice3.save. If splice3.save already exists it will
+.br
+be overwritten so change the name of any original
+.br
+copies if you want to keep them. If saving a splice3
+.br
+session you should stop the process using the
+.br
+appropriate terminal feature before killing splice3
+.br
+to avoid corrupting the save file.
+
+-s "/path/to/save/directory/"
+
+-r "/path/to/splice3.save/"
+.SH
+MODULES
+
+-A -B -C -L -M -N -R -S -U --wep-5 --wep-13
+.br
+splice3 comes equipped with several modules that mangle
+.br
+the words in the selected dictionary to create probable
+.br
+password combinations. You may use as many of these
+.br
+modules as you want. Some modules can take a few or more
+.br
+minutes to enhance a dictionary depending on the size
+.br
+of the selected dictionary.
+
+-A Alphabetical Mixing Module:
+.br
+This module puts several combinations of alphabet
+.br
+characters inside the words in the selected
+.br
+dictionary. IE:
+
+pZassword
+.br
+pCatssword
+.br
+passworKd
+.br
+passwoJrLd
+.br
+...
+
+-B Backwards Module:
+.br
+This module creates backwards words from the
+.br
+selected dictionary. IE:
+
+drowssap
+.br
+...
+
+-C Capitalization Module:
+.br
+This module recreates the words in the selected
+.br
+dictionary with alternating capitalizations.
+.br
+IE:
+ 
+Password
+.br
+PAssword
+.br
+PaSsWoRd
+.br
+pAsSwOrD
+.br
+passwoRD
+.br
+...
+
+-L L337 Speak Module:
+.br
+This module converts the words in the selected
+.br
+dictionary to several versions of "l337 speak".
+.br
+IE:
+
+p4ssword
+.br
+p455w0rd
+.br
+pa5sword
+.br
+ps@$$word
+.br
+...
+ 
+-N Numerical Mixing Module:
+.br
+This module puts several combinations of number
+.br
+characters inside the words in the selected
+.br
+dictionary. IE:
+
+p2assword
+.br
+p5a8ssword
+.br
+passwor0d
+.br
+passwo6r9d
+.br
+...
+
+-R Regular Words Module:
+.br
+This module tells splice3 to use the words in a
+.br
+selected dictionary as they are listed.
+
+
+-S Special Mixing Module:
+.br
+This module puts several combinations of special
+.br
+characters inside the words in the selected
+.br
+dictionary. IE:
+
+p!assword
+.br
+p@a$ssword
+.br
+passwor(d
+.br
+passwo-r+d
+.br
+...
+
+-U Custom Mixing Module:
+.br
+This module puts several combinations of user
+.br
+selected characters inside the words from the
+.br
+selected character list. IE:
+
+p!assword
+.br
+p@a$ssword
+.br
+passwor(d
+.br
+passwo-r+d
+.br
+...
+
+-U's list should only contain one character per
+.br
+line on a plain text file. If you select this
+.br
+module then modules -A, -N, -S will be ignored.
+.br
+IE:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+j
+.br
+1
+.br
+@
+.br
+0
+.br
+z
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
+If -A, -N, and/or -S options are selected then
+.br
+the modules will be combined. IE:
+
+pZa!ssword
+.br
+p0atssword
+.br
+passwor7d
+.br
+passwo*rLd
+.br
+...
+
+-M MD5 Module:
+.br
+This module generates md5 hash sums for
+.br
+words listed in the selected dictionary.
+.br
+IE:
+
+5912d7bfd10f631f1715bf85bbb72d97
+.br
+966e8fda594333563c02fa4b69765a5e
+.br
+900bc885d7553375aec470198a9514f3
+.br
+97f014516561ef487ec368d6158eb3f4
+.br
+...
+
+
+--wep-* WEP Modules:
+.br
+these two modules strip 5 or 13 character
+.br
+words from the selected dictionary and produce
+.br
+WEP compatible hex passwords.
+
+.SH
+CHARACTERS 
+
+splice3 appends alternating character tags to the beginning
+.br
+and/or ending of each password. By default splice3 will use
+.br
+all standard keyboard characters but you can choose to use
+.br
+specific combinations. If one or more of the following
+.br
+options is omitted then only the selected options will be
+.br
+used ; they will be combined.
+
+--letters Use letter characters
+.br
+Apassword
+.br
+passwordA
+.br
+abCpassword
+.br
+passwordxYz
+.br
+...
+
+--numbers Use numbers characters
+.br
+1password
+.br
+password1
+.br
+123password
+.br
+password098
+.br
+...
+
+--specials Use specials characters
+.br
+$password
+.br
+password^
+.br
+%)!password
+.br
+password#*@
+.br
+...
+
+--custom Use custom characters from a list
+.br
+$password
+.br
+password^
+.br
+%)!password
+.br
+password#*@
+.br
+...
+
+--custom list should only contain one character per
+.br
+line on a plain text file. If you select this
+.br
+module then other character flags will be ignored.
+.br
+If the custom list matches the selected dictionary
+.br
+then splice3 will run in exhaustive mode.
+.br
+IE:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+j
+.br
+1
+.br
+@
+.br
+0
+.br
+z
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
+--letters, --numbers, and/or --specials
+.br
+Apassword6&
+.br
+7passwordA
+.br
+a*Cpassword9
+.br
+a}password0Yz
+.br
+...
+
+.SH
+DESHADOW
+
+splice3 comes with its own small program to compare a created hash
+.br
+sum, those found in /etc/shadow with an existing one given through
+.br
+user input. When using the deshadow option you will need to set
+.br
+exactly one of the --getshadow or --setshadow options. There is no
+.br
+need to use the -c CMD or the -t TEST flags when using this option
+.br
+because the values for each will be preset.
+
+--getshadow Get the shadow info for a user
+.br
+see examples below for usage details.
+
+--setshadow Use the shadow info from a file. This file should be
+.br
+in plain text and contain only one line with the
+.br
+following syntax:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+$HashingMethod$SaltValue$ActualHashItself
+
+============= NOT ACTUAL LINE ON FILE ===============
+
+If you need to see an example Shadow entry you may
+.br
+use the following command:
+
+cat /etc/shadow | grep -i "$USER"
+
+.SH
+EXHAUSTIVE
+
+splice3 is capable of mounting a standard exhaustive attack.
+.br
+An exhaustive attack is a sure\-fire method to crack any
+.br
+password but this can also take large amounts of time
+.br
+depending on the length of a password. If it's necessary to
+.br
+use an exhaustive bruteforcing algorithm you may do so with
+.br
+one of the following options:
+
+--exh-l
+.br
+This attack uses only letters.
+
+--exh-n
+.br
+This attack uses only numbers.
+
+--exh-s
+.br
+This attack uses only special characters.
+
+--exh-ln
+.br
+This attack uses only letters and numbers.
+
+--exh-ls
+.br
+This attack uses only letters and special characters.
+
+--exh-ns
+.br
+This attack uses only numbers and special characters.
+
+--exh-lns
+.br
+This attack uses all characters.
+
+.SH
+STDOUT
+
+splice3 has the option to skip the command and test flags
+.br
+and print only the created passwords to stdout. This is a
+.br
+useful flag if you're going to pipe the output to stdin
+.br
+on another program.
+
+--stdout
+.br
+The output will look similar to the following:
+.br
+password
+.br
+qwerty
+.br
+123magick
+.br
+newpass
+.br
+john1965
+
+.SH
+REGEXP
+
+splice3 can create some regexp type functions
+.br
+using existing options:
+
+splice3 --command='echo onePASSWORDthree' --test='onetwothree' --exh-l
+
+splice3 -c 'echo johnPASSWORD65' --test='john1965' --exh-custom='MyList.txt'
+
+splice3 --command='echo ilovePASSWORD' -R --no-char --test='iloveqwerty'
+
+you may also want to see --se-create for more specific attacks.
+
+.SH
+CONTROLS
+
+splice3 contains some options worth going over again.
+
+--command='<insert command> PASSWORD' #must contain regexp 'PASSWORD'
+
+--time='10, 1' #timed iterations
+
+--custom='file.txt', -U 'file.txt', --dictionary='file.txt', 
+.br
+--exh-custom='file.txt' #custom wordlists and/or character lists
+
+--no-char #useful flag to only use the generated wordlist
+.br
+#no characters will be appended to the passwords
+
+--stdout #prints only passwords
+
+--debug #helps to troubleshoot
+
+.SH
+EXAMPLES
+
+splice3 -c"unrar -pPASSWORD t file.rar" -t"All OK" -ACLNRS
+
+splice3 -c"sshpass -pPASSWORD ssh user@host" -d"wordlist" -L
+
+splice3 -c"smbclient -L 192.168.1.0 -Uusername%PASSWORD" -L
+
+splice3 --deshadow --getshadow="root" -ACLNRS
+
+splice3 --deshadow --setshadow="/home/user/shadow.txt" -ACLNRS
+
+splice3\\
+.br 
+--command='echo PASSWORD | aircrack-ng -b 00:11:22:33:44:55 -w - *.cap'\\
+.br
+--wep-5 --wep-13 --no-char --dictionary='MyWords.txt'\\
+.br
+--test='KEY FOUND'
+
+splice3 -c"curl --user <user[:PASSWORD]> https://www.example.com" -R
+
+.SH
+LICENSE
+
+This program is free software: you can redistribute it and/or modify
+.br
+it under the terms of the GNU General Public License as published by
+.br
+the Free Software Foundation, either version 3 of the License, or
+.br
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+.br
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+.br
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.br
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+.br
+along with this program.  If not, see <http://www.gnu.org/licenses/>.

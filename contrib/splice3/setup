@@ -1,0 +1,21 @@
+#!/bin/bash
+echo 'checking for python2.7'
+if which python2.7 >/dev/null; then
+ :
+else
+ echo 'python2.7 not found. Quiting... :-('
+ exit 1
+fi
+
+echo 'checking for man'
+if which man >/dev/null; then
+ :
+else
+ echo 'man not found. Quiting... :-('
+ exit 1
+fi
+
+echo 'configuring path to python2.7'
+PYPATH=`which python2.7`
+sed -e s^PYTHON^"$PYPATH"^g LINUX/splice3.py >LINUX/splice3.cp
+sed -e s^PYTHON^"$PYPATH"^g LINUX/splice3-deshadow.py >LINUX/splice3-deshadow.cp

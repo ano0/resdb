@@ -1,0 +1,43 @@
+DESCRIPTION:
+	tor2dns is a quick solution to non-free
+	and centralized dns.
+
+DEPENDS:
+	tor, daemontools, python
+
+INSTALL:
+
+mkdir /var/lib/tor/tor2dns
+echo 'HiddenServiceDir /var/lib/tor/tor2dns' >> /etc/tor/torrc
+echo 'HiddenServicePort 8053 127.0.0.1:8053' >> /etc/tor/torrc
+
+#See note below, you may need to use the commented line.
+#chown debian-tor /var/lib/tor/tor2dns
+
+/etc/init.d/tor restart
+mkdir /services/tor2dns
+tar -xvf tor2dns.tgz --directory='/services'
+cd /
+ln -s /services/tor2dns /service
+echo 'new dns link >>> http://'`cat /var/lib/tor/tor2dns/hostname`':8053'
+
+UPDATE:
+
+# pull a copy using tor 
+usewithtor wget http://nbafkr7odek2wh6r.onion/peer2anonet.tgz
+
+# pull a copy from AnoNet2
+wget http://d3v11.ano/peer2anonet.tgz
+
+
+POST INSTALL:
+	You will want to make sure port fowarding is turned on, on
+	port 8053 of your router, you may also need to adjust your
+	firewall. you can test for success by opening your browser
+	with tor enabled and going to the link given @ the end of
+	your installation. :-) enjoy.
+
+NOTE:
+	On some systems /var/lib/tor/tor2dns will need a special owner
+	like "debian-tor". If tor2dns fails for you please troubleshoot
+	your logs, port fowarding, etc.

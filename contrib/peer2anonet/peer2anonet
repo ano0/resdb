@@ -125,7 +125,7 @@ test -e /services/bird/run || echo "$BIRD_RUN" > /services/bird/run
 chmod +x /services/bird/run
 echo "$NEW_PROTOCOL" >> /services/bird/bird.conf
 test -L /services/bird && rm -r /service/bird
-ln -s /servicess/bird /service/
+test -L /service/bird || ln -s /services/bird /service/
 
 #########################################################################
 # We need to check if this peering session already exists:
@@ -136,6 +136,7 @@ mkdir -p /services/"$PEERNAME"
 #########################################################################
 # Create files to configure the new peering session:
 echo "#!/bin/sh
+#export REMOTE_FLOAT=1
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$ADDPORT
@@ -158,7 +159,9 @@ ln -s "/services/$PEERNAME" /service/
 echo 'Secret Key Goes Here!' > "/services/$PEERNAME/seckey"
 echo "peer2anonet: New peering session configured.
 Please place your secret key in: /services/$PEERNAME/seckey
-"
+
+To allow remote floating:
+uncomment REMOTE_FLOAT=1 in /services/$PEERNAME/run"
 
 
 
