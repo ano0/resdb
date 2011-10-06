@@ -63,6 +63,7 @@ Z<><table>
 -->
 <!--
  <tr><td>IRC<></td><td>L<d3v11|hlzfripz3yzsqsoz.onion</td><td>L<aaoa|http://irc.d3v11.ano> (Hidden IP, username and realname)$kname)</td></tr>
+ <tr><td>IRC<></td><td>L<whatis-theplan|h7gg4wyz26iyjbcu.onion</td><td>L<aaoa|http://irc.whatistheplan.ano> (Hidden IP, username and realname)$kname)</td></tr>
  <tr><td>TelnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
 -->
 </table>
@@ -134,6 +135,8 @@ Z<><table>
 -->
  <tr><td>IRCZ<></td><td>L<pragmo|irc://irc.pragmo.ano:6667/atomic></td><td>L<pragmo|irc://1.0.16.111:6667/atomic></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
  <tr><td>TelnetZ<></td><td>L<SRN|telnet://irc.somerandomnick.ano:2323/></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
+ <tr><td>IRC<></td><td>L<d3v11|irc://irc.d3v11.ano:6667/></td><td></td><td>L<aaoa|irc:1.1.5.67:6667/> (Hidden IP and username, custom nickname)</td></tr>
+ <tr><td>IRC<></td><td>L<whatis-theplan|irc://irc.whatis-theplan.ano:6667/></td><td></td><td>L<aaoa|irc:1.1.5.69:6667/> (Hidden IP and username, custom nickname)</td></tr>
  <tr><td>JabberZ<></td><td>irc.somerandomnick.ano (RendezVous MUC)</td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
 </table>
 
