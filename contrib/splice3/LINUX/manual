@@ -289,7 +289,7 @@ to avoid corrupting the save file.
 .SH
 MODULES
 
--A -B -C -L -M -N -R -S -U --wep-5 --wep-13
+-A -B -C -L -M -N -R -S -U --wep-5 --wep-13 --se-create
 .br
 splice3 comes equipped with several modules that mangle
 .br
