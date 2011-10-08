@@ -132,7 +132,7 @@ parser.add_argument('--setshadow', action='store', dest='SetShadow',
 
 parser.add_argument('--se-create', action="store_true", default=False,
                     dest='SESwitch',
-                           help='a weird modular dictionary option')
+                           help='a social engineering module')
 
 parser.add_argument('--create', action="store_true", default=False,
                     dest='Create', help='Create a dictionary')
@@ -472,6 +472,10 @@ else:
   wep13 = True
  else:
   wep13 = False
+ if State[21] == "True":
+  SESwitch = True
+ else:
+  SESwitch = False
 
 if StdoutSwitch is True:
  option.cmd = "STDOUT PASSWORD ON"
@@ -511,8 +515,8 @@ if Create is False and option.cmd.__contains__("splice3-deshadow"):
 if AlphaSwitch is False and BWSwitch is False and CapsSwitch is False\
 and L337Switch is False and NumberSwitch is False and RegularSwitch is False\
 and SpecialSwitch is False and MixCustom is None and MD5Switch is False\
-and wep5 is False and wep13 is False:
- print "splice3: error: no modules selected: ( -A -B -C -L -M -N -R -S, -ABCLMNRS, --wep-*)"
+and wep5 is False and wep13 is False and SESwitch is False:
+ print "splice3: error: no modules selected: ( -A -B -C -L -M -N -R -S -U, --wep-*, --se-create)"
  sys.exit(1)
 
 CharsMain = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",\
@@ -1568,7 +1572,7 @@ def SOCEN():
      for let in a:
       x += 1
      if x > 1:
-      socen.append(a)
+      Word.append(a)
 
     for a in socen_words:
      for b in socen_words:
@@ -1579,25 +1583,19 @@ def SOCEN():
       for let in b:
        n += 1
       if x > 1 or n > 1 and a != b:
-       socen.append(a + b)
+       Word.append(a + b)
 
     for a in socen_words:
      for b in socen_words:
       for c in socen_words:
        if a != b and a != c and b != c:
-        socen.append(a + b + c)
-
-    SEFILE = open("splice3.se", 'w')
-    for i in socen:
-     SEFILE.write(i + "\n")
-    SEFILE.close()    
+        Word.append(a + b + c)    
 
     
 
 if SESwitch is True:
  socen_words = []
  SOCEN()
- dictionary = 'splice3.se'
 if RegularSwitch is True:
  REGULAR()
 if BWSwitch is True:
@@ -1695,6 +1693,9 @@ def BF1():
        WriteSave.append(str(Letters))
        WriteSave.append(str(Numbers))
        WriteSave.append(str(Specials))
+       WriteSave.append(str(wep5))
+       WriteSave.append(str(wep13))
+       WriteSave.append(str(SESwitch))
        WriteSave.append(str(u))
        WriteSave.append(str(x))
        for WriteStates in WriteSave:
@@ -1755,6 +1756,9 @@ def BF2():
         WriteSave.append(str(Letters))
         WriteSave.append(str(Numbers))
         WriteSave.append(str(Specials))
+        WriteSave.append(str(wep5))
+        WriteSave.append(str(wep13))
+        WriteSave.append(str(SESwitch))
         WriteSave.append(str(u))
         WriteSave.append(str(x))
         WriteSave.append(str(a))
@@ -1838,6 +1842,9 @@ def BF3():
          WriteSave.append(str(Letters))
          WriteSave.append(str(Numbers))
          WriteSave.append(str(Specials))
+         WriteSave.append(str(wep5))
+         WriteSave.append(str(wep13))
+         WriteSave.append(str(SESwitch))
          WriteSave.append(str(u))
          WriteSave.append(str(x))
          WriteSave.append(str(a))
@@ -1943,6 +1950,9 @@ def BF4():
           WriteSave.append(str(Letters))
           WriteSave.append(str(Numbers))
           WriteSave.append(str(Specials))
+          WriteSave.append(str(wep5))
+          WriteSave.append(str(wep13))
+          WriteSave.append(str(SESwitch))
           WriteSave.append(str(u))
           WriteSave.append(str(x))
           WriteSave.append(str(a))
@@ -2070,6 +2080,9 @@ def BF5():
            WriteSave.append(str(Letters))
            WriteSave.append(str(Numbers))
            WriteSave.append(str(Specials))
+           WriteSave.append(str(wep5))
+           WriteSave.append(str(wep13))
+           WriteSave.append(str(SESwitch))
            WriteSave.append(str(u))
            WriteSave.append(str(x))
            WriteSave.append(str(a))
@@ -2179,6 +2192,9 @@ def BF6():
             WriteSave.append(str(Letters))
             WriteSave.append(str(Numbers))
             WriteSave.append(str(Specials))
+            WriteSave.append(str(wep5))
+            WriteSave.append(str(wep13))
+            WriteSave.append(str(SESwitch))
             WriteSave.append(str(u))
             WriteSave.append(str(x))
             WriteSave.append(str(a))
@@ -2310,6 +2326,9 @@ def BF7():
              WriteSave.append(str(Letters))
              WriteSave.append(str(Numbers))
              WriteSave.append(str(Specials))
+             WriteSave.append(str(wep5))
+             WriteSave.append(str(wep13))
+             WriteSave.append(str(SESwitch))
              WriteSave.append(str(u))
              WriteSave.append(str(x))
              WriteSave.append(str(a))
@@ -2423,6 +2442,9 @@ def BF8():
               WriteSave.append(str(Letters))
               WriteSave.append(str(Numbers))
               WriteSave.append(str(Specials))
+              WriteSave.append(str(wep5))
+              WriteSave.append(str(wep13))
+              WriteSave.append(str(SESwitch))
               WriteSave.append(str(u))
               WriteSave.append(str(x))
               WriteSave.append(str(a))
@@ -2558,6 +2580,9 @@ def BF9():
                WriteSave.append(str(Letters))
                WriteSave.append(str(Numbers))
                WriteSave.append(str(Specials))
+               WriteSave.append(str(wep5))
+               WriteSave.append(str(wep13))
+               WriteSave.append(str(SESwitch))
                WriteSave.append(str(u))
                WriteSave.append(str(x))
                WriteSave.append(str(a))
@@ -2675,6 +2700,9 @@ def BF10():
                 WriteSave.append(str(Letters))
                 WriteSave.append(str(Numbers))
                 WriteSave.append(str(Specials))
+                WriteSave.append(str(wep5))
+                WriteSave.append(str(wep13))
+                WriteSave.append(str(SESwitch))
                 WriteSave.append(str(u))
                 WriteSave.append(str(x))
                 WriteSave.append(str(a))
@@ -2814,6 +2842,9 @@ def BF11():
                  WriteSave.append(str(Letters))
                  WriteSave.append(str(Numbers))
                  WriteSave.append(str(Specials))
+                 WriteSave.append(str(wep5))
+                 WriteSave.append(str(wep13))
+                 WriteSave.append(str(SESwitch))              
                  WriteSave.append(str(u))
                  WriteSave.append(str(x))
                  WriteSave.append(str(a))
@@ -2918,6 +2949,9 @@ def SBF1():
        WriteSave.append(str(Letters))
        WriteSave.append(str(Numbers))
        WriteSave.append(str(Specials))
+       WriteSave.append(str(wep5))
+       WriteSave.append(str(wep13))
+       WriteSave.append(str(SESwitch))
        WriteSave.append(str(u))
        WriteSave.append(str(x))
        for WriteStates in WriteSave:
@@ -2957,6 +2991,9 @@ def SBF2():
         WriteSave.append(str(Letters))
         WriteSave.append(str(Numbers))
         WriteSave.append(str(Specials))
+        WriteSave.append(str(wep5))
+        WriteSave.append(str(wep13))
+        WriteSave.append(str(SESwitch))
         WriteSave.append(str(u))
         WriteSave.append(str(x))
         WriteSave.append(str(a))
@@ -3002,6 +3039,9 @@ def SBF3():
          WriteSave.append(str(Letters))
          WriteSave.append(str(Numbers))
          WriteSave.append(str(Specials))
+         WriteSave.append(str(wep5))
+         WriteSave.append(str(wep13))
+         WriteSave.append(str(SESwitch))
          WriteSave.append(str(u))
          WriteSave.append(str(x))
          WriteSave.append(str(a))
@@ -3052,6 +3092,9 @@ def SBF4():
           WriteSave.append(str(Letters))
           WriteSave.append(str(Numbers))
           WriteSave.append(str(Specials))
+          WriteSave.append(str(wep5))
+          WriteSave.append(str(wep13))
+          WriteSave.append(str(SESwitch))
           WriteSave.append(str(u))
           WriteSave.append(str(x))
           WriteSave.append(str(a))
@@ -3107,6 +3150,9 @@ def SBF5():
            WriteSave.append(str(Letters))
            WriteSave.append(str(Numbers))
            WriteSave.append(str(Specials))
+           WriteSave.append(str(wep5))
+           WriteSave.append(str(wep13))
+           WriteSave.append(str(SESwitch))
            WriteSave.append(str(u))
            WriteSave.append(str(x))
            WriteSave.append(str(a))
@@ -3161,6 +3207,9 @@ def SBF6():
             WriteSave.append(str(Letters))
             WriteSave.append(str(Numbers))
             WriteSave.append(str(Specials))
+            WriteSave.append(str(wep5))
+            WriteSave.append(str(wep13))
+            WriteSave.append(str(SESwitch))
             WriteSave.append(str(u))
             WriteSave.append(str(x))
             WriteSave.append(str(a))
@@ -3220,6 +3269,9 @@ def SBF7():
              WriteSave.append(str(Letters))
              WriteSave.append(str(Numbers))
              WriteSave.append(str(Specials))
+             WriteSave.append(str(wep5))
+             WriteSave.append(str(wep13))
+             WriteSave.append(str(SESwitch))
              WriteSave.append(str(u))
              WriteSave.append(str(x))
              WriteSave.append(str(a))
@@ -3278,6 +3330,9 @@ def SBF8():
               WriteSave.append(str(Letters))
               WriteSave.append(str(Numbers))
               WriteSave.append(str(Specials))
+              WriteSave.append(str(wep5))
+              WriteSave.append(str(wep13))
+              WriteSave.append(str(SESwitch))
               WriteSave.append(str(u))
               WriteSave.append(str(x))
               WriteSave.append(str(a))
@@ -3341,6 +3396,9 @@ def SBF9():
                WriteSave.append(str(Letters))
                WriteSave.append(str(Numbers))
                WriteSave.append(str(Specials))
+               WriteSave.append(str(wep5))
+               WriteSave.append(str(wep13))
+               WriteSave.append(str(SESwitch))
                WriteSave.append(str(u))
                WriteSave.append(str(x))
                WriteSave.append(str(a))
@@ -3403,6 +3461,9 @@ def SBF10():
                 WriteSave.append(str(Letters))
                 WriteSave.append(str(Numbers))
                 WriteSave.append(str(Specials))
+                WriteSave.append(str(wep5))
+                WriteSave.append(str(wep13))
+                WriteSave.append(str(SESwitch))
                 WriteSave.append(str(u))
                 WriteSave.append(str(x))
                 WriteSave.append(str(a))
@@ -3470,6 +3531,9 @@ def SBF11():
                  WriteSave.append(str(Letters))
                  WriteSave.append(str(Numbers))
                  WriteSave.append(str(Specials))
+                 WriteSave.append(str(wep5))
+                 WriteSave.append(str(wep13))
+                 WriteSave.append(str(SESwitch))
                  WriteSave.append(str(u))
                  WriteSave.append(str(x))
                  WriteSave.append(str(a))
@@ -3531,46 +3595,9 @@ if RestoreSwitch is False and StdoutSwitch is False:
  print "splice3: unable to find password"
  sys.exit(0)
 
-if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = 0
- StateA = 0
- StateB = 0
- StateC = 0
- StateD = 0
- StateE = 0
- StateF = 0
- StateG = 0
- StateH = 0
- StateI = 0
- StateJ = 0
- BF1()
- StateW = 0
- StateA = 0
- StateB = 0
- StateC = 0
- StateD = 0
- StateE = 0
- StateF = 0
- StateG = 0
- StateH = 0
- StateI = 0
- StateJ = 0
- BF2()
- BF3()
- BF4()
- BF5()
- BF6()
- BF7()
- BF8()
- BF9()
- BF10()
- BF11()
- print "splice3: unable to find password"
- sys.exit(0)
 if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
+ StateU = int(State[22])
+ StateW = 0
  StateA = 0
  StateB = 0
  StateC = 0
@@ -3605,10 +3632,10 @@ if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
  BF11()
  print "splice3: unable to find password"
  sys.exit(0)
-elif StateCount == 23 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
+if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = 0
  StateB = 0
  StateC = 0
  StateD = 0
@@ -3618,7 +3645,7 @@ elif StateCount == 23 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF2()
+ BF1()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -3630,6 +3657,7 @@ elif StateCount == 23 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
+ BF2()
  BF3()
  BF4()
  BF5()
@@ -3642,10 +3670,46 @@ elif StateCount == 23 and RestoreSwitch is True and StdoutSwitch is False:
  print "splice3: unable to find password"
  sys.exit(0)
 elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = 0
+ StateC = 0
+ StateD = 0
+ StateE = 0
+ StateF = 0
+ StateG = 0
+ StateH = 0
+ StateI = 0
+ StateJ = 0
+ BF2()
+ StateW = 0
+ StateA = 0
+ StateB = 0
+ StateC = 0
+ StateD = 0
+ StateE = 0
+ StateF = 0
+ StateG = 0
+ StateH = 0
+ StateI = 0
+ StateJ = 0
+ BF3()
+ BF4()
+ BF5()
+ BF6()
+ BF7()
+ BF8()
+ BF9()
+ BF10()
+ BF11()
+ print "splice3: unable to find password"
+ sys.exit(0)
+elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
  StateC = 0
  StateD = 0
  StateE = 0
@@ -3676,12 +3740,12 @@ elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  BF11()
  print "splice3: unable to find password"
  sys.exit(0)
-elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
+elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
  StateD = 0
  StateE = 0
  StateF = 0
@@ -3710,13 +3774,13 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  BF11()
  print "splice3: unable to find password"
  sys.exit(0)
-elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
+elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
  StateE = 0
  StateF = 0
  StateG = 0
@@ -3743,14 +3807,14 @@ elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  BF11()
  print "splice3: unable to find password"
  sys.exit(0)
-elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
+elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
  StateF = 0
  StateG = 0
  StateH = 0
@@ -3775,15 +3839,15 @@ elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  BF11()
  print "splice3: unable to find password"
  sys.exit(0)
-elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
+elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
  StateG = 0
  StateH = 0
  StateI = 0
@@ -3806,16 +3870,16 @@ elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  BF11()
  print "splice3: unable to find password"
  sys.exit(0)
-elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
- StateG = int(State[29])
+elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
+ StateG = int(State[30])
  StateH = 0
  StateI = 0
  StateJ = 0
@@ -3837,16 +3901,16 @@ elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  print "splice3: unable to find password"
  sys.exit(0)
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
- StateG = int(State[29])
- StateH = int(State[30])
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
+ StateG = int(State[30])
+ StateH = int(State[31])
  StateI = 0
  StateJ = 0
  BF9()
@@ -3865,18 +3929,18 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  BF11()
  print "splice3: unable to find password"
  sys.exit(0)
-elif StateCount == 31 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
- StateG = int(State[29])
- StateH = int(State[30])
- StateI = int(State[31])
+elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
+ StateG = int(State[30])
+ StateH = int(State[31])
+ StateI = int(State[32])
  StateJ = 0
  BF10()
  StateW = 0
@@ -3893,19 +3957,19 @@ elif StateCount == 31 and RestoreSwitch is True and StdoutSwitch is False:
  BF11()
  print "splice3: unable to find password"
  sys.exit(0)
-elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
- StateG = int(State[29])
- StateH = int(State[30])
- StateI = int(State[31])
- StateJ = int(State[32])
+elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is False:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
+ StateG = int(State[30])
+ StateH = int(State[31])
+ StateI = int(State[32])
+ StateJ = int(State[33])
  BF11()
  print "splice3: unable to find password"
  sys.exit(0)
@@ -3936,45 +4000,9 @@ if RestoreSwitch is False and StdoutSwitch is True:
  SBF11()
  sys.exit(0)
 
-if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = 0
- StateA = 0
- StateB = 0
- StateC = 0
- StateD = 0
- StateE = 0
- StateF = 0
- StateG = 0
- StateH = 0
- StateI = 0
- StateJ = 0
- SBF1()
- StateW = 0
- StateA = 0
- StateB = 0
- StateC = 0
- StateD = 0
- StateE = 0
- StateF = 0
- StateG = 0
- StateH = 0
- StateI = 0
- StateJ = 0
- SBF2()
- SBF3()
- SBF4()
- SBF5()
- SBF6()
- SBF7()
- SBF8()
- SBF9()
- SBF10()
- SBF11()
- sys.exit(0)
 if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
+ StateU = int(State[22])
+ StateW = 0
  StateA = 0
  StateB = 0
  StateC = 0
@@ -4008,10 +4036,10 @@ if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is True:
  SBF10()
  SBF11()
  sys.exit(0)
-elif StateCount == 23 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
+if StateCount == 23 and RestoreSwitch is True and StdoutSwitch is True:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = 0
  StateB = 0
  StateC = 0
  StateD = 0
@@ -4021,7 +4049,7 @@ elif StateCount == 23 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF2()
+ SBF1()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4033,6 +4061,7 @@ elif StateCount == 23 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
+ SBF2()
  SBF3()
  SBF4()
  SBF5()
@@ -4044,10 +4073,45 @@ elif StateCount == 23 and RestoreSwitch is True and StdoutSwitch is True:
  SBF11()
  sys.exit(0)
 elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = 0
+ StateC = 0
+ StateD = 0
+ StateE = 0
+ StateF = 0
+ StateG = 0
+ StateH = 0
+ StateI = 0
+ StateJ = 0
+ SBF2()
+ StateW = 0
+ StateA = 0
+ StateB = 0
+ StateC = 0
+ StateD = 0
+ StateE = 0
+ StateF = 0
+ StateG = 0
+ StateH = 0
+ StateI = 0
+ StateJ = 0
+ SBF3()
+ SBF4()
+ SBF5()
+ SBF6()
+ SBF7()
+ SBF8()
+ SBF9()
+ SBF10()
+ SBF11()
+ sys.exit(0)
+elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is True:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
  StateC = 0
  StateD = 0
  StateE = 0
@@ -4078,11 +4142,11 @@ elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is True:
  SBF11()
  sys.exit(0)
 elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
  StateD = 0
  StateE = 0
  StateF = 0
@@ -4110,13 +4174,13 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is True:
  SBF10()
  SBF11()
  sys.exit(0)
-elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
+elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is True:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
  StateE = 0
  StateF = 0
  StateG = 0
@@ -4142,14 +4206,14 @@ elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is True:
  SBF10()
  SBF11()
  sys.exit(0)
-elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
+elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is True:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
  StateF = 0
  StateG = 0
  StateH = 0
@@ -4173,15 +4237,15 @@ elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is True:
  SBF10()
  SBF11()
  sys.exit(0)
-elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
+elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is True:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
  StateG = 0
  StateH = 0
  StateI = 0
@@ -4203,16 +4267,16 @@ elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is True:
  SBF10()
  SBF11()
  sys.exit(0)
-elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
- StateG = int(State[29])
+elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is True:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
+ StateG = int(State[30])
  StateH = 0
  StateI = 0
  StateJ = 0
@@ -4232,17 +4296,17 @@ elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is True:
  SBF10()
  SBF11()
  sys.exit(0)
-elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
- StateG = int(State[29])
- StateH = int(State[30])
+elif StateCount == 31 and RestoreSwitch is True and StdoutSwitch is True:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
+ StateG = int(State[30])
+ StateH = int(State[31])
  StateI = 0
  StateJ = 0
  SBF9()
@@ -4260,18 +4324,18 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is True:
  SBF10()
  SBF11()
  sys.exit(0)
-elif StateCount == 31 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
- StateG = int(State[29])
- StateH = int(State[30])
- StateI = int(State[31])
+elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is True:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
+ StateG = int(State[30])
+ StateH = int(State[31])
+ StateI = int(State[32])
  StateJ = 0
  SBF10()
  StateW = 0
@@ -4287,19 +4351,19 @@ elif StateCount == 31 and RestoreSwitch is True and StdoutSwitch is True:
  StateJ = 0
  SBF11()
  sys.exit(0)
-elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is True:
- StateU = int(State[21])
- StateW = int(State[22])
- StateA = int(State[23])
- StateB = int(State[24])
- StateC = int(State[25])
- StateD = int(State[26])
- StateE = int(State[27])
- StateF = int(State[28])
- StateG = int(State[29])
- StateH = int(State[30])
- StateI = int(State[31])
- StateJ = int(State[32])
+elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is True:
+ StateU = int(State[22])
+ StateW = int(State[23])
+ StateA = int(State[24])
+ StateB = int(State[25])
+ StateC = int(State[26])
+ StateD = int(State[27])
+ StateE = int(State[28])
+ StateF = int(State[29])
+ StateG = int(State[30])
+ StateH = int(State[31])
+ StateI = int(State[32])
+ StateJ = int(State[33])
  SBF11()
  sys.exit(0)
 

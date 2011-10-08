@@ -162,13 +162,11 @@ splice3 --setshadow="/home/user/shadow"
 .br
 See deshadow below for details.
 
---se-create a weird modular dictionary option.
+--se-create a social engineering module.
 .br
 splice3 will create concatenated words from
 .br
-dictionary as "splice3.se" and then load
-.br
-it with selected modules.
+dictionary.
 
 --create Create a dictionary and exit. splice3
 .br

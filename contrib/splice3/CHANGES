@@ -63,3 +63,8 @@ CHANGES:
 	d3v11 added im-steal.c, C code that uses
            libpurple to test successfull logins
            on several instant messenger protocols. 
+
+        Sat Oct  9 2011
+        d3v11 updated save/restore features for new
+              newest modules. changed --se-create
+              to function as a module.
