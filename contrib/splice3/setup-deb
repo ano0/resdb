@@ -1,11 +1,4 @@
 #!/bin/bash
-echo 'checking for python2.7'
-if which python2.7 >/dev/null; then
- :
-else
- echo 'python2.7 not found. Quiting... :-('
- exit 1
-fi
 
 echo 'checking for man'
 if which man >/dev/null; then
@@ -21,6 +14,18 @@ if which dpkg >/dev/null; then
 else
  echo 'dpkg not found. Quiting... :-('
  exit 1
+fi
+
+echo 'checking for python2.7'
+CheckPython=`dpkg --get-selections python2.7`
+if [[ $CheckPython == *deinstall* ]]; then
+ echo 'python2.7 not found. Quiting... :-('
+ exit 1
+elif [[ $CheckPython == '' ]]; then
+ echo 'python2.7 not found. Quiting... :-('
+ exit 1
+else
+ :
 fi
 
 echo 'configuring path to python2.7'
