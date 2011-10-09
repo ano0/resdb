@@ -1549,12 +1549,20 @@ def WEP13():
 
 
 def SOCEN():
+    socen = []
+    socen_a = []
+    socen_words = []
+
+    try:
+        for i in Word:
+         socen_words.append(i.replace('\n', ''))
+    except:
+        pass
+
     ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      socen_words.append(line.replace('\n', ''))
 
-    socen = []
-    socen_a = []
     for i in socen_words:
      for let in i:
       try:
@@ -1592,10 +1600,6 @@ def SOCEN():
         Word.append(a + b + c)    
 
     
-
-if SESwitch is True:
- socen_words = []
- SOCEN()
 if RegularSwitch is True:
  REGULAR()
 if BWSwitch is True:
@@ -1610,7 +1614,8 @@ if wep5 is True:
  WEP5()
 if wep13 is True:
  WEP13()
-
+if SESwitch is True:
+ SOCEN()
 
 DoMix = False
 if AlphaSwitch is True:
@@ -1634,6 +1639,10 @@ if UserSwitch == True:
 else:
  User.append("")
  UserCount = 1
+
+if not Word:
+ print "splice3: error: compiled empty wordlist"
+ sys.exit(1)
 
 Word = list(set(Word)) 
 WordCount = 0

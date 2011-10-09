@@ -71,3 +71,13 @@ CHANGES:
               
               fixed setup-deb bug with dependency
               checks.
+
+        Sun Oct 10 2011
+        d3v11 updated --se-create to allow module
+              stacking. see --rtfm for details.
+
+              Manual page updated.
+
+              splice3 will now give an error and
+              quit if a compiled wordlist returns
+              null.

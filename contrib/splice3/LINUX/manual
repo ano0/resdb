@@ -491,7 +491,18 @@ these two modules strip 5 or 13 character
 .br
 words from the selected dictionary and produce
 .br
-WEP compatible hex passwords.
+WEP compatible hex passwords. If your dictionary
+.br
+does not contain 5 or 13 character words then
+.br
+splice3 will likely give an error.
+
+
+--se-create Social Engineering Module:
+.br
+see the social engineering section below for
+.br
+details.
 
 .SH
 CHARACTERS 
@@ -593,6 +604,23 @@ a*Cpassword9
 a}password0Yz
 .br
 ...
+
+.SH
+SOCIAL ENGINEERING
+
+--se-create Social Engineering Module:
+.br
+splice3 is equipped with a social engineering module to create
+.br
+concatenated words from the selected dictionary. This module
+.br
+allows for "Module Stacking". IE, if you select other other
+.br
+modules when setting this flag then compiled words will also
+.br
+be incorporated into the algorithm as if they appeared on the
+.br
+the selected dictionary itself.
 
 .SH
 DESHADOW
