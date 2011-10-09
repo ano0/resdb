@@ -46,9 +46,9 @@ Z<><table>
 -->
  <tr><td>IRCZ<></td><td>L<CA|irc://client.thruhere.net/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
 <!--
- <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
 -->
- <tr><td>IRCZ<></td><td>L<SRN (tor)|irc://2dmrunyyp6bp53th.onion/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN (tor)|irc://2dmrunyyp6bp53th.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
 <!--
  <tr><td>IRCZ<></td><td>L<SRN2|irc://anortr.ucis.nl:8806/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
 -->
@@ -127,7 +127,7 @@ Z<><table>
  <tr><td>IRCZ<></td><td>L<SRN (NewNickNetCloud)|irc://irc6.srn.ano:6667/anonet></td><td>L<SRN (NewNickNetCloud)|irc://1.0.27.120:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN (NewNickNet)|irc://irc3.srn.ano:6667/anonet></td><td>L<SRN (NewNickNet)|irc://1.0.27.111:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
  <tr><td>IRCZ<></td><td>L<SRN (NickNet)|irc://irc4.srn.ano:6667/anonet></td><td>L<SRN (NickNet)|irc://1.0.27.114:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
- <tr><td>IRCZ<></td><td>L<SRN|irc://irc.somerandomnick.ano:6667/RendezVous></td><td>L<SRN|irc://1.0.27.103:6667/RendezVous></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
+ <tr><td>IRCZ<></td><td>L<SRN|irc://irc.somerandomnick.ano:6667/anonet></td><td>L<SRN|irc://1.0.27.103:6667/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
  <!--<tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc0.sevilnatas.ano:6667/anoNet></td><td>L<aaao|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname, SSL enabled)</td></tr>-->
  <tr><td>IRCZ<></td><td>L<sevilNatas|irc://irc0.sevilnatas.ano:6667/anonet></td><td></td><td>L<aaao|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname, SSL enabled)</td></tr>
 <!--
@@ -137,7 +137,7 @@ Z<><table>
  <tr><td>TelnetZ<></td><td>L<SRN|telnet://irc.somerandomnick.ano:2323/></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
  <tr><td>IRC<></td><td>L<d3v11|irc://irc.d3v11.ano:6667/></td><td></td><td>L<aaoa|irc:1.1.5.67:6667/> (Hidden IP and username, custom nickname)</td></tr>
  <tr><td>IRC<></td><td>L<whatis-theplan|irc://irc.whatis-theplan.ano:6667/></td><td></td><td>L<aaoa|irc:1.1.5.69:6667/> (Hidden IP and username, custom nickname)</td></tr>
- <tr><td>JabberZ<></td><td>irc.somerandomnick.ano (RendezVous MUC)</td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
+ <tr><td>JabberZ<></td><td>irc.somerandomnick.ano (anonet MUC)</td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
 </table>
 
 =end xhtml

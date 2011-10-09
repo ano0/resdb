@@ -76,7 +76,7 @@ DNS (Recursive: 1.0.27.38 & 1.3.3.64; TLD: 1.0.27.37 & 1.3.3.66; Root: 1.0.27.39
 
 =item *
 
-IRC (L<irc://1.3.3.7/anonet> or L<irc://irc.somerandomnick.ano/RendezVous>)
+IRC (L<irc://1.3.3.7/anonet> or L<irc://irc.somerandomnick.ano/anonet>)
 
 =item *
 
