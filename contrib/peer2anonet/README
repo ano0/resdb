@@ -68,9 +68,9 @@ USAGE:
 ================== Not Actual Line on File ============================
 anon          <--your peer's alias
 11.22.33.44   <--your peer's remote ip
-3.5.7.9       <--your peer's anonet ip
-3571          <--your peer's client port
-3570          <--your peer's asn
+1.2.3.4       <--your peer's anonet ip
+4321          <--your peer's client port
+1234          <--your peer's asn
 3c6e0b8a9c15224a8228b9a98ca1531d <--your peer's public key
 ================== Not Actual Line on File ============================
 

@@ -4,6 +4,8 @@ read -p "Enter your anonet router: " P2A_ROUTE
 read -p "Enter your anonet asn: " P2A_ASN
 read -p "Enter your anonet ip: " P2A_IP
 
+echo '' >/etc/peer2anonet/p2a.conf
+
 echo "P2A_NET=\"$P2A_NET\"" >>/etc/peer2anonet/p2a.conf
 echo "P2A_ROUTE=\"$P2A_ROUTE\"" >>/etc/peer2anonet/p2a.conf
 echo "P2A_ASN=\"$P2A_ASN\"" >>/etc/peer2anonet/p2a.conf
