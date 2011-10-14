@@ -702,6 +702,28 @@ This attack uses only numbers and special characters.
 .br
 This attack uses all characters.
 
+--exh-custom
+.br
+This attack uses custom characters in a character list. IE:
+.br
+--exh-custom='CharList.txt'
+.br
+A character list should be in the following syntax:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+j
+.br
+1
+.br
+@
+.br
+0
+.br
+z
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
 .SH
 STDOUT
 

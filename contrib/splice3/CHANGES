@@ -81,3 +81,10 @@ CHANGES:
               splice3 will now give an error and
               quit if a compiled wordlist returns
               null.
+
+	Fri Oct 14 2011
+	d3v11 updated manual for splice3
+
+	      splice3's --se-create is now much
+	      faster and much more efficient
+              with memory.

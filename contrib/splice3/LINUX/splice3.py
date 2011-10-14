@@ -1562,6 +1562,7 @@ def SOCEN():
     ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      socen_words.append(line.replace('\n', ''))
+    socen_words = list(set(socen_words))
 
     for i in socen_words:
      for let in i:
