@@ -617,6 +617,28 @@ a}password0Yz
 .br
 ...
 
+--no-char Override character usage
+.br
+This option tells splice3 not to make
+.br
+any character additions to passwords.
+
+--char-length Start and end with set character lengths
+.br
+This option tells splice3 to start and stop with a set
+.br
+amount of characters. IE:
+
+The following will start with one character added and
+.br
+end with 3:
+.br
+splice3 --char-length='1, 3'
+
+The following will generate only 6 character passwords:
+.br
+splice3 --exh-custom='MyCharacters.txt' --char-length='6, 6'
+
 .SH
 SOCIAL ENGINEERING
 
