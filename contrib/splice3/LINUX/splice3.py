@@ -118,6 +118,9 @@ parser.add_argument('--specials', action="store_true", default=False,
 parser.add_argument('--no-char', action="store_true", default=False,
                     dest='NoChar', help='Override character usage')
 
+parser.add_argument('--char-length', action='store', dest='LENGTH',
+                    help='Start and end with set character lengths')
+
 parser.add_argument('--custom', action='store', dest='Custom',
                     help='Use custom characters')
 
@@ -154,6 +157,7 @@ if option.DebugSwitch is False:
 
 StdoutSwitch = option.StdoutSwitch
 TIME = option.TIME
+LENGTH = option.LENGTH
 
 ExhL = option.ExhL
 ExhN = option.ExhN
@@ -1671,6 +1675,25 @@ else:
  sleep_now = 0
  sleep_for = 0
 
+if LENGTH != None:
+ try:
+     LENGTH = LENGTH.split(", ")
+     length_start = int(LENGTH[0])
+     length_end = int(LENGTH[1])
+     if length_end > 10:
+      length_end = 10
+     if ExhSwitch is True:
+      length_start -= 1
+      length_end -= 1
+
+ except:
+     print "splice3: error: invalid --char-length arguments"
+     sys.exit(1)
+
+else:
+ length_start = 0
+ length_end = 10
+
 def BF1():
     WordCount = 0
     for CountWords in ShowWord:
@@ -1680,6 +1703,10 @@ def BF1():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 0:
+      break
+     if length_end < 0:
+      sys.exit('splice3: unable to find password')
      for x in range(StateW, WordCount):
       if SaveSwitch is True:
        WriteSave = []
@@ -1742,6 +1769,10 @@ def BF2():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 1:
+      break
+     if length_end < 1:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
        if SaveSwitch is True:
@@ -1827,6 +1858,10 @@ def BF3():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 2:
+      break
+     if length_end < 2:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for x in range(StateW, WordCount):
@@ -1934,6 +1969,10 @@ def BF4():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 3:
+      break
+     if length_end < 3:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2063,6 +2102,10 @@ def BF5():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 4:
+      break
+     if length_end < 4:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2174,6 +2217,10 @@ def BF6():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 5:
+      break
+     if length_end < 5:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2307,6 +2354,10 @@ def BF7():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 6:
+      break
+     if length_end < 6:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2422,6 +2473,10 @@ def BF8():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 7:
+      break
+     if length_end < 7:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2559,6 +2614,10 @@ def BF9():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 8:
+      break
+     if length_end < 8:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2678,6 +2737,10 @@ def BF10():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 9:
+      break
+     if length_end < 9:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2819,6 +2882,10 @@ def BF11():
     PassAmount = 0
     timeup = 0
     for u in range(StateU, UserCount):
+     if length_start > 10:
+      break
+     if length_end < 10:
+      sys.exit('splice3: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2936,6 +3003,10 @@ def SBF1():
     for CountWords in ShowWord:
      WordCount += 1
     for u in range(StateU, UserCount):
+     if length_start > 0:
+      break
+     if length_end < 0:
+      sys.exit(0)
      for x in range(StateW, WordCount):
       if SaveSwitch is True:
        WriteSave = []
@@ -2977,6 +3048,10 @@ def SBF2():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 1:
+      break
+     if length_end < 1:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
        if SaveSwitch is True:
@@ -3024,6 +3099,10 @@ def SBF3():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 2:
+      break
+     if length_end < 2:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for x in range(StateW, WordCount):
@@ -3076,6 +3155,10 @@ def SBF4():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 3:
+      break
+     if length_end < 3:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3133,6 +3216,10 @@ def SBF5():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 4:
+      break
+     if length_end < 4:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3189,6 +3276,10 @@ def SBF6():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 5:
+      break
+     if length_end < 5:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3250,6 +3341,10 @@ def SBF7():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 6:
+      break
+     if length_end < 6:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3310,6 +3405,10 @@ def SBF8():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 7:
+      break
+     if length_end < 7:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3375,6 +3474,10 @@ def SBF9():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 8:
+      break
+     if length_end < 8:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3439,6 +3542,10 @@ def SBF10():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 9:
+      break
+     if length_end < 9:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3508,6 +3615,10 @@ def SBF11():
     if option.NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
+     if length_start > 10:
+      break
+     if length_end < 10:
+      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):

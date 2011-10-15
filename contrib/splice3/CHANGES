@@ -88,3 +88,11 @@ CHANGES:
 	      splice3's --se-create is now much
 	      faster and much more efficient
               with memory.
+
+	Sat Oct 15 2011
+	d3v11 added --char-length to control
+	      how many characters are used
+              or added to passwords, and
+              with how many characters the
+              brute force algorithms start
+              and end with.

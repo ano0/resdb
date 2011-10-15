@@ -144,6 +144,18 @@ them to WEP compatible passwords.
 
 --no-char Override character usage
 
+--char-length Start and end with set character lengths
+.br
+splice3 appends characters to the beginning
+.br
+and end of each password. You can choose 
+.br
+where these characters start and stop. IE:
+.br
+splice3 --char-length="1, 5"
+.br
+splice3 --char-length="1, 3" --exh-lns
+
 --custom Use custom characters
 .br
 splice3 --custom="/home/user/list"
