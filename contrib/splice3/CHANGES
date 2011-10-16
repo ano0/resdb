@@ -96,3 +96,8 @@ CHANGES:
               with how many characters the
               brute force algorithms start
               and end with.
+
+	      fixed im-steal.c bug. current
+	      code was not exiting after
+	      error reporting and prevented
+	      password testing.
