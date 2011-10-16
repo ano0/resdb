@@ -1,0 +1,24 @@
+DESCRIPTION:
+	simple and quick outbound proxy from AnoNet(2)
+
+DEPENDS:
+	usewithtor, daemontools, python
+
+INSTALL:
+
+# as root do:
+tar -xvf anoproxy.tgz --directory='/services'
+echo '<ip address to bind>' >/services/anoproxy/IP
+echo '<port to bind>' >/services/anoproxy/PORT
+cd /
+ln -s /services/anoproxy /service
+svstat /service/anoproxy
+
+UPDATE:
+
+# pull a copy using tor 
+usewithtor wget http://nbafkr7odek2wh6r.onion/anoproxy.tgz
+
+# pull a copy from AnoNet2
+wget http://d3v11.ano/anoproxy.tgz
+

@@ -1,0 +1,4 @@
+#!/bin/bash
+pkill anoproxy
+sleep 1
+usewithtor ./anoproxy -s `cat IP` -p `cat PORT`
