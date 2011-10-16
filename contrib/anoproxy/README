@@ -7,6 +7,7 @@ DEPENDS:
 INSTALL:
 
 # as root do:
+ip addr add '<ip address to bind>'/32 dev lo &
 tar -xvf anoproxy.tgz --directory='/services'
 echo '<ip address to bind>' >/services/anoproxy/IP
 echo '<port to bind>' >/services/anoproxy/PORT
