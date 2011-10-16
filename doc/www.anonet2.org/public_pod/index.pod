@@ -110,6 +110,11 @@ bypassing the client port.  (For this option you can use quicktun,
 openvpn, or tinc.  You will also need routing software, for example bird
 or zebra.  If you are on Windows, DnRouter can do everything.)
 
+=item *
+
+d3v11 has a site with much software and tutorials for configuring peering(s)
+and services on AnoNet2 at L<http://nbafkr7odek2wh6r.onion/>. 
+
 =back
 
 Once you're online, you can reconnect to IRC from inside AnoNet:
