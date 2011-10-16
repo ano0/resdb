@@ -94,6 +94,7 @@ static void report_disconnect_reason(PurpleConnection *gc, PurpleConnectionError
 {
 	PurpleAccount *account = purple_connection_get_account(gc);
 	printf("Connection disconnected: \"%s\" (%s)\n  >Error: %d\n  >Reason: %s\n", purple_account_get_username(account), purple_account_get_protocol_id(account), reason, text);
+	abort();
 }
 
 static PurpleConnectionUiOps connection_uiops =

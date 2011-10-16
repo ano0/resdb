@@ -7,21 +7,19 @@ USAGE:
 	im-steal <prpl-protocol> <username> <password>
 
 SPLICE3 USAGE:
-	splice3 
-	--command='im-steal <prpl-protocol> <username> PASSWORD'
-	--<modules>
-	--test='Account Connected'
+
+splice3 --command='im-steal <prpl-protocol> <username> PASSWORD' --<modules> --test='Account Connected'
 
 DEPENDS:
 	libpurple-dev, libpurple
 
 INSTALL:
-	gcc `pkg-config --libs glib-2.0` -I /usr/include/libpurple/
-        -I /usr/include/glib-2.0/ -I /usr/lib/glib-2.0/include/
-        -lpurple im-steal.c -o /usr/bin/im-steal
+
+gcc `pkg-config --libs glib-2.0` -I /usr/include/libpurple/ -I /usr/include/glib-2.0/ -I /usr/lib/glib-2.0/include/ -lpurple im-steal.c -o /usr/bin/im-steal
 
 UNINSTALL:
-	rm /usr/bin/im-steal
+
+rm /usr/bin/im-steal
 
 PRPL-PROTOCOL:
 	libpurple requires and allows several prpl-* arguments
