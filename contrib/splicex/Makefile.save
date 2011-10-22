@@ -1,8 +1,8 @@
 #!/usr/bin/make -f
 
 install-deb:
+	make clean
 	./configure
-	make preclean-deb
 	mkdir DEBIAN/splicex
 	mkdir DEBIAN/splicex/DEBIAN
 	mkdir DEBIAN/splicex/usr
@@ -30,8 +30,9 @@ install-deb:
 	rm -rf DEBIAN/splicex DEBIAN/splicex.deb
 
 install:
+	make clean
 	./configure
-	make preclean
+	make uninstall
 	cp LINUX/splicex.cp /usr/bin/splicex
 	cp LINUX/splicex-deshadow.cp /usr/bin/splicex-deshadow
 	rm -rf LINUX/*.cp
@@ -58,12 +59,11 @@ clean:
 	rm DEBIAN/splicex DEBIAN/*.deb -rf
 
 preclean:
-	rm -rf /etc/splicex
-	rm  -f /usr/bin/splicex
-	rm  -f /usr/bin/splicex-deshadow
-
-preclean-deb:
-	rm DEBIAN/splicex DEBIAN/*.deb -rf
+        rm -rf /etc/splicex
+        rm  -f /usr/bin/splicex
+        rm  -f /usr/bin/splicex-deshadow        rm -rf /etc/splicex
+        rm  -f /usr/bin/splicex
+        rm  -f /usr/bin/splicex-deshadow
 
 update:
 	wget http://www.d3v11.ano/splicex.tgz

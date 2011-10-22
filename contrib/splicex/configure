@@ -1,6 +1,4 @@
 #!/bin/bash
-clear
-
 echo "
      __________        _ _         __  __    ______
     / / / / ___| _ __ | (_) ___ ___\\ \\/ /   / / / /
@@ -11,6 +9,11 @@ echo "
 
       .:Brute Force Utilities For GNU/Linux:.
 "
+
+if [[ $(id -u) != 0 ]]; then
+ echo 'root privileges required!..Quiting...'
+ exit 1
+fi
 
 sleep 1
 echo 'CONFIGURE: '
@@ -24,12 +27,12 @@ sleep 1
 echo -ne '.'
 if which python >/dev/null; then
  sleep 1
- echo -ne 'python found :-)'
+ echo -ne ' python found :-)'
  echo
  sleep 1
 else
  sleep 1
- echo -ne 'python not found. Quiting... :-('
+ echo -ne ' python not found. Quiting... :-('
  echo
  exit 1
 fi
@@ -43,12 +46,12 @@ sleep 1
 echo -ne '.'
 if which man >/dev/null; then
  sleep 1
- echo -ne 'man found :-)'
+ echo -ne ' man found :-)'
  echo
  sleep 1
 else
  sleep 1
- echo -ne 'man not found. Quiting... :-('
+ echo -ne ' man not found. Quiting... :-('
  echo
  exit 1
 fi
