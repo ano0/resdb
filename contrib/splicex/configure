@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'checking for python2.7'
+echo 'checking for python'
 if which python >/dev/null; then
  :
 else

@@ -1,1 +1,7 @@
 CHANGES:
+	d3v11 - Sat Oct 22 2011
+		SpliceX is the new replacement for Splice3.
+		it includes some new options and should be
+		compatible with most versions of Python.
+
+		see README, splicex --help, splicex --rtfm
