@@ -1,36 +1,27 @@
-DESCRIPTION:
-  Brute Force Utilities For The Linux Shell.
+                    __________        _ _         __  __    ______
+                   / / / / ___| _ __ | (_) ___ ___\ \/ /   / / / /
+                  / / / /\___ \| '_ \| | |/ __/ _ \\  /   / / / / 
+                 / / / /  ___) | |_) | | | (_|  __//  \  / / / /  
+                /_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/   
+                               |_|
 
-NOTE:
-  splicex is currently under development. Major changes and bug
-  fixes will be appended to a CHANGES file. Some changes like
-  spelling errors or other small edits may not be shown. While
-  splicex is being developed.
+                     .:Brute Force Utilities For GNU/Linux:.
 
-USER: 
-  splicex is community ideas in a python2.7 implementation. please
-  feel free to fork or modify this project and upload it as you see
-  fit under the terms of the GPLv3.
+       SpliceX is free software: you can redistribute it and/or modify it under
+       the terms of the GNU General Public License as published by the Free 
+       Software Foundation, either version 3 of the License, or (at your option)
+       any later version.
 
-LICENSE:
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+       SpliceX is distributed in the hope that it will be useful, but WITHOUT
+       ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+       FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+       for more details. http://www.gnu.org/licenses/
 
 DEPENDS ON:
   python, man
 
 INSTALL AND UNINSTALL:
-  To install, `cd' to the extracted splice folder.
+  To install, `cd' to the extracted splicex folder.
   Issue the following commands as root:
 
   make install
@@ -42,6 +33,12 @@ INSTALL AND UNINSTALL:
   To compile/install a .deb package, as root do:
 
   make install-deb
+
+TOOLS:
+  SpliceX includes brute forcing tools. Eacg tool will
+  include a README file in its respected folder(s):
+
+  cat splicex/TOOLS/*/README
 
 UPDATE:
   # d3v11's AnoNet(2) update for splicex - Not as root, do:
