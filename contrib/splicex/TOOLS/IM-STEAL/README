@@ -6,9 +6,9 @@ DESCRIPTION:
 USAGE:
 	im-steal <prpl-protocol> <username> <password>
 
-SPLICE3 USAGE:
+SPLICEX USAGE:
 
-splice3 --command='im-steal <prpl-protocol> <username> PASSWORD' --<modules> --test='Account Connected'
+spliceX --command='im-steal <prpl-protocol> <username> PASSWORD' --<modules> --test='Account Connected'
 
 DEPENDS:
 	libpurple-dev, libpurple
