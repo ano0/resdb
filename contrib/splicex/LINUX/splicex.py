@@ -1,13 +1,14 @@
 #!PYTHON
 
 HELP = """
-    __________        _ _         __  __    ______
-   / / / / ___| _ __ | (_) ___ ___\ \/ /   / / / /
-  / / / /\___ \| '_ \| | |/ __/ _ \\\\  /   / / / / 
- / / / /  ___) | |_) | | | (_|  __//  \  / / / /  
-/_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/   
-               |_|
+      __________        _ _         __  __    ______
+     / / / / ___| _ __ | (_) ___ ___\ \/ /   / / / /
+    / / / /\___ \| '_ \| | |/ __/ _ \\\\  /   / / / /
+   / / / /  ___) | |_) | | | (_|  __//  \  / / / /
+  /_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/
+                 |_|
 
+       .:Brute Force Utilities For GNU/Linux:.
 
   --help                Show help display and exit
 
@@ -108,6 +109,8 @@ LICENSE = """
                  / / / /  ___) | |_) | | | (_|  __//  \  / / / /  
                 /_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/   
                                |_|
+
+                     .:Brute Force Utilities For GNU/Linux:.
 
        SpliceX is free software: you can redistribute it and/or modify it under
        the terms of the GNU General Public License as published by the Free 

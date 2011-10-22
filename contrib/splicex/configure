@@ -1,21 +1,70 @@
 #!/bin/bash
-echo 'checking for python'
+clear
+
+echo "
+     __________        _ _         __  __    ______
+    / / / / ___| _ __ | (_) ___ ___\\ \\/ /   / / / /
+   / / / /\___ \| '_ \| | |/ __/ _ \\\\  /   / / / /
+  / / / /  ___) | |_) | | | (_|  __//  \\  / / / /
+ /_/_/_/  |____/| .__/|_|_|\\___\\___/_/\\_\\/_/_/_/
+                |_|
+
+      .:Brute Force Utilities For GNU/Linux:.
+"
+
+sleep 1
+echo 'CONFIGURE: '
+sleep 1
+echo -ne 'checking for python'
+sleep 1
+echo -ne '.'
+sleep 1
+echo -ne '.'
+sleep 1
+echo -ne '.'
 if which python >/dev/null; then
- :
+ sleep 1
+ echo -ne 'python found :-)'
+ echo
+ sleep 1
 else
- echo 'python not found. Quiting... :-('
+ sleep 1
+ echo -ne 'python not found. Quiting... :-('
+ echo
  exit 1
 fi
 
-echo 'checking for man'
+echo -ne 'checking for man'
+sleep 1
+echo -ne '.'
+sleep 1
+echo -ne '.'
+sleep 1
+echo -ne '.'
 if which man >/dev/null; then
- :
+ sleep 1
+ echo -ne 'man found :-)'
+ echo
+ sleep 1
 else
- echo 'man not found. Quiting... :-('
+ sleep 1
+ echo -ne 'man not found. Quiting... :-('
+ echo
  exit 1
 fi
 
-echo 'configuring path to python'
 PYPATH=`which python`
+echo "configuring splicex for $PYPATH"
+sleep 1
+echo -ne '.'
+sleep 1
+echo -ne '.'
+sleep 1
+echo -ne '.'
 sed -e s^PYTHON^"$PYPATH"^g LINUX/splicex.py >LINUX/splicex.cp
 sed -e s^PYTHON^"$PYPATH"^g LINUX/splicex-deshadow.py >LINUX/splicex-deshadow.cp
+echo "configured...continuing \`make install'"
+sleep 1
+echo
+echo 'INSTALL: '
+sleep 1

@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 install-deb:
-	make clean
+	make preclean-deb
 	./configure
 	mkdir DEBIAN/splicex
 	mkdir DEBIAN/splicex/DEBIAN
@@ -30,9 +30,8 @@ install-deb:
 	rm -rf DEBIAN/splicex DEBIAN/splicex.deb
 
 install:
-	make clean
+	make preclean
 	./configure
-	make uninstall
 	cp LINUX/splicex.cp /usr/bin/splicex
 	cp LINUX/splicex-deshadow.cp /usr/bin/splicex-deshadow
 	rm -rf LINUX/*.cp
@@ -56,6 +55,14 @@ uninstall:
 	rm  -f /usr/bin/splicex-deshadow
 
 clean:
+	rm DEBIAN/splicex DEBIAN/*.deb -rf
+
+preclean:
+	rm -rf /etc/splicex
+	rm  -f /usr/bin/splicex
+	rm  -f /usr/bin/splicex-deshadow
+
+preclean-deb:
 	rm DEBIAN/splicex DEBIAN/*.deb -rf
 
 update:
