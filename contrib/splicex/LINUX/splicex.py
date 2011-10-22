@@ -1,313 +1,414 @@
 #!PYTHON
 
+HELP = """
+    __________        _ _         __  __    ______
+   / / / / ___| _ __ | (_) ___ ___\ \/ /   / / / /
+  / / / /\___ \| '_ \| | |/ __/ _ \\\\  /   / / / / 
+ / / / /  ___) | |_) | | | (_|  __//  \  / / / /  
+/_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/   
+               |_|
+
+
+  --help                Show help display and exit
+
+  --license             Show license and exit
+
+  --command             Parse passwords to this command
+
+  --dictionary          Path to custom dictionary(wordlist)
+
+  --rtfm                Show manual page and exit
+
+  --restore             Path to restore file
+
+  --save                Directory path to create save file
+
+  --test                Test output of command
+
+  --time                Manipulate timed iterations
+
+  --usernames           Path to username list
+
+  --exh-l               Use an exhaustive attack with letters only
+
+  --exh-n               Use an exhaustive attack with numbers only
+
+  --exh-s               Use an exhaustive attack with special characters only
+
+  --exh-ln              Use an exhaustive attack with letters and numbers only
+
+  --exh-ls              Use an exhaustive attack with letters and special
+                        characters only
+
+  --exh-ns              Use an exhaustive attack with numbers and special
+                        characters only
+
+  --exh-all             Use an exhaustive attack with all characters
+
+  --exh-custom          Use an exhaustive attack with custom characters
+
+  --stdout              Print only passwords to stdout
+
+  -A                    Use alphabetical mixing module
+
+  -B                    Use backwords module
+
+  -C                    Use alternating caps module
+
+  -L                    Use "L337" speak module
+
+  -M                    Use MD5 module
+
+  -N                    Use numerical mixing module
+
+  -R                    Use regular words module
+
+  -S                    Use special mixing module
+
+  --mix-custom          Use custom mixing module
+
+  --wep-5               Use 5 character WEP module
+
+  --wep-13              Use 13 character WEP module
+
+  --wep-*               Use 5 and 13 character WEP module
+
+  --letters             Use letter characters
+
+  --numbers             Use number characters
+
+  --specials            Use special characters
+
+  --char-all            Use all characters
+
+  --no-char             Override character usage
+
+  --char-length         Start and end with set character lengths
+
+  --custom              Use custom characters
+
+  --deshadow            Crack shadow hash sums
+
+  --get-shadow          Get the shadow info for a user
+
+  --set-shadow          Use the shadow info from a file
+
+  --se-module           Use the social engineering module
+
+  --create              Create a dictionary
+
+  --debug               Enable debugging
+
+"""
+
+LICENSE = """
+                    __________        _ _         __  __    ______
+                   / / / / ___| _ __ | (_) ___ ___\ \/ /   / / / /
+                  / / / /\___ \| '_ \| | |/ __/ _ \\\\  /   / / / / 
+                 / / / /  ___) | |_) | | | (_|  __//  \  / / / /  
+                /_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/   
+                               |_|
+
+       SpliceX is free software: you can redistribute it and/or modify it under
+       the terms of the GNU General Public License as published by the Free 
+       Software Foundation, either version 3 of the License, or (at your option)
+       any later version.
+
+       SpliceX is distributed in the hope that it will be useful, but WITHOUT
+       ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+       FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+       for more details. <http://www.gnu.org/licenses/>
+
+"""
+
 import os
 import re
 import sys
 import spwd
 import getpass
 import os.path
-import argparse
+import getopt
 import time
 from hashlib import md5
 
+cmd = None
+dictionary = None
+save = None
+restore = None
+test = None
+TIME = None
+LENGTH = None
+usernames = None
+MixCustom = None
+ExhCustom = None
+Custom = None
+GetShadow = None
+SetShadow = None
+ExhL = False
+ExhN = False
+ExhS = False
+ExhLN = False
+ExhLS = False
+ExhNS = False
+ExhALL = False
+StdoutSwitch = False
+AlphaSwitch = False
+BWSwitch = False
+CapsSwitch = False
+L337Switch = False
+MD5Switch = False
+NumberSwitch = False
+RegularSwitch = False
+SpecialSwitch = False
+wep5 = False
+wep13 = False
+NoChar = False
+Letters = False
+Numbers = False
+Specials = False
+DeShadow = False
+SESwitch = False
+Create = False
+DebugSwitch = False
 
-parser = argparse.ArgumentParser()
+for arg in sys.argv:
+ if '--command=' in arg:
+  cmd = arg.replace('--command=', '', 1)
+ elif '--dictionary=' in arg:
+  dictionary = arg.replace('--dictionary=', '', 1)
+ elif '--save=' in arg:
+  save = arg.replace('--save=', '', 1)
+ elif '--restore=' in arg:
+  restore = arg.replace('--restore=', '', 1)
+ elif '--test=' in arg:
+  test = arg.replace('--test=', '', 1)
+ elif '--time=' in arg:
+  TIME = arg.replace('--time=', '', 1)
+ elif '--char-length=' in arg:
+  LENGTH = arg.replace('--char-length=', '', 1)
+ elif '--usernames=' in arg:
+  usernames = arg.replace('--usernames=', '', 1)
+ elif '--mix-custom=' in arg:
+  MixCustom = arg.replace('--mix-custom=', '', 1)
+ elif '--exh-custom=' in arg:
+  ExhCustom = arg.replace('--exh-custom=', '', 1)
+ elif '--custom=' in arg:
+  Custom = arg.replace('--custom=', '', 1)
+ elif '--get-shadow=' in arg:
+  GetShadow = arg.replace('--get-shadow=', '', 1)
+ elif '--set-shadow=' in arg:
+  SetShadow = arg.replace('--set-shadow=', '', 1)
+ elif '--rtfm' in arg:
+  os.system("man /etc/splicex/splicex.1.gz")
+  sys.exit(0)
+ elif '--exh-l' in arg:
+  ExhL = True
+ elif '--exh-n' in arg:
+  ExhN = True
+ elif '--exh-s' in arg:
+  ExhS = True
+ elif '--exh-ln' in arg:
+  ExhLN = True
+ elif '--exh-ls' in arg:
+  ExhLS = True
+ elif '--exh-ns' in arg:
+  ExhNS = True
+ elif '--exh-all' in arg:
+  ExhALL = True
+ elif '--stdout' in arg:
+  StdoutSwitch = True
+ elif '-A' in arg:
+  AlphaSwitch = True
+ elif '-B' in arg:
+  BWSwitch = True
+ elif '-C' in arg:
+  CapsSwitch = True
+ elif '-L' in arg:
+  L337Switch = True
+ elif '-M' in arg:
+  MD5Switch = True
+ elif '-N' in arg:
+  NumberSwitch = True
+ elif '-R' in arg:
+  RegularSwitch = True
+ elif '-S' in arg:
+  SpecialSwitch = True
+ elif '--wep-5' in arg:
+  wep5 = True
+ elif '--no-13' in arg:
+  wep13 = True
+ elif '--wep-*' in arg:
+  wep5 = True
+  wep13 = True
+ elif '--no-char' in arg:
+  NoChar = True
+ elif '--letters' in arg:
+  Letters = True
+ elif '--numbers' in arg:
+  Numbers = True
+ elif '--specials' in arg:
+  Specials = True
+ elif '--char-all' in arg:
+  Letters = True
+  Numbers = True
+  Specials = True
+ elif '--deshadow' in arg:
+  DeShadow = True
+ elif '--se-module' in arg:
+  SESwitch = True
+ elif '--create' in arg:
+  Create = True
+ elif '--debug' in arg:
+  DebugSwitch = True
+ elif '--help' in arg:
+  sys.exit(HELP)
+ elif '--license' in arg:
+  sys.exit(LICENSE)
 
-parser.add_argument('-c', '--command', action='store', dest='cmd',
-                    help='Parse passwords to this command')
-
-parser.add_argument('-d', '--dictionary', action='store', dest='dictionary',
-                    help='Path to custom dictionary(wordlist)')
-
-parser.add_argument('--rtfm', action="store_true", default=False,
-                    dest='ManSwitch',
-                        help='Show manual page and exit')
-
-parser.add_argument('-r', '--restore', action='store', dest='restore',
-                    help='Path to restore file')
-
-parser.add_argument('-s', '--save', action='store', dest='save',
-                    help='Directory path to create save file')
-
-parser.add_argument('-t', '--test', action='store',  dest='test',
-                    help='Test output of -c\'s command')
-
-parser.add_argument('--time', action='store', dest='TIME',
-                    help='Manipulate timed iterations')
-
-parser.add_argument('-u', '--usernames', action='store', dest='usernames',
-                    help='Path to username list')
-
-parser.add_argument('--exh-l', action="store_true", default=False,
-                    dest='ExhL', help='Use an exhaustive attack with letters only')
-
-parser.add_argument('--exh-n', action="store_true", default=False,
-                    dest='ExhN', help='Use an exhaustive attack with numbers only')
-
-parser.add_argument('--exh-s', action="store_true", default=False,
-                    dest='ExhS', help='Use an exhaustive attack with special characters only')
-
-parser.add_argument('--exh-ln', action="store_true", default=False,
-                    dest='ExhLN', help='Use an exhaustive attack with letters and numbers only')
-
-parser.add_argument('--exh-ls', action="store_true", default=False,
-                    dest='ExhLS', help='Use an exhaustive attack with letters and special characters only')
-
-parser.add_argument('--exh-ns', action="store_true", default=False,
-                    dest='ExhNS', help='Use an exhaustive attack with numbers and special characters only')
-
-parser.add_argument('--exh-lns', action="store_true", default=False,
-                    dest='ExhLNS', help='Use an exhaustive attack with all characters')
-
-parser.add_argument('--exh-custom', action='store', dest='ExhCustom',
-                    help='Use an exhaustive attack with custom characters')
-
-parser.add_argument('--stdout', action="store_true", default=False,
-                    dest='StdoutSwitch', help='Print only passwords to stdout')
-
-parser.add_argument('-A', action="store_true", default=False,
-                    dest='AlphaSwitch',
-                        help='Use alphabetical mixing module')
-
-parser.add_argument('-B', action="store_true", default=False,
-                    dest='BWSwitch',
-                           help='Use backwords module')
-
-parser.add_argument('-C', action="store_true", default=False,
-                    dest='CapsSwitch',
-                           help='Use alternating caps module')
-
-parser.add_argument('-L', action="store_true", default=False,
-                    dest='L337Switch',
-                             help='Use \"L337\" speak module')
-
-parser.add_argument('-M', action="store_true", default=False,
-                    dest='MD5Switch',
-                             help='Use MD5 module')
-
-parser.add_argument('-N', action="store_true", default=False,
-                    dest='NumberSwitch',
-                           help='Use numerical mixing module')
-
-parser.add_argument('-R', action="store_true", default=False,
-                    dest='RegularSwitch',
-                              help='Use regular words module')
-
-parser.add_argument('-S', action="store_true", default=False,
-                    dest='SpecialSwitch',
-                             help='Use special mixing module')
-
-parser.add_argument('-U', action='store', dest='MixCustom',
-                    help='Use custom mixing module')
-
-parser.add_argument('--wep-5', action="store_true", default=False,
-                    dest='wep5', help='Use 5 char WEP module')
-
-parser.add_argument('--wep-13', action="store_true", default=False,
-                    dest='wep13', help='Use 13 char WEP module')
-
-parser.add_argument('--letters', action="store_true", default=False,
-                    dest='Letters', help='Use letter characters')
-
-parser.add_argument('--numbers', action="store_true", default=False,
-                    dest='Numbers', help='Use number characters')
-
-parser.add_argument('--specials', action="store_true", default=False,
-                    dest='Specials', help='Use special characters')
-
-parser.add_argument('--no-char', action="store_true", default=False,
-                    dest='NoChar', help='Override character usage')
-
-parser.add_argument('--char-length', action='store', dest='LENGTH',
-                    help='Start and end with set character lengths')
-
-parser.add_argument('--custom', action='store', dest='Custom',
-                    help='Use custom characters')
-
-parser.add_argument('--deshadow', action="store_true", default=False,
-                    dest='DeShadow', help='Crack shadow hash sums')
-
-parser.add_argument('--getshadow', action='store', dest='GetShadow',
-                    help='Get the shadow info for a user')
-
-parser.add_argument('--setshadow', action='store', dest='SetShadow',
-                    help='Use the shadow info from a file')
-
-parser.add_argument('--se-create', action="store_true", default=False,
-                    dest='SESwitch',
-                           help='a social engineering module')
-
-parser.add_argument('--create', action="store_true", default=False,
-                    dest='Create', help='Create a dictionary')
-
-parser.add_argument('-v', '--version', action='version', version='Splice3: Brute Force Utilities For The Linux Shell',
-                    help='Show splice3\'s version number and exit')
-
-parser.add_argument('--debug', action="store_true", default=False,
-                    dest='DebugSwitch', help='Enable debugging')
-
-option = parser.parse_args()
-
-if option.ExhCustom is not None:
- option.dictionary = option.ExhCustom
- option.Custom = option.ExhCustom
-
-if option.DebugSwitch is False:
+if DebugSwitch is False:
  sys.tracebacklimit = 0
 
-StdoutSwitch = option.StdoutSwitch
-TIME = option.TIME
-LENGTH = option.LENGTH
+if ExhCustom is not None:
+ dictionary = ExhCustom
+ Custom = ExhCustom
 
-ExhL = option.ExhL
-ExhN = option.ExhN
-ExhS = option.ExhS
-ExhLN = option.ExhLN
-ExhLS = option.ExhLS
-ExhNS = option.ExhNS
-ExhLNS = option.ExhLNS
+
+
 ExhSwitch = False
 if ExhL == True:
- option.dictionary = "/etc/splice3/splice3.L"
- option.Letters = True
- option.Numbers = False
- option.Specials = False
- option.AlphaSwitch = False
- option.BWSwitch = False
- option.CapsSwitch = False
- option.L337Switch = False
- option.NumberSwitch = False
- option.MD5Switch = False
- option.RegularSwitch = True
- option.SpecialSwitch = False
+ dictionary = "/etc/splicex/splicex.L"
+ Letters = True
+ Numbers = False
+ Specials = False
+ AlphaSwitch = False
+ BWSwitch = False
+ CapsSwitch = False
+ L337Switch = False
+ NumberSwitch = False
+ MD5Switch = False
+ RegularSwitch = True
+ SpecialSwitch = False
  ExhSwitch = True
 if ExhN == True:
- option.dictionary = "/etc/splice3/splice3.N"
- option.Letters = False
- option.Numbers = True
- option.Specials = False
- option.AlphaSwitch = False
- option.BWSwitch = False
- option.CapsSwitch = False
- option.L337Switch = False
- option.NumberSwitch = False
- option.MD5Switch = False
- option.RegularSwitch = True
- option.SpecialSwitch = False
+ dictionary = "/etc/splicex/splicex.N"
+ Letters = False
+ Numbers = True
+ Specials = False
+ AlphaSwitch = False
+ BWSwitch = False
+ CapsSwitch = False
+ L337Switch = False
+ NumberSwitch = False
+ MD5Switch = False
+ RegularSwitch = True
+ SpecialSwitch = False
  ExhSwitch = True
 if ExhS == True:
- option.dictionary = "/etc/splice3/splice3.S"
- option.Letters = False
- option.Numbers = False
- option.Specials = True
- option.AlphaSwitch = False
- option.BWSwitch = False
- option.CapsSwitch = False
- option.L337Switch = False
- option.NumberSwitch = False
- option.MD5Switch = False
- option.RegularSwitch = True
- option.SpecialSwitch = False
+ dictionary = "/etc/splicex/splicex.S"
+ Letters = False
+ Numbers = False
+ Specials = True
+ AlphaSwitch = False
+ BWSwitch = False
+ CapsSwitch = False
+ L337Switch = False
+ NumberSwitch = False
+ MD5Switch = False
+ RegularSwitch = True
+ SpecialSwitch = False
  ExhSwitch = True
 if ExhLN == True:
- option.dictionary = "/etc/splice3/splice3.LN"
- option.Letters = True
- option.Numbers = True
- option.Specials = False
- option.AlphaSwitch = False
- option.BWSwitch = False
- option.CapsSwitch = False
- option.L337Switch = False
- option.NumberSwitch = False
- option.MD5Switch = False
- option.RegularSwitch = True
- option.SpecialSwitch = False
+ dictionary = "/etc/splicex/splicex.LN"
+ Letters = True
+ Numbers = True
+ Specials = False
+ AlphaSwitch = False
+ BWSwitch = False
+ CapsSwitch = False
+ L337Switch = False
+ NumberSwitch = False
+ MD5Switch = False
+ RegularSwitch = True
+ SpecialSwitch = False
  ExhSwitch = True
 if ExhLS == True:
- option.dictionary = "/etc/splice3/splice3.LS"
- option.Letters = True
- option.Numbers = False
- option.Specials = True
- option.AlphaSwitch = False
- option.BWSwitch = False
- option.CapsSwitch = False
- option.L337Switch = False
- option.NumberSwitch = False
- option.MD5Switch = False
- option.RegularSwitch = True
- option.SpecialSwitch = False
+ dictionary = "/etc/splicex/splicex.LS"
+ Letters = True
+ Numbers = False
+ Specials = True
+ AlphaSwitch = False
+ BWSwitch = False
+ CapsSwitch = False
+ L337Switch = False
+ NumberSwitch = False
+ MD5Switch = False
+ RegularSwitch = True
+ SpecialSwitch = False
  ExhSwitch = True
 if ExhNS == True:
- option.dictionary = "/etc/splice3/splice3.NS"
- option.Letters = False
- option.Numbers = True
- option.Specials = True
- option.AlphaSwitch = False
- option.BWSwitch = False
- option.CapsSwitch = False
- option.L337Switch = False
- option.NumberSwitch = False
- option.MD5Switch = False
- option.RegularSwitch = True
- option.SpecialSwitch = False
+ dictionary = "/etc/splicex/splicex.NS"
+ Letters = False
+ Numbers = True
+ Specials = True
+ AlphaSwitch = False
+ BWSwitch = False
+ CapsSwitch = False
+ L337Switch = False
+ NumberSwitch = False
+ MD5Switch = False
+ RegularSwitch = True
+ SpecialSwitch = False
  ExhSwitch = True
-if ExhLNS == True:
- option.dictionary = "/etc/splice3/splice3.LNS"
- option.Letters = True
- option.Numbers = True
- option.Specials = True
- option.AlphaSwitch = False
- option.BWSwitch = False
- option.CapsSwitch = False
- option.L337Switch = False
- option.NumberSwitch = False
- option.MD5Switch = False
- option.RegularSwitch = True
- option.SpecialSwitch = False
+if ExhALL == True:
+ dictionary = "/etc/splicex/splicex.ALL"
+ Letters = True
+ Numbers = True
+ Specials = True
+ AlphaSwitch = False
+ BWSwitch = False
+ CapsSwitch = False
+ L337Switch = False
+ NumberSwitch = False
+ MD5Switch = False
+ RegularSwitch = True
+ SpecialSwitch = False
  ExhSwitch = True
 
-if option.Custom is not None and option.dictionary is not None:
- if option.Custom == option.dictionary:
-  option.Letters = False
-  option.Numbers = True
-  option.Specials = True
-  option.AlphaSwitch = False
-  option.BWSwitch = False
-  option.CapsSwitch = False
-  option.L337Switch = False
-  option.NumberSwitch = False
-  option.MD5Switch = False
-  option.RegularSwitch = True
-  option.SpecialSwitch = False
+if Custom is not None and dictionary is not None:
+ if Custom == dictionary:
+  Letters = False
+  Numbers = True
+  Specials = True
+  AlphaSwitch = False
+  BWSwitch = False
+  CapsSwitch = False
+  L337Switch = False
+  NumberSwitch = False
+  MD5Switch = False
+  RegularSwitch = True
+  SpecialSwitch = False
   ExhSwitch = True
 
 
 ShadowValue = []
-GetShadow = option.GetShadow
-SetShadow = option.SetShadow
-if option.DeShadow is True and SetShadow is None and GetShadow is None:
- print "splice3: error: --deshadow requires --getshadow or --setshadow"
- sys.exit(1)
+if DeShadow is True and SetShadow is None and GetShadow is None:
+ sys.exit("splicex: error: --deshadow requires --getshadow or --setshadow")
 if SetShadow is not None and GetShadow is not None:
- print "splice3: error: --getshadow and --setshadow cannot be combined"
- sys.exit(1)
+ sys.exit("splicex: error: --getshadow and --setshadow cannot be combined")
 elif not os.geteuid()==0 and GetShadow is not None:
- print "splice3: error: --getshadow requires root privileges"
- sys.exit(1)
+ sys.exit("splicex: error: --getshadow requires root privileges")
 elif os.geteuid()==0 and GetShadow is not None:
  try:
      ShadowValue = spwd.getspnam(GetShadow)[1]
  except:
-     print "splice3: error: --getshadow: invalid user entered"
-     sys.exit(1)
+     sys.exit("splicex: error: --getshadow: invalid user entered")
 elif SetShadow is not None and os.path.exists(SetShadow):
  ShadowFile = open(SetShadow, 'r')
  for line in ShadowFile:
   line = line.replace('\n', '')
   ShadowValue = line
 if SetShadow is not None and not os.path.exists(SetShadow):
- print "splice3: error: --setshadow: shadow file does not exist"
- sys.exit(1)
+ sys.exit("splicex: error: --setshadow: shadow file does not exist")
 elif SetShadow is not None or GetShadow is not None:
  ShadowSalt = ShadowValue.replace('$', '^1', 1)
  ShadowSalt = ShadowSalt.replace('$', '^2', 1)
@@ -322,18 +423,8 @@ elif SetShadow is not None or GetShadow is not None:
  ShadowValue = ShadowValue.replace('$', '\$')
  ShadowSalt = ShadowSalt.replace('$', '\$')
 
-
-ManSwitch = option.ManSwitch
-if ManSwitch is True:
- os.system("man /etc/splice3/splice3.1.gz")
- sys.exit(0)
-
-test = option.test
-
-restore = option.restore
 if restore is not None and os.path.exists(restore) is False:
- print "splice3: error: restore file does not exist"
- sys.exit(1)
+ sys.exit("splicex: error: restore file does not exist")
 elif restore is not None and os.path.exists(restore) is True:
  RestoreSwitch = True
  State = []
@@ -348,11 +439,10 @@ elif restore is not None and os.path.exists(restore) is True:
 else:
  RestoreSwitch = False
 
-save = option.save
+save = save
 Slash = "/"
 if save is not None and not os.path.isdir(save):
- print "splice3: error: ( -s ) invalid directory"
- sys.exit(1)
+ sys.exit("splicex: error: ( -s ) invalid directory")
 elif save is not None and os.path.isdir(save):
  SaveSwitch = True
  s = ""
@@ -367,47 +457,45 @@ elif save is not None and os.path.isdir(save):
   else:
    s += let
  save = s
- save += Slash + "splice3.save"
+ save += Slash + "splicex.save"
 else:
  SaveSwitch = False
 
-SESwitch = option.SESwitch
-dictionary = option.dictionary
+SESwitch = SESwitch
+dictionary = dictionary
 if dictionary is None:
- dictionary = "/etc/splice3/splice3.list"
+ dictionary = "/etc/splicex/splicex.list"
 elif dictionary is not None and not os.path.exists(dictionary):
- print "splice3: error: dictionary does not exist"
- sys.exit(1)
+ sys.exit("splicex: error: dictionary does not exist")
 
-usernames = option.usernames
+usernames = usernames
 if usernames is None:
  UserSwitch = False
  UserStatus = ""
 elif usernames is not None and not os.path.exists(usernames):
- print "splice3: error: username list does not exist"
- sys.exit(1)
+ sys.exit("splicex: error: username list does not exist")
 else:
  UserSwitch = True
  UserStatus = "TRYING: [USERNAME]:"
 
 if RestoreSwitch is False:
- AlphaSwitch = option.AlphaSwitch
- CapsSwitch = option.CapsSwitch
- BWSwitch = option.BWSwitch
- L337Switch = option.L337Switch
- MD5Switch = option.MD5Switch
- NumberSwitch = option.NumberSwitch
- RegularSwitch = option.RegularSwitch
- SpecialSwitch = option.SpecialSwitch
- Letters = option.Letters
- Numbers = option.Numbers
- Specials = option.Specials
- MixCustom = option.MixCustom
- Custom = option.Custom
- wep5 = option.wep5
- wep13 = option.wep13
+ AlphaSwitch = AlphaSwitch
+ CapsSwitch = CapsSwitch
+ BWSwitch = BWSwitch
+ L337Switch = L337Switch
+ MD5Switch = MD5Switch
+ NumberSwitch = NumberSwitch
+ RegularSwitch = RegularSwitch
+ SpecialSwitch = SpecialSwitch
+ Letters = Letters
+ Numbers = Numbers
+ Specials = Specials
+ MixCustom = MixCustom
+ Custom = Custom
+ wep5 = wep5
+ wep13 = wep13
 else:
- option.cmd = State[0]
+ cmd = State[0]
  dictionary = State[1]
  MixCustom = State[2]
  Custom = State[3]
@@ -482,37 +570,33 @@ else:
   SESwitch = False
 
 if StdoutSwitch is True:
- option.cmd = "STDOUT PASSWORD ON"
+ cmd = "STDOUT PASSWORD ON"
 
-if option.Create is False and RestoreSwitch is False:
- ShadowSwitch = option.DeShadow
+if Create is False and RestoreSwitch is False:
+ ShadowSwitch = DeShadow
  if ShadowSwitch is True:
-  option.cmd = "splice3-deshadow.py PASSWORD '" + ShadowSalt + "' '" + ShadowValue + "'"
- if option.cmd is None:
-  print "splice3: error: invalid usage"
-  sys.exit(1)
+  cmd = "splicex-deshadow.py PASSWORD '" + ShadowSalt + "' '" + ShadowValue + "'"
+ if cmd is None:
+  sys.exit("splicex: error: invalid usage")
  else:
-  option.cmd = option.cmd.replace('','eval ', 1)
+  cmd = cmd.replace('','eval ', 1)
 
-if option.Create is False and RestoreSwitch is False:
- if option.cmd.__contains__("PASSWORD"):
+if Create is False and RestoreSwitch is False:
+ if cmd.__contains__("PASSWORD"):
   pass
  else:
-  print "splice3: error: -c does not contain regexp `PASSWORD'"
-  sys.exit(1)
+  sys.exit("splicex: error: -c does not contain regexp `PASSWORD'")
 
-if option.usernames is not None and RestoreSwitch is False:
- if option.cmd.__contains__("USERNAME"):
+if usernames is not None and RestoreSwitch is False:
+ if cmd.__contains__("USERNAME"):
   pass
  else:
-  print "splice3: error: -c does not contain regexp `USERNAME'"
-  sys.exit(1)
+  sys.exit("splicex: error: -c does not contain regexp `USERNAME'")
 
-Create = option.Create
 if Create is True:
- print "Creating dictionary and exiting"
+ print('Creating dictionary and exiting')
 
-if Create is False and option.cmd.__contains__("splice3-deshadow"):
+if Create is False and cmd.__contains__("splicex-deshadow"):
  test = "SHADOW CRACKED"
  
 
@@ -520,8 +604,7 @@ if AlphaSwitch is False and BWSwitch is False and CapsSwitch is False\
 and L337Switch is False and NumberSwitch is False and RegularSwitch is False\
 and SpecialSwitch is False and MixCustom is None and MD5Switch is False\
 and wep5 is False and wep13 is False and SESwitch is False:
- print "splice3: error: no modules selected: ( -A -B -C -L -M -N -R -S -U, --wep-*, --se-create)"
- sys.exit(1)
+ sys.exit("splicex: error: no modules selected: ( -A -B -C -L -M -N -R -S --mix-custom --wep-5 --wep-13 --wep-* --se-module)")
 
 CharsMain = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",\
              "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",\
@@ -584,8 +667,7 @@ elif Custom is not None and RestoreSwitch is False:
   for line in UserCharacters:
    Characters.append(line.replace('\n', ''))
  else:
-  print "splice3: error: --custom list does not exist"
-  sys.exit(1)
+  sys.exit("splicex: error: --custom list does not exist")
 
 EndCount = 0
 for CountChars in Characters:
@@ -628,8 +710,7 @@ elif MixCustom is not None and RestoreSwitch is False:
   for line in MixCharacters:
    MixChars.append(line.replace('\n', ''))
  else:
-  print "splice3: error: -U list does not exist"
-  sys.exit(1)
+  sys.exit("splicex: error: -U list does not exist")
 
 Word = []
 def REGULAR():
@@ -1646,8 +1727,7 @@ else:
  UserCount = 1
 
 if not Word:
- print "splice3: error: compiled empty wordlist"
- sys.exit(1)
+ sys.exit("splicex: error: compiled empty wordlist")
 
 Word = list(set(Word)) 
 WordCount = 0
@@ -1668,8 +1748,7 @@ if TIME != None:
      sleep_for = int(TIME[1])
 
  except:
-     print "splice3: error: invalid --time arguments"
-     sys.exit(1)
+     sys.exit("splicex: error: invalid --time arguments")
 
 else:
  sleep_now = 0
@@ -1687,14 +1766,14 @@ if LENGTH != None:
       length_end -= 1
 
  except:
-     print "splice3: error: invalid --char-length arguments"
-     sys.exit(1)
+     sys.exit("splicex: error: invalid --char-length arguments")
 
 else:
  length_start = 0
  length_end = 10
 
 def BF1():
+    global cmd
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -1706,12 +1785,12 @@ def BF1():
      if length_start > 0:
       break
      if length_end < 0:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for x in range(StateW, WordCount):
       if SaveSwitch is True:
        WriteSave = []
        FILE = open(save, 'w')
-       WriteSave.append(str(option.cmd))
+       WriteSave.append(str(cmd))
        WriteSave.append(str(dictionary))
        WriteSave.append(str(MixCustom))
        WriteSave.append(str(Custom))
@@ -1747,20 +1826,20 @@ def BF1():
       if timeup == sleep_now:
        time.sleep(sleep_for)
        timeup = 0
-      print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-      cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-      output = cmd.read()
+      print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+      output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
       if test == None:
-       print output
+       print(output)
       elif output.__contains__(test):
-       print "[PASSWORD FOUND]: ", NewShowWord
+       print("[PASSWORD FOUND]: " + NewShowWord)
        sys.exit(0)
       else:
-       print output
+       print(output)
 
 def BF2():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -1772,13 +1851,13 @@ def BF2():
      if length_start > 1:
       break
      if length_end < 1:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
        if SaveSwitch is True:
         WriteSave = []
         FILE = open(save, 'w')
-        WriteSave.append(str(option.cmd))
+        WriteSave.append(str(cmd))
         WriteSave.append(str(dictionary))
         WriteSave.append(str(MixCustom))
         WriteSave.append(str(Custom))
@@ -1815,16 +1894,15 @@ def BF2():
        if timeup == sleep_now:
         time.sleep(sleep_for)
         timeup = 0
-       print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-       cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-       output = cmd.read()
+       print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+       output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
        if test == None:
-        print output
+        print(output)
        elif output.__contains__(test):
-        print "[PASSWORD FOUND]: ", NewShowWord
+        print("[PASSWORD FOUND]: " + NewShowWord)
         sys.exit(0)
        else:
-        print output
+        print(output)
 
        if ExhSwitch is False:
         PassAmount += 1
@@ -1836,20 +1914,20 @@ def BF2():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-        cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-        output = cmd.read()
+        print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+        output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
-         print output
+         print(output)
         elif output.__contains__(test):
-         print "[PASSWORD FOUND]: ", NewShowWord
+         print("[PASSWORD FOUND]: " + NewShowWord)
          sys.exit(0)
         else:
-         print output
+         print(output)
 
 def BF3():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -1861,14 +1939,14 @@ def BF3():
      if length_start > 2:
       break
      if length_end < 2:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for x in range(StateW, WordCount):
         if SaveSwitch is True:
          WriteSave = []
          FILE = open(save, 'w')
-         WriteSave.append(str(option.cmd))
+         WriteSave.append(str(cmd))
          WriteSave.append(str(dictionary))
          WriteSave.append(str(MixCustom))
          WriteSave.append(str(Custom))
@@ -1906,16 +1984,15 @@ def BF3():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-        cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-        output = cmd.read()
+        print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+        output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
-         print output
+         print(output)
         elif output.__contains__(test):
-         print "[PASSWORD FOUND]: ", NewShowWord
+         print("[PASSWORD FOUND]: " + NewShowWord)
          sys.exit(0)
         else:
-         print output
+         print(output)
 
         if ExhSwitch is False:
          PassAmount += 1
@@ -1927,16 +2004,15 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-         cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-         output = cmd.read()
+         print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
-          print output
+          print(output)
          elif output.__contains__(test):
-          print "[PASSWORD FOUND]: ", NewShowWord
+          print("[PASSWORD FOUND]: " + NewShowWord)
           sys.exit(0)
          else:
-          print output
+          print(output)
 
          PassAmount += 1
          Timer = int(round(float(time.time() - StartTime)))
@@ -1947,20 +2023,20 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-         cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-         output = cmd.read()
+         print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
-          print output
+          print(output)
          elif output.__contains__(test):
-          print "[PASSWORD FOUND]: ", NewShowWord
+          print("[PASSWORD FOUND]: " + NewShowWord)
           sys.exit(0)
          else:
-          print output
+          print(output)
 
 def BF4():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -1972,7 +2048,7 @@ def BF4():
      if length_start > 3:
       break
      if length_end < 3:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -1980,7 +2056,7 @@ def BF4():
          if SaveSwitch is True:
           WriteSave = []
           FILE = open(save, 'w')
-          WriteSave.append(str(option.cmd))
+          WriteSave.append(str(cmd))
           WriteSave.append(str(dictionary))
           WriteSave.append(str(MixCustom))
           WriteSave.append(str(Custom))
@@ -2019,16 +2095,15 @@ def BF4():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-         cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-         output = cmd.read()
+         print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
-          print output
+          print(output)
          elif output.__contains__(test):
-          print "[PASSWORD FOUND]: ", NewShowWord
+          print("[PASSWORD FOUND]: " + NewShowWord)
           sys.exit(0)
          else:
-          print output
+          print(output)
 
          if ExhSwitch is False:
           PassAmount += 1
@@ -2040,16 +2115,15 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-          cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-          output = cmd.read()
+          print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
-           print output
+           print(output)
           elif output.__contains__(test):
-           print "[PASSWORD FOUND]: ", NewShowWord
+           print("[PASSWORD FOUND]: " + NewShowWord)
            sys.exit(0)
           else:
-           print output
+           print(output)
 
           PassAmount += 1
           Timer = int(round(float(time.time() - StartTime)))
@@ -2060,16 +2134,15 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-          cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-          output = cmd.read()
+          print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
-           print output
+           print(output)
           elif output.__contains__(test):
-           print "[PASSWORD FOUND]: ", NewShowWord
+           print("[PASSWORD FOUND]: " + NewShowWord)
            sys.exit(0)
           else:
-           print output
+           print(output)
 
           PassAmount += 1
           Timer = int(round(float(time.time() - StartTime)))
@@ -2080,20 +2153,20 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-          cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-          output = cmd.read()
+          print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
-           print output
+           print(output)
           elif output.__contains__(test):
-           print "[PASSWORD FOUND]: ", NewShowWord
+           print("[PASSWORD FOUND]: " + NewShowWord)
            sys.exit(0)
           else:
-           print output
+           print(output)
 
 def BF5():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2105,7 +2178,7 @@ def BF5():
      if length_start > 4:
       break
      if length_end < 4:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2114,7 +2187,7 @@ def BF5():
           if SaveSwitch is True:
            WriteSave = []
            FILE = open(save, 'w')
-           WriteSave.append(str(option.cmd))
+           WriteSave.append(str(cmd))
            WriteSave.append(str(dictionary))
            WriteSave.append(str(MixCustom))
            WriteSave.append(str(Custom))
@@ -2154,16 +2227,15 @@ def BF5():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-          cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-          output = cmd.read()
+          print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
-           print output
+           print(output)
           elif output.__contains__(test):
-           print "[PASSWORD FOUND]: ", NewShowWord
+           print("[PASSWORD FOUND]: " + NewShowWord)
            sys.exit(0)
           else:
-           print output
+           print(output)
 
           if ExhSwitch is False:
            PassAmount += 1
@@ -2175,16 +2247,15 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-           cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-           output = cmd.read()
+           print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
-            print output
+            print(output)
            elif output.__contains__(test):
-            print "[PASSWORD FOUND]: ", NewShowWord
+            print("[PASSWORD FOUND]: " + NewShowWord)
             sys.exit(0)
            else:
-            print output
+            print(output)
 
            PassAmount += 1
            Timer = int(round(float(time.time() - StartTime)))
@@ -2195,20 +2266,20 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-           cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-           output = cmd.read()
+           print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
-            print output
+            print(output)
            elif output.__contains__(test):
-            print "[PASSWORD FOUND]: ", NewShowWord
+            print("[PASSWORD FOUND]: " + NewShowWord)
             sys.exit(0)
            else:
-            print output
+            print(output)
 
 def BF6():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2220,7 +2291,7 @@ def BF6():
      if length_start > 5:
       break
      if length_end < 5:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2230,7 +2301,7 @@ def BF6():
            if SaveSwitch is True:
             WriteSave = []
             FILE = open(save, 'w')
-            WriteSave.append(str(option.cmd))
+            WriteSave.append(str(cmd))
             WriteSave.append(str(dictionary))
             WriteSave.append(str(MixCustom))
             WriteSave.append(str(Custom))
@@ -2271,16 +2342,15 @@ def BF6():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-           cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-           output = cmd.read()
+           print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
-            print output
+            print(output)
            elif output.__contains__(test):
-            print "[PASSWORD FOUND]: ", NewShowWord
+            print("[PASSWORD FOUND]: " + NewShowWord)
             sys.exit(0)
            else:
-            print output
+            print(output)
 
            if ExhSwitch is False:
             PassAmount += 1
@@ -2292,16 +2362,15 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-            cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-            output = cmd.read()
+            print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
-             print output
+             print(output)
             elif output.__contains__(test):
-             print "[PASSWORD FOUND]: ", NewShowWord
+             print("[PASSWORD FOUND]: " + NewShowWord)
              sys.exit(0)
             else:
-             print output
+             print(output)
 
             PassAmount += 1
             Timer = int(round(float(time.time() - StartTime)))
@@ -2312,16 +2381,15 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-            cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-            output = cmd.read()
+            print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
-             print output
+             print(output)
             elif output.__contains__(test):
-             print "[PASSWORD FOUND]: ", NewShowWord
+             print("[PASSWORD FOUND]: " + NewShowWord)
              sys.exit(0)
             else:
-             print output
+             print(output)
 
             PassAmount += 1
             Timer = int(round(float(time.time() - StartTime)))
@@ -2332,20 +2400,20 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-            cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-            output = cmd.read()
+            print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
-             print output
+             print(output)
             elif output.__contains__(test):
-             print "[PASSWORD FOUND]: ", NewShowWord
+             print("[PASSWORD FOUND]: " + NewShowWord)
              sys.exit(0)
             else:
-             print output
+             print(output)
 
 def BF7():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2357,7 +2425,7 @@ def BF7():
      if length_start > 6:
       break
      if length_end < 6:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2368,7 +2436,7 @@ def BF7():
             if SaveSwitch is True:
              WriteSave = []
              FILE = open(save, 'w')
-             WriteSave.append(str(option.cmd))
+             WriteSave.append(str(cmd))
              WriteSave.append(str(dictionary))
              WriteSave.append(str(MixCustom))
              WriteSave.append(str(Custom))
@@ -2410,16 +2478,15 @@ def BF7():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-            cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-            output = cmd.read()
+            print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
-             print output
+             print(output)
             elif output.__contains__(test):
-             print "[PASSWORD FOUND]: ", NewShowWord
+             print("[PASSWORD FOUND]: " + NewShowWord)
              sys.exit(0)
             else:
-             print output
+             print(output)
 
             if ExhSwitch is False:
              PassAmount += 1
@@ -2431,16 +2498,15 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-             cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-             output = cmd.read()
+             print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
-              print output
+              print(output)
              elif output.__contains__(test):
-              print "[PASSWORD FOUND]: ", NewShowWord
+              print("[PASSWORD FOUND]: " + NewShowWord)
               sys.exit(0)
              else:
-              print output
+              print(output)
 
              PassAmount += 1
              Timer = int(round(float(time.time() - StartTime)))
@@ -2451,20 +2517,20 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-             cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-             output = cmd.read()
+             print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
-              print output
+              print(output)
              elif output.__contains__(test):
-              print "[PASSWORD FOUND]: ", NewShowWord
+              print("[PASSWORD FOUND]: " + NewShowWord)
               sys.exit(0)
              else:
-              print output
+              print(output)
 
 def BF8():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2476,7 +2542,7 @@ def BF8():
      if length_start > 7:
       break
      if length_end < 7:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2488,7 +2554,7 @@ def BF8():
              if SaveSwitch is True:
               WriteSave = []
               FILE = open(save, 'w')
-              WriteSave.append(str(option.cmd))
+              WriteSave.append(str(cmd))
               WriteSave.append(str(dictionary))
               WriteSave.append(str(MixCustom))
               WriteSave.append(str(Custom))
@@ -2531,16 +2597,15 @@ def BF8():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-             cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-             output = cmd.read()
+             print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
-              print output
+              print(output)
              elif output.__contains__(test):
-              print "[PASSWORD FOUND]: ", NewShowWord
+              print("[PASSWORD FOUND]: " + NewShowWord)
               sys.exit(0)
              else:
-              print output
+              print(output)
 
              if ExhSwitch is False:
               PassAmount += 1
@@ -2552,16 +2617,15 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-              cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-              output = cmd.read()
+              print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
-               print output
+               print(output)
               elif output.__contains__(test):
-               print "[PASSWORD FOUND]: ", NewShowWord
+               print("[PASSWORD FOUND]: " + NewShowWord)
                sys.exit(0)
               else:
-               print output
+               print(output)
 
               PassAmount += 1
               Timer = int(round(float(time.time() - StartTime)))
@@ -2572,16 +2636,15 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-              cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-              output = cmd.read()
+              print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
-               print output
+               print(output)
               elif output.__contains__(test):
-               print "[PASSWORD FOUND]: ", NewShowWord
+               print("[PASSWORD FOUND]: " + NewShowWord)
                sys.exit(0)
               else:
-               print output
+               print(output)
 
               PassAmount += 1
               Timer = int(round(float(time.time() - StartTime)))
@@ -2592,20 +2655,20 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-              cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-              output = cmd.read()
+              print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
-               print output
+               print(output)
               elif output.__contains__(test):
-               print "[PASSWORD FOUND]: ", NewShowWord
+               print("[PASSWORD FOUND]: " + NewShowWord)
                sys.exit(0)
               else:
-               print output
+               print(output)
 
 def BF9():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2617,7 +2680,7 @@ def BF9():
      if length_start > 8:
       break
      if length_end < 8:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2630,7 +2693,7 @@ def BF9():
               if SaveSwitch is True:
                WriteSave = []
                FILE = open(save, 'w')
-               WriteSave.append(str(option.cmd))
+               WriteSave.append(str(cmd))
                WriteSave.append(str(dictionary))
                WriteSave.append(str(MixCustom))
                WriteSave.append(str(Custom))
@@ -2674,16 +2737,15 @@ def BF9():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-              cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-              output = cmd.read()
+              print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
-               print output
+               print(output)
               elif output.__contains__(test):
-               print "[PASSWORD FOUND]: ", NewShowWord
+               print("[PASSWORD FOUND]: " + NewShowWord)
                sys.exit(0)
               else:
-               print output
+               print(output)
 
               if ExhSwitch is False:
                PassAmount += 1
@@ -2695,16 +2757,15 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-               cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-               output = cmd.read()
+               print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
-                print output
+                print(output)
                elif output.__contains__(test):
-                print "[PASSWORD FOUND]: ", NewShowWord
+                print("[PASSWORD FOUND]: " + NewShowWord)
                 sys.exit(0)
                else:
-                print output
+                print(output)
 
                PassAmount += 1
                Timer = int(round(float(time.time() - StartTime)))
@@ -2715,20 +2776,20 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-               cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-               output = cmd.read()
+               print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
-                print output
+                print(output)
                elif output.__contains__(test):
-                print "[PASSWORD FOUND]: ", NewShowWord
+                print("[PASSWORD FOUND]: " + NewShowWord)
                 sys.exit(0)
                else:
-                print output
+                print(output)
 
 def BF10():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2740,7 +2801,7 @@ def BF10():
      if length_start > 9:
       break
      if length_end < 9:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2754,7 +2815,7 @@ def BF10():
                if SaveSwitch is True:
                 WriteSave = []
                 FILE = open(save, 'w')
-                WriteSave.append(str(option.cmd))
+                WriteSave.append(str(cmd))
                 WriteSave.append(str(dictionary))
                 WriteSave.append(str(MixCustom))
                 WriteSave.append(str(Custom))
@@ -2799,16 +2860,15 @@ def BF10():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-               cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-               output = cmd.read()
+               print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
-                print output
+                print(output)
                elif output.__contains__(test):
-                print "[PASSWORD FOUND]: ", NewShowWord
+                print("[PASSWORD FOUND]: " + NewShowWord)
                 sys.exit(0)
                else:
-                print output
+                print(output)
 
                if ExhSwitch is False:
                 PassAmount += 1
@@ -2820,16 +2880,15 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-                cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-                output = cmd.read()
+                print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
-                 print output
+                 print(output)
                 elif output.__contains__(test):
-                 print "[PASSWORD FOUND]: ", NewShowWord
+                 print("[PASSWORD FOUND]: " + NewShowWord)
                  sys.exit(0)
                 else:
-                 print output
+                 print(output)
 
                 PassAmount += 1
                 Timer = int(round(float(time.time() - StartTime)))
@@ -2840,16 +2899,15 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-                cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-                output = cmd.read()
+                print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
-                 print output
+                 print(output)
                 elif output.__contains__(test):
-                 print "[PASSWORD FOUND]: ", NewShowWord
+                 print("[PASSWORD FOUND]: " + NewShowWord)
                  sys.exit(0)
                 else:
-                 print output
+                 print(output)
 
                 PassAmount += 1
                 Timer = int(round(float(time.time() - StartTime)))
@@ -2860,20 +2918,20 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-                cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-                output = cmd.read()
+                print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
-                 print output
+                 print(output)
                 elif output.__contains__(test):
-                 print "[PASSWORD FOUND]: ", NewShowWord
+                 print("[PASSWORD FOUND]: " + NewShowWord)
                  sys.exit(0)
                 else:
-                 print output
+                 print(output)
 
 def BF11():
-    if option.NoChar is True:
-     sys.exit('splice3: unable to find password')
+    global cmd
+    if NoChar is True:
+     sys.exit('splicex: unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2885,7 +2943,7 @@ def BF11():
      if length_start > 10:
       break
      if length_end < 10:
-      sys.exit('splice3: unable to find password')
+      sys.exit('splicex: unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2900,7 +2958,7 @@ def BF11():
                 if SaveSwitch is True:
                  WriteSave = []
                  FILE = open(save, 'w')
-                 WriteSave.append(str(option.cmd))
+                 WriteSave.append(str(cmd))
                  WriteSave.append(str(dictionary))
                  WriteSave.append(str(MixCustom))
                  WriteSave.append(str(Custom))
@@ -2946,16 +3004,15 @@ def BF11():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-                cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-                output = cmd.read()
+                print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                cmd = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace('USERNAME', User[u].replace(" ", "")))
                 if test == None:
-                 print output
+                 print(output)
                 elif output.__contains__(test):
-                 print "[PASSWORD FOUND]: ", NewShowWord
+                 print("[PASSWORD FOUND]: " + NewShowWord)
                  sys.exit(0)
                 else:
-                 print output
+                 print(output)
 
                 if ExhSwitch is False:
                  PassAmount += 1
@@ -2967,16 +3024,15 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-                 cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-                 output = cmd.read()
+                 print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
-                  print output
+                  print(output)
                  elif output.__contains__(test):
-                  print "[PASSWORD FOUND]: ", NewShowWord
+                  print("[PASSWORD FOUND]: " + NewShowWord)
                   sys.exit(0)
                  else:
-                  print output
+                  print(output)
 
                  PassAmount += 1
                  Timer = int(round(float(time.time() - StartTime)))
@@ -2987,16 +3043,15 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print "[splice3]:", Speed,"/s", User[u].replace(" ", ""), NewShowWord.replace(" ", "")
-                 cmd = os.popen(option.cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", "")))
-                 output = cmd.read()
+                 print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
-                  print output
+                  print(output)
                  elif output.__contains__(test):
-                  print "[PASSWORD FOUND]: ", NewShowWord
+                  print("[PASSWORD FOUND]: " + NewShowWord)
                   sys.exit(0)
                  else:
-                  print output
+                  print(output)
 
 def SBF1():
     WordCount = 0
@@ -3011,7 +3066,7 @@ def SBF1():
       if SaveSwitch is True:
        WriteSave = []
        FILE = open(save, 'w')
-       WriteSave.append(str(option.cmd))
+       WriteSave.append(str(cmd))
        WriteSave.append(str(dictionary))
        WriteSave.append(str(MixCustom))
        WriteSave.append(str(Custom))
@@ -3039,13 +3094,13 @@ def SBF1():
         FILE.write(WriteStates + "\n")
        FILE.close()
       NewShowWord = ShowWord[x]
-      print NewShowWord.replace(" ", "")
+      print(NewShowWord.replace(" ", ""))
 
 def SBF2():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 1:
@@ -3057,7 +3112,7 @@ def SBF2():
        if SaveSwitch is True:
         WriteSave = []
         FILE = open(save, 'w')
-        WriteSave.append(str(option.cmd))
+        WriteSave.append(str(cmd))
         WriteSave.append(str(dictionary))
         WriteSave.append(str(MixCustom))
         WriteSave.append(str(Custom))
@@ -3086,17 +3141,17 @@ def SBF2():
          FILE.write(WriteStates + "\n")
         FILE.close()
        NewShowWord = Char1[a] + ShowWord[x]
-       print NewShowWord.replace(" ", "")
+       print(NewShowWord.replace(" ", ""))
 
        if ExhSwitch is False:
         NewShowWord = ShowWord[x] + Char1[a]
-        print NewShowWord.replace(" ", "")
+        print(NewShowWord.replace(" ", ""))
 
 def SBF3():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 2:
@@ -3109,7 +3164,7 @@ def SBF3():
         if SaveSwitch is True:
          WriteSave = []
          FILE = open(save, 'w')
-         WriteSave.append(str(option.cmd))
+         WriteSave.append(str(cmd))
          WriteSave.append(str(dictionary))
          WriteSave.append(str(MixCustom))
          WriteSave.append(str(Custom))
@@ -3139,20 +3194,20 @@ def SBF3():
           FILE.write(WriteStates + "\n")
          FILE.close()
         NewShowWord = Char1[a] + ShowWord[x] + Char1[b]
-        print NewShowWord.replace(" ", "")
+        print(NewShowWord.replace(" ", ""))
 
         if ExhSwitch is False:
          NewShowWord = Char1[a] + Char1[b] + ShowWord[x]
-         print NewShowWord.replace(" ", "")
+         print(NewShowWord.replace(" ", ""))
 
          NewShowWord = ShowWord[x] + Char1[b] + Char1[a]
-         print NewShowWord.replace(" ", "")
+         print(NewShowWord.replace(" ", ""))
 
 def SBF4():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 3:
@@ -3166,7 +3221,7 @@ def SBF4():
          if SaveSwitch is True:
           WriteSave = []
           FILE = open(save, 'w')
-          WriteSave.append(str(option.cmd))
+          WriteSave.append(str(cmd))
           WriteSave.append(str(dictionary))
           WriteSave.append(str(MixCustom))
           WriteSave.append(str(Custom))
@@ -3197,23 +3252,23 @@ def SBF4():
            FILE.write(WriteStates + "\n")
           FILE.close()
          NewShowWord = Char1[c] + Char1[a] + ShowWord[x] + Char1[b]
-         print NewShowWord.replace(" ", "")
+         print(NewShowWord.replace(" ", ""))
 
          if ExhSwitch is False:
           NewShowWord = Char1[b] + ShowWord[x] + Char1[a] + Char1[c]
-          print NewShowWord.replace(" ", "")
+          print(NewShowWord.replace(" ", ""))
 
           NewShowWord = Char1[c] + Char1[a] + Char1[b] + ShowWord[x]
-          print NewShowWord.replace(" ", "")
+          print(NewShowWord.replace(" ", ""))
 
           NewShowWord = ShowWord[x] + Char1[b] + Char1[a] + Char1[c]
-          print NewShowWord.replace(" ", "")
+          print(NewShowWord.replace(" ", ""))
 
 def SBF5():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 4:
@@ -3228,7 +3283,7 @@ def SBF5():
           if SaveSwitch is True:
            WriteSave = []
            FILE = open(save, 'w')
-           WriteSave.append(str(option.cmd))
+           WriteSave.append(str(cmd))
            WriteSave.append(str(dictionary))
            WriteSave.append(str(MixCustom))
            WriteSave.append(str(Custom))
@@ -3260,20 +3315,20 @@ def SBF5():
             FILE.write(WriteStates + "\n")
            FILE.close()
           NewShowWord = Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d]
-          print NewShowWord.replace(" ", "")
+          print(NewShowWord.replace(" ", ""))
 
           if ExhSwitch is False:
            NewShowWord = Char1[c] + Char1[a] + Char1[b] + Char1[d] + ShowWord[x]
-           print NewShowWord.replace(" ", "")
+           print(NewShowWord.replace(" ", ""))
 
            NewShowWord = ShowWord[x] + Char1[d] + Char1[b] + Char1[a] + Char1[c]
-           print NewShowWord.replace(" ", "")
+           print(NewShowWord.replace(" ", ""))
 
 def SBF6():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 5:
@@ -3289,7 +3344,7 @@ def SBF6():
            if SaveSwitch is True:
             WriteSave = []
             FILE = open(save, 'w')
-            WriteSave.append(str(option.cmd))
+            WriteSave.append(str(cmd))
             WriteSave.append(str(dictionary))
             WriteSave.append(str(MixCustom))
             WriteSave.append(str(Custom))
@@ -3322,23 +3377,23 @@ def SBF6():
              FILE.write(WriteStates + "\n")
             FILE.close()
            NewShowWord = Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d]
-           print NewShowWord.replace(" ", "")
+           print(NewShowWord.replace(" ", ""))
 
            if ExhSwitch is False:
             NewShowWord = Char1[d] + Char1[b] + ShowWord[x] + Char1[a] + Char1[c] + Char1[e]
-            print NewShowWord.replace(" ", "")
+            print(NewShowWord.replace(" ", ""))
 
             NewShowWord = Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + ShowWord[x]
-            print NewShowWord.replace(" ", "")
+            print(NewShowWord.replace(" ", ""))
 
             NewShowWord = ShowWord[x] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e]
-            print NewShowWord.replace(" ", "")
+            print(NewShowWord.replace(" ", ""))
 
 def SBF7():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 6:
@@ -3355,7 +3410,7 @@ def SBF7():
             if SaveSwitch is True:
              WriteSave = []
              FILE = open(save, 'w')
-             WriteSave.append(str(option.cmd))
+             WriteSave.append(str(cmd))
              WriteSave.append(str(dictionary))
              WriteSave.append(str(MixCustom))
              WriteSave.append(str(Custom))
@@ -3389,20 +3444,20 @@ def SBF7():
               FILE.write(WriteStates + "\n")
              FILE.close()
             NewShowWord = Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f]
-            print NewShowWord.replace(" ", "")
+            print(NewShowWord.replace(" ", ""))
 
             if ExhSwitch is False:
              NewShowWord = Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + Char1[f] + ShowWord[x]
-             print NewShowWord.replace(" ", "")
+             print(NewShowWord.replace(" ", ""))
 
              NewShowWord = ShowWord[x] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e]
-             print NewShowWord.replace(" ", "")
+             print(NewShowWord.replace(" ", ""))
 
 def SBF8():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 7:
@@ -3420,7 +3475,7 @@ def SBF8():
              if SaveSwitch is True:
               WriteSave = []
               FILE = open(save, 'w')
-              WriteSave.append(str(option.cmd))
+              WriteSave.append(str(cmd))
               WriteSave.append(str(dictionary))
               WriteSave.append(str(MixCustom))
               WriteSave.append(str(Custom))
@@ -3455,23 +3510,23 @@ def SBF8():
                FILE.write(WriteStates + "\n")
               FILE.close()
              NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f]
-             print NewShowWord.replace(" ", "")
+             print(NewShowWord.replace(" ", ""))
 
              if ExhSwitch is False:
               NewShowWord = Char1[f] + Char1[d] + Char1[b] + ShowWord[x] + Char1[a] + Char1[c] + Char1[e] + Char1[g]
-              print NewShowWord.replace(" ", "")
+              print(NewShowWord.replace(" ", ""))
 
               NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + Char1[f] + ShowWord[x]
-              print NewShowWord.replace(" ", "")
+              print(NewShowWord.replace(" ", ""))
 
               NewShowWord = ShowWord[x] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g]
-              print NewShowWord.replace(" ", "")
+              print(NewShowWord.replace(" ", ""))
 
 def SBF9():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 8:
@@ -3490,7 +3545,7 @@ def SBF9():
               if SaveSwitch is True:
                WriteSave = []
                FILE = open(save, 'w')
-               WriteSave.append(str(option.cmd))
+               WriteSave.append(str(cmd))
                WriteSave.append(str(dictionary))
                WriteSave.append(str(MixCustom))
                WriteSave.append(str(Custom))
@@ -3526,20 +3581,20 @@ def SBF9():
                 FILE.write(WriteStates + "\n")
                FILE.close()
               NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h]
-              print NewShowWord.replace(" ", "")
+              print(NewShowWord.replace(" ", ""))
 
               if ExhSwitch is False:
                NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] +Char1[b] + Char1[d] + Char1[f] + Char1[h] + ShowWord[x]
-               print NewShowWord.replace(" ", "")
+               print(NewShowWord.replace(" ", ""))
 
                NewShowWord = ShowWord[x] + Char1[h] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g]
-               print NewShowWord.replace(" ", "")
+               print(NewShowWord.replace(" ", ""))
 
 def SBF10():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 9:
@@ -3559,7 +3614,7 @@ def SBF10():
                if SaveSwitch is True:
                 WriteSave = []
                 FILE = open(save, 'w')
-                WriteSave.append(str(option.cmd))
+                WriteSave.append(str(cmd))
                 WriteSave.append(str(dictionary))
                 WriteSave.append(str(MixCustom))
                 WriteSave.append(str(Custom))
@@ -3596,23 +3651,23 @@ def SBF10():
                  FILE.write(WriteStates + "\n")
                 FILE.close()
                NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h]
-               print NewShowWord.replace(" ", "")
+               print(NewShowWord.replace(" ", ""))
 
                if ExhSwitch is False:
                 NewShowWord = Char1[h] + Char1[f] + Char1[d] + Char1[b] + ShowWord[x] + Char1[a] + Char1[c] + Char1[e] + Char1[g] + Char1[i]
-                print NewShowWord.replace(" ", "")
+                print(NewShowWord.replace(" ", ""))
 
                 NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h] + ShowWord[x]
-                print NewShowWord.replace(" ", "")
+                print(NewShowWord.replace(" ", ""))
 
                 NewShowWord = ShowWord[x] + Char1[h] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g] + Char1[i]
-                print NewShowWord.replace(" ", "")
+                print(NewShowWord.replace(" ", ""))
 
 def SBF11():
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
-    if option.NoChar is True:
+    if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
      if length_start > 10:
@@ -3633,7 +3688,7 @@ def SBF11():
                 if SaveSwitch is True:
                  WriteSave = []
                  FILE = open(save, 'w')
-                 WriteSave.append(str(option.cmd))
+                 WriteSave.append(str(cmd))
                  WriteSave.append(str(dictionary))
                  WriteSave.append(str(MixCustom))
                  WriteSave.append(str(Custom))
@@ -3671,17 +3726,17 @@ def SBF11():
                   FILE.write(WriteStates + "\n")
                  FILE.close()
                 NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h] + Char1[j]
-                print NewShowWord.replace(" ", "")
+                print(NewShowWord.replace(" ", ""))
 
                 if ExhSwitch is False:
                  NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + Char1[f] + Char1[h] + Char1[j] + ShowWord[x] 
-                 print NewShowWord.replace(" ", "")
+                 print(NewShowWord.replace(" ", ""))
 
                  NewShowWord = ShowWord[x] + Char1[j] + Char1[h] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g] + Char1[i]
-                 print NewShowWord.replace(" ", "")
+                 print(NewShowWord.replace(" ", ""))
 
 if Create is True:
- CFILE = open("splice3.create", 'w')
+ CFILE = open("splicex.create", 'w')
  for WCreate in ShowWord:
   CFILE.write(WCreate + "\n")
  CFILE.close()
@@ -3713,8 +3768,7 @@ if RestoreSwitch is False and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 
 if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -3751,8 +3805,7 @@ if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3788,8 +3841,7 @@ if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3824,8 +3876,7 @@ elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3859,8 +3910,7 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3893,8 +3943,7 @@ elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3926,8 +3975,7 @@ elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3958,8 +4006,7 @@ elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3989,8 +4036,7 @@ elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4019,8 +4065,7 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4048,8 +4093,7 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateJ = 0
  BF10()
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4076,8 +4120,7 @@ elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
  StateI = 0
  StateJ = 0
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4092,8 +4135,7 @@ elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is False:
  StateI = int(State[32])
  StateJ = int(State[33])
  BF11()
- print "splice3: unable to find password"
- sys.exit(0)
+ sys.exit("splicex: unable to find password")
 
 if RestoreSwitch is False and StdoutSwitch is True:
  StateU = 0
@@ -4488,5 +4530,4 @@ elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is True:
  SBF11()
  sys.exit(0)
 
-print "splice3: unknown error: please report bug to author"
-sys.exit(1)
+sys.exit("splicex: unknown error: please report bug to author")

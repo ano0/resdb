@@ -1,207 +1,100 @@
-.TH splice3 "1" "sep 2011" "splice3" "Brute Force Utilities"
-.SH
-NAME
-splice3 - manual page for splice3
-
-.SH
-DESCRIPTION
-
-Brute Force Utilities For The Linux Shell.
+.TH SpliceX "" "" "" "Brute Force Utilities For GNU/Linux"
 
 .SH
 OPTIONS
--h, --help show the help message and exit
 
--c, Parse passwords to this command
-.br
-Command must contain regexp PASSWORD.
-.br
-splice3 -c"command PASSWORD"
+--help                Show help display and exit
 
--d Path to custom dictionary(wordlist)
-.br
-splice3 -d"/home/user/wordlist"
-.br
-If this option is unset then splice3
-.br
-will use its default dictionary.
+--command             Parse passwords to this command
 
---rtfm Show manual page and exit
+--dictionary          Path to custom dictionary(wordlist)
 
--r Path to restore file
-.br
-splice3 -r"/home/user/splice3.save"
-.br
-DO NOT USE MODIFIED OR NON-SPLICE
-.br
-SAVE FILES.
+--rtfm                Show manual page and exit
 
--s Directory path to create save file
-.br
-splice3 -s"/home/user"
+--restore             Path to restore file
 
--t Test output of -c's command
-.br
-splice3 -t"All OK"
+--save                Directory path to create save file
 
---time Manipulate timed iterations
-.br
-splice3 can pause its attack for 
-.br
-a specified amount of seconds per
-.br
-every specified amount of iterations.
-.br
-splice3 --time="12, 360"
-.br
-The above will tell splice3 to pause
-.br
-360 seconds after trying every 12 passwords.
+--test                Test output of command
 
--u Path to username list
-.br
-splice3 -u"/home/user/userlist"
-.br
-If you use this command the regexp
-.br
-`USERNAME' will be required in the
-.br
-given -c command. See -c flag for
-.br
-details.
+--time                Manipulate timed iterations
 
-.br
---exh-l Use an exhaustive attack with letters only
+--usernames           Path to username list
 
-.br
---exh-n Use an exhaustive attack with numbers only
+--exh-l               Use an exhaustive attack with letters only
 
-.br
---exh-s Use an exhaustive attack with special characters only
+--exh-n               Use an exhaustive attack with numbers only
 
-.br
---exh-ln Use an exhaustive attack with letters and numbers only
+--exh-s               Use an exhaustive attack with special characters only
 
-.br
---exh-ls Use an exhaustive attack with letters and special
-.br
-characters only
+--exh-ln              Use an exhaustive attack with letters and numbers only
 
-.br
---exh-ns Use an exhaustive attack with numbers and special
-.br
-characters only
+--exh-ls              Use an exhaustive attack with letters and special
+                      characters only
 
---exh-lns Use an exhaustive attack with all characters
+--exh-ns              Use an exhaustive attack with numbers and special
+                      characters only
 
---exh-custom Use an exhaustive attack with custom characters
-.br
-splice3 --exh-custom='character list'
+--exh-all             Use an exhaustive attack with all characters
 
---stdout Print only passwords to stdout
+--exh-custom          Use an exhaustive attack with custom characters
 
--A Use alphabetical mixing module
+--stdout              Print only passwords to stdout
 
--B Use backwards module
+-A                    Use alphabetical mixing module
 
--C Use alternating caps module
+-B                    Use backwords module
 
--L Use "L337" speak module
+-C                    Use alternating caps module
 
--M Use MD5 module
+-L                    Use "L337" speak module
 
--N Use numerical mixing module
+-M                    Use MD5 module
 
--R Use regular words module
+-N                    Use numerical mixing module
 
--S Use special mixing module
+-R                    Use regular words module
 
--U Use custom mixing module
-.br
-splice3 -U"/home/user/list"
+-S                    Use special mixing module
 
---wep-5 Use 5 char WEP module
-.br
-splice3 will strip 5 char words
-.br
-from the dictionary and convert
-.br
-them to WEP compatible passwords.
+--mix-custom          Use custom mixing module
 
---wep-13 Use 13 char WEP module
-.br
-splice3 will strip 13 char words
-.br
-from the dictionary and convert
-.br
-them to WEP compatible passwords.
+--wep-5               Use 5 character WEP module
 
---letters Use letter characters
+--wep-13              Use 13 character WEP module
 
---numbers Use number characters
+--wep-*               Use 5 and 13 character WEP module
 
---specials Use special characters
+--letters             Use letter characters
 
---no-char Override character usage
+--numbers             Use number characters
 
---char-length Start and end with set character lengths
-.br
-splice3 appends characters to the beginning
-.br
-and end of each password. You can choose 
-.br
-where these characters start and stop. IE:
-.br
-splice3 --char-length="1, 5"
-.br
-splice3 --char-length="1, 3" --exh-lns
+--specials            Use special characters
 
---custom Use custom characters
-.br
-splice3 --custom="/home/user/list"
+--char-all            Use all characters
 
---deshadow Crack shadow hash sums
+--no-char             Override character usage
 
---getshadow Get the shadow info for a user
-.br
-splice3 --getshadow="username"
-.br
-See deshadow below for details.
+--char-length         Start and end with set character lengths
 
---setshadow Use the shadow info from a file
-.br
-splice3 --setshadow="/home/user/shadow"
-.br
-See deshadow below for details.
+--custom              Use custom characters
 
---se-create a social engineering module.
-.br
-splice3 will create concatenated words from
-.br
-dictionary.
+--deshadow            Crack shadow hash sums
 
---create Create a dictionary and exit. splice3
-.br
-will create a dictionary with a user
-.br
-selected wordlist and the selected 
-.br
-Modules. The new dictionary will be
-.br
-created in your current directory as
-.br
-splice3.create
+--get-shadow          Get the shadow info for a user
 
--v, --version Show splice3's version number and exit
+--set-shadow          Use the shadow info from a file
 
---debug Enable debugging
-.br
-Allows debugging and traceback reporting from splice3.
+--se-module           Use the social engineering module
+
+--create              Create a dictionary
+
+--debug               Enable debugging
 
 .SH
 DICTIONARIES
 
-splice3 comes equipped with its own dictionary but is
+splicex comes equipped with its own dictionary but is
 .br
 designed to use custom dictionaries as well. The
 .br
@@ -234,11 +127,11 @@ hacker
 .SH
 USERNAMES
 
-splice3 is capable of cycling through usernames as it
+splicex is capable of cycling through usernames as it
 .br
 would a dictionary. There is no default username list
 .br
-on splice3. The username list should be in the 
+on splicex. The username list should be in the 
 .br
 following format: a plain text file with one word per 
 .br
@@ -267,43 +160,43 @@ fred
 .SH
 SAVING AND RESTORING
 
-splice3 is capable of restarting where it was stopped
+splicex is capable of restarting where it was stopped
 .br
-by using the -r switch followed by the full path to
+by using the --restore switch followed by the full path to
 .br
-a splice3.save file. DO NOT modify these files or
+a splicex.save file. DO NOT modify these files or
 .br
-splice3 may receive an error or not load at all. 
+splicex may receive an error or not load at all. 
 .br
-When restoring, if you set the -t switch you must
+When restoring, if you set the --test switch you must
 .br
-manually set it again or splice3 will not test for
+manually set it again or splicex will not test for
 .br
-specified output. If saving splice3's status, then
+specified output. If saving splicex's status, then
 .br
-splice3 will save to the specified directory as
+splicex will save to the specified directory as
 .br
-splice3.save. If splice3.save already exists it will
+splicex.save. If splicex.save already exists it will
 .br
 be overwritten so change the name of any original
 .br
-copies if you want to keep them. If saving a splice3
+copies if you want to keep them. If saving a splicex
 .br
 session you should stop the process using the
 .br
-appropriate terminal feature before killing splice3
+appropriate terminal feature before killing splicex
 .br
 to avoid corrupting the save file.
 
--s "/path/to/save/directory/"
+--save="/path/to/save/directory/"
 
--r "/path/to/splice3.save/"
+--restore="/path/to/splicex.save/"
 .SH
 MODULES
 
--A -B -C -L -M -N -R -S -U --wep-5 --wep-13 --se-create
+-A -B -C -L -M -N -R -S --mix-custom --wep-5 --wep-13 --wep-* --se-module
 .br
-splice3 comes equipped with several modules that mangle
+splicex comes equipped with several modules that mangle
 .br
 the words in the selected dictionary to create probable
 .br
@@ -401,7 +294,7 @@ passwo6r9d
 
 -R Regular Words Module:
 .br
-This module tells splice3 to use the words in a
+This module tells splicex to use the words in a
 .br
 selected dictionary as they are listed.
 
@@ -424,7 +317,7 @@ passwo-r+d
 .br
 ...
 
--U Custom Mixing Module:
+--mix-custom Custom Mixing Module:
 .br
 This module puts several combinations of user
 .br
@@ -442,7 +335,7 @@ passwo-r+d
 .br
 ...
 
--U's list should only contain one character per
+--mix-custom's list should only contain one character per
 .br
 line on a plain text file. If you select this
 .br
@@ -466,7 +359,7 @@ z
 
 If -A, -N, and/or -S options are selected then
 .br
-the modules will be combined. IE:
+the modules will be combined. see also --char-all. IE:
 
 pZa!ssword
 .br
@@ -497,7 +390,7 @@ IE:
 ...
 
 
---wep-* WEP Modules:
+--wep-*, --wep-5, --wep-13 WEP Modules:
 .br
 these two modules strip 5 or 13 character
 .br
@@ -507,10 +400,10 @@ WEP compatible hex passwords. If your dictionary
 .br
 does not contain 5 or 13 character words then
 .br
-splice3 will likely give an error.
+splicex will likely give an error.
 
 
---se-create Social Engineering Module:
+--se-module Social Engineering Module:
 .br
 see the social engineering section below for
 .br
@@ -519,9 +412,9 @@ details.
 .SH
 CHARACTERS 
 
-splice3 appends alternating character tags to the beginning
+splicex appends alternating character tags to the beginning
 .br
-and/or ending of each password. By default splice3 will use
+and/or ending of each password. By default splicex will use
 .br
 all standard keyboard characters but you can choose to use
 .br
@@ -587,7 +480,7 @@ module then other character flags will be ignored.
 .br
 If the custom list matches the selected dictionary
 .br
-then splice3 will run in exhaustive mode.
+then splicex will run in exhaustive mode.
 .br
 IE:
 
@@ -619,13 +512,13 @@ a}password0Yz
 
 --no-char Override character usage
 .br
-This option tells splice3 not to make
+This option tells splicex not to make
 .br
 any character additions to passwords.
 
 --char-length Start and end with set character lengths
 .br
-This option tells splice3 to start and stop with a set
+This option tells splicex to start and stop with a set
 .br
 amount of characters. IE:
 
@@ -633,18 +526,18 @@ The following will start with one character added and
 .br
 end with 3:
 .br
-splice3 --char-length='1, 3'
+splicex --char-length='1, 3'
 
 The following will generate only 6 character passwords:
 .br
-splice3 --exh-custom='MyCharacters.txt' --char-length='6, 6'
+splicex --exh-custom='MyCharacters.txt' --char-length='6, 6'
 
 .SH
 SOCIAL ENGINEERING
 
---se-create Social Engineering Module:
+--se-module Social Engineering Module:
 .br
-splice3 is equipped with a social engineering module to create
+splicex is equipped with a social engineering module to create
 .br
 concatenated words from the selected dictionary. This module
 .br
@@ -659,23 +552,23 @@ the selected dictionary itself.
 .SH
 DESHADOW
 
-splice3 comes with its own small program to compare a created hash
+splicex comes with its own small program to compare a created hash
 .br
 sum, those found in /etc/shadow with an existing one given through
 .br
 user input. When using the deshadow option you will need to set
 .br
-exactly one of the --getshadow or --setshadow options. There is no
+exactly one of the --get-shadow or --set-shadow options. There is no
 .br
-need to use the -c CMD or the -t TEST flags when using this option
+need to use the --command or the --test flags when using this option
 .br
 because the values for each will be preset.
 
---getshadow Get the shadow info for a user
+--get-shadow Get the shadow info for a user
 .br
 see examples below for usage details.
 
---setshadow Use the shadow info from a file. This file should be
+--set-shadow Use the shadow info from a file. This file should be
 .br
 in plain text and contain only one line with the
 .br
@@ -696,7 +589,7 @@ cat /etc/shadow | grep -i "$USER"
 .SH
 EXHAUSTIVE
 
-splice3 is capable of mounting a standard exhaustive attack.
+splicex is capable of mounting a standard exhaustive attack.
 .br
 An exhaustive attack is a sure\-fire method to crack any
 .br
@@ -732,7 +625,7 @@ This attack uses only letters and special characters.
 .br
 This attack uses only numbers and special characters.
 
---exh-lns
+--exh-all
 .br
 This attack uses all characters.
 
@@ -761,7 +654,7 @@ z
 .SH
 STDOUT
 
-splice3 has the option to skip the command and test flags
+splicex has the option to skip the command and test flags
 .br
 and print only the created passwords to stdout. This is a
 .br
@@ -786,22 +679,22 @@ john1965
 .SH
 REGEXP
 
-splice3 can create some regexp type functions
+splicex can create some regexp type functions
 .br
 using existing options:
 
-splice3 --command='echo onePASSWORDthree' --test='onetwothree' --exh-l
+splicex --command='echo onePASSWORDthree' --test='onetwothree' --exh-l
 
-splice3 -c 'echo johnPASSWORD65' --test='john1965' --exh-custom='MyList.txt'
+splicex --command='echo johnPASSWORD65' --test='john1965' --exh-custom='MyList.txt'
 
-splice3 --command='echo ilovePASSWORD' -R --no-char --test='iloveqwerty'
+splicex --command='echo ilovePASSWORD' -R --no-char --test='iloveqwerty'
 
-you may also want to see --se-create for more specific attacks.
+you may also want to see --se-module for more specific attacks.
 
 .SH
 CONTROLS
 
-splice3 contains some options worth going over again.
+splicex contains some options worth going over again.
 
 --command='<insert command> PASSWORD' #must contain regexp 'PASSWORD'
 
@@ -822,45 +715,41 @@ splice3 contains some options worth going over again.
 .SH
 EXAMPLES
 
-splice3 -c"unrar -pPASSWORD t file.rar" -t"All OK" -ACLNRS
+splicex --command="unrar -pPASSWORD t file.rar" --test="All OK" -R
 
-splice3 -c"sshpass -pPASSWORD ssh user@host" -d"wordlist" -L
+splicex --command="sshpass -pPASSWORD ssh user@host" --dictionary="wordlist" -L
 
-splice3 -c"smbclient -L 192.168.1.0 -Uusername%PASSWORD" -L
+splicex --command="smbclient -L 192.168.1.0 -Uusername%PASSWORD" -L
 
-splice3 --deshadow --getshadow="root" -ACLNRS
+splicex --deshadow --get-shadow="root" -R
 
-splice3 --deshadow --setshadow="/home/user/shadow.txt" -ACLNRS
+splicex --deshadow --set-shadow="/home/user/shadow.txt" -R
 
-splice3\\
+splicex\\
 .br 
---command='echo PASSWORD | aircrack-ng -b 00:11:22:33:44:55 -w - *.cap'\\
+--command="echo PASSWORD | aircrack-ng -b 00:11:22:33:44:55 -w - *.cap"\\
 .br
 --wep-5 --wep-13 --no-char --dictionary='MyWords.txt'\\
 .br
 --test='KEY FOUND'
 
-splice3 -c"curl --user <user[:PASSWORD]> https://www.example.com" -R
+splicex --command='curl --user <user[:PASSWORD]> https://www.example.com' -R
 
 .SH
 LICENSE
 
-This program is free software: you can redistribute it and/or modify
+SpliceX is free software: you can redistribute it and/or modify it under
 .br
-it under the terms of the GNU General Public License as published by
+the terms of the GNU General Public License as published by the Free 
 .br
-the Free Software Foundation, either version 3 of the License, or
+Software Foundation, either version 3 of the License, or (at your option)
 .br
-(at your option) any later version.
+any later version.
 
-This program is distributed in the hope that it will be useful,
+SpliceX is distributed in the hope that it will be useful, but WITHOUT
 .br
-but WITHOUT ANY WARRANTY; without even the implied warranty of
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 .br
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 .br
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-.br
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+for more details. <http://www.gnu.org/licenses/>

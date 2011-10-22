@@ -1,0 +1,21 @@
+#!/bin/bash
+echo 'checking for python2.7'
+if which python >/dev/null; then
+ :
+else
+ echo 'python not found. Quiting... :-('
+ exit 1
+fi
+
+echo 'checking for man'
+if which man >/dev/null; then
+ :
+else
+ echo 'man not found. Quiting... :-('
+ exit 1
+fi
+
+echo 'configuring path to python'
+PYPATH=`which python`
+sed -e s^PYTHON^"$PYPATH"^g LINUX/splicex.py >LINUX/splicex.cp
+sed -e s^PYTHON^"$PYPATH"^g LINUX/splicex-deshadow.py >LINUX/splicex-deshadow.cp
