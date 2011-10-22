@@ -1,12 +1,29 @@
 .TH SpliceX "" "" "" ""
-     __________        _ _         __  __    ______
-    / / / / ___| _ __ | (_) ___ ___\\ \\/ /   / / / /
-   / / / /\\___ \\| '_ \\| | |/ __/ _ \\\\  /   / / / /
-  / / / /  ___) | |_) | | | (_|  __//  \\  / / / /
- /_/_/_/  |____/| .__/|_|_|\\___\\___/_/\\_\\/_/_/_/
-                |_|
+             __________        _ _         __  __    ______
+            / / / / ___| _ __ | (_) ___ ___\\ \\/ /   / / / /
+           / / / /\\___ \\| '_ \\| | |/ __/ _ \\\\  /   / / / /
+          / / / /  ___) | |_) | | | (_|  __//  \\  / / / /
+         /_/_/_/  |____/| .__/|_|_|\\___\\___/_/\\_\\/_/_/_/
+                        |_|
+ 
+              .:Brute Force Utilities For GNU/Linux:.
 
-      .:Brute Force Utilities For GNU/Linux:.
+
+SpliceX is free software: you can redistribute it and/or modify it under
+.br
+the terms of the GNU General Public License as published by the Free
+.br
+Software Foundation, either version 3 of the License, or (at your option)
+.br
+any later version.
+
+SpliceX is distributed in the hope that it will be useful, but WITHOUT
+.br
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.br
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.br
+for more details. <http://www.gnu.org/licenses/>
 
 .SH
 OPTIONS
@@ -743,21 +760,3 @@ splicex\\
 
 splicex --command='curl --user <user[:PASSWORD]> https://www.example.com' -R
 
-.SH
-LICENSE
-
-SpliceX is free software: you can redistribute it and/or modify it under
-.br
-the terms of the GNU General Public License as published by the Free 
-.br
-Software Foundation, either version 3 of the License, or (at your option)
-.br
-any later version.
-
-SpliceX is distributed in the hope that it will be useful, but WITHOUT
-.br
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-.br
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-.br
-for more details. <http://www.gnu.org/licenses/>
