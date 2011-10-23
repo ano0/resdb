@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 echo "
      __________        _ _         __  __    ______
     / / / / ___| _ __ | (_) ___ ___\\ \\/ /   / / / /
@@ -15,42 +16,42 @@ if [[ $(id -u) != 0 ]]; then
  exit 1
 fi
 
-sleep 1
+sleep .7
 echo 'CONFIGURE: '
-sleep 1
+sleep .7
 echo -ne 'checking for python'
-sleep 1
+sleep .7
 echo -ne '.'
-sleep 1
+sleep .7
 echo -ne '.'
-sleep 1
+sleep .7
 echo -ne '.'
 if which python >/dev/null; then
- sleep 1
+ sleep .7
  echo -ne ' python found :-)'
  echo
- sleep 1
+ sleep .7
 else
- sleep 1
+ sleep .7
  echo -ne ' python not found. Quiting... :-('
  echo
  exit 1
 fi
 
 echo -ne 'checking for man'
-sleep 1
+sleep .7
 echo -ne '.'
-sleep 1
+sleep .7
 echo -ne '.'
-sleep 1
+sleep .7
 echo -ne '.'
 if which man >/dev/null; then
- sleep 1
+ sleep .7
  echo -ne ' man found :-)'
  echo
- sleep 1
+ sleep .7
 else
- sleep 1
+ sleep .7
  echo -ne ' man not found. Quiting... :-('
  echo
  exit 1
@@ -58,16 +59,16 @@ fi
 
 PYPATH=`which python`
 echo "configuring splicex for $PYPATH"
-sleep 1
+sleep .7
 echo -ne '.'
-sleep 1
+sleep .7
 echo -ne '.'
-sleep 1
+sleep .7
 echo -ne '.'
 sed -e s^PYTHON^"$PYPATH"^g LINUX/splicex.py >LINUX/splicex.cp
 sed -e s^PYTHON^"$PYPATH"^g LINUX/splicex-deshadow.py >LINUX/splicex-deshadow.cp
 echo "configured...continuing \`make install'"
-sleep 1
+sleep .7
 echo
 echo 'INSTALL: '
-sleep 1
+sleep .7
