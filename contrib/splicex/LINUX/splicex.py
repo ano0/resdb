@@ -1,6 +1,7 @@
 #!PYTHON
 
 Red = '\033[1;31m'
+Green = '\033[1;32m'
 Yellow = '\033[1;33m'
 DefColour = '\033[0;0m'
 
@@ -265,8 +266,6 @@ for arg in sys.argv:
   DebugSwitch = True
  elif '--help' in arg:
   sys.exit(HELP())
- #elif '--license' in arg:
- # sys.exit(LICENSE)
 
 if DebugSwitch is False:
  sys.tracebacklimit = 0
@@ -395,23 +394,23 @@ if Custom is not None and dictionary is not None:
 
 ShadowValue = []
 if DeShadow is True and SetShadow is None and GetShadow is None:
- sys.exit("splicex: error: --deshadow requires --getshadow or --setshadow")
+ sys.exit(Red + "splicex:" + DefColour + " error: --deshadow requires --getshadow or --setshadow")
 if SetShadow is not None and GetShadow is not None:
- sys.exit("splicex: error: --getshadow and --setshadow cannot be combined")
+ sys.exit(Red + "splicex:" + DefColour + " error: --getshadow and --setshadow cannot be combined")
 elif not os.geteuid()==0 and GetShadow is not None:
- sys.exit("splicex: error: --getshadow requires root privileges")
+ sys.exit(Red + "splicex:" + DefColour + " error: --getshadow requires root privileges")
 elif os.geteuid()==0 and GetShadow is not None:
  try:
      ShadowValue = spwd.getspnam(GetShadow)[1]
  except:
-     sys.exit("splicex: error: --getshadow: invalid user entered")
+     sys.exit(Red + "splicex:" + DefColour + " error: --getshadow: invalid user entered")
 elif SetShadow is not None and os.path.exists(SetShadow):
  ShadowFile = open(SetShadow, 'r')
  for line in ShadowFile:
   line = line.replace('\n', '')
   ShadowValue = line
 if SetShadow is not None and not os.path.exists(SetShadow):
- sys.exit("splicex: error: --setshadow: shadow file does not exist")
+ sys.exit(Red + "splicex:" + DefColour + " error: --setshadow: shadow file does not exist")
 elif SetShadow is not None or GetShadow is not None:
  ShadowSalt = ShadowValue.replace('$', '^1', 1)
  ShadowSalt = ShadowSalt.replace('$', '^2', 1)
@@ -427,7 +426,7 @@ elif SetShadow is not None or GetShadow is not None:
  ShadowSalt = ShadowSalt.replace('$', '\$')
 
 if restore is not None and os.path.exists(restore) is False:
- sys.exit("splicex: error: restore file does not exist")
+ sys.exit(Red + "splicex:" + DefColour + " error: restore file does not exist")
 elif restore is not None and os.path.exists(restore) is True:
  RestoreSwitch = True
  State = []
@@ -445,7 +444,7 @@ else:
 save = save
 Slash = "/"
 if save is not None and not os.path.isdir(save):
- sys.exit("splicex: error: ( -s ) invalid directory")
+ sys.exit(Red + "splicex:" + DefColour + " error: ( -s ) invalid directory")
 elif save is not None and os.path.isdir(save):
  SaveSwitch = True
  s = ""
@@ -469,14 +468,14 @@ dictionary = dictionary
 if dictionary is None:
  dictionary = "/etc/splicex/splicex.list"
 elif dictionary is not None and not os.path.exists(dictionary):
- sys.exit("splicex: error: dictionary does not exist")
+ sys.exit(Red + "splicex:" + DefColour + " error: dictionary does not exist")
 
 usernames = usernames
 if usernames is None:
  UserSwitch = False
  UserStatus = ""
 elif usernames is not None and not os.path.exists(usernames):
- sys.exit("splicex: error: username list does not exist")
+ sys.exit(Red + "splicex:" + DefColour + " error: username list does not exist")
 else:
  UserSwitch = True
  UserStatus = "TRYING: [USERNAME]:"
@@ -580,7 +579,7 @@ if Create is False and RestoreSwitch is False:
  if ShadowSwitch is True:
   cmd = "splicex-deshadow.py PASSWORD '" + ShadowSalt + "' '" + ShadowValue + "'"
  if cmd is None:
-  sys.exit("splicex: error: invalid usage")
+  sys.exit(Red + "splicex:" + DefColour + " error: invalid usage")
  else:
   cmd = cmd.replace('','eval ', 1)
 
@@ -588,13 +587,13 @@ if Create is False and RestoreSwitch is False:
  if cmd.__contains__("PASSWORD"):
   pass
  else:
-  sys.exit("splicex: error: -c does not contain regexp `PASSWORD'")
+  sys.exit(Red + "splicex:" + DefColour + " error: -c does not contain regexp `PASSWORD'")
 
 if usernames is not None and RestoreSwitch is False:
  if cmd.__contains__("USERNAME"):
   pass
  else:
-  sys.exit("splicex: error: -c does not contain regexp `USERNAME'")
+  sys.exit(Red + "splicex:" + DefColour + " error: -c does not contain regexp `USERNAME'")
 
 if Create is True:
  print('Creating dictionary and exiting')
@@ -607,7 +606,7 @@ if AlphaSwitch is False and BWSwitch is False and CapsSwitch is False\
 and L337Switch is False and NumberSwitch is False and RegularSwitch is False\
 and SpecialSwitch is False and MixCustom is None and MD5Switch is False\
 and wep5 is False and wep13 is False and SESwitch is False:
- sys.exit("splicex: error: no modules selected: ( -A -B -C -L -M -N -R -S --mix-custom --wep-5 --wep-13 --wep-* --se-module)")
+ sys.exit(Red + "splicex:" + DefColour + " error: no modules selected: ( -A -B -C -L -M -N -R -S --mix-custom --wep-5 --wep-13 --wep-* --se-module)")
 
 CharsMain = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",\
              "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",\
@@ -670,7 +669,7 @@ elif Custom is not None and RestoreSwitch is False:
   for line in UserCharacters:
    Characters.append(line.replace('\n', ''))
  else:
-  sys.exit("splicex: error: --custom list does not exist")
+  sys.exit(Red + "splicex:" + DefColour + " error: --custom list does not exist")
 
 EndCount = 0
 for CountChars in Characters:
@@ -713,221 +712,178 @@ elif MixCustom is not None and RestoreSwitch is False:
   for line in MixCharacters:
    MixChars.append(line.replace('\n', ''))
  else:
-  sys.exit("splicex: error: -U list does not exist")
+  sys.exit(Red + "splicex:" + DefColour + " error: -U list does not exist")
 
 Word = []
+ReadDictionary = open(dictionary, 'r')
 def REGULAR():
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      Word.append(line.replace('\n', ''))
 
 def L337():
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "4", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "4")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "@", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "@")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "^", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "^")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("b", "8", 1)
      Word.append(line.replace('\n', ''))
-
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("b", "8")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("e", "3", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("e", "3")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("f", "ph", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("g", "6", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("g", "6")
      Word.append(line.replace('\n', ''))
-    
-    ReadDictionary = open(dictionary, 'r')
+
     for line in ReadDictionary:
      line = line.replace("g", "9", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("g", "9")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("h", "#", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("h", "#")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("i", "1", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("i", "1")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("i", "!", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("i", "!")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("i", "|", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("i", "|")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("k", "X", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("k", "X")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("l", "1", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("l", "1")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("l", "|", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("l", "|")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("o", "0", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("o", "0")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("s", "5", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("s", "5")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("s", "$", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("s", "$")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("t", "7", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("t", "7")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("t", "+", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("t", "+")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("z", "2", 1)
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "4")
      line = line.replace("b", "8")
@@ -944,7 +900,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "^")
      line = line.replace("b", "8")
@@ -961,7 +916,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "4")
      line = line.replace("b", "8")
@@ -978,7 +932,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "^")
      line = line.replace("b", "8")
@@ -995,7 +948,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "4")
      line = line.replace("b", "8")
@@ -1012,7 +964,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "^")
      line = line.replace("b", "8")
@@ -1029,7 +980,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "4")
      line = line.replace("b", "8")
@@ -1046,7 +996,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "^")
      line = line.replace("b", "8")
@@ -1063,7 +1012,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "4")
      line = line.replace("b", "8")
@@ -1080,7 +1028,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "^")
      line = line.replace("b", "8")
@@ -1097,7 +1044,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "4")
      line = line.replace("b", "8")
@@ -1114,7 +1060,6 @@ def L337():
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "^")
      line = line.replace("b", "8")
@@ -1132,12 +1077,10 @@ def L337():
      Word.append(line.replace('\n', ''))
 
 def BW():
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      Word.append(line[::-1].replace('\n', ''))
 
 def CAPS():
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
          line = line.replace('\n', '')
          up = 0
@@ -1150,7 +1093,6 @@ def CAPS():
              up ^= 1
          Word.append(a)
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
          line = line.replace('\n', '')
          up = 0
@@ -1163,7 +1105,6 @@ def CAPS():
              up ^= 1
          Word.append(a)
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
          line = line.replace('\n', '')
          up = 0
@@ -1177,7 +1118,6 @@ def CAPS():
              up = up + 1
          Word.append(a)
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
          line = line.replace('\n', '')
          up = 0
@@ -1191,8 +1131,6 @@ def CAPS():
              up = up + 1
          Word.append(a)
 
-
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace('\n', '')
      a = 0
@@ -1208,7 +1146,6 @@ def CAPS():
        c += let.upper()
      Word.append(c)
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace('\n', '')
      a = 0
@@ -1224,314 +1161,262 @@ def CAPS():
       else:
        c += let.upper()
      Word.append(c)
-  
-    ReadDictionary = open(dictionary, 'r')
+
     for line in ReadDictionary:
      line = line.replace("a", "A", 1)
      if line.__contains__("A"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "A")
      if line.__contains__("A"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("b", "B", 1)
      if line.__contains__("B"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("b", "B")
      if line.__contains__("B"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("c", "C", 1)
      if line.__contains__("C"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("c", "C")
      if line.__contains__("C"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("d", "D", 1)
      if line.__contains__("D"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("d", "D")
      if line.__contains__("D"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("e", "E", 1)
      if line.__contains__("E"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("e", "E")
      if line.__contains__("E"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("f", "F", 1)
      if line.__contains__("F"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("f", "F")
      if line.__contains__("F"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("g", "G", 1)
      if line.__contains__("G"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("g", "G")
      if line.__contains__("G"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("h", "H", 1)
      if line.__contains__("H"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("h", "H")
      if line.__contains__("H"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("i", "I", 1)
      if line.__contains__("I"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("i", "I")
      if line.__contains__("I"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("j", "J", 1)
      if line.__contains__("J"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("j", "J")
      if line.__contains__("J"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("k", "K", 1)
      if line.__contains__("K"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("k", "K")
      if line.__contains__("K"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("l", "L", 1)
      if line.__contains__("L"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("l", "L")
      if line.__contains__("L"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("m", "M", 1)
      if line.__contains__("M"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("m", "M")
      if line.__contains__("M"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("n", "N", 1)
      if line.__contains__("N"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("n", "N")
      if line.__contains__("N"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("o", "O", 1)
      if line.__contains__("O"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("o", "O")
      if line.__contains__("O"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("p", "P", 1)
      if line.__contains__("P"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("p", "P")
      if line.__contains__("P"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("q", "Q", 1)
      if line.__contains__("Q"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("q", "Q")
      if line.__contains__("Q"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("r", "R", 1)
      if line.__contains__("R"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("r", "R")
      if line.__contains__("R"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("s", "S", 1)
      if line.__contains__("S"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("s", "S")
      if line.__contains__("S"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("t", "T", 1)
      if line.__contains__("T"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("t", "T")
      if line.__contains__("T"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("u", "U", 1)
      if line.__contains__("U"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("u", "U")
      if line.__contains__("U"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("v", "V", 1)
      if line.__contains__("V"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("v", "V")
      if line.__contains__("V"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("w", "W", 1)
      if line.__contains__("W"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("w", "W")
      if line.__contains__("W"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("x", "X", 1)
      if line.__contains__("X"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("x", "X")
      if line.__contains__("X"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("y", "Y", 1)
      if line.__contains__("Y"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("y", "Y")
      if line.__contains__("Y"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("z", "Z", 1)
      if line.__contains__("Z"):
       Word.append(line.replace('\n', ''))
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("z", "Z")
      if line.__contains__("Z"):
@@ -1539,7 +1424,6 @@ def CAPS():
 
 def MIX():
     for Input in MixChars:
-     ReadDictionary = open(dictionary, 'r')
      for line in ReadDictionary:
           line = line.replace('\n', '')
           up = 0
@@ -1555,7 +1439,6 @@ def MIX():
 
     for Input in MixChars:
      for Input2 in MixChars:
-      ReadDictionary = open(dictionary, 'r')
       for line in ReadDictionary:
            line = line.replace('\n', '')
            up = 0
@@ -1570,7 +1453,6 @@ def MIX():
            Word.append(a)
 
     for Input in MixChars:
-     ReadDictionary = open(dictionary, 'r')
      for line in ReadDictionary:
       line = line.replace('\n', '')
       a = 0
@@ -1588,7 +1470,6 @@ def MIX():
 
     for Input in MixChars:
      for Input2 in MixChars:
-      ReadDictionary = open(dictionary, 'r')
       for line in ReadDictionary:
        line = line.replace('\n', '')
        a = 0
@@ -1607,12 +1488,10 @@ def MIX():
       Word.append(c)
 
 def MD5():
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      Word.append(md5(line.replace('\n', '')).hexdigest())
 
 def WEP5():
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      i = 0
      for let in line:
@@ -1624,7 +1503,6 @@ def WEP5():
       Word.append(line.replace('0a', ''))
 
 def WEP13():
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      i = 0
      for let in line:
@@ -1647,7 +1525,6 @@ def SOCEN():
     except:
         pass
 
-    ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      socen_words.append(line.replace('\n', ''))
     socen_words = list(set(socen_words))
@@ -1730,7 +1607,7 @@ else:
  UserCount = 1
 
 if not Word:
- sys.exit("splicex: error: compiled empty wordlist")
+ sys.exit(Red + "splicex:" + DefColour + " error: compiled empty wordlist")
 
 Word = list(set(Word)) 
 WordCount = 0
@@ -1751,7 +1628,7 @@ if TIME != None:
      sleep_for = int(TIME[1])
 
  except:
-     sys.exit("splicex: error: invalid --time arguments")
+     sys.exit(Red + "splicex:" + DefColour + " error: invalid --time arguments")
 
 else:
  sleep_now = 0
@@ -1769,7 +1646,7 @@ if LENGTH != None:
       length_end -= 1
 
  except:
-     sys.exit("splicex: error: invalid --char-length arguments")
+     sys.exit(Red + "splicex:" + DefColour + " error: invalid --char-length arguments")
 
 else:
  length_start = 0
@@ -1829,13 +1706,12 @@ def BF1():
       if timeup == sleep_now:
        time.sleep(sleep_for)
        timeup = 0
-      print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+      print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
       output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
       if test == None:
        print(output)
       elif output.__contains__(test):
-       print("[PASSWORD FOUND]: " + NewShowWord)
-       sys.exit(0)
+       sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
       else:
        print(output)
 
@@ -1897,13 +1773,12 @@ def BF2():
        if timeup == sleep_now:
         time.sleep(sleep_for)
         timeup = 0
-       print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+       print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
        output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
        if test == None:
         print(output)
        elif output.__contains__(test):
-        print("[PASSWORD FOUND]: " + NewShowWord)
-        sys.exit(0)
+        sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
        else:
         print(output)
 
@@ -1917,13 +1792,12 @@ def BF2():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+        print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
          print(output)
         elif output.__contains__(test):
-         print("[PASSWORD FOUND]: " + NewShowWord)
-         sys.exit(0)
+         sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
         else:
          print(output)
 
@@ -1987,13 +1861,12 @@ def BF3():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+        print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
          print(output)
         elif output.__contains__(test):
-         print("[PASSWORD FOUND]: " + NewShowWord)
-         sys.exit(0)
+         sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
         else:
          print(output)
 
@@ -2007,13 +1880,12 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
          elif output.__contains__(test):
-          print("[PASSWORD FOUND]: " + NewShowWord)
-          sys.exit(0)
+          sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
          else:
           print(output)
 
@@ -2026,13 +1898,12 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
          elif output.__contains__(test):
-          print("[PASSWORD FOUND]: " + NewShowWord)
-          sys.exit(0)
+          sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
          else:
           print(output)
 
@@ -2098,13 +1969,12 @@ def BF4():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
          elif output.__contains__(test):
-          print("[PASSWORD FOUND]: " + NewShowWord)
-          sys.exit(0)
+          sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
          else:
           print(output)
 
@@ -2118,13 +1988,12 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
           elif output.__contains__(test):
-           print("[PASSWORD FOUND]: " + NewShowWord)
-           sys.exit(0)
+           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
 
@@ -2137,13 +2006,12 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
           elif output.__contains__(test):
-           print("[PASSWORD FOUND]: " + NewShowWord)
-           sys.exit(0)
+           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
 
@@ -2156,13 +2024,12 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
           elif output.__contains__(test):
-           print("[PASSWORD FOUND]: " + NewShowWord)
-           sys.exit(0)
+           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
 
@@ -2230,13 +2097,12 @@ def BF5():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
           elif output.__contains__(test):
-           print("[PASSWORD FOUND]: " + NewShowWord)
-           sys.exit(0)
+           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
 
@@ -2250,13 +2116,12 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
            elif output.__contains__(test):
-            print("[PASSWORD FOUND]: " + NewShowWord)
-            sys.exit(0)
+            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
            else:
             print(output)
 
@@ -2269,13 +2134,12 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
            elif output.__contains__(test):
-            print("[PASSWORD FOUND]: " + NewShowWord)
-            sys.exit(0)
+            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
            else:
             print(output)
 
@@ -2345,13 +2209,12 @@ def BF6():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
            elif output.__contains__(test):
-            print("[PASSWORD FOUND]: " + NewShowWord)
-            sys.exit(0)
+            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
            else:
             print(output)
 
@@ -2365,13 +2228,12 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
             elif output.__contains__(test):
-             print("[PASSWORD FOUND]: " + NewShowWord)
-             sys.exit(0)
+             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
 
@@ -2384,13 +2246,12 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
             elif output.__contains__(test):
-             print("[PASSWORD FOUND]: " + NewShowWord)
-             sys.exit(0)
+             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
 
@@ -2403,13 +2264,12 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
             elif output.__contains__(test):
-             print("[PASSWORD FOUND]: " + NewShowWord)
-             sys.exit(0)
+             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
 
@@ -2481,13 +2341,12 @@ def BF7():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
             elif output.__contains__(test):
-             print("[PASSWORD FOUND]: " + NewShowWord)
-             sys.exit(0)
+             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
 
@@ -2501,13 +2360,12 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
              elif output.__contains__(test):
-              print("[PASSWORD FOUND]: " + NewShowWord)
-              sys.exit(0)
+              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
              else:
               print(output)
 
@@ -2520,13 +2378,12 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
              elif output.__contains__(test):
-              print("[PASSWORD FOUND]: " + NewShowWord)
-              sys.exit(0)
+              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
              else:
               print(output)
 
@@ -2600,13 +2457,12 @@ def BF8():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
              elif output.__contains__(test):
-              print("[PASSWORD FOUND]: " + NewShowWord)
-              sys.exit(0)
+              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
              else:
               print(output)
 
@@ -2620,13 +2476,12 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
               elif output.__contains__(test):
-               print("[PASSWORD FOUND]: " + NewShowWord)
-               sys.exit(0)
+               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
 
@@ -2639,13 +2494,12 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
               elif output.__contains__(test):
-               print("[PASSWORD FOUND]: " + NewShowWord)
-               sys.exit(0)
+               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
 
@@ -2658,13 +2512,12 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
               elif output.__contains__(test):
-               print("[PASSWORD FOUND]: " + NewShowWord)
-               sys.exit(0)
+               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
 
@@ -2740,13 +2593,12 @@ def BF9():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
               elif output.__contains__(test):
-               print("[PASSWORD FOUND]: " + NewShowWord)
-               sys.exit(0)
+               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
 
@@ -2760,13 +2612,12 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
                elif output.__contains__(test):
-                print("[PASSWORD FOUND]: " + NewShowWord)
-                sys.exit(0)
+                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                else:
                 print(output)
 
@@ -2779,13 +2630,12 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
                elif output.__contains__(test):
-                print("[PASSWORD FOUND]: " + NewShowWord)
-                sys.exit(0)
+                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                else:
                 print(output)
 
@@ -2863,13 +2713,12 @@ def BF10():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
                elif output.__contains__(test):
-                print("[PASSWORD FOUND]: " + NewShowWord)
-                sys.exit(0)
+                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                else:
                 print(output)
 
@@ -2883,13 +2732,12 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
                 elif output.__contains__(test):
-                 print("[PASSWORD FOUND]: " + NewShowWord)
-                 sys.exit(0)
+                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
 
@@ -2902,13 +2750,12 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
                 elif output.__contains__(test):
-                 print("[PASSWORD FOUND]: " + NewShowWord)
-                 sys.exit(0)
+                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
 
@@ -2921,13 +2768,12 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
                 elif output.__contains__(test):
-                 print("[PASSWORD FOUND]: " + NewShowWord)
-                 sys.exit(0)
+                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
 
@@ -3007,13 +2853,12 @@ def BF11():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
                 cmd = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace('USERNAME', User[u].replace(" ", "")))
                 if test == None:
                  print(output)
                 elif output.__contains__(test):
-                 print("[PASSWORD FOUND]: " + NewShowWord)
-                 sys.exit(0)
+                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
 
@@ -3027,13 +2872,12 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                 print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
                  output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
                   print(output)
                  elif output.__contains__(test):
-                  print("[PASSWORD FOUND]: " + NewShowWord)
-                  sys.exit(0)
+                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                  else:
                   print(output)
 
@@ -3046,13 +2890,12 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print("[splicex]: " + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                 print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
                  output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
                   print(output)
                  elif output.__contains__(test):
-                  print("[PASSWORD FOUND]: " + NewShowWord)
-                  sys.exit(0)
+                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                  else:
                   print(output)
 
@@ -3771,7 +3614,7 @@ if RestoreSwitch is False and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 
 if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -3808,7 +3651,7 @@ if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3844,7 +3687,7 @@ if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3879,7 +3722,7 @@ elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3913,7 +3756,7 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3946,7 +3789,7 @@ elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3978,7 +3821,7 @@ elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4009,7 +3852,7 @@ elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4039,7 +3882,7 @@ elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4068,7 +3911,7 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4096,7 +3939,7 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateJ = 0
  BF10()
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4123,7 +3966,7 @@ elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
  StateI = 0
  StateJ = 0
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -4138,7 +3981,7 @@ elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is False:
  StateI = int(State[32])
  StateJ = int(State[33])
  BF11()
- sys.exit("splicex: unable to find password")
+ sys.exit(Red + "splicex:" + DefColour + " unable to find password")
 
 if RestoreSwitch is False and StdoutSwitch is True:
  StateU = 0
@@ -4533,4 +4376,4 @@ elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is True:
  SBF11()
  sys.exit(0)
 
-sys.exit("splicex: unknown error: please report bug to author")
+sys.exit(Red + "splicex:" + DefColour + " unknown error: please report bug to author")

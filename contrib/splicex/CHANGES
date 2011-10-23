@@ -5,3 +5,11 @@ CHANGES:
 		compatible with most versions of Python.
 
 		see README, splicex --help, splicex --rtfm
+
+	d3v11 - Sun Oct 23 2011
+		Added some colour enhancements to SpliceX
+		:-). This is a useless update but i thought
+		it was fun.
+
+		Also, I trimmed down much unnecessary
+		code.
