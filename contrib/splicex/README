@@ -21,7 +21,7 @@ AUTHOR:
   d3v11 <d3v11@d3v11.ano>
 
 DEPENDS ON:
-  python, man
+  python (>=2.6), man
 
 INSTALL AND UNINSTALL:
   To install, `cd' to the extracted splicex folder.
@@ -38,14 +38,14 @@ INSTALL AND UNINSTALL:
   make install-deb
 
 TOOLS:
-  SpliceX includes brute forcing tools. Eacg tool will
+  SpliceX includes brute forcing tools. Each tool will
   include a README file in its respected folder(s):
 
-  cat splicex/TOOLS/*/README
+  ls TOOLS/*
 
 UPDATE:
-  # d3v11's AnoNet(2) update for splicex - Not as root, do:
-
+  d3v11's AnoNet(2) update for splicex - Not as root, do:
+ 
   make update
 
 HELP AND USAGE:

@@ -4,6 +4,7 @@ Red = '\033[1;31m'
 Green = '\033[1;32m'
 Yellow = '\033[1;33m'
 DefColour = '\033[0;0m'
+SpliceX = Red + '[Splice' + Yellow + 'X' + Red + ']: ' + DefColour
 
 def HELP(): 
     print(Red+"""
@@ -394,23 +395,23 @@ if Custom is not None and dictionary is not None:
 
 ShadowValue = []
 if DeShadow is True and SetShadow is None and GetShadow is None:
- sys.exit(Red + "splicex:" + DefColour + " error: --deshadow requires --getshadow or --setshadow")
+ sys.exit(SpliceX + "error: --deshadow requires --getshadow or --setshadow")
 if SetShadow is not None and GetShadow is not None:
- sys.exit(Red + "splicex:" + DefColour + " error: --getshadow and --setshadow cannot be combined")
+ sys.exit(SpliceX + "error: --getshadow and --setshadow cannot be combined")
 elif not os.geteuid()==0 and GetShadow is not None:
- sys.exit(Red + "splicex:" + DefColour + " error: --getshadow requires root privileges")
+ sys.exit(SpliceX + "error: --getshadow requires root privileges")
 elif os.geteuid()==0 and GetShadow is not None:
  try:
      ShadowValue = spwd.getspnam(GetShadow)[1]
  except:
-     sys.exit(Red + "splicex:" + DefColour + " error: --getshadow: invalid user entered")
+     sys.exit(SpliceX + "error: --getshadow: invalid user entered")
 elif SetShadow is not None and os.path.exists(SetShadow):
  ShadowFile = open(SetShadow, 'r')
  for line in ShadowFile:
   line = line.replace('\n', '')
   ShadowValue = line
 if SetShadow is not None and not os.path.exists(SetShadow):
- sys.exit(Red + "splicex:" + DefColour + " error: --setshadow: shadow file does not exist")
+ sys.exit(SpliceX + "error: --setshadow: shadow file does not exist")
 elif SetShadow is not None or GetShadow is not None:
  ShadowSalt = ShadowValue.replace('$', '^1', 1)
  ShadowSalt = ShadowSalt.replace('$', '^2', 1)
@@ -426,7 +427,7 @@ elif SetShadow is not None or GetShadow is not None:
  ShadowSalt = ShadowSalt.replace('$', '\$')
 
 if restore is not None and os.path.exists(restore) is False:
- sys.exit(Red + "splicex:" + DefColour + " error: restore file does not exist")
+ sys.exit(SpliceX + "error: restore file does not exist")
 elif restore is not None and os.path.exists(restore) is True:
  RestoreSwitch = True
  State = []
@@ -441,10 +442,9 @@ elif restore is not None and os.path.exists(restore) is True:
 else:
  RestoreSwitch = False
 
-save = save
 Slash = "/"
 if save is not None and not os.path.isdir(save):
- sys.exit(Red + "splicex:" + DefColour + " error: ( -s ) invalid directory")
+ sys.exit(SpliceX + "error: ( -s ) invalid directory")
 elif save is not None and os.path.isdir(save):
  SaveSwitch = True
  s = ""
@@ -463,22 +463,17 @@ elif save is not None and os.path.isdir(save):
 else:
  SaveSwitch = False
 
-SESwitch = SESwitch
-dictionary = dictionary
 if dictionary is None:
  dictionary = "/etc/splicex/splicex.list"
 elif dictionary is not None and not os.path.exists(dictionary):
- sys.exit(Red + "splicex:" + DefColour + " error: dictionary does not exist")
+ sys.exit(SpliceX + "error: dictionary does not exist")
 
-usernames = usernames
 if usernames is None:
  UserSwitch = False
- UserStatus = ""
 elif usernames is not None and not os.path.exists(usernames):
- sys.exit(Red + "splicex:" + DefColour + " error: username list does not exist")
+ sys.exit(SpliceX + "error: username list does not exist")
 else:
  UserSwitch = True
- UserStatus = "TRYING: [USERNAME]:"
 
 if RestoreSwitch is False:
  AlphaSwitch = AlphaSwitch
@@ -577,9 +572,9 @@ if StdoutSwitch is True:
 if Create is False and RestoreSwitch is False:
  ShadowSwitch = DeShadow
  if ShadowSwitch is True:
-  cmd = "splicex-deshadow.py PASSWORD '" + ShadowSalt + "' '" + ShadowValue + "'"
+  cmd = "splicex-deshadow PASSWORD '" + ShadowSalt + "' '" + ShadowValue + "'"
  if cmd is None:
-  sys.exit(Red + "splicex:" + DefColour + " error: invalid usage")
+  sys.exit(SpliceX + "error: invalid usage")
  else:
   cmd = cmd.replace('','eval ', 1)
 
@@ -587,13 +582,13 @@ if Create is False and RestoreSwitch is False:
  if cmd.__contains__("PASSWORD"):
   pass
  else:
-  sys.exit(Red + "splicex:" + DefColour + " error: -c does not contain regexp `PASSWORD'")
+  sys.exit(SpliceX + "error: -c does not contain regexp `PASSWORD'")
 
 if usernames is not None and RestoreSwitch is False:
  if cmd.__contains__("USERNAME"):
   pass
  else:
-  sys.exit(Red + "splicex:" + DefColour + " error: -c does not contain regexp `USERNAME'")
+  sys.exit(SpliceX + "error: -c does not contain regexp `USERNAME'")
 
 if Create is True:
  print('Creating dictionary and exiting')
@@ -606,7 +601,7 @@ if AlphaSwitch is False and BWSwitch is False and CapsSwitch is False\
 and L337Switch is False and NumberSwitch is False and RegularSwitch is False\
 and SpecialSwitch is False and MixCustom is None and MD5Switch is False\
 and wep5 is False and wep13 is False and SESwitch is False:
- sys.exit(Red + "splicex:" + DefColour + " error: no modules selected: ( -A -B -C -L -M -N -R -S --mix-custom --wep-5 --wep-13 --wep-* --se-module)")
+ sys.exit(SpliceX + "error: no modules selected: ( -A -B -C -L -M -N -R -S --mix-custom --wep-5 --wep-13 --wep-* --se-module)")
 
 CharsMain = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",\
              "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",\
@@ -669,7 +664,7 @@ elif Custom is not None and RestoreSwitch is False:
   for line in UserCharacters:
    Characters.append(line.replace('\n', ''))
  else:
-  sys.exit(Red + "splicex:" + DefColour + " error: --custom list does not exist")
+  sys.exit(SpliceX + "error: --custom list does not exist")
 
 EndCount = 0
 for CountChars in Characters:
@@ -712,7 +707,7 @@ elif MixCustom is not None and RestoreSwitch is False:
   for line in MixCharacters:
    MixChars.append(line.replace('\n', ''))
  else:
-  sys.exit(Red + "splicex:" + DefColour + " error: -U list does not exist")
+  sys.exit(SpliceX + "error: -U list does not exist")
 
 Word = []
 ReadDictionary = open(dictionary, 'r')
@@ -1607,7 +1602,7 @@ else:
  UserCount = 1
 
 if not Word:
- sys.exit(Red + "splicex:" + DefColour + " error: compiled empty wordlist")
+ sys.exit(SpliceX + "error: compiled empty wordlist")
 
 Word = list(set(Word)) 
 WordCount = 0
@@ -1628,7 +1623,7 @@ if TIME != None:
      sleep_for = int(TIME[1])
 
  except:
-     sys.exit(Red + "splicex:" + DefColour + " error: invalid --time arguments")
+     sys.exit(SpliceX + "error: invalid --time arguments")
 
 else:
  sleep_now = 0
@@ -1646,14 +1641,13 @@ if LENGTH != None:
       length_end -= 1
 
  except:
-     sys.exit(Red + "splicex:" + DefColour + " error: invalid --char-length arguments")
+     sys.exit(SpliceX + " error: invalid --char-length arguments")
 
 else:
  length_start = 0
  length_end = 10
 
 def BF1():
-    global cmd
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -1665,7 +1659,7 @@ def BF1():
      if length_start > 0:
       break
      if length_end < 0:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for x in range(StateW, WordCount):
       if SaveSwitch is True:
        WriteSave = []
@@ -1706,7 +1700,7 @@ def BF1():
       if timeup == sleep_now:
        time.sleep(sleep_for)
        timeup = 0
-      print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+      print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
       output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
       if test == None:
        print(output)
@@ -1716,9 +1710,8 @@ def BF1():
        print(output)
 
 def BF2():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -1730,7 +1723,7 @@ def BF2():
      if length_start > 1:
       break
      if length_end < 1:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
        if SaveSwitch is True:
@@ -1773,7 +1766,7 @@ def BF2():
        if timeup == sleep_now:
         time.sleep(sleep_for)
         timeup = 0
-       print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+       print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
        output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
        if test == None:
         print(output)
@@ -1792,7 +1785,7 @@ def BF2():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+        print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
          print(output)
@@ -1802,9 +1795,8 @@ def BF2():
          print(output)
 
 def BF3():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -1816,7 +1808,7 @@ def BF3():
      if length_start > 2:
       break
      if length_end < 2:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for x in range(StateW, WordCount):
@@ -1861,7 +1853,7 @@ def BF3():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+        print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
          print(output)
@@ -1880,7 +1872,7 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+         print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
@@ -1898,7 +1890,7 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+         print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
@@ -1908,9 +1900,8 @@ def BF3():
           print(output)
 
 def BF4():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -1922,7 +1913,7 @@ def BF4():
      if length_start > 3:
       break
      if length_end < 3:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -1969,7 +1960,7 @@ def BF4():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+         print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
@@ -1988,7 +1979,7 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2006,7 +1997,7 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2024,7 +2015,7 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2034,9 +2025,8 @@ def BF4():
            print(output)
 
 def BF5():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2048,7 +2038,7 @@ def BF5():
      if length_start > 4:
       break
      if length_end < 4:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2097,7 +2087,7 @@ def BF5():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2116,7 +2106,7 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+           print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
@@ -2134,7 +2124,7 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+           print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
@@ -2144,9 +2134,8 @@ def BF5():
             print(output)
 
 def BF6():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2158,7 +2147,7 @@ def BF6():
      if length_start > 5:
       break
      if length_end < 5:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2209,7 +2198,7 @@ def BF6():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+           print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
@@ -2228,7 +2217,7 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2246,7 +2235,7 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2264,7 +2253,7 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2274,9 +2263,8 @@ def BF6():
              print(output)
 
 def BF7():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2288,7 +2276,7 @@ def BF7():
      if length_start > 6:
       break
      if length_end < 6:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2341,7 +2329,7 @@ def BF7():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2360,7 +2348,7 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+             print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
@@ -2378,7 +2366,7 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+             print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
@@ -2388,9 +2376,8 @@ def BF7():
               print(output)
 
 def BF8():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2402,7 +2389,7 @@ def BF8():
      if length_start > 7:
       break
      if length_end < 7:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2457,7 +2444,7 @@ def BF8():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+             print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
@@ -2476,7 +2463,7 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2494,7 +2481,7 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2512,7 +2499,7 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2522,9 +2509,8 @@ def BF8():
                print(output)
 
 def BF9():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2536,7 +2522,7 @@ def BF9():
      if length_start > 8:
       break
      if length_end < 8:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2593,7 +2579,7 @@ def BF9():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2612,7 +2598,7 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+               print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
@@ -2630,7 +2616,7 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+               print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
@@ -2640,9 +2626,8 @@ def BF9():
                 print(output)
 
 def BF10():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2654,7 +2639,7 @@ def BF10():
      if length_start > 9:
       break
      if length_end < 9:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2713,7 +2698,7 @@ def BF10():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+               print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
@@ -2732,7 +2717,7 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
@@ -2750,7 +2735,7 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
@@ -2768,7 +2753,7 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
@@ -2778,9 +2763,8 @@ def BF10():
                  print(output)
 
 def BF11():
-    global cmd
     if NoChar is True:
-     sys.exit('splicex: unable to find password')
+     sys.exit(SpliceX + 'unable to find password')
     WordCount = 0
     for CountWords in ShowWord:
      WordCount += 1
@@ -2792,7 +2776,7 @@ def BF11():
      if length_start > 10:
       break
      if length_end < 10:
-      sys.exit('splicex: unable to find password')
+      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2853,7 +2837,7 @@ def BF11():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 cmd = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace('USERNAME', User[u].replace(" ", "")))
                 if test == None:
                  print(output)
@@ -2872,7 +2856,7 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+                 print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                  output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
                   print(output)
@@ -2890,7 +2874,7 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print(Red + "[splicex]: " + Yellow + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", "") + DefColour)
+                 print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                  output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
                   print(output)
@@ -3614,7 +3598,7 @@ if RestoreSwitch is False and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 
 if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -3651,7 +3635,7 @@ if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3687,7 +3671,7 @@ if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3722,7 +3706,7 @@ elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3756,7 +3740,7 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3789,7 +3773,7 @@ elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3821,7 +3805,7 @@ elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3852,7 +3836,7 @@ elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3882,7 +3866,7 @@ elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3911,7 +3895,7 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  BF9()
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3939,7 +3923,7 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateJ = 0
  BF10()
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3966,7 +3950,7 @@ elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
  StateI = 0
  StateJ = 0
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
@@ -3981,7 +3965,7 @@ elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is False:
  StateI = int(State[32])
  StateJ = int(State[33])
  BF11()
- sys.exit(Red + "splicex:" + DefColour + " unable to find password")
+ sys.exit(SpliceX + " unable to find password")
 
 if RestoreSwitch is False and StdoutSwitch is True:
  StateU = 0
@@ -4376,4 +4360,4 @@ elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is True:
  SBF11()
  sys.exit(0)
 
-sys.exit(Red + "splicex:" + DefColour + " unknown error: please report bug to author")
+sys.exit(SpliceX + " unknown error: please report bug to author")

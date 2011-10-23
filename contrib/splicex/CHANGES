@@ -13,3 +13,5 @@ CHANGES:
 
 		Also, I trimmed down much unnecessary
 		code.
+
+		'deshadow' bug fixed in splicex.py src
