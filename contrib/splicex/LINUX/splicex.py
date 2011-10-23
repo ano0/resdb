@@ -1,119 +1,28 @@
 #!PYTHON
 
-HELP = """
-      __________        _ _         __  __    ______
-     / / / / ___| _ __ | (_) ___ ___\ \/ /   / / / /
-    / / / /\___ \| '_ \| | |/ __/ _ \\\\  /   / / / /
-   / / / /  ___) | |_) | | | (_|  __//  \  / / / /
-  /_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/
-                 |_|
+Red = '\033[1;31m'
+Yellow = '\033[1;33m'
+DefColour = '\033[0;0m'
 
-       .:Brute Force Utilities For GNU/Linux:.
-
-  --help                Show help display and exit
-
-  --license             Show license and exit
-
-  --command             Parse passwords to this command
-
-  --dictionary          Path to custom dictionary(wordlist)
-
-  --rtfm                Show manual page and exit
-
-  --restore             Path to restore file
-
-  --save                Directory path to create save file
-
-  --test                Test output of command
-
-  --time                Manipulate timed iterations
-
-  --usernames           Path to username list
-
-  --exh-l               Use an exhaustive attack with letters only
-
-  --exh-n               Use an exhaustive attack with numbers only
-
-  --exh-s               Use an exhaustive attack with special characters only
-
-  --exh-ln              Use an exhaustive attack with letters and numbers only
-
-  --exh-ls              Use an exhaustive attack with letters and special
-                        characters only
-
-  --exh-ns              Use an exhaustive attack with numbers and special
-                        characters only
-
-  --exh-all             Use an exhaustive attack with all characters
-
-  --exh-custom          Use an exhaustive attack with custom characters
-
-  --stdout              Print only passwords to stdout
-
-  -A                    Use alphabetical mixing module
-
-  -B                    Use backwords module
-
-  -C                    Use alternating caps module
-
-  -L                    Use "L337" speak module
-
-  -M                    Use MD5 module
-
-  -N                    Use numerical mixing module
-
-  -R                    Use regular words module
-
-  -S                    Use special mixing module
-
-  --mix-custom          Use custom mixing module
-
-  --wep-5               Use 5 character WEP module
-
-  --wep-13              Use 13 character WEP module
-
-  --wep-*               Use 5 and 13 character WEP module
-
-  --letters             Use letter characters
-
-  --numbers             Use number characters
-
-  --specials            Use special characters
-
-  --char-all            Use all characters
-
-  --no-char             Override character usage
-
-  --char-length         Start and end with set character lengths
-
-  --custom              Use custom characters
-
-  --deshadow            Crack shadow hash sums
-
-  --get-shadow          Get the shadow info for a user
-
-  --set-shadow          Use the shadow info from a file
-
-  --se-module           Use the social engineering module
-
-  --create              Create a dictionary
-
-  --debug               Enable debugging
-
-"""
-
-LICENSE = """
+def HELP(): 
+    print(Red+"""
                     __________        _ _         __  __    ______
                    / / / / ___| _ __ | (_) ___ ___\ \/ /   / / / /
-                  / / / /\___ \| '_ \| | |/ __/ _ \\\\  /   / / / / 
-                 / / / /  ___) | |_) | | | (_|  __//  \  / / / /  
-                /_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/   
+                  / / / /\___ \| '_ \| | |/ __/ _ \\\\  /   / / / /
+                 / / / /  ___) | |_) | | | (_|  __//  \  / / / /
+                /_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/
                                |_|
+       
+              """+DefColour)
 
+    print(Yellow+"""
                      .:Brute Force Utilities For GNU/Linux:.
+                 """+DefColour)
+
+    print("""
 
        SpliceX is free software: you can redistribute it and/or modify it under
-       the terms of the GNU General Public License as published by the Free 
+       the terms of the GNU General Public License as published by the Free
        Software Foundation, either version 3 of the License, or (at your option)
        any later version.
 
@@ -121,8 +30,99 @@ LICENSE = """
        ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
        FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
        for more details. <http://www.gnu.org/licenses/>
+    
 
-"""
+         """)
+    print("""
+       --help                Show help display and exit
+
+       --command             Parse passwords to this command
+
+       --dictionary          Path to custom dictionary(wordlist)
+
+       --rtfm                Show manual page and exit
+
+       --restore             Path to restore file
+
+       --save                Directory path to create save file
+
+       --test                Test output of command
+
+       --time                Manipulate timed iterations
+
+       --usernames           Path to username list
+
+       --exh-l               Use an exhaustive attack with letters only
+
+       --exh-n               Use an exhaustive attack with numbers only
+
+       --exh-s               Use an exhaustive attack with special characters only
+
+       --exh-ln              Use an exhaustive attack with letters and numbers only
+
+       --exh-ls              Use an exhaustive attack with letters and special
+                             characters only
+
+       --exh-ns              Use an exhaustive attack with numbers and special
+                             characters only
+
+       --exh-all             Use an exhaustive attack with all characters
+
+       --exh-custom          Use an exhaustive attack with custom characters
+
+       --stdout              Print only passwords to stdout
+
+       -A                    Use alphabetical mixing module
+
+       -B                    Use backwords module
+
+       -C                    Use alternating caps module
+
+       -L                    Use "L337" speak module
+
+       -M                    Use MD5 module
+
+       -N                    Use numerical mixing module
+
+       -R                    Use regular words module
+
+       -S                    Use special mixing module
+
+       --mix-custom          Use custom mixing module
+
+       --wep-5               Use 5 character WEP module
+
+       --wep-13              Use 13 character WEP module
+
+       --wep-*               Use 5 and 13 character WEP module
+
+       --letters             Use letter characters
+
+       --numbers             Use number characters
+
+       --specials            Use special characters
+
+       --char-all            Use all characters
+
+       --no-char             Override character usage
+
+       --char-length         Start and end with set character lengths
+
+       --custom              Use custom characters
+
+       --deshadow            Crack shadow hash sums
+
+       --get-shadow          Get the shadow info for a user
+
+       --set-shadow          Use the shadow info from a file
+
+       --se-module           Use the social engineering module
+
+       --create              Create a dictionary
+
+       --debug               Enable debugging
+    
+    """)
 
 import os
 import re
@@ -264,9 +264,9 @@ for arg in sys.argv:
  elif '--debug' in arg:
   DebugSwitch = True
  elif '--help' in arg:
-  sys.exit(HELP)
- elif '--license' in arg:
-  sys.exit(LICENSE)
+  sys.exit(HELP())
+ #elif '--license' in arg:
+ # sys.exit(LICENSE)
 
 if DebugSwitch is False:
  sys.tracebacklimit = 0
