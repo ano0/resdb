@@ -1,0 +1,43 @@
+DESCRIPTION:
+	im-steal.c is a modified nullclient.c that uses
+	libpurple to test for a successfull login on
+	multiple instant messenger protocols.
+
+USAGE:
+	im-steal <prpl-protocol> <username> <password>
+
+SPLICEX USAGE:
+
+spliceX --command='im-steal <prpl-protocol> <username> PASSWORD' --<modules> --test='Account Connected'
+
+DEPENDS:
+	libpurple-dev, libpurple
+
+INSTALL:
+
+gcc `pkg-config --libs glib-2.0` -I /usr/include/libpurple/ -I /usr/include/glib-2.0/ -I /usr/lib/glib-2.0/include/ -lpurple im-steal.c -o /usr/bin/im-steal
+
+UNINSTALL:
+
+rm /usr/bin/im-steal
+
+PRPL-PROTOCOL:
+	libpurple requires and allows several prpl-* arguments
+	to call various instant messenger protocols.
+
+	AIM		==	prpl-aim
+	Bonjour		==	prpl-bonjour
+	Gadu-Gadu	==	prpl-gg
+	GroupWise	==	prpl-novell
+	ICQ		==	prpl-icq
+	IRC		==	prpl-irc
+	MSN		==	prpl-msn
+	MySpaceIM	==	prpl-myspace
+	QQ		==	prpl-qq
+	SILC		==	prpl-silc
+	SIMPLE		==	prpl-simple
+	Sametime	==	prpl-meanwhile
+	XMPP		==	prpl-jabber
+	Yahoo		==	prpl-yahoo
+	Yahoo JAPAN	==	prpl-yahoojp
+	Zephyr		==	prpl-zephyr

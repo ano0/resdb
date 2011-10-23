@@ -1,0 +1,758 @@
+.TH SpliceX "" "" "" ""
+                    __________        _ _         __  __    ______
+                   / / / / ___| _ __ | (_) ___ ___\\ \\/ /   / / / /
+                  / / / /\\___ \\| '_ \\| | |/ __/ _ \\\\  /   / / / /
+                 / / / /  ___) | |_) | | | (_|  __//  \\  / / / /
+                /_/_/_/  |____/| .__/|_|_|\\___\\___/_/\\_\\/_/_/_/
+                               |_|
+ 
+                     .:Brute Force Utilities For GNU/Linux:.
+
+
+       SpliceX is free software: you can redistribute it and/or modify it under
+       the terms of the GNU General Public License as published by the Free
+       Software Foundation, either version 3 of the License, or (at your option)
+       any later version.
+
+       SpliceX is distributed in the hope that it will be useful, but WITHOUT
+       ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+       FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+       for more details. <http://www.gnu.org/licenses/>
+
+
+
+.SH
+OPTIONS
+
+--help                Show help display and exit
+
+--command             Parse passwords to this command
+
+--dictionary          Path to custom dictionary(wordlist)
+
+--rtfm                Show manual page and exit
+
+--restore             Path to restore file
+
+--save                Directory path to create save file
+
+--test                Test output of command
+
+--time                Manipulate timed iterations
+
+--usernames           Path to username list
+
+--exh-l               Use an exhaustive attack with letters only
+
+--exh-n               Use an exhaustive attack with numbers only
+
+--exh-s               Use an exhaustive attack with special characters only
+
+--exh-ln              Use an exhaustive attack with letters and numbers only
+
+--exh-ls              Use an exhaustive attack with letters and special
+                      characters only
+
+--exh-ns              Use an exhaustive attack with numbers and special
+                      characters only
+
+--exh-all             Use an exhaustive attack with all characters
+
+--exh-custom          Use an exhaustive attack with custom characters
+
+--stdout              Print only passwords to stdout
+
+-A                    Use alphabetical mixing module
+
+-B                    Use backwords module
+
+-C                    Use alternating caps module
+
+-L                    Use "L337" speak module
+
+-M                    Use MD5 module
+
+-N                    Use numerical mixing module
+
+-R                    Use regular words module
+
+-S                    Use special mixing module
+
+--mix-custom          Use custom mixing module
+
+--wep-5               Use 5 character WEP module
+
+--wep-13              Use 13 character WEP module
+
+--wep-*               Use 5 and 13 character WEP module
+
+--letters             Use letter characters
+
+--numbers             Use number characters
+
+--specials            Use special characters
+
+--char-all            Use all characters
+
+--no-char             Override character usage
+
+--char-length         Start and end with set character lengths
+
+--custom              Use custom characters
+
+--deshadow            Crack shadow hash sums
+
+--get-shadow          Get the shadow info for a user
+
+--set-shadow          Use the shadow info from a file
+
+--se-module           Use the social engineering module
+
+--create              Create a dictionary
+
+--debug               Enable debugging
+
+.SH
+DICTIONARIES
+
+splicex comes equipped with its own dictionary but is
+.br
+designed to use custom dictionaries as well. The
+.br
+dictionary should be in the following format: a plain
+.br
+text file with one word per line, no spaces between
+.br
+words, letters only. You do not have to follow the
+.br
+above guideline exactly but it is strongly suggested.
+.br
+IE:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+qwerty
+.br
+john
+.br
+linux
+.br
+newpass
+.br
+princess
+.br
+hacker
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
+.SH
+USERNAMES
+
+splicex is capable of cycling through usernames as it
+.br
+would a dictionary. There is no default username list
+.br
+on splicex. The username list should be in the 
+.br
+following format: a plain text file with one word per 
+.br
+line, no spaces between words, letters only. You do 
+.br
+not have to follow the above guideline exactly but it
+.br
+is strongly suggested.
+.br
+IE:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+john
+.br
+admin
+.br
+root
+.br
+david
+.br
+fred
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
+.SH
+SAVING AND RESTORING
+
+splicex is capable of restarting where it was stopped
+.br
+by using the --restore switch followed by the full path to
+.br
+a splicex.save file. DO NOT modify these files or
+.br
+splicex may receive an error or not load at all. 
+.br
+When restoring, if you set the --test switch you must
+.br
+manually set it again or splicex will not test for
+.br
+specified output. If saving splicex's status, then
+.br
+splicex will save to the specified directory as
+.br
+splicex.save. If splicex.save already exists it will
+.br
+be overwritten so change the name of any original
+.br
+copies if you want to keep them. If saving a splicex
+.br
+session you should stop the process using the
+.br
+appropriate terminal feature before killing splicex
+.br
+to avoid corrupting the save file.
+
+--save="/path/to/save/directory/"
+
+--restore="/path/to/splicex.save/"
+.SH
+MODULES
+
+-A -B -C -L -M -N -R -S --mix-custom --wep-5 --wep-13 --wep-* --se-module
+.br
+splicex comes equipped with several modules that mangle
+.br
+the words in the selected dictionary to create probable
+.br
+password combinations. You may use as many of these
+.br
+modules as you want. Some modules can take a few or more
+.br
+minutes to enhance a dictionary depending on the size
+.br
+of the selected dictionary.
+
+-A Alphabetical Mixing Module:
+.br
+This module puts several combinations of alphabet
+.br
+characters inside the words in the selected
+.br
+dictionary. IE:
+
+pZassword
+.br
+pCatssword
+.br
+passworKd
+.br
+passwoJrLd
+.br
+...
+
+-B Backwards Module:
+.br
+This module creates backwards words from the
+.br
+selected dictionary. IE:
+
+drowssap
+.br
+...
+
+-C Capitalization Module:
+.br
+This module recreates the words in the selected
+.br
+dictionary with alternating capitalizations.
+.br
+IE:
+ 
+Password
+.br
+PAssword
+.br
+PaSsWoRd
+.br
+pAsSwOrD
+.br
+passwoRD
+.br
+...
+
+-L L337 Speak Module:
+.br
+This module converts the words in the selected
+.br
+dictionary to several versions of "l337 speak".
+.br
+IE:
+
+p4ssword
+.br
+p455w0rd
+.br
+pa5sword
+.br
+ps@$$word
+.br
+...
+ 
+-N Numerical Mixing Module:
+.br
+This module puts several combinations of number
+.br
+characters inside the words in the selected
+.br
+dictionary. IE:
+
+p2assword
+.br
+p5a8ssword
+.br
+passwor0d
+.br
+passwo6r9d
+.br
+...
+
+-R Regular Words Module:
+.br
+This module tells splicex to use the words in a
+.br
+selected dictionary as they are listed.
+
+
+-S Special Mixing Module:
+.br
+This module puts several combinations of special
+.br
+characters inside the words in the selected
+.br
+dictionary. IE:
+
+p!assword
+.br
+p@a$ssword
+.br
+passwor(d
+.br
+passwo-r+d
+.br
+...
+
+--mix-custom Custom Mixing Module:
+.br
+This module puts several combinations of user
+.br
+selected characters inside the words from the
+.br
+selected character list. IE:
+
+p!assword
+.br
+p@a$ssword
+.br
+passwor(d
+.br
+passwo-r+d
+.br
+...
+
+--mix-custom's list should only contain one character per
+.br
+line on a plain text file. If you select this
+.br
+module then modules -A, -N, -S will be ignored.
+.br
+IE:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+j
+.br
+1
+.br
+@
+.br
+0
+.br
+z
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
+If -A, -N, and/or -S options are selected then
+.br
+the modules will be combined. see also --char-all. IE:
+
+pZa!ssword
+.br
+p0atssword
+.br
+passwor7d
+.br
+passwo*rLd
+.br
+...
+
+-M MD5 Module:
+.br
+This module generates md5 hash sums for
+.br
+words listed in the selected dictionary.
+.br
+IE:
+
+5912d7bfd10f631f1715bf85bbb72d97
+.br
+966e8fda594333563c02fa4b69765a5e
+.br
+900bc885d7553375aec470198a9514f3
+.br
+97f014516561ef487ec368d6158eb3f4
+.br
+...
+
+
+--wep-*, --wep-5, --wep-13 WEP Modules:
+.br
+these two modules strip 5 or 13 character
+.br
+words from the selected dictionary and produce
+.br
+WEP compatible hex passwords. If your dictionary
+.br
+does not contain 5 or 13 character words then
+.br
+splicex will likely give an error.
+
+
+--se-module Social Engineering Module:
+.br
+see the social engineering section below for
+.br
+details.
+
+.SH
+CHARACTERS 
+
+splicex appends alternating character tags to the beginning
+.br
+and/or ending of each password. By default splicex will use
+.br
+all standard keyboard characters but you can choose to use
+.br
+specific combinations. If one or more of the following
+.br
+options is omitted then only the selected options will be
+.br
+used ; they will be combined.
+
+--letters Use letter characters
+.br
+Apassword
+.br
+passwordA
+.br
+abCpassword
+.br
+passwordxYz
+.br
+...
+
+--numbers Use numbers characters
+.br
+1password
+.br
+password1
+.br
+123password
+.br
+password098
+.br
+...
+
+--specials Use specials characters
+.br
+$password
+.br
+password^
+.br
+%)!password
+.br
+password#*@
+.br
+...
+
+--custom Use custom characters from a list
+.br
+$password
+.br
+password^
+.br
+%)!password
+.br
+password#*@
+.br
+...
+
+--custom list should only contain one character per
+.br
+line on a plain text file. If you select this
+.br
+module then other character flags will be ignored.
+.br
+If the custom list matches the selected dictionary
+.br
+then splicex will run in exhaustive mode.
+.br
+IE:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+j
+.br
+1
+.br
+@
+.br
+0
+.br
+z
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
+--letters, --numbers, and/or --specials
+.br
+Apassword6&
+.br
+7passwordA
+.br
+a*Cpassword9
+.br
+a}password0Yz
+.br
+...
+
+--no-char Override character usage
+.br
+This option tells splicex not to make
+.br
+any character additions to passwords.
+
+--char-length Start and end with set character lengths
+.br
+This option tells splicex to start and stop with a set
+.br
+amount of characters. IE:
+
+The following will start with one character added and
+.br
+end with 3:
+.br
+splicex --char-length='1, 3'
+
+The following will generate only 6 character passwords:
+.br
+splicex --exh-custom='MyCharacters.txt' --char-length='6, 6'
+
+.SH
+SOCIAL ENGINEERING
+
+--se-module Social Engineering Module:
+.br
+splicex is equipped with a social engineering module to create
+.br
+concatenated words from the selected dictionary. This module
+.br
+allows for "Module Stacking". IE, if you select other other
+.br
+modules when setting this flag then compiled words will also
+.br
+be incorporated into the algorithm as if they appeared on the
+.br
+the selected dictionary itself.
+
+.SH
+DESHADOW
+
+splicex comes with its own small program to compare a created hash
+.br
+sum, those found in /etc/shadow with an existing one given through
+.br
+user input. When using the deshadow option you will need to set
+.br
+exactly one of the --get-shadow or --set-shadow options. There is no
+.br
+need to use the --command or the --test flags when using this option
+.br
+because the values for each will be preset.
+
+--get-shadow Get the shadow info for a user
+.br
+see examples below for usage details.
+
+--set-shadow Use the shadow info from a file. This file should be
+.br
+in plain text and contain only one line with the
+.br
+following syntax:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+$HashingMethod$SaltValue$ActualHashItself
+
+============= NOT ACTUAL LINE ON FILE ===============
+
+If you need to see an example Shadow entry you may
+.br
+use the following command:
+
+cat /etc/shadow | grep -i "$USER"
+
+.SH
+EXHAUSTIVE
+
+splicex is capable of mounting a standard exhaustive attack.
+.br
+An exhaustive attack is a sure\-fire method to crack any
+.br
+password but this can also take large amounts of time
+.br
+depending on the length of a password. If it's necessary to
+.br
+use an exhaustive bruteforcing algorithm you may do so with
+.br
+one of the following options:
+
+--exh-l
+.br
+This attack uses only letters.
+
+--exh-n
+.br
+This attack uses only numbers.
+
+--exh-s
+.br
+This attack uses only special characters.
+
+--exh-ln
+.br
+This attack uses only letters and numbers.
+
+--exh-ls
+.br
+This attack uses only letters and special characters.
+
+--exh-ns
+.br
+This attack uses only numbers and special characters.
+
+--exh-all
+.br
+This attack uses all characters.
+
+--exh-custom
+.br
+This attack uses custom characters in a character list. IE:
+.br
+--exh-custom='CharList.txt'
+.br
+A character list should be in the following syntax:
+
+============= NOT ACTUAL LINE ON FILE ===============
+.br
+j
+.br
+1
+.br
+@
+.br
+0
+.br
+z
+.br
+============= NOT ACTUAL LINE ON FILE ===============
+
+.SH
+STDOUT
+
+splicex has the option to skip the command and test flags
+.br
+and print only the created passwords to stdout. This is a
+.br
+useful flag if you're going to pipe the output to stdin
+.br
+on another program.
+
+--stdout
+.br
+The output will look similar to the following:
+.br
+password
+.br
+qwerty
+.br
+123magick
+.br
+newpass
+.br
+john1965
+
+.SH
+REGEXP
+
+splicex can create some regexp type functions
+.br
+using existing options:
+
+splicex --command='echo onePASSWORDthree' --test='onetwothree' --exh-l
+
+splicex --command='echo johnPASSWORD65' --test='john1965' --exh-custom='MyList.txt'
+
+splicex --command='echo ilovePASSWORD' -R --no-char --test='iloveqwerty'
+
+you may also want to see --se-module for more specific attacks.
+
+.SH
+CONTROLS
+
+splicex contains some options worth going over again.
+
+--command='<insert command> PASSWORD' #must contain regexp 'PASSWORD'
+
+--time='10, 1' #timed iterations
+
+--custom='file.txt', -U 'file.txt', --dictionary='file.txt', 
+.br
+--exh-custom='file.txt' #custom wordlists and/or character lists
+
+--no-char #useful flag to only use the generated wordlist
+.br
+#no characters will be appended to the passwords
+
+--stdout #prints only passwords
+
+--debug #helps to troubleshoot
+
+.SH
+EXAMPLES
+
+splicex --command="unrar -pPASSWORD t file.rar" --test="All OK" -R
+
+splicex --command="sshpass -pPASSWORD ssh user@host" --dictionary="wordlist" -L
+
+splicex --command="smbclient -L 192.168.1.0 -Uusername%PASSWORD" -L
+
+splicex --deshadow --get-shadow="root" -R
+
+splicex --deshadow --set-shadow="/home/user/shadow.txt" -R
+
+splicex\\
+.br 
+--command="echo PASSWORD | aircrack-ng -b 00:11:22:33:44:55 -w - *.cap"\\
+.br
+--wep-5 --wep-13 --no-char --dictionary='MyWords.txt'\\
+.br
+--test='KEY FOUND'
+
+splicex --command='curl --user <user[:PASSWORD]> https://www.example.com' -R
+
