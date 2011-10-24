@@ -3720,8 +3720,7 @@ if Create is True:
  CFILE.close()
  sys.stdout.write(CLEAR_LINE)
  sys.stdout.write('\r')
- print(SpliceX + 'compiling splicex.create..........')
- sys.exit(SpliceX + 'enjoy :-)')
+ sys.exit(SpliceX + 'compiled ' + str(N) + ' passwords. enjoy ;-)')
 
 if RestoreSwitch is False:
  StateCount = 0
