@@ -4,127 +4,135 @@ Red = '\033[1;31m'
 Green = '\033[1;32m'
 Yellow = '\033[1;33m'
 DefColour = '\033[0;0m'
+CLEAR_LINE = chr(27) + '[2K'
 SpliceX = Red + '[Splice' + Yellow + 'X' + Red + ']: ' + DefColour
 
 def HELP(): 
-    print(Red+"""
-                    __________        _ _         __  __    ______
-                   / / / / ___| _ __ | (_) ___ ___\ \/ /   / / / /
-                  / / / /\___ \| '_ \| | |/ __/ _ \\\\  /   / / / /
-                 / / / /  ___) | |_) | | | (_|  __//  \  / / / /
-                /_/_/_/  |____/| .__/|_|_|\___\___/_/\_\/_/_/_/
-                               |_|
-       
-              """+DefColour)
-
-    print(Yellow+"""
-                     .:Brute Force Utilities For GNU/Linux:.
-                 """+DefColour)
-
-    print("""
-
-       SpliceX is free software: you can redistribute it and/or modify it under
-       the terms of the GNU General Public License as published by the Free
-       Software Foundation, either version 3 of the License, or (at your option)
-       any later version.
-
-       SpliceX is distributed in the hope that it will be useful, but WITHOUT
-       ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-       FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-       for more details. <http://www.gnu.org/licenses/>
-    
-
-         """)
-    print("""
-       --help                Show help display and exit
-
-       --command             Parse passwords to this command
-
-       --dictionary          Path to custom dictionary(wordlist)
-
-       --rtfm                Show manual page and exit
-
-       --restore             Path to restore file
-
-       --save                Directory path to create save file
-
-       --test                Test output of command
-
-       --time                Manipulate timed iterations
-
-       --usernames           Path to username list
-
-       --exh-l               Use an exhaustive attack with letters only
-
-       --exh-n               Use an exhaustive attack with numbers only
-
-       --exh-s               Use an exhaustive attack with special characters only
-
-       --exh-ln              Use an exhaustive attack with letters and numbers only
-
-       --exh-ls              Use an exhaustive attack with letters and special
-                             characters only
-
-       --exh-ns              Use an exhaustive attack with numbers and special
-                             characters only
-
-       --exh-all             Use an exhaustive attack with all characters
-
-       --exh-custom          Use an exhaustive attack with custom characters
-
-       --stdout              Print only passwords to stdout
-
-       -A                    Use alphabetical mixing module
-
-       -B                    Use backwords module
-
-       -C                    Use alternating caps module
-
-       -L                    Use "L337" speak module
-
-       -M                    Use MD5 module
-
-       -N                    Use numerical mixing module
-
-       -R                    Use regular words module
-
-       -S                    Use special mixing module
-
-       --mix-custom          Use custom mixing module
-
-       --wep-5               Use 5 character WEP module
-
-       --wep-13              Use 13 character WEP module
-
-       --wep-*               Use 5 and 13 character WEP module
-
-       --letters             Use letter characters
-
-       --numbers             Use number characters
-
-       --specials            Use special characters
-
-       --char-all            Use all characters
-
-       --no-char             Override character usage
-
-       --char-length         Start and end with set character lengths
-
-       --custom              Use custom characters
-
-       --deshadow            Crack shadow hash sums
-
-       --get-shadow          Get the shadow info for a user
-
-       --set-shadow          Use the shadow info from a file
-
-       --se-module           Use the social engineering module
-
-       --create              Create a dictionary
-
-       --debug               Enable debugging
-    
-    """)
+    print('')
+    print(Red + '                __________        _ _         ' + Yellow + '__  __' + Red + '    ______  ' + DefColour)
+    print(Red + '               / / / / ___| _ __ | (_) ___ ___' + Yellow + '\ \/ /' + Red + '   / / / /  ' + DefColour)
+    print(Red + '              / / / /\___ \| \'_ \| | |/ __/ _ \\' + Yellow + '\\  /' + Red + '   / / / /' + DefColour)
+    print(Red + '             / / / /  ___) | |_) | | | (_|  __/' + Yellow + '/  \\' + Red + '  / / / /   ' + DefColour)
+    print(Red + '            /_/_/_/  |____/| .__/|_|_|\___\___' + Yellow + '/_/\_\\' + Red + '/_/_/_/    ' + DefColour)
+    print(Red + '                           |_|                                                           ' + DefColour)
+    print('                                                                                               ' + DefColour)
+    print('                                                                                               ' + DefColour)
+    print('                                                                                               ' + DefColour)
+    print(Yellow + '                 .:Brute Force Utilities For GNU/Linux:.                              ' + DefColour)
+    print('')
+    print('')
+    print('')
+    print('   SpliceX is free software: you can redistribute it and/or modify it under ')
+    print('   the terms of the GNU General Public License as published by the Free     ')
+    print('   Software Foundation, either version 3 of the License, or (at your option)')
+    print('   any later version.                                                       ')
+    print('')
+    print('   SpliceX is distributed in the hope that it will be useful, but WITHOUT   ')
+    print('   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or    ')
+    print('   FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License    ')
+    print('   for more details. <http://www.gnu.org/licenses/>                         ')
+    print('')
+    print('')
+    print('')
+    print(Red + '   --help                ' + DefColour + 'Show help display and exit')
+    print('')
+    print(Red + '   --command             ' + DefColour + 'Parse passwords to this command')
+    print('                         '       + Yellow +    'splicex --command=\'<command> PASSWORD\'' + DefColour)
+    print('')
+    print(Red + '   --dictionary          ' + DefColour + 'Path to custom dictionary(wordlist)')
+    print('                         '       + Yellow +    'splicex --dictionary=\'WordList.txt\'' + DefColour)
+    print('')
+    print(Red + '   --rtfm                ' + DefColour + 'Show manual page and exit')
+    print('')
+    print(Red + '   --restore             ' + DefColour + 'Path to restore file')
+    print('                         '       + Yellow +    'splicex --restore=\'splicex.save\'' + DefColour)
+    print('')
+    print(Red + '   --save                ' + DefColour + 'Directory path to create save file')
+    print('                         '       + Yellow +    'splicex --save=/home/$USER/' + DefColour)
+    print('')
+    print(Red + '   --test                ' + DefColour + 'Test output of command')
+    print('                         '       + Yellow +    'splicex --test=\'Password Ok\'' + DefColour)
+    print('')
+    print(Red + '   --time                ' + DefColour + 'Manipulate timed iterations')
+    print('                         '       + Yellow +    'splicex --time=\'12, 3\'' + DefColour)
+    print('')
+    print(Red + '   --usernames           ' + DefColour + 'Path to username list')
+    print('                         '       + Yellow +    'splicex --usernames=\'UserList.txt\'' + DefColour)
+    print('')
+    print(Red + '   --exh-l               ' + DefColour + 'Use an exhaustive attack with letters only')
+    print('')
+    print(Red + '   --exh-n               ' + DefColour + 'Use an exhaustive attack with numbers only')
+    print('')
+    print(Red + '   --exh-s               ' + DefColour + 'Use an exhaustive attack with special characters only')
+    print('')
+    print(Red + '   --exh-ln              ' + DefColour + 'Use an exhaustive attack with letters and numbers only')
+    print('')
+    print(Red + '   --exh-ls              ' + DefColour + 'Use an exhaustive attack with letters and special')
+    print('                         characters only')
+    print('')
+    print(Red + '   --exh-ns              ' + DefColour + 'Use an exhaustive attack with numbers and special')
+    print('                         characters only')
+    print('')
+    print(Red + '   --exh-all             ' + DefColour + 'Use an exhaustive attack with all characters')
+    print('')
+    print(Red + '   --exh-custom          ' + DefColour + 'Use an exhaustive attack with custom characters')
+    print('                         '       + Yellow +    'splicex --exh-custom=\'CharsList.txt\'' + DefColour)
+    print('')
+    print(Red + '   --stdout              ' + DefColour + 'Print only passwords to stdout')
+    print('')
+    print(Red + '   -A                    ' + DefColour + 'Use alphabetical mixing module')
+    print('')
+    print(Red + '   -B                    ' + DefColour + 'Use backwords module')
+    print('')
+    print(Red + '   -C                    ' + DefColour + 'Use alternating caps module')
+    print('')
+    print(Red + '   -L                    ' + DefColour + 'Use "L337" speak module')
+    print('')
+    print(Red + '   -M                    ' + DefColour + 'Use MD5 module')
+    print('')
+    print(Red + '   -N                    ' + DefColour + 'Use numerical mixing module')
+    print('')
+    print(Red + '   -R                    ' + DefColour + 'Use regular words module')
+    print('')
+    print(Red + '   -S                    ' + DefColour + 'Use special mixing module')
+    print('')
+    print(Red + '   --mix-custom          ' + DefColour + 'Use custom mixing module')
+    print('                         '       + Yellow +    'splicex --mix-custom=\'CharsList.txt\'' + DefColour)
+    print('')
+    print(Red + '   --wep-5               ' + DefColour + 'Use 5 character WEP module')
+    print('')
+    print(Red + '   --wep-13              ' + DefColour + 'Use 13 character WEP module')
+    print('')
+    print(Red + '   --wep-*               ' + DefColour + 'Use 5 and 13 character WEP module')
+    print('')
+    print(Red + '   --letters             ' + DefColour + 'Use letter characters')
+    print('')
+    print(Red + '   --numbers             ' + DefColour + 'Use number characters')
+    print('')
+    print(Red + '   --specials            ' + DefColour + 'Use special characters')
+    print('')
+    print(Red + '   --char-all            ' + DefColour + 'Use all characters')
+    print('')
+    print(Red + '   --no-char             ' + DefColour + 'Override character usage')
+    print('')
+    print(Red + '   --char-length         ' + DefColour + 'Start and end with set character lengths')
+    print('')
+    print(Red + '   --custom              ' + DefColour + 'Use custom characters')
+    print('                         '       + Yellow +    'splicex --custom=\'CharsList.txt\'' + DefColour)
+    print('')
+    print(Red + '   --deshadow            ' + DefColour + 'Crack shadow hash sums')
+    print('')
+    print(Red + '   --get-shadow          ' + DefColour + 'Get the shadow info for a user')
+    print('                         '       + Yellow +    'splicex --get-shadow=$USER' + DefColour)
+    print('')
+    print(Red + '   --set-shadow          ' + DefColour + 'Use the shadow info from a file')
+    print('                         '       + Yellow +    'splicex --set-shadow=\'UserShadow.txt\'' + DefColour)
+    print('')
+    print(Red + '   --se-module           ' + DefColour + 'Use the social engineering module')
+    print('')
+    print(Red + '   --create              ' + DefColour + 'Create a dictionary')
+    print('')
+    print(Red + '   --debug               ' + DefColour + 'Enable debugging')
 
 import os
 import re
@@ -3683,7 +3691,6 @@ def SBF11():
                  print(NewShowWord.replace(" ", ""))
 
 if Create is True:
- CLEAR_LINE = chr(27) + '[2K'
  CFILE = open("splicex.create", 'w')
  X = 0
  N = 0

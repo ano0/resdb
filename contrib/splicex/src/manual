@@ -27,20 +27,27 @@ OPTIONS
 --help                Show help display and exit
 
 --command             Parse passwords to this command
+                      splicex --command='<command> PASSWORD'
 
 --dictionary          Path to custom dictionary(wordlist)
+                      splicex --dictionary='WordList.txt'
 
 --rtfm                Show manual page and exit
 
 --restore             Path to restore file
+                      splicex --restore='splicex.save'
 
 --save                Directory path to create save file
+                      splicex --save=/home/$USER/
 
 --test                Test output of command
+                      splicex --test='Password Ok'
 
 --time                Manipulate timed iterations
+                      splicex --time='12, 3'
 
 --usernames           Path to username list
+                      splicex --usernames='UserList.txt'
 
 --exh-l               Use an exhaustive attack with letters only
 
@@ -59,6 +66,7 @@ OPTIONS
 --exh-all             Use an exhaustive attack with all characters
 
 --exh-custom          Use an exhaustive attack with custom characters
+                      splicex --exh-custom='CharsList.txt'
 
 --stdout              Print only passwords to stdout
 
@@ -79,6 +87,7 @@ OPTIONS
 -S                    Use special mixing module
 
 --mix-custom          Use custom mixing module
+                      splicex --mix-custom='CharsList.txt'
 
 --wep-5               Use 5 character WEP module
 
@@ -99,12 +108,15 @@ OPTIONS
 --char-length         Start and end with set character lengths
 
 --custom              Use custom characters
+                      splicex --custom='CharsList.txt'
 
 --deshadow            Crack shadow hash sums
 
 --get-shadow          Get the shadow info for a user
+                      splicex --get-shadow=$USER
 
 --set-shadow          Use the shadow info from a file
+                      splicex --set-shadow='UserShadow.txt'
 
 --se-module           Use the social engineering module
 
