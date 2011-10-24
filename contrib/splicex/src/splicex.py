@@ -590,9 +590,6 @@ if usernames is not None and RestoreSwitch is False:
  else:
   sys.exit(SpliceX + "error: -c does not contain regexp `USERNAME'")
 
-if Create is True:
- print('Creating dictionary and exiting')
-
 if Create is False and cmd.__contains__("splicex-deshadow"):
  test = "SHADOW CRACKED"
  
@@ -3686,11 +3683,45 @@ def SBF11():
                  print(NewShowWord.replace(" ", ""))
 
 if Create is True:
+ CLEAR_LINE = chr(27) + '[2K'
  CFILE = open("splicex.create", 'w')
+ X = 0
+ N = 0
  for WCreate in ShowWord:
+  N += 1
+ D1 = round(N * 0.1)
+ D2 = round(N * 0.2)
+ D3 = round(N * 0.3)
+ D4 = round(N * 0.4)
+ D5 = round(N * 0.5)
+ D6 = round(N * 0.6)
+ D7 = round(N * 0.7)
+ D8 = round(N * 0.8)
+ D9 = round(N * 0.9)
+ DStop = round(N * 0.95)
+ for WCreate in ShowWord: 
   CFILE.write(WCreate + "\n")
+  if X == 0:
+   sys.stdout.write(SpliceX + 'compiling splicex.create')
+   time.sleep(0.5)
+   X += 1
+  elif X == D1 or X == D2 or X == D3 or X == D4 or X == D5 or X == D6 or X == D7 or X == D8 or X == D9:
+   sys.stdout.flush()
+   sys.stdout.write('.')
+   time.sleep(0.5)
+   X += 1
+  elif X == DStop:
+   sys.stdout.flush()
+   sys.stdout.write('.')
+   time.sleep(0.5)
+   X += 1
+  else:
+   X += 1
  CFILE.close()
- sys.exit(0)
+ sys.stdout.write(CLEAR_LINE)
+ sys.stdout.write('\r')
+ print(SpliceX + 'compiling splicex.create..........')
+ sys.exit(SpliceX + 'enjoy :-)')
 
 if RestoreSwitch is False:
  StateCount = 0
