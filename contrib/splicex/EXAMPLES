@@ -1,0 +1,34 @@
+# This is rather basic so best to start here.
+
+splicex -command='unrar -pPASSWORD t file.rar' --test='All OK' -R
+
+
+# you can then add a wordlist of your own :-)
+# using the appropriate options
+
+--dictionary='wordlist.txt'
+
+# create a dictionary
+
+--create
+
+
+# you can use some nice bash flexibility with a command like this.
+# the option --flags should make sense on their own. if not
+# --rtfm works ;-). splicex is reasonably documented.
+
+splicex --command='echo PASSWORD | aircrack-ng -b 00:11:22:33:44:55 -w - *.cap' --wep-5 --wep-13 --no-char --dictionary='MyWords.txt' --test='KEY FOUND'
+
+#some funny things you can do with splicex ;-)
+splicex --command='figlet PASSWORD' -L
+
+##use splicex as a simple daemon
+##!/bin/bash
+#
+#MyFunction() {
+#	while true; do
+#	      splicex --command='ping -c1 www.example.com ; sleep 1 # PASSWORD' --test='some output' --exh-n
+#	done
+        # etc, etc
+
+

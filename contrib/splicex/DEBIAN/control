@@ -1,0 +1,12 @@
+Source: splicex
+Section: python
+Priority: optional
+Maintainer: d3v11 <d3v11@d3v11.ano>
+Version: 1.0-0
+Package: Splicex
+Architecture: all
+Depends: python2.6 (>= 2.6)
+Description: SpliceX
+ brute force utilities for the linux shell.
+
+
