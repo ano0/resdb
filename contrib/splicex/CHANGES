@@ -1,12 +1,15 @@
 CHANGES:
-	d3v11 - Sat Oct 22 2011
+
+	d3v11 - Sat Oct 22 2011:
+
 		SpliceX is the new replacement for Splice3.
 		it includes some new options and should be
 		compatible with most versions of Python.
 
 		see README, splicex --help, splicex --rtfm
 
-	d3v11 - Sun Oct 23 2011
+	d3v11 - Sun Oct 23 2011:
+
 		Added some colour enhancements to SpliceX
 		:-). This is a useless update but i thought
 		it was fun.
@@ -15,3 +18,10 @@ CHANGES:
 		code.
 
 		'deshadow' bug fixed in splicex.py src
+
+	d3v11 - Fri Oct 28 2011:
+
+		SpliceX now compiles to machine language
+		via Cython. see README for dependencies
+		and installation details.
+		

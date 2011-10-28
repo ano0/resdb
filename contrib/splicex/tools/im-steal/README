@@ -8,7 +8,7 @@ USAGE:
 
 SPLICEX USAGE:
 
-spliceX --command='im-steal <prpl-protocol> <username> PASSWORD' --<modules> --test='Account Connected'
+splicex --command='im-steal <prpl-protocol> <username> PASSWORD' --<modules> --test='Account Connected'
 
 DEPENDS:
 	libpurple-dev, libpurple

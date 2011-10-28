@@ -1,0 +1,55 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+ echo 'usage: ./configure <python[version]>'
+ exit 1
+fi
+
+echo -e 'checking dependencies: '
+echo -ne "      checking for python as <$1>..."
+if which `which "$1"` >/dev/null; then
+ PYPATH=`which "$1"`
+ echo -ne ' OK'
+ echo
+else
+ echo -ne ' FAILED'
+ exit 1
+fi
+
+echo -ne '	checking for man...'
+if which man >/dev/null; then
+ echo -ne ' OK'
+ echo
+else
+ echo -ne ' FAILED'
+ exit 1
+fi
+
+echo -ne '	checking for cython...'
+if which cython >/dev/null; then
+ echo -ne ' OK'
+ echo
+else
+ echo -ne ' FAILED'
+ exit 1
+fi
+
+echo -ne '	checking for gcc...'
+if which gcc >/dev/null; then
+ echo -ne ' OK'
+ echo
+else
+ echo -ne ' FAILED'
+ exit 1
+fi
+
+echo
+echo  -ne "configuring splicex: "
+echo
+echo -e "       python version == $1"
+echo -e "       interpreter path == $PYPATH"
+echo -e "       compiler flags == gcc -I/usr/include/$1"
+sed -e s^PYTHON^"$1"^g src/make.in >Makefile
+sed -e s^PYTHON^"$PYPATH"^g src/splicex.py >build/splicex
+sed -e s^PYTHON^"$PYPATH"^g src/splicex-deshadow.py >build/splicex-deshadow
+echo
+echo -e 'splicex configured'
