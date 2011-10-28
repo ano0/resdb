@@ -18,46 +18,56 @@
        for more details. http://www.gnu.org/licenses/
 
 AUTHOR:
-  d3v11 <d3v11@d3v11.ano>
+
+	d3v11 <d3v11@d3v11.ano>
 
 DEPENDS ON:
-  python (>=2.6), man
 
-INSTALL AND UNINSTALL:
-  To install, `cd' to the extracted splicex folder.
-  Issue the following commands as root:
+	python (>=2.6), python-dev(>=2.6), cython (>=0.12.1), 
+	gcc (>=4.4.3), bash (>=4.1.5), man (>=2.5.7)
 
-  make install
+(UN)INSTALL:
 
-  To uninstall splicex, as root do:
+	SOURCE:
 
-  make uninstall
+		./configure <python[version]>
+		make compile
+		make install
 
-  To compile/install a .deb package, as root do:
+	DEBIAN/UBUNTU:
 
-  make install-deb
+		./configure <python[version]>
+		make compile
+		make install-deb
+
+	UNINSTALL:
+	
+		source:
+		 make uninstall
+
+		debian/ubuntu:
+		 apt-get remove splicex
+
 
 TOOLS:
-  SpliceX includes brute forcing tools. Each tool will
-  include a README file in its respected folder(s):
 
-  ls TOOLS/*
+	SpliceX includes brute forcing tools. Each tool will
+	include a README file in its respected folder(s):
+
+	ls tools/*
 
 UPDATE:
-  d3v11's AnoNet(2) update for splicex - Not as root, do:
+
+	d3v11's AnoNet(2) update for splicex:
  
-  make update
+	make update
 
 HELP AND USAGE:
-  To obtain additional information on how to use splicex
-  enter either of the following commands after installation:
 
-  # For simple help display use:
+	To obtain additional information on how to use splicex
+	enter either of the following commands after installation:
 
-  splicex --help
-
-  # For the detailed manual use:
-
-  splicex --rtfm
+	splicex --help
+	splicex --rtfm
 
 
