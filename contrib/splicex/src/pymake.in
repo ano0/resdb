@@ -1,4 +1,4 @@
-pyinstall-deb:
+install-deb:
 	mkdir DEBIAN/splicex
 	mkdir DEBIAN/splicex/DEBIAN
 	mkdir DEBIAN/splicex/usr
@@ -24,7 +24,7 @@ pyinstall-deb:
 	dpkg -i DEBIAN/splicex.deb
 	rm -rf DEBIAN/splicex DEBIAN/splicex.deb
 
-pyinstall:
+install:
 	make preinstall
 	mkdir /etc/splicex
 	cp build/splicex.pyx /usr/bin/splicex

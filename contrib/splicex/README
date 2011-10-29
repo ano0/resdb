@@ -86,12 +86,12 @@ PYTHONIC (UN)INSTALL:
 		SOURCE:
 
 			./configure <python[version]> --no-compile
-			make pyinstall
+			make install
 
 		DEBIAN/UBUNTU:
 
 			./configure <python[version]> --no-compile
-			make pyinstall-deb
+			make install-deb
 
 		UNINSTALL:
 	
