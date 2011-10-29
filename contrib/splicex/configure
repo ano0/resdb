@@ -41,10 +41,14 @@ else
  exit 1
 fi
 
-echo  -ne "configuring splicex for $1 @ $PYPATH..."
+echo
+echo  -ne "configuring splicex: "
+echo
+echo -e "       python version == $1"
+echo -e "       interpreter path == $PYPATH"
+echo -e "       compiler flags == gcc -I/usr/include/$1"
 sed -e s^PYTHON^"$1"^g src/make.in >Makefile
 sed -e s^PYTHON^"$PYPATH"^g src/splicex.py >build/splicex
 sed -e s^PYTHON^"$PYPATH"^g src/splicex-deshadow.py >build/splicex-deshadow
-echo -ne ' OK'
 echo
-echo -e 'configure complete'
+echo -e 'splicex configured'

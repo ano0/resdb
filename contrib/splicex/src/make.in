@@ -56,7 +56,7 @@ uninstall:
 	rm  -f /usr/bin/splicex-deshadow
 
 clean:
-	rm DEBIAN/splicex DEBIAN/*.deb build/* -rf
+	rm Makefile DEBIAN/splicex DEBIAN/*.deb build/* -rf
 
 preinstall:
 	rm -rf /etc/splicex
