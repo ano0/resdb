@@ -4,7 +4,8 @@ if [ -z "$1" ]; then
  exit 1
 fi
 
-echo -ne 'checking for python...'
+echo -e 'checking dependencies: '
+echo -ne "      checking for python as <$1>..."
 if which `which "$1"` >/dev/null; then
  PYPATH=`which "$1"`
  echo -ne ' OK'
@@ -14,7 +15,7 @@ else
  exit 1
 fi
 
-echo -ne 'checking for man...'
+echo -ne '	checking for man...'
 if which man >/dev/null; then
  echo -ne ' OK'
  echo
@@ -23,7 +24,7 @@ else
  exit 1
 fi
 
-echo -ne 'checking for cython...'
+echo -ne '	checking for cython...'
 if which cython >/dev/null; then
  echo -ne ' OK'
  echo
@@ -32,7 +33,7 @@ else
  exit 1
 fi
 
-echo -ne 'checking for gcc...'
+echo -ne '	checking for gcc...'
 if which gcc >/dev/null; then
  echo -ne ' OK'
  echo
