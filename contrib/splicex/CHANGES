@@ -25,3 +25,23 @@ CHANGES:
 		via Cython. see README for dependencies
 		and installation details.
 		
+		SpliceX compiler flags patched. recent
+		update did not distinguish:
+
+			/usr/include/<python version>
+
+				-FROM-
+
+			/usr/local/include/<python version>
+
+		Thus, if you have debian python-dev or 
+		source python-dev the ./configure script
+		should choose the appropriate option.
+		if the configure still failed to locate
+		the python development files (headers)
+		please let me know and I will correct.
+
+		SpliceX can now optionally do a pure
+		python install. This cuts down on
+		dependencies and is useful if you just
+		want to test, try, and/or debug.

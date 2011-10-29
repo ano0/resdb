@@ -32,6 +32,20 @@ AUTHOR:
 	If your goal is simply to test, try, and/or debug splicex then
 	using the pythonic install will be more practical.
 
+	NOTES:
+
+		If you installed Python from source you can ignore
+		the python-dev dependency below. However, your source
+		install of Python must have the development files. IE:
+
+		tar xvf Python-*.tgz
+		cd Python-*
+		./configure --with-pydebug
+		make install
+
+		This generates Python.h and structmember.h, which are
+		need for gcc to compile splicex.
+
 	DEPENDS ON:
 
 		python (>=2.6), python-dev(>=2.6), cython (>=0.12.1), 

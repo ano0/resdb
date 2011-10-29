@@ -57,7 +57,15 @@ echo
 echo -e "	python version == $1"
 echo -e "	interpreter path == $PYPATH"
 if [ -z "$2" ]; then
- echo -e "	compiler flags == gcc -I/usr/include/$1"
+ if [ -e /usr/include/"$1"/Python.h ] && [ -e /usr/include/"$1"/structmember.h ]; then
+  PYHEADERS="/usr/include/$1"
+  echo -e "	compiler flags == gcc -I /usr/include/$1"
+ elif [ -e /usr/local/include/"$1"/Python.h ] && [ -e /usr/local/include/"$1"/structmember.h ]; then
+  PYHEADERS="/usr/local/include/$1"
+  echo -e "	compiler flags == gcc -I /usr/local/include/$1"
+ else
+  echo -e "	Python.h and structmember.h could not be found... FAILED"
+ fi
 fi
 echo
 if [ -z "$2" ]; then
@@ -69,6 +77,7 @@ sed -e s^PYTHON^"$PYPATH"^g src/deshadow.pyx >build/deshadow.pyx || exit 1
 echo -ne "	generating Makefile..."
 if [ -z "$2" ]; then
  sed -e s^PYTHON^"$1"^g src/make.in >Makefile || exit 1
+ sed -i s^HEADERS^"$PYHEADERS"^g Makefile || exit 1
  echo -ne ' DONE'
  echo
 else

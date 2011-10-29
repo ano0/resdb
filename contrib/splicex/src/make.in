@@ -1,10 +1,10 @@
 compile:
 	cython build/deshadow.pyx -o build/deshadow.c
-	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/PYTHON -c build/deshadow.c -o build/deshadow.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I HEADERS -c build/deshadow.c -o build/deshadow.o
 	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions build/deshadow.o -o build/deshadow.so
 
 	cython build/splicex.pyx -o build/splicex.c
-	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/PYTHON -c build/splicex.c -o build/splicex.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I HEADERS -c build/splicex.c -o build/splicex.o
 	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions build/splicex.o -o build/splicex.so
 
 install-deb:
