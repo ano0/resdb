@@ -45,3 +45,6 @@ CHANGES:
 		python install. This cuts down on
 		dependencies and is useful if you just
 		want to test, try, and/or debug.
+
+		SpliceX now detects invalid arguments
+		and prints with error message.
