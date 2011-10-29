@@ -44,7 +44,7 @@ AUTHOR:
 		make install
 
 		This generates Python.h and structmember.h, which are
-		need for gcc to compile splicex.
+		needed for gcc to compile splicex.
 
 	DEPENDS ON:
 
