@@ -275,6 +275,9 @@ for arg in sys.argv:
   DebugSwitch = True
  elif '--help' in arg:
   sys.exit(HELP())
+ else:
+  if arg != '/usr/bin/splicex':
+   sys.exit(SpliceX + 'error: invalid argument: ' + arg)
 
 if DebugSwitch is False:
  sys.tracebacklimit = 0
