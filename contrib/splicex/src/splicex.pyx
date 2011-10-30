@@ -1833,8 +1833,6 @@ def BF1():
 
 def BF2():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
@@ -1908,8 +1906,6 @@ def BF2():
 
 def BF3():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2003,8 +1999,6 @@ def BF3():
 
 def BF4():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2118,8 +2112,6 @@ def BF4():
 
 def BF5():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2217,8 +2209,6 @@ def BF5():
 
 def BF6():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2336,8 +2326,6 @@ def BF6():
 
 def BF7():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2439,8 +2427,6 @@ def BF7():
 
 def BF8():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2562,8 +2548,6 @@ def BF8():
 
 def BF9():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2669,8 +2653,6 @@ def BF9():
 
 def BF10():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2796,8 +2778,6 @@ def BF10():
 
 def BF11():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2942,8 +2922,6 @@ def SBF1():
       print(NewShowWord.replace(" ", ""))
 
 def SBF2():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
@@ -2986,8 +2964,6 @@ def SBF2():
         print(NewShowWord.replace(" ", ""))
 
 def SBF3():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3035,8 +3011,6 @@ def SBF3():
          print(NewShowWord.replace(" ", ""))
 
 def SBF4():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3089,8 +3063,6 @@ def SBF4():
           print(NewShowWord.replace(" ", ""))
 
 def SBF5():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3142,8 +3114,6 @@ def SBF5():
            print(NewShowWord.replace(" ", ""))
 
 def SBF6():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3200,8 +3170,6 @@ def SBF6():
             print(NewShowWord.replace(" ", ""))
 
 def SBF7():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3257,8 +3225,6 @@ def SBF7():
              print(NewShowWord.replace(" ", ""))
 
 def SBF8():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3319,8 +3285,6 @@ def SBF8():
               print(NewShowWord.replace(" ", ""))
 
 def SBF9():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3380,8 +3344,6 @@ def SBF9():
                print(NewShowWord.replace(" ", ""))
 
 def SBF10():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3446,8 +3408,6 @@ def SBF10():
                 print(NewShowWord.replace(" ", ""))
 
 def SBF11():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3554,13 +3514,15 @@ def C_BF1():
      pass
     elif length_end < 0:
      sys.exit(SpliceX + 'unable to find password')
-    elif StdoutSwitch is True:
+    else:
      BF1()
 
 def C_BF2():
     if length_start > 1:
      pass
     elif length_end < 1:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF2()
@@ -3570,6 +3532,8 @@ def C_BF3():
      pass
     elif length_end < 2:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF3()
 
@@ -3577,6 +3541,8 @@ def C_BF4():
     if length_start > 3:
      pass
     elif length_end < 3:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF4()
@@ -3586,6 +3552,8 @@ def C_BF5():
      pass
     elif length_end < 4:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF5()
 
@@ -3593,6 +3561,8 @@ def C_BF6():
     if length_start > 5:
      pass
     elif length_end < 5:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF6()
@@ -3602,6 +3572,8 @@ def C_BF7():
      pass
     elif length_end < 6:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF7()
 
@@ -3609,6 +3581,8 @@ def C_BF8():
     if length_start > 7:
      pass
     elif length_end < 7:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF8()
@@ -3618,6 +3592,8 @@ def C_BF9():
      pass
     elif length_end < 8:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF9()
 
@@ -3626,6 +3602,8 @@ def C_BF10():
      pass
     elif length_end < 9:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF10()
 
@@ -3633,6 +3611,8 @@ def C_BF11():
     if length_start > 10:
      pass
     elif length_end < 10:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF11()
@@ -3650,6 +3630,8 @@ def C_SBF2():
      pass
     elif length_end < 1:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF2()
 
@@ -3657,6 +3639,8 @@ def C_SBF3():
     if length_start > 2:
      pass
     elif length_end < 2:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF3()
@@ -3666,6 +3650,8 @@ def C_SBF4():
      pass
     elif length_end < 3:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF4()
 
@@ -3673,6 +3659,8 @@ def C_SBF5():
     if length_start > 4:
      pass
     elif length_end < 4:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF5()
@@ -3682,6 +3670,8 @@ def C_SBF6():
      pass
     elif length_end < 5:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF6()
 
@@ -3689,6 +3679,8 @@ def C_SBF7():
     if length_start > 6:
      pass
     elif length_end < 6:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF7()
@@ -3698,6 +3690,8 @@ def C_SBF8():
      pass
     elif length_end < 7:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF8()
 
@@ -3705,6 +3699,8 @@ def C_SBF9():
     if length_start > 8:
      pass
     elif length_end < 8:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF9()
@@ -3714,6 +3710,8 @@ def C_SBF10():
      pass
     elif length_end < 9:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF10()
 
@@ -3721,6 +3719,8 @@ def C_SBF11():
     if length_start > 10:
      pass
     elif length_end < 10:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF11()
