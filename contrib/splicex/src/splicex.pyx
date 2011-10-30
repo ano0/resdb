@@ -275,9 +275,8 @@ for arg in sys.argv:
   DebugSwitch = True
  elif '--help' in arg:
   sys.exit(HELP())
- else:
-  if arg != '/usr/bin/splicex':
-   sys.exit(SpliceX + 'error: invalid argument: ' + arg)
+ elif arg != sys.argv[0]:
+  sys.exit(SpliceX + 'error: invalid argument: ' + arg)
 
 if DebugSwitch is False:
  sys.tracebacklimit = 0
@@ -1732,8 +1731,7 @@ else:
 if not Word:
  sys.exit(SpliceX + "error: compiled empty wordlist")
 
-Word = list(set(Word)) 
-WordCount = 0
+Word = list(set(Word))
 ShowWord = []
 PassWd = []
 for Input in Word:
@@ -1743,7 +1741,9 @@ for Input in Word:
   c += "\\\\\\" + let
  PassWd.append(c)
 
-
+timeup = 0
+PassAmount = 0
+StartTime = time.time() - 1
 if TIME != None:
  try:
      TIME = TIME.split(", ")
@@ -1775,19 +1775,13 @@ else:
  length_start = 0
  length_end = 10
 
+WordCount = 0
+for CountWords in ShowWord:
+ WordCount += 1
+    
 def BF1():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
+    global timeup, PassAmount
     for u in range(StateU, UserCount):
-     if length_start > 0:
-      break
-     if length_end < 0:
-      sys.exit(SpliceX + 'unable to find password')
      for x in range(StateW, WordCount):
       if SaveSwitch is True:
        WriteSave = []
@@ -1838,20 +1832,10 @@ def BF1():
        print(output)
 
 def BF2():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 1:
-      break
-     if length_end < 1:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
        if SaveSwitch is True:
@@ -1923,20 +1907,10 @@ def BF2():
          print(output)
 
 def BF3():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 2:
-      break
-     if length_end < 2:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for x in range(StateW, WordCount):
@@ -2028,20 +2002,10 @@ def BF3():
           print(output)
 
 def BF4():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 3:
-      break
-     if length_end < 3:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2153,20 +2117,10 @@ def BF4():
            print(output)
 
 def BF5():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 4:
-      break
-     if length_end < 4:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2262,20 +2216,10 @@ def BF5():
             print(output)
 
 def BF6():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 5:
-      break
-     if length_end < 5:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2391,20 +2335,10 @@ def BF6():
              print(output)
 
 def BF7():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 6:
-      break
-     if length_end < 6:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2504,20 +2438,10 @@ def BF7():
               print(output)
 
 def BF8():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 7:
-      break
-     if length_end < 7:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2637,20 +2561,10 @@ def BF8():
                print(output)
 
 def BF9():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 8:
-      break
-     if length_end < 8:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2754,20 +2668,10 @@ def BF9():
                 print(output)
 
 def BF10():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 9:
-      break
-     if length_end < 9:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -2891,20 +2795,10 @@ def BF10():
                  print(output)
 
 def BF11():
+    global timeup, PassAmount
     if NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
-    StartTime = time.time()
-    StartTime = StartTime - 1
-    PassAmount = 0
-    timeup = 0
     for u in range(StateU, UserCount):
-     if length_start > 10:
-      break
-     if length_end < 10:
-      sys.exit(SpliceX + 'unable to find password')
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3012,14 +2906,7 @@ def BF11():
                   print(output)
 
 def SBF1():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     for u in range(StateU, UserCount):
-     if length_start > 0:
-      break
-     if length_end < 0:
-      sys.exit(0)
      for x in range(StateW, WordCount):
       if SaveSwitch is True:
        WriteSave = []
@@ -3055,16 +2942,9 @@ def SBF1():
       print(NewShowWord.replace(" ", ""))
 
 def SBF2():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 1:
-      break
-     if length_end < 1:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
        if SaveSwitch is True:
@@ -3106,16 +2986,9 @@ def SBF2():
         print(NewShowWord.replace(" ", ""))
 
 def SBF3():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 2:
-      break
-     if length_end < 2:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for x in range(StateW, WordCount):
@@ -3162,16 +3035,9 @@ def SBF3():
          print(NewShowWord.replace(" ", ""))
 
 def SBF4():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 3:
-      break
-     if length_end < 3:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3223,16 +3089,9 @@ def SBF4():
           print(NewShowWord.replace(" ", ""))
 
 def SBF5():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 4:
-      break
-     if length_end < 4:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3283,16 +3142,9 @@ def SBF5():
            print(NewShowWord.replace(" ", ""))
 
 def SBF6():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 5:
-      break
-     if length_end < 5:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3348,16 +3200,9 @@ def SBF6():
             print(NewShowWord.replace(" ", ""))
 
 def SBF7():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 6:
-      break
-     if length_end < 6:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3412,16 +3257,9 @@ def SBF7():
              print(NewShowWord.replace(" ", ""))
 
 def SBF8():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 7:
-      break
-     if length_end < 7:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3481,16 +3319,9 @@ def SBF8():
               print(NewShowWord.replace(" ", ""))
 
 def SBF9():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 8:
-      break
-     if length_end < 8:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3549,16 +3380,9 @@ def SBF9():
                print(NewShowWord.replace(" ", ""))
 
 def SBF10():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 9:
-      break
-     if length_end < 9:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3622,16 +3446,9 @@ def SBF10():
                 print(NewShowWord.replace(" ", ""))
 
 def SBF11():
-    WordCount = 0
-    for CountWords in ShowWord:
-     WordCount += 1
     if NoChar is True:
      sys.exit(0)
     for u in range(StateU, UserCount):
-     if length_start > 10:
-      break
-     if length_end < 10:
-      sys.exit(0)
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
        for c in range(StateC, EndCount):
@@ -3732,6 +3549,183 @@ if Create is True:
  sys.stdout.write('\r')
  sys.exit(SpliceX + 'compiled ' + str(N) + ' passwords. enjoy ;-)')
 
+def C_BF1():
+    if length_start > 0:
+     pass
+    elif length_end < 0:
+     sys.exit(SpliceX + 'unable to find password')
+    elif StdoutSwitch is True:
+     BF1()
+
+def C_BF2():
+    if length_start > 1:
+     pass
+    elif length_end < 1:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF2()
+
+def C_BF3():
+    if length_start > 2:
+     pass
+    elif length_end < 2:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF3()
+
+def C_BF4():
+    if length_start > 3:
+     pass
+    elif length_end < 3:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF4()
+
+def C_BF5():
+    if length_start > 4:
+     pass
+    elif length_end < 4:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF5()
+
+def C_BF6():
+    if length_start > 5:
+     pass
+    elif length_end < 5:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF6()
+
+def C_BF7():
+    if length_start > 6:
+     pass
+    elif length_end < 6:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF7()
+
+def C_BF8():
+    if length_start > 7:
+     pass
+    elif length_end < 7:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF8()
+
+def C_BF9():
+    if length_start > 8:
+     pass
+    elif length_end < 8:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF9()
+
+def C_BF10():
+    if length_start > 9:
+     pass
+    elif length_end < 9:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF10()
+
+def C_BF11():
+    if length_start > 10:
+     pass
+    elif length_end < 10:
+     sys.exit(SpliceX + 'unable to find password')
+    else:
+     BF11()
+
+def C_SBF1():
+    if length_start > 0:
+     pass
+    elif length_end < 0:
+     sys.exit(0)
+    elif StdoutSwitch is True:
+     SBF1()
+
+def C_SBF2():
+    if length_start > 1:
+     pass
+    elif length_end < 1:
+     sys.exit(0)
+    else:
+     SBF2()
+
+def C_SBF3():
+    if length_start > 2:
+     pass
+    elif length_end < 2:
+     sys.exit(0)
+    else:
+     SBF3()
+
+def C_SBF4():
+    if length_start > 3:
+     pass
+    elif length_end < 3:
+     sys.exit(0)
+    else:
+     SBF4()
+
+def C_SBF5():
+    if length_start > 4:
+     pass
+    elif length_end < 4:
+     sys.exit(0)
+    else:
+     SBF5()
+
+def C_SBF6():
+    if length_start > 5:
+     pass
+    elif length_end < 5:
+     sys.exit(0)
+    else:
+     SBF6()
+
+def C_SBF7():
+    if length_start > 6:
+     pass
+    elif length_end < 6:
+     sys.exit(0)
+    else:
+     SBF7()
+
+def C_SBF8():
+    if length_start > 7:
+     pass
+    elif length_end < 7:
+     sys.exit(0)
+    else:
+     SBF8()
+
+def C_SBF9():
+    if length_start > 8:
+     pass
+    elif length_end < 8:
+     sys.exit(0)
+    else:
+     SBF9()
+
+def C_SBF10():
+    if length_start > 9:
+     pass
+    elif length_end < 9:
+     sys.exit(0)
+    else:
+     SBF10()
+
+def C_SBF11():
+    if length_start > 10:
+     pass
+    elif length_end < 10:
+     sys.exit(0)
+    else:
+     SBF11()
+
+
 if RestoreSwitch is False:
  StateCount = 0
 if RestoreSwitch is False and StdoutSwitch is False:
@@ -3747,17 +3741,17 @@ if RestoreSwitch is False and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF1()
- BF2()
- BF3()
- BF4()
- BF5()
- BF6()
- BF7()
- BF8()
- BF9()
- BF10()
- BF11()
+ C_BF1()
+ C_BF2()
+ C_BF3()
+ C_BF4()
+ C_BF5()
+ C_BF6()
+ C_BF7()
+ C_BF8()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 
 if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
@@ -3773,7 +3767,7 @@ if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF1()
+ C_BF1()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -3785,18 +3779,18 @@ if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF2()
- BF3()
- BF4()
- BF5()
- BF6()
- BF7()
- BF8()
- BF9()
- BF10()
- BF11()
+ C_BF2()
+ C_BF3()
+ C_BF4()
+ C_BF5()
+ C_BF6()
+ C_BF7()
+ C_BF8()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
-if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
+if StateCount == 23 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
  StateW = int(State[23])
  StateA = 0
@@ -3809,7 +3803,7 @@ if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF1()
+ C_BF1()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -3821,16 +3815,16 @@ if StateCount == 21 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF2()
- BF3()
- BF4()
- BF5()
- BF6()
- BF7()
- BF8()
- BF9()
- BF10()
- BF11()
+ C_BF2()
+ C_BF3()
+ C_BF4()
+ C_BF5()
+ C_BF6()
+ C_BF7()
+ C_BF8()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -3845,7 +3839,7 @@ elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF2()
+ C_BF2()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -3857,15 +3851,15 @@ elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF3()
- BF4()
- BF5()
- BF6()
- BF7()
- BF8()
- BF9()
- BF10()
- BF11()
+ C_BF3()
+ C_BF4()
+ C_BF5()
+ C_BF6()
+ C_BF7()
+ C_BF8()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -3880,7 +3874,7 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF3()
+ C_BF3()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -3892,14 +3886,14 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF4()
- BF5()
- BF6()
- BF7()
- BF8()
- BF9()
- BF10()
- BF11()
+ C_BF4()
+ C_BF5()
+ C_BF6()
+ C_BF7()
+ C_BF8()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -3914,7 +3908,7 @@ elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF4()
+ C_BF4()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -3926,13 +3920,13 @@ elif StateCount == 26 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF5()
- BF6()
- BF7()
- BF8()
- BF9()
- BF10()
- BF11()
+ C_BF5()
+ C_BF6()
+ C_BF7()
+ C_BF8()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -3947,7 +3941,7 @@ elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF5()
+ C_BF5()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -3959,12 +3953,12 @@ elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF6()
- BF7()
- BF8()
- BF9()
- BF10()
- BF11()
+ C_BF6()
+ C_BF7()
+ C_BF8()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -3979,7 +3973,7 @@ elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF6()
+ C_BF6()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -3991,11 +3985,11 @@ elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF7()
- BF8()
- BF9()
- BF10()
- BF11()
+ C_BF7()
+ C_BF8()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -4010,7 +4004,7 @@ elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF7()
+ C_BF7()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4022,10 +4016,10 @@ elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF8()
- BF9()
- BF10()
- BF11()
+ C_BF8()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -4040,7 +4034,7 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF8()
+ C_BF8()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4052,9 +4046,9 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF9()
- BF10()
- BF11()
+ C_BF9()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -4069,7 +4063,7 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = int(State[31])
  StateI = 0
  StateJ = 0
- BF9()
+ C_BF9()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4081,8 +4075,8 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF10()
- BF11()
+ C_BF10()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -4097,7 +4091,7 @@ elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = int(State[31])
  StateI = int(State[32])
  StateJ = 0
- BF10()
+ C_BF10()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4109,7 +4103,7 @@ elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = 0
  StateI = 0
  StateJ = 0
- BF11()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is False:
  StateU = int(State[22])
@@ -4124,7 +4118,7 @@ elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is False:
  StateH = int(State[31])
  StateI = int(State[32])
  StateJ = int(State[33])
- BF11()
+ C_BF11()
  sys.exit(SpliceX + " unable to find password")
 
 if RestoreSwitch is False and StdoutSwitch is True:
@@ -4140,17 +4134,17 @@ if RestoreSwitch is False and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF1()
- SBF2()
- SBF3()
- SBF4()
- SBF5()
- SBF6()
- SBF7()
- SBF8()
- SBF9()
- SBF10()
- SBF11()
+ C_SBF1()
+ C_SBF2()
+ C_SBF3()
+ C_SBF4()
+ C_SBF5()
+ C_SBF6()
+ C_SBF7()
+ C_SBF8()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 
 if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is True:
@@ -4166,7 +4160,7 @@ if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF1()
+ C_SBF1()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4178,16 +4172,16 @@ if StateCount == 22 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF2()
- SBF3()
- SBF4()
- SBF5()
- SBF6()
- SBF7()
- SBF8()
- SBF9()
- SBF10()
- SBF11()
+ C_SBF2()
+ C_SBF3()
+ C_SBF4()
+ C_SBF5()
+ C_SBF6()
+ C_SBF7()
+ C_SBF8()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 if StateCount == 23 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4202,7 +4196,7 @@ if StateCount == 23 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF1()
+ C_SBF1()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4214,16 +4208,16 @@ if StateCount == 23 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF2()
- SBF3()
- SBF4()
- SBF5()
- SBF6()
- SBF7()
- SBF8()
- SBF9()
- SBF10()
- SBF11()
+ C_SBF2()
+ C_SBF3()
+ C_SBF4()
+ C_SBF5()
+ C_SBF6()
+ C_SBF7()
+ C_SBF8()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4238,7 +4232,7 @@ elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF2()
+ C_SBF2()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4250,15 +4244,15 @@ elif StateCount == 24 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF3()
- SBF4()
- SBF5()
- SBF6()
- SBF7()
- SBF8()
- SBF9()
- SBF10()
- SBF11()
+ C_SBF3()
+ C_SBF4()
+ C_SBF5()
+ C_SBF6()
+ C_SBF7()
+ C_SBF8()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4273,7 +4267,7 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF3()
+ C_SBF3()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4285,14 +4279,14 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF4()
- SBF5()
- SBF6()
- SBF7()
- SBF8()
- SBF9()
- SBF10()
- SBF11()
+ C_SBF4()
+ C_SBF5()
+ C_SBF6()
+ C_SBF7()
+ C_SBF8()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4307,7 +4301,7 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF4()
+ C_SBF4()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4319,13 +4313,13 @@ elif StateCount == 25 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF5()
- SBF6()
- SBF7()
- SBF8()
- SBF9()
- SBF10()
- SBF11()
+ C_SBF5()
+ C_SBF6()
+ C_SBF7()
+ C_SBF8()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4340,7 +4334,7 @@ elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF5()
+ C_SBF5()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4352,12 +4346,12 @@ elif StateCount == 27 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF6()
- SBF7()
- SBF8()
- SBF9()
- SBF10()
- SBF11()
+ C_SBF6()
+ C_SBF7()
+ C_SBF8()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4372,7 +4366,7 @@ elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF6()
+ C_SBF6()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4384,11 +4378,11 @@ elif StateCount == 28 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF7()
- SBF8()
- SBF9()
- SBF10()
- SBF11()
+ C_SBF7()
+ C_SBF8()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4403,7 +4397,7 @@ elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF7()
+ C_SBF7()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4415,10 +4409,10 @@ elif StateCount == 29 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF8()
- SBF9()
- SBF10()
- SBF11()
+ C_SBF8()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4433,7 +4427,7 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF8()
+ C_SBF8()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4445,9 +4439,9 @@ elif StateCount == 30 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF9()
- SBF10()
- SBF11()
+ C_SBF9()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 31 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4462,7 +4456,7 @@ elif StateCount == 31 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = int(State[31])
  StateI = 0
  StateJ = 0
- SBF9()
+ C_SBF9()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4474,8 +4468,8 @@ elif StateCount == 31 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF10()
- SBF11()
+ C_SBF10()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4490,7 +4484,7 @@ elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = int(State[31])
  StateI = int(State[32])
  StateJ = 0
- SBF10()
+ C_SBF10()
  StateW = 0
  StateA = 0
  StateB = 0
@@ -4502,7 +4496,7 @@ elif StateCount == 32 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = 0
  StateI = 0
  StateJ = 0
- SBF11()
+ C_SBF11()
  sys.exit(0)
 elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is True:
  StateU = int(State[22])
@@ -4517,7 +4511,7 @@ elif StateCount == 33 and RestoreSwitch is True and StdoutSwitch is True:
  StateH = int(State[31])
  StateI = int(State[32])
  StateJ = int(State[33])
- SBF11()
+ C_SBF11()
  sys.exit(0)
 
 sys.exit(SpliceX + " unknown error: please report bug to author")
