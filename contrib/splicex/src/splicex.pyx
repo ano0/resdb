@@ -1813,7 +1813,6 @@ def BF1():
        for WriteStates in WriteSave:
         FILE.write(WriteStates + "\n")
        FILE.close()
-      PassAmount += 1
       Timer = int(round(float(time.time() - StartTime)))
       Speed = PassAmount / Timer
       NewShowWord = ShowWord[x]
@@ -1830,6 +1829,7 @@ def BF1():
        sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
       else:
        print(output)
+      PassAmount += 1
 
 def BF2():
     global timeup, PassAmount
@@ -1867,7 +1867,6 @@ def BF2():
         for WriteStates in WriteSave:
          FILE.write(WriteStates + "\n")
         FILE.close()
-       PassAmount += 1
        Timer = int(round(float(time.time() - StartTime)))
        Speed = PassAmount / Timer
        NewShowWord = Char1[a] + ShowWord[x]
@@ -1884,9 +1883,9 @@ def BF2():
         sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
        else:
         print(output)
+       PassAmount += 1
 
        if ExhSwitch is False:
-        PassAmount += 1
         Timer = int(round(float(time.time() - StartTime)))
         Speed = PassAmount / Timer
         NewShowWord = ShowWord[x] + Char1[a]
@@ -1903,6 +1902,7 @@ def BF2():
          sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
         else:
          print(output)
+        PassAmount += 1
 
 def BF3():
     global timeup, PassAmount
@@ -1942,7 +1942,6 @@ def BF3():
          for WriteStates in WriteSave:
           FILE.write(WriteStates + "\n")
          FILE.close()
-        PassAmount += 1
         Timer = int(round(float(time.time() - StartTime)))
         Speed = PassAmount / Timer
         NewShowWord = Char1[a] + ShowWord[x] + Char1[b]
@@ -1959,9 +1958,9 @@ def BF3():
          sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
         else:
          print(output)
+        PassAmount += 1
 
         if ExhSwitch is False:
-         PassAmount += 1
          Timer = int(round(float(time.time() - StartTime)))
          Speed = PassAmount / Timer
          NewShowWord = Char1[a] + Char1[b] + ShowWord[x]
@@ -1978,8 +1977,8 @@ def BF3():
           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
          else:
           print(output)
-
          PassAmount += 1
+
          Timer = int(round(float(time.time() - StartTime)))
          Speed = PassAmount / Timer
          NewShowWord = ShowWord[x] + Char1[b] + Char1[a]
@@ -1996,6 +1995,7 @@ def BF3():
           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
          else:
           print(output)
+         PassAmount += 1
 
 def BF4():
     global timeup, PassAmount
@@ -2037,7 +2037,6 @@ def BF4():
           for WriteStates in WriteSave:
            FILE.write(WriteStates + "\n")
           FILE.close()
-         PassAmount += 1
          Timer = int(round(float(time.time() - StartTime)))
          Speed = PassAmount / Timer
          NewShowWord = Char1[c] + Char1[a] + ShowWord[x] + Char1[b]
@@ -2054,9 +2053,9 @@ def BF4():
           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
          else:
           print(output)
+         PassAmount += 1
 
          if ExhSwitch is False:
-          PassAmount += 1
           Timer = int(round(float(time.time() - StartTime)))
           Speed = PassAmount / Timer
           NewShowWord = Char1[b] + ShowWord[x] + Char1[a] + Char1[c]
@@ -2073,8 +2072,8 @@ def BF4():
            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
-
           PassAmount += 1
+
           Timer = int(round(float(time.time() - StartTime)))
           Speed = PassAmount / Timer
           NewShowWord = Char1[c] + Char1[a] + Char1[b] + ShowWord[x]
@@ -2091,8 +2090,8 @@ def BF4():
            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
-
           PassAmount += 1
+
           Timer = int(round(float(time.time() - StartTime)))
           Speed = PassAmount / Timer
           NewShowWord = ShowWord[x] + Char1[b] + Char1[a] + Char1[c]
@@ -2109,6 +2108,7 @@ def BF4():
            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
+          PassAmount += 1
 
 def BF5():
     global timeup, PassAmount
@@ -2152,7 +2152,6 @@ def BF5():
            for WriteStates in WriteSave:
             FILE.write(WriteStates + "\n")
            FILE.close()
-          PassAmount += 1
           Timer = int(round(float(time.time() - StartTime)))
           Speed = PassAmount / Timer
           NewShowWord = Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d]
@@ -2169,9 +2168,9 @@ def BF5():
            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
+          PassAmount += 1
 
           if ExhSwitch is False:
-           PassAmount += 1
            Timer = int(round(float(time.time() - StartTime)))
            Speed = PassAmount / Timer
            NewShowWord = Char1[c] + Char1[a] + Char1[b] + Char1[d] + ShowWord[x]
@@ -2188,8 +2187,8 @@ def BF5():
             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
            else:
             print(output)
-
            PassAmount += 1
+
            Timer = int(round(float(time.time() - StartTime)))
            Speed = PassAmount / Timer
            NewShowWord = ShowWord[x] + Char1[d] + Char1[b] + Char1[a] + Char1[c]
@@ -2206,6 +2205,7 @@ def BF5():
             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
            else:
             print(output)
+           PassAmount += 1
 
 def BF6():
     global timeup, PassAmount
@@ -2251,7 +2251,6 @@ def BF6():
             for WriteStates in WriteSave:
              FILE.write(WriteStates + "\n")
             FILE.close()
-           PassAmount += 1
            Timer = int(round(float(time.time() - StartTime)))
            Speed = PassAmount / Timer
            NewShowWord = Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d]
@@ -2268,9 +2267,9 @@ def BF6():
             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
            else:
             print(output)
+           PassAmount += 1
 
            if ExhSwitch is False:
-            PassAmount += 1
             Timer = int(round(float(time.time() - StartTime)))
             Speed = PassAmount / Timer
             NewShowWord = Char1[d] + Char1[b] + ShowWord[x] + Char1[a] + Char1[c] + Char1[e]
@@ -2287,8 +2286,8 @@ def BF6():
              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
-
             PassAmount += 1
+
             Timer = int(round(float(time.time() - StartTime)))
             Speed = PassAmount / Timer
             NewShowWord = Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + ShowWord[x]
@@ -2305,8 +2304,8 @@ def BF6():
              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
-
             PassAmount += 1
+
             Timer = int(round(float(time.time() - StartTime)))
             Speed = PassAmount / Timer
             NewShowWord = ShowWord[x] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e]
@@ -2323,6 +2322,7 @@ def BF6():
              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
+            PassAmount += 1
 
 def BF7():
     global timeup, PassAmount
@@ -2370,7 +2370,6 @@ def BF7():
              for WriteStates in WriteSave:
               FILE.write(WriteStates + "\n")
              FILE.close()
-            PassAmount += 1
             Timer = int(round(float(time.time() - StartTime)))
             Speed = PassAmount / Timer
             NewShowWord = Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f]
@@ -2387,9 +2386,9 @@ def BF7():
              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
+            PassAmount += 1
 
             if ExhSwitch is False:
-             PassAmount += 1
              Timer = int(round(float(time.time() - StartTime)))
              Speed = PassAmount / Timer
              NewShowWord = Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + Char1[f] + ShowWord[x]
@@ -2406,8 +2405,8 @@ def BF7():
               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
              else:
               print(output)
-
              PassAmount += 1
+
              Timer = int(round(float(time.time() - StartTime)))
              Speed = PassAmount / Timer
              NewShowWord = ShowWord[x] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e]
@@ -2424,6 +2423,7 @@ def BF7():
               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
              else:
               print(output)
+             PassAmount += 1
 
 def BF8():
     global timeup, PassAmount
@@ -2473,7 +2473,6 @@ def BF8():
               for WriteStates in WriteSave:
                FILE.write(WriteStates + "\n")
               FILE.close()
-             PassAmount += 1
              Timer = int(round(float(time.time() - StartTime)))
              Speed = PassAmount / Timer
              NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f]
@@ -2490,9 +2489,9 @@ def BF8():
               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
              else:
               print(output)
+             PassAmount += 1
 
              if ExhSwitch is False:
-              PassAmount += 1
               Timer = int(round(float(time.time() - StartTime)))
               Speed = PassAmount / Timer
               NewShowWord = Char1[f] + Char1[d] + Char1[b] + ShowWord[x] + Char1[a] + Char1[c] + Char1[e] + Char1[g]
@@ -2509,8 +2508,8 @@ def BF8():
                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
-
               PassAmount += 1
+
               Timer = int(round(float(time.time() - StartTime)))
               Speed = PassAmount / Timer
               NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + Char1[f] + ShowWord[x]
@@ -2527,8 +2526,8 @@ def BF8():
                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
-
               PassAmount += 1
+
               Timer = int(round(float(time.time() - StartTime)))
               Speed = PassAmount / Timer
               NewShowWord = ShowWord[x] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g]
@@ -2545,6 +2544,7 @@ def BF8():
                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
+              PassAmount += 1
 
 def BF9():
     global timeup, PassAmount
@@ -2596,7 +2596,6 @@ def BF9():
                for WriteStates in WriteSave:
                 FILE.write(WriteStates + "\n")
                FILE.close()
-              PassAmount += 1
               Timer = int(round(float(time.time() - StartTime)))
               Speed = PassAmount / Timer
               NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h]
@@ -2613,9 +2612,9 @@ def BF9():
                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
+              PassAmount += 1
 
               if ExhSwitch is False:
-               PassAmount += 1
                Timer = int(round(float(time.time() - StartTime)))
                Speed = PassAmount / Timer
                NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] +Char1[b] + Char1[d] + Char1[f] + Char1[h] + ShowWord[x]
@@ -2632,8 +2631,8 @@ def BF9():
                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                else:
                 print(output)
-
                PassAmount += 1
+
                Timer = int(round(float(time.time() - StartTime)))
                Speed = PassAmount / Timer
                NewShowWord = ShowWord[x] + Char1[h] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g]
@@ -2650,6 +2649,7 @@ def BF9():
                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                else:
                 print(output)
+               PassAmount += 1
 
 def BF10():
     global timeup, PassAmount
@@ -2703,7 +2703,6 @@ def BF10():
                 for WriteStates in WriteSave:
                  FILE.write(WriteStates + "\n")
                 FILE.close()
-               PassAmount += 1
                Timer = int(round(float(time.time() - StartTime)))
                Speed = PassAmount / Timer
                NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h]
@@ -2720,9 +2719,9 @@ def BF10():
                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                else:
                 print(output)
+               PassAmount += 1
 
                if ExhSwitch is False:
-                PassAmount += 1
                 Timer = int(round(float(time.time() - StartTime)))
                 Speed = PassAmount / Timer
                 NewShowWord = Char1[h] + Char1[f] + Char1[d] + Char1[b] + ShowWord[x] + Char1[a] + Char1[c] + Char1[e] + Char1[g] + Char1[i]
@@ -2739,8 +2738,8 @@ def BF10():
                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
-
                 PassAmount += 1
+
                 Timer = int(round(float(time.time() - StartTime)))
                 Speed = PassAmount / Timer
                 NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h] + ShowWord[x]
@@ -2757,8 +2756,8 @@ def BF10():
                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
-
                 PassAmount += 1
+
                 Timer = int(round(float(time.time() - StartTime)))
                 Speed = PassAmount / Timer
                 NewShowWord = ShowWord[x] + Char1[h] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g] + Char1[i]
@@ -2775,6 +2774,7 @@ def BF10():
                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
+                PassAmount += 1
 
 def BF11():
     global timeup, PassAmount
@@ -2830,7 +2830,6 @@ def BF11():
                  for WriteStates in WriteSave:
                   FILE.write(WriteStates + "\n")
                  FILE.close()
-                PassAmount += 1
                 Timer = int(round(float(time.time() - StartTime)))
                 Speed = PassAmount / Timer
                 NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h] + Char1[j]
@@ -2847,9 +2846,9 @@ def BF11():
                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
+                PassAmount += 1
 
                 if ExhSwitch is False:
-                 PassAmount += 1
                  Timer = int(round(float(time.time() - StartTime)))
                  Speed = PassAmount / Timer
                  NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + Char1[f] + Char1[h] + Char1[j] + ShowWord[x] 
@@ -2866,8 +2865,8 @@ def BF11():
                   sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                  else:
                   print(output)
-
                  PassAmount += 1
+
                  Timer = int(round(float(time.time() - StartTime)))
                  Speed = PassAmount / Timer
                  NewShowWord = ShowWord[x] + Char1[j] + Char1[h] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g] + Char1[i]
@@ -2884,6 +2883,7 @@ def BF11():
                   sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                  else:
                   print(output)
+                 PassAmount += 1
 
 def SBF1():
     for u in range(StateU, UserCount):
