@@ -59,3 +59,5 @@ CHANGES:
 		makes the functions faster. Much code
 		has been trimmed from splicex without
 		removing any options or functionality.
+
+		--no-char bug fixed
