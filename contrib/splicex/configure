@@ -1,0 +1,95 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+ echo 'usage: ./configure <python[version]> {optional: <--no-compile>}'
+ exit 1
+fi
+
+if [ -n "$2" ] && [[ "$2" != *--no-compile* ]]; then
+ echo 'usage: ./configure <python[version]> {optional: <--no-compile>}'
+ exit 1
+fi
+
+echo -e 'checking dependencies: '
+echo -ne "	checking for python as <$1>..."
+if which `which "$1"` >/dev/null; then
+ PYPATH=`which "$1"`
+ echo -ne ' OK'
+ echo
+else
+ echo -ne ' FAILED'
+ echo
+ exit 1
+fi
+
+echo -ne '	checking for man...'
+if which man >/dev/null; then
+ echo -ne ' OK'
+ echo
+else
+ echo -ne ' FAILED'
+ echo
+ exit 1
+fi
+
+if [ -z "$2" ]; then
+ echo -ne '	checking for cython...'
+ if which cython >/dev/null; then
+  echo -ne ' OK'
+  echo
+ else
+  echo -ne ' FAILED'
+  echo
+  exit 1
+ fi
+fi
+
+if [ -z "$2" ]; then
+ echo -ne '	checking for gcc...'
+ if which gcc >/dev/null; then
+  echo -ne ' OK'
+  echo
+ else
+  echo -ne ' FAILED'
+  echo
+  exit 1
+ fi
+fi
+
+echo
+echo  -ne "configuring splicex: "
+echo
+echo -e "	python version == $1"
+echo -e "	interpreter path == $PYPATH"
+if [ -z "$2" ]; then
+ if [ -e /usr/include/"$1"/Python.h ] && [ -e /usr/include/"$1"/structmember.h ]; then
+  PYHEADERS="/usr/include/$1"
+  echo -e "	compiler flags == gcc -I /usr/include/$1"
+ elif [ -e /usr/local/include/"$1"/Python.h ] && [ -e /usr/local/include/"$1"/structmember.h ]; then
+  PYHEADERS="/usr/local/include/$1"
+  echo -e "	compiler flags == gcc -I /usr/local/include/$1"
+ else
+  echo -e "	Python.h and structmember.h could not be found... FAILED"
+  echo
+  exit 1
+ fi
+fi
+echo
+if [ -z "$2" ]; then
+ sed -e s^PYTHON^"$PYPATH"^g src/splicex.py >build/splicex || exit 1
+ sed -e s^PYTHON^"$PYPATH"^g src/splicex-deshadow.py >build/splicex-deshadow || exit 1
+fi
+sed -e s^PYTHON^"$PYPATH"^g src/splicex.pyx >build/splicex.pyx || exit 1
+sed -e s^PYTHON^"$PYPATH"^g src/deshadow.pyx >build/deshadow.pyx || exit 1
+echo -ne "	generating Makefile..."
+if [ -z "$2" ]; then
+ sed -e s^PYTHON^"$1"^g src/make.in >Makefile || exit 1
+ sed -i s^HEADERS^"$PYHEADERS"^g Makefile || exit 1
+ echo -ne ' DONE'
+ echo
+else
+ sed -e s^PYTHON^"$1"^g src/pymake.in >Makefile || exit 1
+ echo -ne ' DONE'
+ echo
+fi
+echo
+echo -e 'splicex configured'
