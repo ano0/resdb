@@ -1,12 +1,3 @@
-compile:
-	cython build/deshadow.pyx -o build/deshadow.c
-	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I HEADERS -c build/deshadow.c -o build/deshadow.o
-	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions build/deshadow.o -o build/deshadow.so
-
-	cython build/splicex.pyx -o build/splicex.c
-	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I HEADERS -c build/splicex.c -o build/splicex.o
-	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions build/splicex.o -o build/splicex.so
-
 install-deb:
 	mkdir DEBIAN/splicex
 	mkdir DEBIAN/splicex/DEBIAN
@@ -15,10 +6,8 @@ install-deb:
 	mkdir DEBIAN/splicex/etc
 	mkdir DEBIAN/splicex/etc/splicex
 	cp DEBIAN/control DEBIAN/splicex/DEBIAN/control
-	cp build/splicex DEBIAN/splicex/usr/bin/splicex
-	cp build/splicex.so DEBIAN/etc/splicex/splicex.so
-	cp build/deshadow.so DEBIAN/etc/splicex/deshadow.so
-	cp build/splicex-deshadow DEBIAN/splicex/usr/bin/splicex-deshadow
+	cp build/splicex.pyx DEBIAN/splicex/usr/bin/splicex
+	cp build/deshadow.pyx DEBIAN/splicex/usr/bin/splicex-deshadow
 	chmod +x DEBIAN/splicex/usr/bin/splicex
 	chmod +x DEBIAN/splicex/usr/bin/splicex-deshadow
 	cp src/splicex.list DEBIAN/splicex/etc/splicex/splicex.list
@@ -38,10 +27,8 @@ install-deb:
 install:
 	make preinstall
 	mkdir /etc/splicex
-	cp build/splicex /usr/bin/splicex
-	cp build/splicex.so /etc/splicex/splicex.so
-	cp build/deshadow.so /etc/splicex/deshadow.so
-	cp build/splicex-deshadow /usr/bin/splicex-deshadow
+	cp build/splicex.pyx /usr/bin/splicex
+	cp build/deshadow.pyx /usr/bin/splicex-deshadow
 	chmod +x /usr/bin/splicex
 	chmod +x /usr/bin/splicex-deshadow
 	cp src/splicex.list /etc/splicex/splicex.list

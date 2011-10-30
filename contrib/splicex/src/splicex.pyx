@@ -275,6 +275,8 @@ for arg in sys.argv:
   DebugSwitch = True
  elif '--help' in arg:
   sys.exit(HELP())
+ elif arg != sys.argv[0]:
+  sys.exit(SpliceX + 'error: invalid argument: ' + arg)
 
 if DebugSwitch is False:
  sys.tracebacklimit = 0
@@ -1811,7 +1813,6 @@ def BF1():
        for WriteStates in WriteSave:
         FILE.write(WriteStates + "\n")
        FILE.close()
-      PassAmount += 1
       Timer = int(round(float(time.time() - StartTime)))
       Speed = PassAmount / Timer
       NewShowWord = ShowWord[x]
@@ -1820,7 +1821,7 @@ def BF1():
       if timeup == sleep_now:
        time.sleep(sleep_for)
        timeup = 0
-      print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+      print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
       output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
       if test == None:
        print(output)
@@ -1828,11 +1829,10 @@ def BF1():
        sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
       else:
        print(output)
+      PassAmount += 1
 
 def BF2():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
@@ -1867,7 +1867,6 @@ def BF2():
         for WriteStates in WriteSave:
          FILE.write(WriteStates + "\n")
         FILE.close()
-       PassAmount += 1
        Timer = int(round(float(time.time() - StartTime)))
        Speed = PassAmount / Timer
        NewShowWord = Char1[a] + ShowWord[x]
@@ -1876,7 +1875,7 @@ def BF2():
        if timeup == sleep_now:
         time.sleep(sleep_for)
         timeup = 0
-       print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+       print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
        output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
        if test == None:
         print(output)
@@ -1884,9 +1883,9 @@ def BF2():
         sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
        else:
         print(output)
+       PassAmount += 1
 
        if ExhSwitch is False:
-        PassAmount += 1
         Timer = int(round(float(time.time() - StartTime)))
         Speed = PassAmount / Timer
         NewShowWord = ShowWord[x] + Char1[a]
@@ -1895,7 +1894,7 @@ def BF2():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+        print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
          print(output)
@@ -1903,11 +1902,10 @@ def BF2():
          sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
         else:
          print(output)
+        PassAmount += 1
 
 def BF3():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -1944,7 +1942,6 @@ def BF3():
          for WriteStates in WriteSave:
           FILE.write(WriteStates + "\n")
          FILE.close()
-        PassAmount += 1
         Timer = int(round(float(time.time() - StartTime)))
         Speed = PassAmount / Timer
         NewShowWord = Char1[a] + ShowWord[x] + Char1[b]
@@ -1953,7 +1950,7 @@ def BF3():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+        print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
          print(output)
@@ -1961,9 +1958,9 @@ def BF3():
          sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
         else:
          print(output)
+        PassAmount += 1
 
         if ExhSwitch is False:
-         PassAmount += 1
          Timer = int(round(float(time.time() - StartTime)))
          Speed = PassAmount / Timer
          NewShowWord = Char1[a] + Char1[b] + ShowWord[x]
@@ -1972,7 +1969,7 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
@@ -1980,8 +1977,8 @@ def BF3():
           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
          else:
           print(output)
-
          PassAmount += 1
+
          Timer = int(round(float(time.time() - StartTime)))
          Speed = PassAmount / Timer
          NewShowWord = ShowWord[x] + Char1[b] + Char1[a]
@@ -1990,7 +1987,7 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
@@ -1998,11 +1995,10 @@ def BF3():
           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
          else:
           print(output)
+         PassAmount += 1
 
 def BF4():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2041,7 +2037,6 @@ def BF4():
           for WriteStates in WriteSave:
            FILE.write(WriteStates + "\n")
           FILE.close()
-         PassAmount += 1
          Timer = int(round(float(time.time() - StartTime)))
          Speed = PassAmount / Timer
          NewShowWord = Char1[c] + Char1[a] + ShowWord[x] + Char1[b]
@@ -2050,7 +2045,7 @@ def BF4():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
@@ -2058,9 +2053,9 @@ def BF4():
           sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
          else:
           print(output)
+         PassAmount += 1
 
          if ExhSwitch is False:
-          PassAmount += 1
           Timer = int(round(float(time.time() - StartTime)))
           Speed = PassAmount / Timer
           NewShowWord = Char1[b] + ShowWord[x] + Char1[a] + Char1[c]
@@ -2069,7 +2064,7 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2077,8 +2072,8 @@ def BF4():
            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
-
           PassAmount += 1
+
           Timer = int(round(float(time.time() - StartTime)))
           Speed = PassAmount / Timer
           NewShowWord = Char1[c] + Char1[a] + Char1[b] + ShowWord[x]
@@ -2087,7 +2082,7 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2095,8 +2090,8 @@ def BF4():
            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
-
           PassAmount += 1
+
           Timer = int(round(float(time.time() - StartTime)))
           Speed = PassAmount / Timer
           NewShowWord = ShowWord[x] + Char1[b] + Char1[a] + Char1[c]
@@ -2105,7 +2100,7 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2113,11 +2108,10 @@ def BF4():
            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
+          PassAmount += 1
 
 def BF5():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2158,7 +2152,6 @@ def BF5():
            for WriteStates in WriteSave:
             FILE.write(WriteStates + "\n")
            FILE.close()
-          PassAmount += 1
           Timer = int(round(float(time.time() - StartTime)))
           Speed = PassAmount / Timer
           NewShowWord = Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d]
@@ -2167,7 +2160,7 @@ def BF5():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2175,9 +2168,9 @@ def BF5():
            sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
           else:
            print(output)
+          PassAmount += 1
 
           if ExhSwitch is False:
-           PassAmount += 1
            Timer = int(round(float(time.time() - StartTime)))
            Speed = PassAmount / Timer
            NewShowWord = Char1[c] + Char1[a] + Char1[b] + Char1[d] + ShowWord[x]
@@ -2186,7 +2179,7 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
@@ -2194,8 +2187,8 @@ def BF5():
             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
            else:
             print(output)
-
            PassAmount += 1
+
            Timer = int(round(float(time.time() - StartTime)))
            Speed = PassAmount / Timer
            NewShowWord = ShowWord[x] + Char1[d] + Char1[b] + Char1[a] + Char1[c]
@@ -2204,7 +2197,7 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
@@ -2212,11 +2205,10 @@ def BF5():
             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
            else:
             print(output)
+           PassAmount += 1
 
 def BF6():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2259,7 +2251,6 @@ def BF6():
             for WriteStates in WriteSave:
              FILE.write(WriteStates + "\n")
             FILE.close()
-           PassAmount += 1
            Timer = int(round(float(time.time() - StartTime)))
            Speed = PassAmount / Timer
            NewShowWord = Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d]
@@ -2268,7 +2259,7 @@ def BF6():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
@@ -2276,9 +2267,9 @@ def BF6():
             sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
            else:
             print(output)
+           PassAmount += 1
 
            if ExhSwitch is False:
-            PassAmount += 1
             Timer = int(round(float(time.time() - StartTime)))
             Speed = PassAmount / Timer
             NewShowWord = Char1[d] + Char1[b] + ShowWord[x] + Char1[a] + Char1[c] + Char1[e]
@@ -2287,7 +2278,7 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2295,8 +2286,8 @@ def BF6():
              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
-
             PassAmount += 1
+
             Timer = int(round(float(time.time() - StartTime)))
             Speed = PassAmount / Timer
             NewShowWord = Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + ShowWord[x]
@@ -2305,7 +2296,7 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2313,8 +2304,8 @@ def BF6():
              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
-
             PassAmount += 1
+
             Timer = int(round(float(time.time() - StartTime)))
             Speed = PassAmount / Timer
             NewShowWord = ShowWord[x] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e]
@@ -2323,7 +2314,7 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2331,11 +2322,10 @@ def BF6():
              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
+            PassAmount += 1
 
 def BF7():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2380,7 +2370,6 @@ def BF7():
              for WriteStates in WriteSave:
               FILE.write(WriteStates + "\n")
              FILE.close()
-            PassAmount += 1
             Timer = int(round(float(time.time() - StartTime)))
             Speed = PassAmount / Timer
             NewShowWord = Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f]
@@ -2389,7 +2378,7 @@ def BF7():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2397,9 +2386,9 @@ def BF7():
              sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
             else:
              print(output)
+            PassAmount += 1
 
             if ExhSwitch is False:
-             PassAmount += 1
              Timer = int(round(float(time.time() - StartTime)))
              Speed = PassAmount / Timer
              NewShowWord = Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + Char1[f] + ShowWord[x]
@@ -2408,7 +2397,7 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
@@ -2416,8 +2405,8 @@ def BF7():
               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
              else:
               print(output)
-
              PassAmount += 1
+
              Timer = int(round(float(time.time() - StartTime)))
              Speed = PassAmount / Timer
              NewShowWord = ShowWord[x] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e]
@@ -2426,7 +2415,7 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
@@ -2434,11 +2423,10 @@ def BF7():
               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
              else:
               print(output)
+             PassAmount += 1
 
 def BF8():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2485,7 +2473,6 @@ def BF8():
               for WriteStates in WriteSave:
                FILE.write(WriteStates + "\n")
               FILE.close()
-             PassAmount += 1
              Timer = int(round(float(time.time() - StartTime)))
              Speed = PassAmount / Timer
              NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f]
@@ -2494,7 +2481,7 @@ def BF8():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
@@ -2502,9 +2489,9 @@ def BF8():
               sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
              else:
               print(output)
+             PassAmount += 1
 
              if ExhSwitch is False:
-              PassAmount += 1
               Timer = int(round(float(time.time() - StartTime)))
               Speed = PassAmount / Timer
               NewShowWord = Char1[f] + Char1[d] + Char1[b] + ShowWord[x] + Char1[a] + Char1[c] + Char1[e] + Char1[g]
@@ -2513,7 +2500,7 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2521,8 +2508,8 @@ def BF8():
                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
-
               PassAmount += 1
+
               Timer = int(round(float(time.time() - StartTime)))
               Speed = PassAmount / Timer
               NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + Char1[f] + ShowWord[x]
@@ -2531,7 +2518,7 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2539,8 +2526,8 @@ def BF8():
                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
-
               PassAmount += 1
+
               Timer = int(round(float(time.time() - StartTime)))
               Speed = PassAmount / Timer
               NewShowWord = ShowWord[x] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g]
@@ -2549,7 +2536,7 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2557,11 +2544,10 @@ def BF8():
                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
+              PassAmount += 1
 
 def BF9():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2610,7 +2596,6 @@ def BF9():
                for WriteStates in WriteSave:
                 FILE.write(WriteStates + "\n")
                FILE.close()
-              PassAmount += 1
               Timer = int(round(float(time.time() - StartTime)))
               Speed = PassAmount / Timer
               NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h]
@@ -2619,7 +2604,7 @@ def BF9():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2627,9 +2612,9 @@ def BF9():
                sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
               else:
                print(output)
+              PassAmount += 1
 
               if ExhSwitch is False:
-               PassAmount += 1
                Timer = int(round(float(time.time() - StartTime)))
                Speed = PassAmount / Timer
                NewShowWord = Char1[g] + Char1[e] + Char1[c] + Char1[a] +Char1[b] + Char1[d] + Char1[f] + Char1[h] + ShowWord[x]
@@ -2638,7 +2623,7 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
@@ -2646,8 +2631,8 @@ def BF9():
                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                else:
                 print(output)
-
                PassAmount += 1
+
                Timer = int(round(float(time.time() - StartTime)))
                Speed = PassAmount / Timer
                NewShowWord = ShowWord[x] + Char1[h] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g]
@@ -2656,7 +2641,7 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
@@ -2664,11 +2649,10 @@ def BF9():
                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                else:
                 print(output)
+               PassAmount += 1
 
 def BF10():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2719,7 +2703,6 @@ def BF10():
                 for WriteStates in WriteSave:
                  FILE.write(WriteStates + "\n")
                 FILE.close()
-               PassAmount += 1
                Timer = int(round(float(time.time() - StartTime)))
                Speed = PassAmount / Timer
                NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h]
@@ -2728,7 +2711,7 @@ def BF10():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
@@ -2736,9 +2719,9 @@ def BF10():
                 sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                else:
                 print(output)
+               PassAmount += 1
 
                if ExhSwitch is False:
-                PassAmount += 1
                 Timer = int(round(float(time.time() - StartTime)))
                 Speed = PassAmount / Timer
                 NewShowWord = Char1[h] + Char1[f] + Char1[d] + Char1[b] + ShowWord[x] + Char1[a] + Char1[c] + Char1[e] + Char1[g] + Char1[i]
@@ -2747,7 +2730,7 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
@@ -2755,8 +2738,8 @@ def BF10():
                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
-
                 PassAmount += 1
+
                 Timer = int(round(float(time.time() - StartTime)))
                 Speed = PassAmount / Timer
                 NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h] + ShowWord[x]
@@ -2765,7 +2748,7 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
@@ -2773,8 +2756,8 @@ def BF10():
                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
-
                 PassAmount += 1
+
                 Timer = int(round(float(time.time() - StartTime)))
                 Speed = PassAmount / Timer
                 NewShowWord = ShowWord[x] + Char1[h] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g] + Char1[i]
@@ -2783,7 +2766,7 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
@@ -2791,11 +2774,10 @@ def BF10():
                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
+                PassAmount += 1
 
 def BF11():
     global timeup, PassAmount
-    if NoChar is True:
-     sys.exit(SpliceX + 'unable to find password')
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -2848,7 +2830,6 @@ def BF11():
                  for WriteStates in WriteSave:
                   FILE.write(WriteStates + "\n")
                  FILE.close()
-                PassAmount += 1
                 Timer = int(round(float(time.time() - StartTime)))
                 Speed = PassAmount / Timer
                 NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + ShowWord[x] + Char1[b] + Char1[d] + Char1[f] + Char1[h] + Char1[j]
@@ -2857,7 +2838,7 @@ def BF11():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 cmd = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace('USERNAME', User[u].replace(" ", "")))
                 if test == None:
                  print(output)
@@ -2865,9 +2846,9 @@ def BF11():
                  sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                 else:
                  print(output)
+                PassAmount += 1
 
                 if ExhSwitch is False:
-                 PassAmount += 1
                  Timer = int(round(float(time.time() - StartTime)))
                  Speed = PassAmount / Timer
                  NewShowWord = Char1[i] + Char1[g] + Char1[e] + Char1[c] + Char1[a] + Char1[b] + Char1[d] + Char1[f] + Char1[h] + Char1[j] + ShowWord[x] 
@@ -2876,7 +2857,7 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                 print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                  output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
                   print(output)
@@ -2884,8 +2865,8 @@ def BF11():
                   sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                  else:
                   print(output)
-
                  PassAmount += 1
+
                  Timer = int(round(float(time.time() - StartTime)))
                  Speed = PassAmount / Timer
                  NewShowWord = ShowWord[x] + Char1[j] + Char1[h] + Char1[f] + Char1[d] + Char1[b] + Char1[a] + Char1[c] + Char1[e] + Char1[g] + Char1[i]
@@ -2894,7 +2875,7 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                 print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                  output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
                   print(output)
@@ -2902,6 +2883,7 @@ def BF11():
                   sys.exit(Red + "[PASSWORD FOUND]: " + Green + NewShowWord + DefColour)
                  else:
                   print(output)
+                 PassAmount += 1
 
 def SBF1():
     for u in range(StateU, UserCount):
@@ -2940,8 +2922,6 @@ def SBF1():
       print(NewShowWord.replace(" ", ""))
 
 def SBF2():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for x in range(StateW, WordCount):
@@ -2984,8 +2964,6 @@ def SBF2():
         print(NewShowWord.replace(" ", ""))
 
 def SBF3():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3033,8 +3011,6 @@ def SBF3():
          print(NewShowWord.replace(" ", ""))
 
 def SBF4():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3087,8 +3063,6 @@ def SBF4():
           print(NewShowWord.replace(" ", ""))
 
 def SBF5():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3140,8 +3114,6 @@ def SBF5():
            print(NewShowWord.replace(" ", ""))
 
 def SBF6():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3198,8 +3170,6 @@ def SBF6():
             print(NewShowWord.replace(" ", ""))
 
 def SBF7():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3255,8 +3225,6 @@ def SBF7():
              print(NewShowWord.replace(" ", ""))
 
 def SBF8():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3317,8 +3285,6 @@ def SBF8():
               print(NewShowWord.replace(" ", ""))
 
 def SBF9():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3378,8 +3344,6 @@ def SBF9():
                print(NewShowWord.replace(" ", ""))
 
 def SBF10():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3444,8 +3408,6 @@ def SBF10():
                 print(NewShowWord.replace(" ", ""))
 
 def SBF11():
-    if NoChar is True:
-     sys.exit(0)
     for u in range(StateU, UserCount):
      for a in range(StateA, EndCount):
       for b in range(StateB, EndCount):
@@ -3552,13 +3514,15 @@ def C_BF1():
      pass
     elif length_end < 0:
      sys.exit(SpliceX + 'unable to find password')
-    elif StdoutSwitch is True:
+    else:
      BF1()
 
 def C_BF2():
     if length_start > 1:
      pass
     elif length_end < 1:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF2()
@@ -3568,6 +3532,8 @@ def C_BF3():
      pass
     elif length_end < 2:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF3()
 
@@ -3575,6 +3541,8 @@ def C_BF4():
     if length_start > 3:
      pass
     elif length_end < 3:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF4()
@@ -3584,6 +3552,8 @@ def C_BF5():
      pass
     elif length_end < 4:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF5()
 
@@ -3591,6 +3561,8 @@ def C_BF6():
     if length_start > 5:
      pass
     elif length_end < 5:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF6()
@@ -3600,6 +3572,8 @@ def C_BF7():
      pass
     elif length_end < 6:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF7()
 
@@ -3607,6 +3581,8 @@ def C_BF8():
     if length_start > 7:
      pass
     elif length_end < 7:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF8()
@@ -3616,6 +3592,8 @@ def C_BF9():
      pass
     elif length_end < 8:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF9()
 
@@ -3623,6 +3601,8 @@ def C_BF10():
     if length_start > 9:
      pass
     elif length_end < 9:
+     sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
      sys.exit(SpliceX + 'unable to find password')
     else:
      BF10()
@@ -3632,6 +3612,8 @@ def C_BF11():
      pass
     elif length_end < 10:
      sys.exit(SpliceX + 'unable to find password')
+    elif NoChar is True:
+     sys.exit(SpliceX + 'unable to find password')
     else:
      BF11()
 
@@ -3640,13 +3622,15 @@ def C_SBF1():
      pass
     elif length_end < 0:
      sys.exit(0)
-    elif StdoutSwitch is True:
+    else:
      SBF1()
 
 def C_SBF2():
     if length_start > 1:
      pass
     elif length_end < 1:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF2()
@@ -3656,6 +3640,8 @@ def C_SBF3():
      pass
     elif length_end < 2:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF3()
 
@@ -3663,6 +3649,8 @@ def C_SBF4():
     if length_start > 3:
      pass
     elif length_end < 3:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF4()
@@ -3672,6 +3660,8 @@ def C_SBF5():
      pass
     elif length_end < 4:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF5()
 
@@ -3679,6 +3669,8 @@ def C_SBF6():
     if length_start > 5:
      pass
     elif length_end < 5:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF6()
@@ -3688,6 +3680,8 @@ def C_SBF7():
      pass
     elif length_end < 6:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF7()
 
@@ -3695,6 +3689,8 @@ def C_SBF8():
     if length_start > 7:
      pass
     elif length_end < 7:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF8()
@@ -3704,6 +3700,8 @@ def C_SBF9():
      pass
     elif length_end < 8:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF9()
 
@@ -3712,6 +3710,8 @@ def C_SBF10():
      pass
     elif length_end < 9:
      sys.exit(0)
+    elif NoChar is True:
+     sys.exit(0)
     else:
      SBF10()
 
@@ -3719,6 +3719,8 @@ def C_SBF11():
     if length_start > 10:
      pass
     elif length_end < 10:
+     sys.exit(0)
+    elif NoChar is True:
      sys.exit(0)
     else:
      SBF11()

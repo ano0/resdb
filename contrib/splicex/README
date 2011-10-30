@@ -21,33 +21,85 @@ AUTHOR:
 
 	d3v11 <d3v11@d3v11.ano>
 
-DEPENDS ON:
 
-	python (>=2.6), python-dev(>=2.6), cython (>=0.12.1), 
-	gcc (>=4.4.3), bash (>=4.1.5), man (>=2.5.7)
 
 (UN)INSTALL:
 
-	SOURCE:
+	You may optionally install splicex with cython. Doing so takes
+	longer to install because of compile times but splicex will
+	also be 20% to 35% faster, depending on your system. I recommend
+	this option if you intend on putting splicex to long-term use.
+	If your goal is simply to test, try, and/or debug splicex then
+	using the pythonic install will be more practical.
 
-		./configure <python[version]>
-		make compile
+	NOTES:
+
+		If you installed Python from source you can ignore
+		the python-dev dependency below. However, your source
+		install of Python must have the development files. IE:
+
+		tar xvf Python-*.tgz
+		cd Python-*
+		./configure --with-pydebug
 		make install
 
-	DEBIAN/UBUNTU:
+		This generates Python.h and structmember.h, which are
+		needed for gcc to compile splicex.
 
-		./configure <python[version]>
-		make compile
-		make install-deb
+	DEPENDS ON:
 
-	UNINSTALL:
+		python (>=2.6), python-dev(>=2.6), cython (>=0.12.1), 
+		gcc (>=4.4.3), bash (>=4.1.5), man (>=2.5.7)
+
+		SOURCE:
+
+			./configure <python[version]>
+			make compile
+			make install
+
+		DEBIAN/UBUNTU:
+
+			./configure <python[version]>
+			make compile
+			make install-deb
+
+		UNINSTALL:
 	
-		source:
-		 make uninstall
+			SOURCE:
+		 		make uninstall
 
-		debian/ubuntu:
-		 apt-get remove splicex
+			DEBIAN/UBUNTU:
+		 		apt-get remove splicex
 
+PYTHONIC (UN)INSTALL:
+
+	You make optionally install splicex as pure python.
+	Install times are quick but splicex will be 20% to 35%
+	slower than compiling an executable binary with the
+	cython + gcc option above. I recommend using this option
+	if you simply want to test, try, and/or debug splicex.
+
+	DEPENDS ON:
+
+		python (>=2.6), bash (>=4.1.5), man (>=2.5.7)
+
+		SOURCE:
+
+			./configure <python[version]> --no-compile
+			make install
+
+		DEBIAN/UBUNTU:
+
+			./configure <python[version]> --no-compile
+			make install-deb
+
+		UNINSTALL:
+	
+			SOURCE:
+		 		make uninstall
+
+			DEBIAN/UBUNTU:
+		 		apt-get remove splicex
 
 TOOLS:
 
