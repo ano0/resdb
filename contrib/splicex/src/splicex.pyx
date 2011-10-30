@@ -3622,7 +3622,7 @@ def C_SBF1():
      pass
     elif length_end < 0:
      sys.exit(0)
-    elif StdoutSwitch is True:
+    else:
      SBF1()
 
 def C_SBF2():
