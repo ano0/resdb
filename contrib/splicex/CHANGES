@@ -48,3 +48,14 @@ CHANGES:
 
 		SpliceX now detects invalid arguments
 		and prints with error message.
+
+	d3v11 - Sat Oct 29 2011:
+		
+		Old timing bug is now fixed. --time now
+		how a consistant tracking of how many
+		passwords and how much time has elapsed
+		among each brute force algorithm. This
+		new patch also simplified the code and
+		makes the functions faster. Much code
+		has been trimmed from splicex without
+		removing any options or functionality.

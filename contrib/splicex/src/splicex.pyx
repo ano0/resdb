@@ -1822,7 +1822,7 @@ def BF1():
       if timeup == sleep_now:
        time.sleep(sleep_for)
        timeup = 0
-      print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+      print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
       output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
       if test == None:
        print(output)
@@ -1878,7 +1878,7 @@ def BF2():
        if timeup == sleep_now:
         time.sleep(sleep_for)
         timeup = 0
-       print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+       print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
        output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
        if test == None:
         print(output)
@@ -1897,7 +1897,7 @@ def BF2():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+        print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
          print(output)
@@ -1955,7 +1955,7 @@ def BF3():
         if timeup == sleep_now:
          time.sleep(sleep_for)
          timeup = 0
-        print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+        print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
         output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
         if test == None:
          print(output)
@@ -1974,7 +1974,7 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
@@ -1992,7 +1992,7 @@ def BF3():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
@@ -2052,7 +2052,7 @@ def BF4():
          if timeup == sleep_now:
           time.sleep(sleep_for)
           timeup = 0
-         print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+         print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
          output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
          if test == None:
           print(output)
@@ -2071,7 +2071,7 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2089,7 +2089,7 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2107,7 +2107,7 @@ def BF4():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2169,7 +2169,7 @@ def BF5():
           if timeup == sleep_now:
            time.sleep(sleep_for)
            timeup = 0
-          print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+          print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
           output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
           if test == None:
            print(output)
@@ -2188,7 +2188,7 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
@@ -2206,7 +2206,7 @@ def BF5():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
@@ -2270,7 +2270,7 @@ def BF6():
            if timeup == sleep_now:
             time.sleep(sleep_for)
             timeup = 0
-           print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+           print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
            output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
            if test == None:
             print(output)
@@ -2289,7 +2289,7 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2307,7 +2307,7 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2325,7 +2325,7 @@ def BF6():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2391,7 +2391,7 @@ def BF7():
             if timeup == sleep_now:
              time.sleep(sleep_for)
              timeup = 0
-            print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+            print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
             output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
             if test == None:
              print(output)
@@ -2410,7 +2410,7 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
@@ -2428,7 +2428,7 @@ def BF7():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
@@ -2496,7 +2496,7 @@ def BF8():
              if timeup == sleep_now:
               time.sleep(sleep_for)
               timeup = 0
-             print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+             print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
              output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
              if test == None:
               print(output)
@@ -2515,7 +2515,7 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2533,7 +2533,7 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2551,7 +2551,7 @@ def BF8():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2621,7 +2621,7 @@ def BF9():
               if timeup == sleep_now:
                time.sleep(sleep_for)
                timeup = 0
-              print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+              print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
               output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
               if test == None:
                print(output)
@@ -2640,7 +2640,7 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
@@ -2658,7 +2658,7 @@ def BF9():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
@@ -2730,7 +2730,7 @@ def BF10():
                if timeup == sleep_now:
                 time.sleep(sleep_for)
                 timeup = 0
-               print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+               print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                if test == None:
                 print(output)
@@ -2749,7 +2749,7 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
@@ -2767,7 +2767,7 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
@@ -2785,7 +2785,7 @@ def BF10():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                 if test == None:
                  print(output)
@@ -2859,7 +2859,7 @@ def BF11():
                 if timeup == sleep_now:
                  time.sleep(sleep_for)
                  timeup = 0
-                print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                 cmd = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace('USERNAME', User[u].replace(" ", "")))
                 if test == None:
                  print(output)
@@ -2878,7 +2878,7 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                 print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                  output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
                   print(output)
@@ -2896,7 +2896,7 @@ def BF11():
                  if timeup == sleep_now:
                   time.sleep(sleep_for)
                   timeup = 0
-                 print(SpliceX + str(Speed) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
+                 print(SpliceX + str(int(round(float(Speed)))) + "/s " + User[u].replace(" ", "") + " " + NewShowWord.replace(" ", ""))
                  output = os.popen(cmd.replace("PASSWORD", NewPassWd.replace(" ", "")).replace("USERNAME", User[u].replace(" ", ""))).read()
                  if test == None:
                   print(output)
