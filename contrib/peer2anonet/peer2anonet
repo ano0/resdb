@@ -136,7 +136,15 @@ mkdir -p /services/"$PEERNAME"
 #########################################################################
 # Create files to configure the new peering session:
 echo "#!/bin/sh
+# uncomment if your peer has a dynamic IP
+#
 #export REMOTE_FLOAT=1
+
+# uncomment for debugging. you'll need to use ./run to view output instead
+# of svc -u /service/<peer name>
+#
+#export DEBUG=1
+
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$ADDPORT
@@ -144,6 +152,15 @@ export PRIVATE_KEY=\"\$(cat seckey)\"
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
 export INTERFACE=ppp-$PEERNAME
+
+# uncomment if you want to nuke your default gateway and configure
+# routes only to peers through IcannNet. If any of your peers use
+# dynamic IP's or you use Tor or i2p then this is probably NOT a
+# good idea.
+#
+#route del default gw `ip route show | grep default | cut -d' ' -f 3`
+#route add $REMOTE_ADDRESS gw `ip route show | grep default | cut -d' ' -f 3
+
 ( sleep 5;
  ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
  ip addr add $P2A_ROUTE/32 dev \$INTERFACE scope global
@@ -161,8 +178,8 @@ echo 'Secret Key Goes Here!' > "/services/$PEERNAME/seckey"
 echo "peer2anonet: New peering session configured.
 Please place your secret key in: /services/$PEERNAME/seckey
 
-To allow remote floating:
-uncomment REMOTE_FLOAT=1 in /services/$PEERNAME/run"
+Some additional options are available in /services/$PEERNAME/run
+Please read the comments in the file for details."
 
 
 
