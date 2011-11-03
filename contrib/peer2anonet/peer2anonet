@@ -168,7 +168,7 @@ export INTERFACE=ppp-$PEERNAME
  ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
  ip addr add $P2A_ROUTE/32 dev \$INTERFACE scope global
  ip link set dev \$INTERFACE up
- ping -c 1 -I $INTERFACE -r -w 5
+ ping -c 1 -I \$INTERFACE -r -w 5
 ) &
 exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run
 chmod +x /services/"$PEERNAME"/run
@@ -182,7 +182,8 @@ echo "peer2anonet: New peering session configured.
 Please place your secret key in: /services/$PEERNAME/seckey
 
 Some additional options are available in /services/$PEERNAME/run
-Please read the comments in the file for details."
+Please read the comments in the file for details. You may need to
+restart the bird daemon. ie, svc -t /service/bird "
 
 
 
