@@ -160,9 +160,9 @@ export INTERFACE=ppp-$PEERNAME
 # If you run into problems with this please email d3v11@d3v11.ano
 # so I can create a patch.
 #
-#DEFAULT_ROUTE=`ip route show | grep default | cut -d' ' -f 3`
-#route del default gw $DEFAULT_ROUTE
-#route add $REMOTE_ADDRESS gw $DEFAULT_ROUTE
+#DEFAULT_ROUTE=\`ip route show | grep default | cut -d' ' -f 3\`
+#route del default gw \$DEFAULT_ROUTE
+#route add \$REMOTE_ADDRESS gw \$DEFAULT_ROUTE
 
 ( sleep 5;
  ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
