@@ -168,6 +168,8 @@ export INTERFACE=ppp-$PEERNAME
  ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
  ip addr add $P2A_ROUTE/32 dev \$INTERFACE scope global
  ip link set dev \$INTERFACE up
+# comment the following ping line to remove pinghack. this is a
+# trick used to help bird connect.
  ping -c 1 -I \$INTERFACE $PEERIP -r -w 5
 ) &
 exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run
