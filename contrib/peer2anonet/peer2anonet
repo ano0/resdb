@@ -168,7 +168,7 @@ export INTERFACE=ppp-$PEERNAME
  ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
  ip addr add $P2A_ROUTE/32 dev \$INTERFACE scope global
  ip link set dev \$INTERFACE up
- ping -c 1 -I \$INTERFACE -r -w 5
+ ping -c 1 -I \$INTERFACE $PEERIP -r -w 5
 ) &
 exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run
 chmod +x /services/"$PEERNAME"/run
