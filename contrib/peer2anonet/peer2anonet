@@ -136,7 +136,15 @@ mkdir -p /services/"$PEERNAME"
 #########################################################################
 # Create files to configure the new peering session:
 echo "#!/bin/sh
+# uncomment if your peer has a dynamic IP
+#
 #export REMOTE_FLOAT=1
+
+# uncomment for debugging. you'll need to use ./run to view output instead
+# of svc -u /service/<peer name>
+#
+#export DEBUG=1
+
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
 export LOCAL_PORT=$ADDPORT
@@ -144,11 +152,25 @@ export PRIVATE_KEY=\"\$(cat seckey)\"
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
 export INTERFACE=ppp-$PEERNAME
+
+# uncomment if you want to nuke your default gateway and configure
+# routes only to peers through IcannNet. If any of your peers use
+# dynamic IP's or you use Tor or i2p then this is probably NOT a
+# good idea. You may need to modify the DEFAULT_ROUTE code below.
+# If you run into problems with this please email d3v11@d3v11.ano
+# so I can create a patch.
+#
+#DEFAULT_ROUTE=\`ip route show | grep default | cut -d' ' -f 3\`
+#route del default gw \$DEFAULT_ROUTE
+#route add \$REMOTE_ADDRESS gw \$DEFAULT_ROUTE
+
 ( sleep 5;
  ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
  ip addr add $P2A_ROUTE/32 dev \$INTERFACE scope global
  ip link set dev \$INTERFACE up
- ping -c 1 -I $INTERFACE -r -w 5
+# comment the following ping line to remove pinghack. this is a
+# trick used to help bird connect.
+ ping -c 1 -I \$INTERFACE $PEERIP -r -w 5
 ) &
 exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run
 chmod +x /services/"$PEERNAME"/run
@@ -161,8 +183,9 @@ echo 'Secret Key Goes Here!' > "/services/$PEERNAME/seckey"
 echo "peer2anonet: New peering session configured.
 Please place your secret key in: /services/$PEERNAME/seckey
 
-To allow remote floating:
-uncomment REMOTE_FLOAT=1 in /services/$PEERNAME/run"
+Some additional options are available in /services/$PEERNAME/run
+Please read the comments in the file for details. You may need to
+restart the bird daemon. ie, svc -t /service/bird "
 
 
 
