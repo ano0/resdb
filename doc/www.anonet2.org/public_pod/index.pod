@@ -60,9 +60,9 @@ Z<><table>
 <!--
  <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>L<aooo|http://www.anonet2.org/irc_anonymity> (Hidden IP, visible username and realname)</td></tr>
  <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname (warning!))</td></tr>
+ <tr><td>IRCZ<></td><td>L<d3v11 (tor)|irc://rbb3cizcd23x7w4g.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
+ <tr><td>IRCZ<></td><td>L<whatis-theplan (tor)|irc:///anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
 -->
- <tr><td>IRCZ<></td><td>L<d3v11|irc://v7ygpbs5s62zqei6.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
- <tr><td>IRCZ<></td><td>L<whatis-theplan|irc://mjf6cqigsjeqhsb3.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
 <!--
  <tr><td>TelnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
 -->
@@ -113,7 +113,7 @@ or zebra.  If you are on Windows, DnRouter can do everything.)
 =item *
 
 d3v11 has a site with much software and tutorials for configuring peering(s)
-and services on AnoNet2 at L<http://4umq6btkv2ltlbm5.onion/>. 
+and services on AnoNet2 at L<http://z3n2g7wycmbzk27d.onion/>. 
 
 =back
 
