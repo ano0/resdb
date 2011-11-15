@@ -5,6 +5,7 @@ Welcome to AnoNet! AnoNet is a highly decentralized darknet, aiming to create a 
 =for comment
 You can read more information about AnoNet below, or on L<http://wiki.ucis.nl/Anonet>.
 
+Join us in chat for more information right now by loading L<http://client.thruhere.net:9090>.
 =head2 Theory
 
 =over
