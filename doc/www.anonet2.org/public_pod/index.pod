@@ -88,7 +88,7 @@ KwaakNet connects to the cloud through A1, and censors much of the cloud.  UFO k
 =back
 
 If you want to browse around first, there's a tor gateway available at L<http://mkdopl6dniqykj2y.onion/>.  (You will need tor for that link to work.)
-If you're not sure where to go with the link above check out one of our search engines at L<http://rxbhq3ybu3dyvxko.onion:8080/>.
+If you're not sure where to go with the link above check out one of our search engines at L<http://rxbhq3ybu3dyvxko.onion:8080/async/search/>.
 
 If you're feeling adventurous enough to connect at the IP level, there
 are a few options available:
