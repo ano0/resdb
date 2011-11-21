@@ -63,7 +63,6 @@ Z<><table>
  <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>L<aooo|http://www.anonet2.org/irc_anonymity> (Hidden IP, visible username and realname)</td></tr>
  <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname (warning!))</td></tr>
  <tr><td>IRCZ<></td><td>L<d3v11 (tor)|irc://rbb3cizcd23x7w4g.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
- <tr><td>IRCZ<></td><td>L<whatis-theplan (tor)|irc:///anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
 -->
 <!--
  <tr><td>TelnetZ<></td><td>L<SRN|telnet://anortr.ucis.nl:8803/></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
@@ -89,6 +88,7 @@ KwaakNet connects to the cloud through A1, and censors much of the cloud.  UFO k
 =back
 
 If you want to browse around first, there's a tor gateway available at L<http://mkdopl6dniqykj2y.onion/>.  (You will need tor for that link to work.)
+If you're not sure where to go with the link above check out one of our search engines at L<http://rxbhq3ybu3dyvxko.onion:8080/>.
 
 If you're feeling adventurous enough to connect at the IP level, there
 are a few options available:
@@ -142,8 +142,7 @@ Z<><table>
 -->
  <tr><td>IRCZ<></td><td>L<pragmo|irc://irc.pragmo.ano:6667/atomic></td><td>L<pragmo|irc://1.0.16.111:6667/atomic></td><td>L<????|http://www.anonet2.org/irc_anonymity> (Unknown)</td></tr>
  <tr><td>TelnetZ<></td><td>L<SRN|telnet://irc.somerandomnick.ano:2323/></td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP and username, custom nickname)</td></tr>
- <tr><td>IRC<></td><td>L<d3v11|irc://irc.d3v11.ano:6667/></td><td></td><td>L<aaoa|irc:1.1.5.67:6667/> (Hidden IP and username, custom nickname)</td></tr>
- <tr><td>IRC<></td><td>L<whatis-theplan|irc://irc.whatis-theplan.ano:6667/></td><td></td><td>L<aaoa|irc:1.1.5.69:6667/> (Hidden IP and username, custom nickname)</td></tr>
+ <tr><td>IRCZ<></td><td>L<d3v11|irc://irc.d3v11.ano:6667/></td><td></td><td>L<aaoa|irc:1.1.5.67:6667/> (Hidden IP and username, custom nickname)</td></tr>
  <tr><td>JabberZ<></td><td>irc.somerandomnick.ano (anonet MUC)</td><td></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
 </table>
 
