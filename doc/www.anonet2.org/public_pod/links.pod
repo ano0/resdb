@@ -4,6 +4,8 @@ Back to homepage - L<http://www.anonet2.org/>
 
 This is a collection of links that you may find interesting:
 
+20111122 - L<Blocking DNS|http://www.isc.org/community/blog/201103/blocking-dns>
+
 20111009 - L<Chaos Computer Club analyzes government malware|http://ccc.de/en/updates/2011/staatstrojaner>
 
 20110902 - L<Apple Cries About Samsung and Motorola's Patent "Monopoly"|http://www.dailytech.com/Apple+Cries+About+Samsung+and+Motorolas+Patent+Monopoly/article22586.htm>
