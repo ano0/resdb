@@ -1,75 +1,119 @@
 #!/bin/bash
-#########################################################################
-# We need to check for root privileges:
 if [[ $(id -u) != 0 ]]; then
- echo "peer2anonet: error: root privileges required."
- exit 1
+    echo "error: root privileges required."
+    exit 1
 fi
 
-#########################################################################
-# We need to source our peer2anonet variables
-source /etc/peer2anonet/p2a.conf
+USAGE(){
+    echo -e '\npeer2anonet:'
+    echo -e '\n    --configure         generate a new local configuration and exit'
+    echo -e '\n    --update            regenerate peer configurations'
+    echo -e '\n    --configure-peer    generate a new peer configuration and update'
+    echo -e '\n    --rm-peer           remove a peer configuration and update\n'
+    exit 0
+    }
 
-#########################################################################
-# We need to see if service(s) directories exist:
+mkdir -p /service
 mkdir -p /services
 mkdir -p /services/bird
-mkdir -p /service
+mkdir -p /etc/peer2anonet
+mkdir -p /etc/peer2anonet/peers
 
-#########################################################################
-# We need to get info for the new peering and BGP session:
-read -p "Enter your peer's name/interface: " PEERNAME
-read -p "Enter your peer's remote ip: " REMOTEIP
-read -p "Enter your peer's anonet ip: " PEERIP
-read -p "Enter your peer's remote port: " PEERPORT
-read -p "Enter your peer's asn: " PEERASN
-read -p "Enter your peer's public key: " PUBKEY
-
-#########################################################################
-# Do some security checks on variables:
-TEST[0]=$PEERNAME; TEST[1]=$REMOTEIP; TEST[2]=$PEERIP
-        TEST[3]=$PEERPORT; TEST[4]=$PEERASN
-
-for((X=0;X<=2;X++)); do
-if [[ $(echo ${TEST[$X]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
-echo ${TEST[$X]} | tr -d 'a-zA-Z0-9' | wc -c
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
-"
- exit 1
-fi
-done
-
-for((X=3;X<=4;X++)); do
-if [[ $(echo ${TEST[$X]} | tr -d '0-9' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
-"
- exit 1
-fi
-done
-
-if [[ $(echo "$PUBKEY" | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
-"
- exit 1
+if [ -e /etc/peer2anonet/p2a.conf ]; then
+    source /etc/peer2anonet/p2a.conf
+else
+    echo "peer2anonet: needs --configure prior to usage"
+    exit 1
 fi
 
-ADDPORT="2$(($PEERASN % 10000))"
+CONFIGURE(){
+    echo -e '\nCONFIGURE:\n'
+    read -p "   Enter your AnoNet subnet: " P2A_NET
+    read -p "   Enter your AnoNet router: " P2A_ROUTE
+    read -p "   Enter your peering ip: " P2A_IP
+    read -p "   Enter your AnoNet asn: " P2A_ASN
+    echo "P2A_NET=\"$P2A_NET\"">/etc/peer2anonet/p2a.conf
+    echo "P2A_ROUTE=\"$P2A_ROUTE\"">>/etc/peer2anonet/p2a.conf
+    echo "P2A_IP=\"$P2A_IP\"">>/etc/peer2anonet/p2a.conf
+    echo "P2A_ASN=\"$P2A_ASN\"">>/etc/peer2anonet/p2a.conf
+    echo -e '\npeer2anonet: configured\n'
+    exit 0
+    }
 
-#########################################################################
-# We need to check if base files need to be imported to services for bird:
-NEW_PROTOCOL="
-protocol bgp $PEERNAME { table AnoNet_routes;
- local as $P2A_ASN;
- neighbor $PEERIP as $PEERASN;
- source address $P2A_IP;
- import filter only_AnoNet_ebgp;
- export filter only_AnoNet_ebgp_export;
-}"
+UPDATE(){
+    echo -e '\nUPDATE:\n'
+    if [[ $(ls /etc/peer2anonet/peers) ]]; then
+        for PEER in `ls /etc/peer2anonet/peers`; do
+            if [ -e /etc/peer2anonet/peers/"$PEER"/remote_ip ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/remote_ip`) == 'X' ]]; then
+                    echo "   error: /etc/peer2anonet/peers/$PEER/remote_ip is void"
+                    exit 1
+                fi
+            else
+                echo "   error: /etc/peer2anonet/peers/$PEER/remote_ip not exists"
+                exit 1
+            fi
 
-BIRD_RUN='#!/bin/sh
-exec bird -c bird.conf -d'
+            if [ -e /etc/peer2anonet/peers/"$PEER"/peering_ip ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/peering_ip`) == 'X' ]]; then
+                    echo "   error: /etc/peer2anonet/peers/$PEER/peering_ip is void"
+                    exit 1
+                fi
+            else
+                echo "   error: /etc/peer2anonet/peers/$PEER/peering_ip not exists"
+                exit 1
+            fi
 
-BIRD_CONF="function n_AnoNet_mine (prefix arg) {
+            if [ -e /etc/peer2anonet/peers/"$PEER"/port ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/port`) == 'X' ]]; then
+                    echo "   error: /etc/peer2anonet/peers/$PEER/port is void"
+                    exit 1
+                fi
+            else
+                echo "   error: /etc/peer2anonet/peers/$PEER/port not exists"
+                exit 1
+            fi
+
+            if [ -e /etc/peer2anonet/peers/"$PEER"/asn ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/asn`) == 'X' ]]; then
+                    echo "   error: /etc/peer2anonet/peers/$PEER/asn is void"
+                    exit 1
+                fi
+            else
+                echo "   error: /etc/peer2anonet/peers/$PEER/asn not exists"
+                exit 1
+            fi
+
+            if [ -e /etc/peer2anonet/peers/"$PEER"/pubkey ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/pubkey`) == 'X' ]]; then
+                    echo "   error: /etc/peer2anonet/peers/$PEER/pubkey is void"
+                    exit 1
+                fi
+            else
+                echo "   error: /etc/peer2anonet/peers/$PEER/pubkey not exists"
+                exit 1
+            fi
+
+            if [ -e /etc/peer2anonet/peers/"$PEER"/seckey ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/seckey`) == 'X' ]]; then
+                    echo "   error: /etc/peer2anonet/peers/$PEER/seckey is void"
+                    exit 1
+                fi
+            else
+                echo "   error: /etc/peer2anonet/peers/$PEER/seckey not exists"
+                exit 1
+            fi
+        done
+    else
+        echo "   error: peering configurations not exists"
+        exit 1
+    fi
+
+    echo '#!/bin/bash
+bird -c bird.conf -d' > /services/bird/run
+    chmod +x /services/bird/run
+
+    echo "function n_AnoNet_mine (prefix arg) {
  if arg ~ [ $P2A_NET/24+ ] then return true;
 return false; };
 
@@ -116,26 +160,28 @@ protocol device {
 protocol direct direct_AnoNet_routes { table AnoNet_routes;
  interface \"eth0\";
  import filter only_AnoNet;
-}"
+}" > /services/bird/bird.conf
 
+    for PEER in `ls /etc/peer2anonet/peers`; do
+        mkdir -p /services/"$PEER"
+        PEERNAME="$PEER"
+        REMOTEIP=`cat /etc/peer2anonet/peers/"$PEER"/remote_ip`
+        PEERIP=`cat /etc/peer2anonet/peers/"$PEER"/peering_ip`
+        PEERPORT=`cat /etc/peer2anonet/peers/"$PEER"/port`
+        PEERASN=`cat /etc/peer2anonet/peers/"$PEER"/asn`
+        PUBKEY=`cat /etc/peer2anonet/peers/"$PEER"/pubkey`
+        SECKEY=`cat /etc/peer2anonet/peers/"$PEER"/seckey`
 
+        echo "
+protocol bgp $PEERNAME { table AnoNet_routes;
+ local as $P2A_ASN;
+ neighbor $PEERIP as $PEERASN;
+ source address $P2A_IP;
+ import filter only_AnoNet_ebgp;
+ export filter only_AnoNet_ebgp_export;
+}" >> /services/bird/bird.conf
 
-test -e /services/bird/bird.conf || echo "$BIRD_CONF" > /services/bird/bird.conf
-test -e /services/bird/run || echo "$BIRD_RUN" > /services/bird/run
-chmod +x /services/bird/run
-echo "$NEW_PROTOCOL" >> /services/bird/bird.conf
-test -L /services/bird && rm -r /service/bird
-test -L /service/bird || ln -s /services/bird /service/
-
-#########################################################################
-# We need to check if this peering session already exists:
-test -e /services/"$PEERNAME" && rm -r /services/"$PEERNAME"
-mkdir -p /services/"$PEERNAME"
-
-
-#########################################################################
-# Create files to configure the new peering session:
-echo "#!/bin/sh
+        echo "#!/bin/bash
 # uncomment if your peer has a dynamic IP
 #
 #export REMOTE_FLOAT=1
@@ -147,8 +193,8 @@ echo "#!/bin/sh
 
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
-export LOCAL_PORT=$ADDPORT
-export PRIVATE_KEY=\"\$(cat seckey)\"
+export LOCAL_PORT=2${PEERASN:0:5}
+export PRIVATE_KEY=$SECKEY
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
 export INTERFACE=ppp-$PEERNAME
@@ -173,23 +219,61 @@ export INTERFACE=ppp-$PEERNAME
  ping -c 1 -I \$INTERFACE $PEERIP -r -w 5
 ) &
 exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run
-chmod +x /services/"$PEERNAME"/run
+        chmod +x /services/"$PEERNAME"/run
+        test -L "/service/$PEERNAME" || ln -s "/services/$PEERNAME" "/service/$PEERNAME"
+        svc -d "/service/$PEERNAME" && svc -u "/service/$PEERNAME"
+    done
+    test -L /service/bird || ln -s /services/bird /service/bird
+    echo configure | birdc
+    }
 
-#########################################################################
-# Configure and start our new peering session:
-test -L "/service/$PEERNAME" && rm -r "/service/$PEERNAME"
-ln -s "/services/$PEERNAME" /service/
-echo 'Secret Key Goes Here!' > "/services/$PEERNAME/seckey"
-echo "peer2anonet: New peering session configured.
-Please place your secret key in: /services/$PEERNAME/seckey
+CONFIGURE_PEER(){
+    echo -e '\nCONFIGURE PEER:\n'
+    read -p "   Enter your peer's name: " PEERNAME
+    read -p "   Enter your peer's remote ip: " REMOTEIP
+    read -p "   Enter your peer's peering ip: " PEERIP
+    read -p "   Enter your peer's remote port: " PEERPORT
+    read -p "   Enter your peer's asn: " PEERASN
+    read -p "   Enter your peer's public key: " PUBKEY
+    read -p "   Enter your private key: " SECKEY
+    mkdir -p /etc/peer2anonet/peers/"$PEERNAME"
+    echo $REMOTEIP >/etc/peer2anonet/peers/"$PEERNAME"/remote_ip
+    echo $PEERIP >/etc/peer2anonet/peers/"$PEERNAME"/peering_ip
+    echo $PEERPORT >/etc/peer2anonet/peers/"$PEERNAME"/port
+    echo $PEERASN >/etc/peer2anonet/peers/"$PEERNAME"/asn
+    echo $PUBKEY >/etc/peer2anonet/peers/"$PEERNAME"/pubkey
+    echo $SECKEY >/etc/peer2anonet/peers/"$PEERNAME"/seckey
+    echo -e "\n   configured $PEERNAME\n"
+    }
 
-Some additional options are available in /services/$PEERNAME/run
-Please read the comments in the file for details. You may need to
-restart the bird daemon. ie, svc -t /service/bird "
+RM_PEER(){
+    echo -e '\nRM PEER:\n'
+    read -p "   Enter your peer's name: " PEERNAME
+    if [ -e /etc/peer2anonet/peers/"$PEERNAME" ]; then
+        rm -r /etc/peer2anonet/peers/"$PEERNAME"
+        echo
+        echo -e "   removed /etc/peer2anonet/peers/$PEERNAME\n"
+    else
+        echo
+        echo -e "   error: /etc/peer2anonet/peers/$PEERNAME not exists\n"
+        exit 1
+    fi
+    }
 
 
-
-
+if [ "$1" == '--configure' ]; then
+    CONFIGURE
+elif [ "$1" == '--update' ]; then
+    UPDATE
+elif [ "$1" == '--configure-peer' ]; then
+    CONFIGURE_PEER
+    UPDATE
+elif [ "$1" == '--rm-peer' ]; then
+    RM_PEER
+    UPDATE
+else
+    USAGE
+fi
 
 
 
