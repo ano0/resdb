@@ -6,10 +6,11 @@ fi
 
 USAGE(){
     echo -e '\npeer2anonet:'
-    echo -e '\n    --configure         generate a new local configuration and exit'
-    echo -e '\n    --update            regenerate peer configurations'
-    echo -e '\n    --configure-peer    generate a new peer configuration and update'
-    echo -e '\n    --rm-peer           remove a peer configuration and update\n'
+    echo -e '\n    --configure             generate a new local configuration and exit'
+    echo -e '\n    --update                regenerate peer configurations'
+    echo -e '\n    --configure-peer        generate a new peer configuration and update'
+    echo -e '\n    --rm-peer               remove a peer configuration and update'
+    echo -e '\n    --install-daemontools   installs daemontools\n'
     exit 0
     }
 
@@ -264,6 +265,23 @@ RM_PEER(){
     fi
     }
 
+INSTALL_DAEMONTOOLS(){
+    [[ $(echo X`which gcc`) == X ]] && echo '   error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && exit 1
+    [[ $(echo X`which make`) == X ]] && echo '   error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && exit 1
+    mkdir -p /package
+    chmod 1755 /package
+    cd /package
+    wget http://cr.yp.to/daemontools/daemontools-0.76.tar.gz
+    gunzip daemontools-0.76.tar
+    tar -xpf daemontools-0.76.tar
+    rm -f daemontools-0.76.tar
+    cd admin/daemontools-0.76
+    sed -i 's/gcc/gcc -include errno.h/g' src/conf-cc
+    package/install
+    }
+
 
 if [ "$1" == '--configure' ]; then
     CONFIGURE
@@ -275,6 +293,8 @@ elif [ "$1" == '--configure-peer' ]; then
 elif [ "$1" == '--rm-peer' ]; then
     RM_PEER
     UPDATE
+elif [ "$1" == '--rm-peer' ]; then
+    INSTALL_DAEMONTOOLS
 else
     USAGE
 fi
