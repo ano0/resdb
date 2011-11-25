@@ -17,6 +17,10 @@ USAGE:
 
     --install-daemontools   installs daemontools
 
+    --install-ucspi-tcp     installs ucspi-tcp
+
+    --install-djbdns        installs djbdns
+
 NOTES:
 
     peer2anonet exports the /service/$PEER/run file to
