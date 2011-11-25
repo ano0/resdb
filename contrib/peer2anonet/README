@@ -7,13 +7,15 @@ DEPENDS ON:
 
 USAGE:
 
-    --configure         generate a new local configuration and exit
+    --configure             generate a new local configuration and exit
 
-    --update            regenerate peer configurations
+    --update                regenerate peer configurations
 
-    --configure-peer    generate a new peer configuration and update
+    --configure-peer        generate a new peer configuration and update
 
-    --rm-peer           remove a peer configuration and update
+    --rm-peer               remove a peer configuration and update
+
+    --install-daemontools   installs daemontools
 
 NOTES:
 
