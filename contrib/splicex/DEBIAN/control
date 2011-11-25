@@ -7,6 +7,6 @@ Package: Splicex
 Architecture: all
 Depends: python2.6 (>= 2.6)
 Description: SpliceX
- brute force utilities for the linux shell.
+ Brute Force Utilities For GNU/Linux.
 
 
