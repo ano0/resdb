@@ -164,7 +164,6 @@ protocol direct direct_AnoNet_routes { table AnoNet_routes;
 
     for PEER in `ls /etc/peer2anonet/peers`; do
         mkdir -p /services/"$PEER"
-        PEERNAME="$PEER"
         REMOTEIP=`cat /etc/peer2anonet/peers/"$PEER"/remote_ip`
         PEERIP=`cat /etc/peer2anonet/peers/"$PEER"/peering_ip`
         PEERPORT=`cat /etc/peer2anonet/peers/"$PEER"/port`
@@ -173,7 +172,7 @@ protocol direct direct_AnoNet_routes { table AnoNet_routes;
         SECKEY=`cat /etc/peer2anonet/peers/"$PEER"/seckey`
 
         echo "
-protocol bgp $PEERNAME { table AnoNet_routes;
+protocol bgp $PEER { table AnoNet_routes;
  local as $P2A_ASN;
  neighbor $PEERIP as $PEERASN;
  source address $P2A_IP;
@@ -181,7 +180,10 @@ protocol bgp $PEERNAME { table AnoNet_routes;
  export filter only_AnoNet_ebgp_export;
 }" >> /services/bird/bird.conf
 
-        echo "#!/bin/bash
+        if [ -e /etc/peer2anonet/peers/"$PEER"/run ]; then
+            cp /etc/peer2anonet/peers/$PEER/run /services/"$PEER"/run
+        else
+            echo "#!/bin/bash
 # uncomment if your peer has a dynamic IP
 #
 #export REMOTE_FLOAT=1
@@ -197,7 +199,7 @@ export LOCAL_PORT=2${PEERASN:0:5}
 export PRIVATE_KEY=$SECKEY
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
-export INTERFACE=ppp-$PEERNAME
+export INTERFACE=ppp-$PEER
 
 # uncomment if you want to nuke your default gateway and configure
 # routes only to peers through IcannNet. If any of your peers use
@@ -218,10 +220,12 @@ export INTERFACE=ppp-$PEERNAME
 # trick used to help bird connect.
  ping -c 1 -I \$INTERFACE $PEERIP -r -w 5
 ) &
-exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run
-        chmod +x /services/"$PEERNAME"/run
-        test -L "/service/$PEERNAME" || ln -s "/services/$PEERNAME" "/service/$PEERNAME"
-        svc -d "/service/$PEERNAME" && svc -u "/service/$PEERNAME"
+exec /usr/sbin/quicktun.nacltai" > /etc/peer2anonet/peers/$PEER/run
+            cp /etc/peer2anonet/peers/$PEER/run /services/"$PEER"/run
+        fi
+        chmod +x /services/"$PEER"/run
+        test -L "/service/$PEER" || ln -s "/services/$PEER" "/service/$PEER"
+        svc -d "/service/$PEER" && svc -u "/service/$PEER"
     done
     test -L /service/bird || ln -s /services/bird /service/bird
     echo configure | birdc
@@ -229,33 +233,33 @@ exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run
 
 CONFIGURE_PEER(){
     echo -e '\nCONFIGURE PEER:\n'
-    read -p "   Enter your peer's name: " PEERNAME
+    read -p "   Enter your peer's name: " PEER
     read -p "   Enter your peer's remote ip: " REMOTEIP
     read -p "   Enter your peer's peering ip: " PEERIP
     read -p "   Enter your peer's remote port: " PEERPORT
     read -p "   Enter your peer's asn: " PEERASN
     read -p "   Enter your peer's public key: " PUBKEY
     read -p "   Enter your private key: " SECKEY
-    mkdir -p /etc/peer2anonet/peers/"$PEERNAME"
-    echo $REMOTEIP >/etc/peer2anonet/peers/"$PEERNAME"/remote_ip
-    echo $PEERIP >/etc/peer2anonet/peers/"$PEERNAME"/peering_ip
-    echo $PEERPORT >/etc/peer2anonet/peers/"$PEERNAME"/port
-    echo $PEERASN >/etc/peer2anonet/peers/"$PEERNAME"/asn
-    echo $PUBKEY >/etc/peer2anonet/peers/"$PEERNAME"/pubkey
-    echo $SECKEY >/etc/peer2anonet/peers/"$PEERNAME"/seckey
-    echo -e "\n   configured $PEERNAME\n"
+    mkdir -p /etc/peer2anonet/peers/"$PEER"
+    echo $REMOTEIP >/etc/peer2anonet/peers/"$PEER"/remote_ip
+    echo $PEERIP >/etc/peer2anonet/peers/"$PEER"/peering_ip
+    echo $PEERPORT >/etc/peer2anonet/peers/"$PEER"/port
+    echo $PEERASN >/etc/peer2anonet/peers/"$PEER"/asn
+    echo $PUBKEY >/etc/peer2anonet/peers/"$PEER"/pubkey
+    echo $SECKEY >/etc/peer2anonet/peers/"$PEER"/seckey
+    echo -e "\n   configured $PEER\n"
     }
 
 RM_PEER(){
     echo -e '\nRM PEER:\n'
-    read -p "   Enter your peer's name: " PEERNAME
-    if [ -e /etc/peer2anonet/peers/"$PEERNAME" ]; then
-        rm -r /etc/peer2anonet/peers/"$PEERNAME"
+    read -p "   Enter your peer's name: " PEER
+    if [ -e /etc/peer2anonet/peers/"$PEER" ]; then
+        rm -r /etc/peer2anonet/peers/"$PEER"
         echo
-        echo -e "   removed /etc/peer2anonet/peers/$PEERNAME\n"
+        echo -e "   removed /etc/peer2anonet/peers/$PEER\n"
     else
         echo
-        echo -e "   error: /etc/peer2anonet/peers/$PEERNAME not exists\n"
+        echo -e "   error: /etc/peer2anonet/peers/$PEER not exists\n"
         exit 1
     fi
     }

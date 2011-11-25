@@ -15,6 +15,12 @@ USAGE:
 
     --rm-peer           remove a peer configuration and update
 
+NOTES:
+
+    peer2anonet exports the /service/$PEER/run file to
+    /etc/peer2anonet/peers/$PEER/run. If you need to
+    create customizations for peerings then make adjustments
+    to that file.
 
 
 
