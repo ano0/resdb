@@ -400,7 +400,7 @@ elif [ "$1" == '--rm-peer' ]; then
     RM_PEER
     UPDATE
 elif [ "$1" == '--install-daemontools' ]; then
-    INSTALL_CORE
+    INSTALL_DAEMONTOOLS
 elif [ "$1" == '--install-ucspi-tcp' ]; then
     INSTALL_UCSPI_TCP
 elif [ "$1" == '--install-djbdns' ]; then
