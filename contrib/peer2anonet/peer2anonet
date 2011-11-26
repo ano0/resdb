@@ -36,19 +36,28 @@ CONFIGURE(){
     read -p "   Enter your AnoNet router: " P2A_ROUTE
     read -p "   Enter your peering ip: " P2A_IP
     read -p "   Enter your AnoNet asn: " P2A_ASN
+
+
     echo "P2A_NET=\"$P2A_NET\"">/etc/peer2anonet/p2a.conf
     echo "P2A_ROUTE=\"$P2A_ROUTE\"">>/etc/peer2anonet/p2a.conf
     echo "P2A_IP=\"$P2A_IP\"">>/etc/peer2anonet/p2a.conf
     echo "P2A_ASN=\"$P2A_ASN\"">>/etc/peer2anonet/p2a.conf
     echo -e '\npeer2anonet: configured\n'
+
     NICK=`cat conf/git_name`
     ./scripts/add_as $P2A_ASN $NICK
     ./scripts/add_ip $P2A_NET/24 $NICK
-    ./scripts/add_dom $NICK.ano $NICK a.ns.$NICK.ano/`cat db/dom/ano/$NICK/ns/a.ns.$NICK.ano`
     exit 0
     }
 
 UPDATE(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
+
     echo -e '\nUPDATE:\n'
     if [[ $(ls /etc/peer2anonet/peers) ]]; then
         for PEER in `ls /etc/peer2anonet/peers`; do
@@ -233,13 +242,19 @@ exec /usr/sbin/quicktun.nacltai" > /etc/peer2anonet/peers/$PEER/run
         fi
         chmod +x /services/"$PEER"/run
         test -L "/service/$PEER" || ln -s "/services/$PEER" "/service/$PEER"
-        svc -d "/service/$PEER" && svc -u "/service/$PEER"
     done
     test -L /service/bird || ln -s /services/bird /service/bird
     echo configure | birdc
     }
 
 CONFIGURE_PEER(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
+
     echo -e '\nCONFIGURE PEER:\n'
     read -p "   Enter your peer's name: " PEER
     read -p "   Enter your peer's remote ip: " REMOTEIP
@@ -260,6 +275,13 @@ CONFIGURE_PEER(){
     }
 
 RM_PEER(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
+
     echo -e '\nRM PEER:\n'
     read -p "   Enter your peer's name: " PEER
     if [ -e /etc/peer2anonet/peers/"$PEER" ]; then
@@ -329,6 +351,13 @@ INSTALL_DJBDNS(){
     }
 
 CONFIGURE_DNS(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
+
     echo -e '\nCONFIGURE DNS:\n'
     NICK=`cat conf/git_name`
     TINYDNS_ROOT_IP=`cat conf/tinydns__rootsrvrip`
@@ -389,13 +418,6 @@ CONFIGURE_DNS(){
 
     ( cd /service ; svc -t dnscache tinydns* )    
     }
-
-if [ -e /etc/peer2anonet/p2a.conf ]; then
-    source /etc/peer2anonet/p2a.conf
-else
-    CONFIGURE
-    exit 0
-fi
 
 
 if [ "$1" == '--configure' ]; then

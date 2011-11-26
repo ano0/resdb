@@ -101,6 +101,13 @@ RTFM:
 
         ./contrib/peer2anonet/peer2anonet --configure-dns
 
+    COMPLAIN:
+
+        If this README doesn't tell you what you need to know
+        you can head over to www.d3v11.ano/peering. If that
+        doesn't get you what you want then either complain to
+        me or shoot both of us in the face.
+
 
 
       
