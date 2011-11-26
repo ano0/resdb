@@ -30,13 +30,6 @@ mkdir -p /services/bird
 mkdir -p /etc/peer2anonet
 mkdir -p /etc/peer2anonet/peers
 
-if [ -e /etc/peer2anonet/p2a.conf ]; then
-    source /etc/peer2anonet/p2a.conf
-else
-    echo "peer2anonet: needs --configure prior to usage"
-    exit 1
-fi
-
 CONFIGURE(){
     echo -e '\nCONFIGURE:\n'
     read -p "   Enter your AnoNet subnet: " P2A_NET
@@ -396,6 +389,13 @@ CONFIGURE_DNS(){
 
     ( cd /service ; svc -t dnscache tinydns* )    
     }
+
+if [ -e /etc/peer2anonet/p2a.conf ]; then
+    source /etc/peer2anonet/p2a.conf
+else
+    CONFIGURE
+    exit 0
+fi
 
 
 if [ "$1" == '--configure' ]; then
