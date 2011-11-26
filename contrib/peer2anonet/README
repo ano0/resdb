@@ -23,10 +23,42 @@ USAGE:
 
 NOTES:
 
-    peer2anonet exports the /service/$PEER/run file to
-    /etc/peer2anonet/peers/$PEER/run. If you need to
-    create customizations for peerings then make adjustments
-    to that file.
+    KEY PAIRS:
+
+        before running peer2anonet to configure peers you can use
+        quicktun to generate keypairs:
+
+            quicktun.keypair</dev/random
+
+    RUN CHANGES:
+
+        peer2anonet exports the /service/$PEER/run file to
+        /etc/peer2anonet/peers/$PEER/run. If you need to
+        create customizations for peerings then make adjustments
+        to that file.
+
+    EXAMPLES:
+
+        ./peer2anonet --configure
+
+            Enter your AnoNet subnet: 1.2.3.0
+            Enter your AnoNet router: 1.2.3.1
+            Enter your peering ip: 1.2.3.4
+            Enter your AnoNet asn: 1234
+
+
+        ./peer2anonet --configure-peer
+
+            Enter your peer's name: d3v11
+            Enter your peer's remote ip: 11.11.55.1
+            Enter your peer's peering ip: 1.1.5.2
+            Enter your peer's remote port: 201150
+            Enter your peer's asn: 1150
+            Enter your peer's public key: * see keypairs above *
+            Enter your private key: * see keypairs above *
+
+            # peer2anonet uses the following for port configurations:
+            LOCAL_PORT=20${PEERASN:0:4}
 
 
 

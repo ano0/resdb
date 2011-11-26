@@ -4,6 +4,10 @@ if [[ $(id -u) != 0 ]]; then
     exit 1
 fi
 
+if [ -e /services/bird ]; then
+    [ -e /etc/peer2anonet/bird.tar ] || (cd /services ; tar /etc/peer2anonet/bird.tar bird)
+fi
+
 USAGE(){
     echo -e '\npeer2anonet:'
     echo -e '\n    --configure             generate a new local configuration and exit'
@@ -198,7 +202,7 @@ protocol bgp $PEER { table AnoNet_routes;
 
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
-export LOCAL_PORT=2${PEERASN:0:5}
+export LOCAL_PORT=20${PEERASN:0:4}
 export PRIVATE_KEY=$SECKEY
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
