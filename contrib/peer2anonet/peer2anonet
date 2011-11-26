@@ -1,22 +1,26 @@
 #!/bin/bash
 if [[ $(id -u) != 0 ]]; then
-    echo "error: root privileges required."
+    echo "peer2anonet: root privileges required."
     exit 1
 fi
 
 if [ -e /services/bird ]; then
-    [ -e /etc/peer2anonet/bird.tar ] || (cd /services ; tar /etc/peer2anonet/bird.tar bird)
+    [ -e /etc/peer2anonet/bird.tar ] || ( cd /services ; tar cf /etc/peer2anonet/bird.tar bird )
 fi
+
+[ -e contrib/peer2anonet/peer2anonet ] || echo "peer2anonet: not in \$RESDB_ROOT"
+[ -e contrib/peer2anonet/peer2anonet ] || exit 1
 
 USAGE(){
     echo -e '\npeer2anonet:'
-    echo -e '\n    --configure             generate a new local configuration and exit'
-    echo -e '\n    --update                regenerate peer configurations'
-    echo -e '\n    --configure-peer        generate a new peer configuration and update'
-    echo -e '\n    --rm-peer               remove a peer configuration and update'
-    echo -e '\n    --install-daemontools   installs daemontools'
-    echo -e '\n    --install-ucspi-tcp     installs ucspi-tcp'
-    echo -e '\n    --install-djbdns        installs djbdns\n'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure             generate a new local configuration and exit'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --update                regenerate peer configurations'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure-peer        generate a new peer configuration and update'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --rm-peer               remove a peer configuration and update'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-daemontools   installs daemontools'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp     installs ucspi-tcp'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-djbdns        installs djbdns'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure-dns         configures dnscache and tinydns zones\n'
     exit 0
     }
 
@@ -44,6 +48,10 @@ CONFIGURE(){
     echo "P2A_IP=\"$P2A_IP\"">>/etc/peer2anonet/p2a.conf
     echo "P2A_ASN=\"$P2A_ASN\"">>/etc/peer2anonet/p2a.conf
     echo -e '\npeer2anonet: configured\n'
+    NICK=`cat conf/git_name`
+    ./scripts/add_as $P2A_ASN $NICK
+    ./scripts/add_ip $P2A_NET/24 $NICK
+    ./scripts/add_dom $NICK.ano $NICK a.ns.$NICK.ano/`cat db/dom/ano/$NICK/ns/a.ns.$NICK.ano`
     exit 0
     }
 
@@ -247,6 +255,7 @@ CONFIGURE_PEER(){
     read -p "   Enter your peer's asn: " PEERASN
     read -p "   Enter your peer's public key: " PUBKEY
     read -p "   Enter your private key: " SECKEY
+    [ -e /etc/peer2anonet/peers/"$PEER" ] && rm -r /etc/peer2anonet/peers/"$PEER"
     mkdir -p /etc/peer2anonet/peers/"$PEER"
     echo $REMOTEIP >/etc/peer2anonet/peers/"$PEER"/remote_ip
     echo $PEERIP >/etc/peer2anonet/peers/"$PEER"/peering_ip
@@ -272,10 +281,13 @@ RM_PEER(){
     }
 
 INSTALL_DAEMONTOOLS(){
+    echo -e '\nINSTALL DAEMONTOOLS:\n'
     [[ $(echo X`which gcc`) == X ]] && echo '   error: cannot find gcc'
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
+    [[ $(echo X`which csh`) == X ]] && echo '   error: cannot find csh'
+    [[ $(echo X`which csh`) == X ]] && exit 1
     mkdir -p /package
     chmod 1755 /package
     cd /package
@@ -286,9 +298,13 @@ INSTALL_DAEMONTOOLS(){
     cd admin/daemontools-0.76
     sed -i 's/gcc/gcc -include errno.h/g' src/conf-cc
     package/install
+    cp /etc/rc.local /etc/peer2anonet/rc.local.backup
+    sed -i "s/exit 0/csh -cf \'\/command\/svscanboot \&\'/" /etc/rc.local
+    chmod +x /etc/rc.local
     }
 
 INSTALL_UCSPI_TCP(){
+    echo -e '\nINSTALL UCSPI-TCP:\n'
     [[ $(echo X`which gcc`) == X ]] && echo '   error: cannot find gcc'
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   error: cannot find make'
@@ -304,6 +320,7 @@ INSTALL_UCSPI_TCP(){
     }
 
 INSTALL_DJBDNS(){
+    echo -e '\nINSTALL DJBDNS:\n'
     [[ $(echo X`which gcc`) == X ]] && echo '   error: cannot find gcc'
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   error: cannot find make'
@@ -316,6 +333,59 @@ INSTALL_DJBDNS(){
     echo gcc -O2 -include /usr/include/errno.h > conf-cc
     make
     make setup check
+    }
+
+CONFIGURE_DNS(){
+    echo -e '\nCONFIGURE DNS:\n'
+    NICK=`cat conf/git_name`
+    TINYDNS_ROOT_IP=`cat conf/tinydns__rootsrvrip`
+    TINYDNS_ROOT_DOMAIN=`cat conf/tinydns__rootsrvrname`
+    TINYDNS_ANO_IP=`cat conf/tinydns__tldsrvrip`
+    TINYDNS_ANO_DOMAIN=`cat conf/tinydns__tldsrvrname`
+    TINYDNS_IP=`cat db/dom/ano/$NICK/ns/a.ns.$NICK.ano`
+    TINYDNS_DOMAIN="a.ns.$NICK.ano"
+    GIT_IP=`cat conf/gitd_ip`
+    GIT_DOMAIN="git.$NICK.ano"
+
+    ip addr add $TINYDNS_ROOT_IP/32 dev lo &
+    ip addr add $TINYDNS_IP/32 dev lo &
+    ip addr add $TINYDNS_ANO_IP/32 dev lo &
+    ip addr add $GIT_IP/32 dev lo &
+
+    echo "ip addr add $TINYDNS_ROOT_IP/32 dev lo &" >> /etc/rc.local
+    echo "ip addr add $TINYDNS_IP/32 dev lo &" >> /etc/rc.local
+    echo "ip addr add $TINYDNS_ANO_IP/32 dev lo &" >> /etc/rc.local
+    echo "ip addr add $GIT_IP/32 dev lo &" >> /etc/rc.local
+
+    useradd Gdnscache
+    useradd Gdnslog
+    useradd Gtinydns
+ 
+    dnscache-conf Gdnscache Gdnslog /services/dnscache
+    mv /services/dnscache/root/servers/@ /services/dnscache/root/servers/@.icann
+    echo $TINYDNS_ROOT_IP >/services/dnscache/root/servers/@
+    echo 'nameserver 127.0.0.1' >/etc/resolv.conf
+    ( cd / ; ln -s /services/dnscache /service/dnscache )
+
+    tinydns-conf Gtinydns Gdnslog /services/tinydns $TINYDNS_IP
+    ( cd / ; ln -s /services/tinydns /service/tinydns )
+    ( cd /service/tinydns/root ; ./add-ns $TINYDNS_DOMAIN $TINYDNS_IP )
+    ( cd /service/tinydns/root ; ./add-alias $GIT_DOMAIN $GIT_IP )
+    ( cd /service/tinydns/root ; ./add-alias $TINYDNS_ANO_IP $TINYDNS_ROOT_IP )
+    ( cd /service/tinydns/root ; ./add-alias $TINYDNS_ANO_DOMAIN $TINYDNS_ANO_IP )
+    ( cd /service/tinydns/root ; make )
+
+    tinydns-conf Gtinydns Gdnslog /services/tinydns-root $TINYDNS_ROOT_IP
+    ( cd / ; ln -s /services/tinydns-root /service/tinydns-root )
+    ./scripts/nameserver_autogen/tinydns_root_datafile > /service/tinydns-root/root/data
+    ( cd /service/tinydns-root/root ; make )
+
+    tinydns-conf Gtinydns Gdnslog /services/tinydns-ano $TINYDNS_ANO_IP
+    ( cd / ; ln -s /services/tinydns-ano /service/tinydns-ano )
+    ./scripts/nameserver_autogen/tinydns_tld_datafile > /service/tinydns-ano/root/data
+    ( cd /service/tinydns-ano/root ; make )
+
+    ( cd /service ; svc -t dnscache tinydns* )    
     }
 
 
@@ -335,6 +405,8 @@ elif [ "$1" == '--install-ucspi-tcp' ]; then
     INSTALL_UCSPI_TCP
 elif [ "$1" == '--install-djbdns' ]; then
     INSTALL_DJBDNS
+elif [ "$1" == '--configure-dns' ]; then
+    CONFIGURE_DNS
 else
     USAGE
 fi
