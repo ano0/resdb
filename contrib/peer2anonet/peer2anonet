@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 if [[ $(id -u) != 0 ]]; then
     echo "peer2anonet: root privileges required."
     exit 1
