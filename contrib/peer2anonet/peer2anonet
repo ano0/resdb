@@ -416,7 +416,7 @@ CONFIGURE_DNS(){
     ./scripts/nameserver_autogen/tinydns_tld_datafile > /service/tinydns-ano/root/data
     ( cd /service/tinydns-ano/root ; make )
 
-    ( cd /service ; svc -t dnscache tinydns* )    
+    ( cd /service ; sleep 5 ; svc -t dnscache tinydns tinydns-ano tinydns-root )  
     }
 
 
