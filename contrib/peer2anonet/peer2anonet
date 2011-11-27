@@ -391,15 +391,15 @@ CONFIGURE_DNS(){
 
     tinydns-conf Gtinydns Gdnslog /services/tinydns $TINYDNS_IP
     ( cd / ; ln -s /services/tinydns /service/tinydns )
-    echo ".$NICK.ano:$TINYDNS_IP:a:259200" > /service/tinydns/root/data
-    echo "=www.$NICK.ano:$GIT_IP:86400" >> /service/tinydns/root/data
-    echo "+git.$NICK.ano:$GIT_IP:86400" >> /service/tinydns/root/data
-    echo "+$NICK.ano:$GIT_IP:86400" >> /service/tinydns/root/data
-    echo "+a.anons.$NICK.ano:$TINYDNS_ANO_IP:3600" >> /service/tinydns/root/data
-    echo ".1.in-addr.arpa::a.anons.$NICK.ano" >> /service/tinydns/root/data
-    echo ".2.in-addr.arpa::a.anons.$NICK.ano" >> /service/tinydns/root/data
-    echo ".ano::a.anons.$NICK.ano" >> /service/tinydns/root/data
-    echo ".ntwrk::a.anons.$NICK.ano" >> /service/tinydns/root/data
+    echo ".$NICK.ano:$TINYDNS_IP:a:259200" > /services/tinydns/root/data
+    echo "=www.$NICK.ano:$GIT_IP:86400" >> /services/tinydns/root/data
+    echo "+git.$NICK.ano:$GIT_IP:86400" >> /services/tinydns/root/data
+    echo "+$NICK.ano:$GIT_IP:86400" >> /services/tinydns/root/data
+    echo "+a.anons.$NICK.ano:$TINYDNS_ANO_IP:3600" >> /services/tinydns/root/data
+    echo ".1.in-addr.arpa::a.anons.$NICK.ano" >> /services/tinydns/root/data
+    echo ".2.in-addr.arpa::a.anons.$NICK.ano" >> /services/tinydns/root/data
+    echo ".ano::a.anons.$NICK.ano" >> /services/tinydns/root/data
+    echo ".ntwrk::a.anons.$NICK.ano" >> /services/tinydns/root/data
     #( cd /service/tinydns/root ; ./add-ns $TINYDNS_DOMAIN $TINYDNS_IP )
     #( cd /service/tinydns/root ; ./add-alias $GIT_DOMAIN $GIT_IP )
     #( cd /service/tinydns/root ; ./add-alias $TINYDNS_ANO_IP $TINYDNS_ROOT_IP )
