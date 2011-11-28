@@ -401,15 +401,23 @@ CONFIGURE_DNS(){
     GIT_IP=`cat conf/gitd_ip`
     GIT_DOMAIN="git.$NICK.ano"
 
-    ip addr add $TINYDNS_ROOT_IP/32 dev lo &
-    ip addr add $TINYDNS_IP/32 dev lo &
-    ip addr add $TINYDNS_ANO_IP/32 dev lo &
-    ip addr add $GIT_IP/32 dev lo &
+    ip addr add $TINYDNS_ROOT_IP/32 dev lo > /dev/null 2>&1
+    ip addr add $TINYDNS_IP/32 dev lo > /dev/null 2>&1
+    ip addr add $TINYDNS_ANO_IP/32 dev lo > /dev/null 2>&1
+    ip addr add $GIT_IP/32 dev lo > /dev/null 2>&1
 
-    echo "ip addr add $TINYDNS_ROOT_IP/32 dev lo &" >> /etc/rc.local
-    echo "ip addr add $TINYDNS_IP/32 dev lo &" >> /etc/rc.local
-    echo "ip addr add $TINYDNS_ANO_IP/32 dev lo &" >> /etc/rc.local
-    echo "ip addr add $GIT_IP/32 dev lo &" >> /etc/rc.local
+    if [[ $(cat /etc/rc.local) != *"ip addr add $TINYDNS_ROOT_IP/32 dev lo &"* ]]; then
+        echo "ip addr add $TINYDNS_ROOT_IP/32 dev lo &" >> /etc/rc.local
+    fi
+    if [[ $(cat /etc/rc.local) != *"ip addr add $TINYDNS_IP/32 dev lo &"* ]]; then
+        echo "ip addr add $TINYDNS_IP/32 dev lo &" >> /etc/rc.local
+    fi
+    if [[ $(cat /etc/rc.local) != *"ip addr add $TINYDNS_ANO_IP/32 dev lo &"* ]]; then
+        echo "ip addr add $TINYDNS_ANO_IP/32 dev lo &" >> /etc/rc.local
+    fi
+    if [[ $(cat /etc/rc.local) != *"ip addr add $GIT_IP/32 dev lo &"* ]]; then
+        echo "ip addr add $GIT_IP/32 dev lo &" >> /etc/rc.local
+    fi
 
     useradd Gdnscache
     useradd Gdnslog
