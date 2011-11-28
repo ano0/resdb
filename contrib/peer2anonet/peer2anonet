@@ -1,12 +1,12 @@
 #!/bin/bash
-#
 if [[ $(id -u) != 0 ]]; then
     echo "peer2anonet: root privileges required."
     exit 1
 fi
 
 if [ -e /services/bird ]; then
-    [ -e /etc/peer2anonet/bird.tar ] || ( cd /services ; tar cf /etc/peer2anonet/bird.tar bird )
+    [ -e /etc/peer2anonet/bird.tar ] || ( cd /services ; echo "peer2anonet: backing up /services/bird to /etc/peer2anonet/bird.tar" ;\
+    tar cf /etc/peer2anonet/bird.tar bird )
 fi
 
 [ -e contrib/peer2anonet/peer2anonet ] || echo "peer2anonet: not in \$RESDB_ROOT"
@@ -243,6 +243,7 @@ exec /usr/sbin/quicktun.nacltai" > /etc/peer2anonet/peers/$PEER/run
         fi
         chmod +x /services/"$PEER"/run
         test -L "/service/$PEER" || ln -s "/services/$PEER" "/service/$PEER"
+        svc -t "/service/$PEER"
     done
     test -L /service/bird || ln -s /services/bird /service/bird
     echo configure | birdc
@@ -341,6 +342,8 @@ INSTALL_DJBDNS(){
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   error: cannot find tcpserver'
+    [[ $(echo X`which tcpserver`) == X ]] && exit 1
     cd /usr/local/src
     wget http://cr.yp.to/djbdns/djbdns-1.05.tar.gz
     gunzip djbdns-1.05.tar
@@ -359,14 +362,35 @@ CONFIGURE_DNS(){
         exit 0
     fi
 
+    if [ -e /services/dnscache ]; then
+        [ -e /etc/peer2anonet/dnscache.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/dnscache.tar backup" ;\
+        tar cf /etc/peer2anonet/dnscache.tar dnscache )
+    fi
+    if [ -e /services/tinydns ]; then
+        [ -e /etc/peer2anonet/tinydns.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/tinydns.tar backup" ;\
+        tar cf /etc/peer2anonet/tinydns.tar tinydns )
+    fi
+    if [ -e /services/tinydns-ano ]; then
+        [ -e /etc/peer2anonet/tinydns-ano.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/tinydns-ano.tar backup" ;\
+        tar cf /etc/peer2anonet/tinydns-ano.tar tinydns-ano )
+    fi
+    if [ -e /services/tinydns-root ]; then
+        [ -e /etc/peer2anonet/tinydns-root.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/tinydns-root.tar backup" ;\
+        tar cf /etc/peer2anonet/tinydns-root.tar tinydns-root )
+    fi
+
+    (cd /service ; svc -d dnscache tinydns tinydns-ano tinydns-root) 
+    (cd /service ; rm -f dnscache tinydns tinydns-ano tinydns-root)   
+    (cd /services ; rm -rf dnscache tinydns tinydns-ano tinydns-root)
+
     echo -e '\nCONFIGURE DNS:\n'
     NICK=`cat conf/git_name`
     TINYDNS_ROOT_IP=`cat conf/tinydns__rootsrvrip`
     TINYDNS_ROOT_DOMAIN=`cat conf/tinydns__rootsrvrname`
     TINYDNS_ANO_IP=`cat conf/tinydns__tldsrvrip`
     TINYDNS_ANO_DOMAIN=`cat conf/tinydns__tldsrvrname`
-    TINYDNS_IP=`cat db/dom/ano/$NICK/ns/a.ns.$NICK.ano`
-    TINYDNS_DOMAIN="a.ns.$NICK.ano"
+    TINYDNS_IP=`cat db/dom/ano/$NICK/ns/$(ls db/dom/ano/$NICK/ns)`
+    TINYDNS_DOMAIN=`ls db/dom/ano/$NICK/ns`
     GIT_IP=`cat conf/gitd_ip`
     GIT_DOMAIN="git.$NICK.ano"
 
@@ -388,35 +412,36 @@ CONFIGURE_DNS(){
     mv /services/dnscache/root/servers/@ /services/dnscache/root/servers/@.icann
     echo $TINYDNS_ROOT_IP >/services/dnscache/root/servers/@
     echo 'nameserver 127.0.0.1' >/etc/resolv.conf
-    ( cd / ; ln -s /services/dnscache /service/dnscache )
+
 
     tinydns-conf Gtinydns Gdnslog /services/tinydns $TINYDNS_IP
     echo ".$NICK.ano:$TINYDNS_IP:a:259200" > /services/tinydns/root/data
     echo "=www.$NICK.ano:$GIT_IP:86400" >> /services/tinydns/root/data
     echo "+git.$NICK.ano:$GIT_IP:86400" >> /services/tinydns/root/data
     echo "+$NICK.ano:$GIT_IP:86400" >> /services/tinydns/root/data
-    echo "+a.anons.$NICK.ano:$TINYDNS_ANO_IP:3600" >> /services/tinydns/root/data
-    echo ".1.in-addr.arpa::a.anons.$NICK.ano" >> /services/tinydns/root/data
-    echo ".2.in-addr.arpa::a.anons.$NICK.ano" >> /services/tinydns/root/data
-    echo ".ano::a.anons.$NICK.ano" >> /services/tinydns/root/data
-    echo ".ntwrk::a.anons.$NICK.ano" >> /services/tinydns/root/data
+    echo "+$TINYDNS_ANO_DOMAIN:$TINYDNS_ANO_IP:3600" >> /services/tinydns/root/data
+    echo ".1.in-addr.arpa::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
+    echo ".2.in-addr.arpa::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
+    echo ".ano::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
+    echo ".ntwrk::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
     #( cd /services/tinydns/root ; ./add-ns $TINYDNS_DOMAIN $TINYDNS_IP )
     #( cd /services/tinydns/root ; ./add-alias $GIT_DOMAIN $GIT_IP )
     #( cd /services/tinydns/root ; ./add-alias $TINYDNS_ANO_IP $TINYDNS_ROOT_IP )
     #( cd /services/tinydns/root ; ./add-alias $TINYDNS_ANO_DOMAIN $TINYDNS_ANO_IP )
-    #( cd /services/tinydns/root ; make )
-    ( cd / ; ln -s /services/tinydns /service/tinydns )
+    ( cd /services/tinydns/root ; make )
 
     tinydns-conf Gtinydns Gdnslog /services/tinydns-root $TINYDNS_ROOT_IP
-    ( cd / ; ln -s /services/tinydns-root /service/tinydns-root )
-    ./scripts/nameserver_autogen/tinydns_root_datafile > /service/tinydns-root/root/data
-    ( cd /service/tinydns-root/root ; make )
+    ./scripts/nameserver_autogen/tinydns_root_datafile > /services/tinydns-root/root/data
+    ( cd /services/tinydns-root/root ; make )
 
     tinydns-conf Gtinydns Gdnslog /services/tinydns-ano $TINYDNS_ANO_IP
-    ( cd / ; ln -s /services/tinydns-ano /service/tinydns-ano )
-    ./scripts/nameserver_autogen/tinydns_tld_datafile > /service/tinydns-ano/root/data
-    ( cd /service/tinydns-ano/root ; make )
+    ./scripts/nameserver_autogen/tinydns_tld_datafile > /services/tinydns-ano/root/data
+    ( cd /services/tinydns-ano/root ; make )
 
+    ( cd / ; ln -s /services/dnscache /service/dnscache )
+    ( cd / ; ln -s /services/tinydns /service/tinydns )
+    ( cd / ; ln -s /services/tinydns-ano /service/tinydns-ano )
+    ( cd / ; ln -s /services/tinydns-root /service/tinydns-root )
     ( cd /service ; sleep 5 ; svc -t dnscache tinydns tinydns-ano tinydns-root )  
     }
 
