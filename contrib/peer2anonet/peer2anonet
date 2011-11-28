@@ -5,7 +5,7 @@ if [[ $(id -u) != 0 ]]; then
 fi
 
 if [ -e /services/bird ]; then
-    [ -e /etc/peer2anonet/bird.tar ] || ( cd /services ; echo "peer2anonet: backing up /services/bird to /etc/peer2anonet/bird.tar" ;\
+    [ -e /etc/peer2anonet/bird.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/bird.tar backup" ;\
     tar cf /etc/peer2anonet/bird.tar bird )
 fi
 
@@ -64,66 +64,66 @@ UPDATE(){
         for PEER in `ls /etc/peer2anonet/peers`; do
             if [ -e /etc/peer2anonet/peers/"$PEER"/remote_ip ]; then
                 if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/remote_ip`) == 'X' ]]; then
-                    echo "   error: /etc/peer2anonet/peers/$PEER/remote_ip is void"
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/remote_ip is void"
                     exit 1
                 fi
             else
-                echo "   error: /etc/peer2anonet/peers/$PEER/remote_ip not exists"
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/remote_ip not exists"
                 exit 1
             fi
 
             if [ -e /etc/peer2anonet/peers/"$PEER"/peering_ip ]; then
                 if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/peering_ip`) == 'X' ]]; then
-                    echo "   error: /etc/peer2anonet/peers/$PEER/peering_ip is void"
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/peering_ip is void"
                     exit 1
                 fi
             else
-                echo "   error: /etc/peer2anonet/peers/$PEER/peering_ip not exists"
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/peering_ip not exists"
                 exit 1
             fi
 
             if [ -e /etc/peer2anonet/peers/"$PEER"/port ]; then
                 if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/port`) == 'X' ]]; then
-                    echo "   error: /etc/peer2anonet/peers/$PEER/port is void"
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/port is void"
                     exit 1
                 fi
             else
-                echo "   error: /etc/peer2anonet/peers/$PEER/port not exists"
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/port not exists"
                 exit 1
             fi
 
             if [ -e /etc/peer2anonet/peers/"$PEER"/asn ]; then
                 if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/asn`) == 'X' ]]; then
-                    echo "   error: /etc/peer2anonet/peers/$PEER/asn is void"
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/asn is void"
                     exit 1
                 fi
             else
-                echo "   error: /etc/peer2anonet/peers/$PEER/asn not exists"
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/asn not exists"
                 exit 1
             fi
 
             if [ -e /etc/peer2anonet/peers/"$PEER"/pubkey ]; then
                 if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/pubkey`) == 'X' ]]; then
-                    echo "   error: /etc/peer2anonet/peers/$PEER/pubkey is void"
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/pubkey is void"
                     exit 1
                 fi
             else
-                echo "   error: /etc/peer2anonet/peers/$PEER/pubkey not exists"
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/pubkey not exists"
                 exit 1
             fi
 
             if [ -e /etc/peer2anonet/peers/"$PEER"/seckey ]; then
                 if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/seckey`) == 'X' ]]; then
-                    echo "   error: /etc/peer2anonet/peers/$PEER/seckey is void"
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/seckey is void"
                     exit 1
                 fi
             else
-                echo "   error: /etc/peer2anonet/peers/$PEER/seckey not exists"
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/seckey not exists"
                 exit 1
             fi
         done
     else
-        echo "   error: peering configurations not exists"
+        echo "   fatal error: peering configurations not exists"
         exit 1
     fi
 
@@ -292,18 +292,18 @@ RM_PEER(){
         echo -e "   removed /etc/peer2anonet/peers/$PEER\n"
     else
         echo
-        echo -e "   error: /etc/peer2anonet/peers/$PEER not exists\n"
+        echo -e "   fatal error: /etc/peer2anonet/peers/$PEER not exists\n"
         exit 1
     fi
     }
 
 INSTALL_DAEMONTOOLS(){
     echo -e '\nINSTALL DAEMONTOOLS:\n'
-    [[ $(echo X`which gcc`) == X ]] && echo '   error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
     [[ $(echo X`which gcc`) == X ]] && exit 1
-    [[ $(echo X`which make`) == X ]] && echo '   error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
-    [[ $(echo X`which csh`) == X ]] && echo '   error: cannot find csh'
+    [[ $(echo X`which csh`) == X ]] && echo '   fatal error: cannot find csh'
     [[ $(echo X`which csh`) == X ]] && exit 1
     mkdir -p /package
     chmod 1755 /package
@@ -322,9 +322,9 @@ INSTALL_DAEMONTOOLS(){
 
 INSTALL_UCSPI_TCP(){
     echo -e '\nINSTALL UCSPI-TCP:\n'
-    [[ $(echo X`which gcc`) == X ]] && echo '   error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
     [[ $(echo X`which gcc`) == X ]] && exit 1
-    [[ $(echo X`which make`) == X ]] && echo '   error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
     cd /usr/local/src
     wget http://cr.yp.to/ucspi-tcp/ucspi-tcp-0.88.tar.gz
@@ -338,12 +338,14 @@ INSTALL_UCSPI_TCP(){
 
 INSTALL_DJBDNS(){
     echo -e '\nINSTALL DJBDNS:\n'
-    [[ $(echo X`which gcc`) == X ]] && echo '   error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
     [[ $(echo X`which gcc`) == X ]] && exit 1
-    [[ $(echo X`which make`) == X ]] && echo '   error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   error: cannot find tcpserver'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && exit 1
     cd /usr/local/src
     wget http://cr.yp.to/djbdns/djbdns-1.05.tar.gz
     gunzip djbdns-1.05.tar
@@ -361,6 +363,11 @@ CONFIGURE_DNS(){
         CONFIGURE
         exit 0
     fi
+
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && exit 1
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && exit 1
 
     if [ -e /services/dnscache ]; then
         [ -e /etc/peer2anonet/dnscache.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/dnscache.tar backup" ;\
