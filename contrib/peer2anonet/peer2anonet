@@ -282,7 +282,7 @@ CONFIGURE_PEER(){
     mkdir -p /etc/peer2anonet/peers/"$PEER"
     echo $REMOTEIP >/etc/peer2anonet/peers/"$PEER"/remote_ip
     echo $PEERIP >/etc/peer2anonet/peers/"$PEER"/peering_ip
-    echo $PEERPORT >/etc/peer2anonet/peers/"$PEER"/port
+    echo $PEERPORT >/etc/peer2anonet/peers/"$PEER"/remote_port
     echo $LOCALPORT >/etc/peer2anonet/peers/"$PEER"/local_port
     echo $PEERASN >/etc/peer2anonet/peers/"$PEER"/asn
     echo $PUBKEY >/etc/peer2anonet/peers/"$PEER"/pubkey
