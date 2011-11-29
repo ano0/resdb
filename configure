@@ -1,6 +1,6 @@
 #!/bin/sh
 
-vars="gitd_ip gitd_basepath git_name git_email tinydns_config tinydns__rootsrvrname tinydns__rootsrvrip tinydns__tldsrvrname tinydns__tldsrvrip"
+vars="gitd_ip gitd_basepath git_name git_email tinydns_config tinydns__rootsrvrname tinydns__rootsrvrip tinydns__tldsrvrname tinydns__tldsrvrip tinydns__srvrip tinydns__srvrname"
 
 echo "Welcome to the resdb configurator!" >&2
 echo >&2
@@ -31,6 +31,12 @@ if [ x"$tinydns__tldsrvrname" = x ]; then
 fi
 if [ x"$tinydns__tldsrvrip" = x ]; then
  tinydns__tldsrvrip="1.0.27.37"
+fi
+if [ x"$tinydns__srvrname" = x ]; then
+ tinydns__srvrname="uz5z6spsd4jsd2k984wuzknr13gwjc630gmvtcv4bmpsrb04c179h1.ns.somerandomnick.ano"
+fi
+if [ x"$tinydns__srvrip" = x ]; then
+ tinydns__srvrip="1.0.27.86"
 fi
 
 echo "Please enter the IP address you'd like gitd to listen on." >&2
@@ -101,6 +107,22 @@ if [ x"$tinydns_config" = xy ]; then
  read new_tinydns__tldsrvrip
  if [ x"$new_tinydns__tldsrvrip" != x ]; then
   tinydns__tldsrvrip="$new_tinydns__tldsrvrip"
+ fi
+
+ echo "Please enter the hostname of your nameserver." >&2
+ echo "(Default: $tinydns__srvrname)" >&2
+ echo -n "SrvName? " >&2
+ read new_tinydns__srvrname
+ if [ x"$new_tinydns__srvrname" != x ]; then
+  tinydns__srvrname="$new_tinydns__srvrname"
+ fi
+
+ echo "Please enter the IP address of your nameserver." >&2
+ echo "(Default: $tinydns__srvrip)" >&2
+ echo -n "SrvIP? " >&2
+ read new_tinydns__srvrip
+ if [ x"$new_tinydns__srvrip" != x ]; then
+  tinydns__srvrip="$new_tinydns__srvrip"
  fi
 fi
 
