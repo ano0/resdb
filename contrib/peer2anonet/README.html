@@ -1,27 +1,30 @@
-DESCRIPTION:
+<html><body bgcolor="#000000"><font color="white">
+<pre>
+<b>DESCRIPTION:</b>
 
     peer2anonet is an autoconfiguration utility for setting
     up core services on AnoNet2. Enjoy :-).
 
-DEPENDS ON:
+<b>DEPENDS ON:</b>
 
-    quicktun, bird, daemontools(non-deb), bash
+    quicktun, bird, bash for now. it also installs some cool shit
+    that you'll use later.
 
-AUTHOR:
+<b>AUTHOR:</b>
 
-    d3v11 from www.d3v11.ano somtimes, maybe, dunno.
+    d3v11 from <a href="http://www.d3v11.ano/">www.d3v11.ano</a>, somtimes, maybe, dunno.
 
-    REPORT BULLSHIT TO:
+    <b>REPORT BULLSHIT TO:</b>
 
-        IRC:
+        <b>IRC:</b>
         
             /relayhell/d3v11
 
-        EMAIL:
+        <b>EMAIL:</b>
         
             d3v11@d3v11.ano
 
-USAGE:
+<b>USAGE:</b>
 
     ./contrib/peer2anonet/peer2anonet --configure             generate a new local configuration and exit
 
@@ -39,58 +42,66 @@ USAGE:
 
     ./contrib/peer2anonet/peer2anonet --configure-dns         configures dnscache and tinydns zones
 
-RTFM:
+    ./contrib/peer2anonet/peer2anonet --update-dns            updates tinydns-ano zone
 
-    CONFIGURE:
+<b>RTFM:</b>
+
+    <b>CONFIGURE:</b>
 
         I highly recommend that before you use peer2anonet
         you ./configure resdb with tinydns support.
 
         ./contrib/peer2anonet/peer2anonet --configure
 
-        EXAMPLES:
+        <b>EXAMPLES:</b>
 
             Enter your AnoNet subnet: 1.2.3.0
             Enter your AnoNet router: 1.2.3.1
             Enter your peering ip: 1.2.3.4
             Enter your AnoNet asn: 1234
 
-    CONFIGURE PEER:
+    <b>CONFIGURE PEER:</b>
 
         ./contrib/peer2anonet/peer2anonet --configure-peer
 
-            KEY PAIRS:
+            <b>KEY PAIRS:</b>
 
                 before running peer2anonet to configure peers you can use
                 quicktun to generate keypairs:
 
-                    quicktun.keypair</dev/random
+                    quicktun.keypair < /dev/random
 
-            CLIENT PORT:
-
-                peer2anonet uses '20' plus the first four digits of your peer's asn
-                as the `clientport'.
-
-                LOCAL_PORT=20${PEERASN:0:4}
-
-            EXAMPLES:
+            <b>EXAMPLES:</b>
 
                 Enter your peer's name: d3v11
                 Enter your peer's remote ip: 11.11.55.1
                 Enter your peer's peering ip: 1.1.5.2
-                Enter your peer's remote port: 201150
+                Enter your peer's remote port: 21150
+                Enter your local port: 61150
                 Enter your peer's asn: 1150
                 Enter your peer's public key: * see KEY PAIRS above *
                 Enter your private key: * see KEY PAIRS above *
 
-            RUN CHANGES:
+            <b>RUN CHANGES:</b>
 
                 peer2anonet exports the /service/$PEER/run file to
                 /etc/peer2anonet/peers/$PEER/run. If you need to
                 create customizations for peerings then make adjustments
                 to that file.
 
-    CONFIGURE DNS:
+            <b>CONFIGURATION FILES:</b>
+
+                /etc/peer2anonet/peers/$PEER/* contains:
+                
+                    asn  local_port  peering_ip  pubkey  remote_ip  remote_port  run  seckey
+
+                In the event you want to reconfigure a peer's tunnel you can alter the run
+                file and do `--update', rm run and modify the above files then use `--update',
+                or reconfigure the peering tunnel altogether with --configure-peer and choose
+                that peer's name. If you think this is absurd then you're probably right! I 
+                plan on doing something with these files later.
+
+    <b>CONFIGURE DNS:</b>
 
         If you did not ./configure resdb with tinydns support
         then you need to do that before using this function.
@@ -101,7 +112,13 @@ RTFM:
 
         ./contrib/peer2anonet/peer2anonet --configure-dns
 
-    COMPLAIN:
+        <b>UPDATE DNS:</b>
+
+            After a successful `--configure-dns', you can now
+            enjoy to use `--update-dns' to bring your AnoNet
+            domains up to speed.
+
+    <b>COMPLAIN:</b>
 
         If this README doesn't tell you what you need to know
         you can head over to www.d3v11.ano/peering. If that
@@ -109,5 +126,5 @@ RTFM:
         me or shoot both of us in the face.
 
 
-
       
+</pre></font></body></html>

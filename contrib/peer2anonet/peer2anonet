@@ -21,7 +21,8 @@ USAGE(){
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-daemontools   installs daemontools'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp     installs ucspi-tcp'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-djbdns        installs djbdns'
-    echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure-dns         configures dnscache and tinydns zones\n'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure-dns         configures dnscache and tinydns zones'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --update-dns            updates tinydns-ano zone\n'
     exit 0
     }
 
@@ -399,9 +400,13 @@ CONFIGURE_DNS(){
         tar cf /etc/peer2anonet/tinydns-root.tar tinydns-root )
     fi
 
-    (cd /service ; svc -d dnscache tinydns tinydns-ano tinydns-root) 
-    (cd /service ; rm -f dnscache tinydns tinydns-ano tinydns-root)   
-    (cd /services ; rm -rf dnscache tinydns tinydns-ano tinydns-root)
+    (
+        cd /service
+        svc -d dnscache tinydns tinydns-ano tinydns-root
+        rm -f dnscache tinydns tinydns-ano tinydns-root
+        cd /services
+        rm -rf dnscache tinydns tinydns-ano tinydns-root
+    )
 
     echo -e '\nCONFIGURE DNS:\n'
     NICK=`cat conf/git_name`
@@ -443,22 +448,13 @@ CONFIGURE_DNS(){
 
 
     tinydns-conf Gtinydns Gdnslog /services/tinydns $TINYDNS_IP
-    #echo ".$NICK.ano:$TINYDNS_IP:a:259200" > /services/tinydns/root/data
-    #echo "=www.$NICK.ano:$GIT_IP:86400" >> /services/tinydns/root/data
-    #echo "+git.$NICK.ano:$GIT_IP:86400" >> /services/tinydns/root/data
-    #echo "+$NICK.ano:$GIT_IP:86400" >> /services/tinydns/root/data
-    #echo "+$TINYDNS_ANO_DOMAIN:$TINYDNS_ANO_IP:3600" >> /services/tinydns/root/data
-    #echo ".1.in-addr.arpa::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
-    #echo ".2.in-addr.arpa::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
-    #echo ".ano::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
-    #echo ".ntwrk::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
     (
-     cd /services/tinydns/root
-     ./add-ns $NICK.ano $TINYDNS_IP
-     ./add-alias $GIT_DOMAIN $GIT_IP
-     ./add-alias $TINYDNS_ROOT_DOMAIN $TINYDNS_ROOT_IP
-     ./add-alias $TINYDNS_ANO_DOMAIN $TINYDNS_ANO_IP
-     make
+        cd /services/tinydns/root
+        ./add-ns $NICK.ano $TINYDNS_IP
+        ./add-alias $GIT_DOMAIN $GIT_IP
+        ./add-alias $TINYDNS_ROOT_DOMAIN $TINYDNS_ROOT_IP
+        ./add-alias $TINYDNS_ANO_DOMAIN $TINYDNS_ANO_IP
+        make
     )
 
     tinydns-conf Gtinydns Gdnslog /services/tinydns-root $TINYDNS_ROOT_IP
@@ -469,11 +465,66 @@ CONFIGURE_DNS(){
     ./scripts/nameserver_autogen/tinydns_tld_datafile > /services/tinydns-ano/root/data
     ( cd /services/tinydns-ano/root ; make )
 
-    ( cd / ; ln -s /services/dnscache /service/dnscache )
-    ( cd / ; ln -s /services/tinydns /service/tinydns )
-    ( cd / ; ln -s /services/tinydns-ano /service/tinydns-ano )
-    ( cd / ; ln -s /services/tinydns-root /service/tinydns-root )
-    ( cd /service ; sleep 5 ; svc -t dnscache tinydns tinydns-ano tinydns-root )  
+    ( 
+        cd /
+        ln -s /services/dnscache /service/dnscache
+        ln -s /services/tinydns /service/tinydns
+        ln -s /services/tinydns-ano /service/tinydns-ano
+        ln -s /services/tinydns-root /service/tinydns-root
+        cd /service ; sleep 5 ; svc -t dnscache tinydns tinydns-ano tinydns-root
+    )
+    }
+
+INSTALL_DJBDNS(){
+    echo -e '\nINSTALL DJBDNS:\n'
+    [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && exit 1
+    [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && exit 1
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && exit 1
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && exit 1
+    cd /usr/local/src
+    wget http://cr.yp.to/djbdns/djbdns-1.05.tar.gz
+    gunzip djbdns-1.05.tar
+    tar -xf djbdns-1.05.tar
+    cd djbdns-1.05
+    echo gcc -O2 -include /usr/include/errno.h > conf-cc
+    make
+    make setup check
+    }
+
+UPDATE_DNS(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
+
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && exit 1
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && exit 1
+
+    if [ -e /services/tinydns-ano ]; then
+        ( 
+            cd /services
+            echo "creating /etc/peer2anonet/tinydns-ano.tar backup"
+            tar cf /etc/peer2anonet/tinydns-ano.tar tinydns-ano
+        )
+    fi
+
+    echo -e '\nUPDATE DNS:\n'
+    ./scripts/nameserver_autogen/tinydns_tld_datafile > /services/tinydns-ano/root/data
+    ( cd /services/tinydns-ano/root ; make )
+
+    ( 
+        cd /service
+        sleep 5
+        svc -t dnscache tinydns tinydns-ano tinydns-root
+    )
     }
 
 
@@ -495,6 +546,8 @@ elif [ "$1" == '--install-djbdns' ]; then
     INSTALL_DJBDNS
 elif [ "$1" == '--configure-dns' ]; then
     CONFIGURE_DNS
+elif [ "$1" == '--update-dns' ]; then
+    UPDATE_DNS
 else
     USAGE
 fi
