@@ -82,13 +82,23 @@ UPDATE(){
                 exit 1
             fi
 
-            if [ -e /etc/peer2anonet/peers/"$PEER"/port ]; then
-                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/port`) == 'X' ]]; then
-                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/port is void"
+            if [ -e /etc/peer2anonet/peers/"$PEER"/remote_port ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/remote_port`) == 'X' ]]; then
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/remote_port is void"
                     exit 1
                 fi
             else
-                echo "   fatal error: /etc/peer2anonet/peers/$PEER/port not exists"
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/remote_port not exists"
+                exit 1
+            fi
+
+            if [ -e /etc/peer2anonet/peers/"$PEER"/local_port ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/local_port`) == 'X' ]]; then
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/local_port is void"
+                    exit 1
+                fi
+            else
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/local_port not exists"
                 exit 1
             fi
 
@@ -184,7 +194,8 @@ protocol direct direct_AnoNet_routes { table AnoNet_routes;
         mkdir -p /services/"$PEER"
         REMOTEIP=`cat /etc/peer2anonet/peers/"$PEER"/remote_ip`
         PEERIP=`cat /etc/peer2anonet/peers/"$PEER"/peering_ip`
-        PEERPORT=`cat /etc/peer2anonet/peers/"$PEER"/port`
+        PEERPORT=`cat /etc/peer2anonet/peers/"$PEER"/remote_port`
+        LOCALPORT=`cat /etc/peer2anonet/peers/"$PEER"/local_port`
         PEERASN=`cat /etc/peer2anonet/peers/"$PEER"/asn`
         PUBKEY=`cat /etc/peer2anonet/peers/"$PEER"/pubkey`
         SECKEY=`cat /etc/peer2anonet/peers/"$PEER"/seckey`
@@ -213,7 +224,7 @@ protocol bgp $PEER { table AnoNet_routes;
 
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
-export LOCAL_PORT=20${PEERASN:0:4}
+export LOCAL_PORT=$LOCALPORT
 export PRIVATE_KEY=$SECKEY
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
@@ -262,6 +273,7 @@ CONFIGURE_PEER(){
     read -p "   Enter your peer's remote ip: " REMOTEIP
     read -p "   Enter your peer's peering ip: " PEERIP
     read -p "   Enter your peer's remote port: " PEERPORT
+    read -p "   Enter your local port: " LOCALPORT
     read -p "   Enter your peer's asn: " PEERASN
     read -p "   Enter your peer's public key: " PUBKEY
     read -p "   Enter your private key: " SECKEY
@@ -270,6 +282,7 @@ CONFIGURE_PEER(){
     echo $REMOTEIP >/etc/peer2anonet/peers/"$PEER"/remote_ip
     echo $PEERIP >/etc/peer2anonet/peers/"$PEER"/peering_ip
     echo $PEERPORT >/etc/peer2anonet/peers/"$PEER"/port
+    echo $LOCALPORT >/etc/peer2anonet/peers/"$PEER"/local_port
     echo $PEERASN >/etc/peer2anonet/peers/"$PEER"/asn
     echo $PUBKEY >/etc/peer2anonet/peers/"$PEER"/pubkey
     echo $SECKEY >/etc/peer2anonet/peers/"$PEER"/seckey
