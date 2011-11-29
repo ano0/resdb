@@ -396,8 +396,8 @@ CONFIGURE_DNS(){
     TINYDNS_ROOT_DOMAIN=`cat conf/tinydns__rootsrvrname`
     TINYDNS_ANO_IP=`cat conf/tinydns__tldsrvrip`
     TINYDNS_ANO_DOMAIN=`cat conf/tinydns__tldsrvrname`
-    TINYDNS_IP=`cat db/dom/ano/$NICK/ns/$(ls db/dom/ano/$NICK/ns)`
-    TINYDNS_DOMAIN=`ls db/dom/ano/$NICK/ns`
+    TINYDNS_IP=`cat conf/tinydns__srvrip`
+    TINYDNS_DOMAIN=`cat conf/tinydns__srvrname`
     GIT_IP=`cat conf/gitd_ip`
     GIT_DOMAIN="git.$NICK.ano"
 
@@ -439,11 +439,6 @@ CONFIGURE_DNS(){
     #echo ".2.in-addr.arpa::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
     #echo ".ano::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
     #echo ".ntwrk::$TINYDNS_ANO_DOMAIN" >> /services/tinydns/root/data
-    #( cd /services/tinydns/root ; ./add-ns $TINYDNS_DOMAIN $TINYDNS_IP )
-    #( cd /services/tinydns/root ; ./add-alias $GIT_DOMAIN $GIT_IP )
-    #( cd /services/tinydns/root ; ./add-alias $TINYDNS_ANO_IP $TINYDNS_ROOT_IP )
-    #( cd /services/tinydns/root ; ./add-alias $TINYDNS_ANO_DOMAIN $TINYDNS_ANO_IP )
-    #( cd /services/tinydns/root ; make )
     (
      cd /services/tinydns/root
      ./add-ns $NICK.ano $TINYDNS_IP
