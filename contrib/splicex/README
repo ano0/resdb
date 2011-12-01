@@ -7,16 +7,6 @@
 
                      .:Brute Force Utilities For GNU/Linux:.
 
-       SpliceX is free software: you can redistribute it and/or modify it under
-       the terms of the GNU General Public License as published by the Free 
-       Software Foundation, either version 3 of the License, or (at your option)
-       any later version.
-
-       SpliceX is distributed in the hope that it will be useful, but WITHOUT
-       ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-       FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-       for more details. http://www.gnu.org/licenses/
-
 AUTHOR:
 
 	d3v11 <d3v11@d3v11.ano>
@@ -25,11 +15,11 @@ AUTHOR:
 
 (UN)INSTALL:
 
-	You may optionally install splicex with cython. Doing so takes
-	longer to install because of compile times but splicex will
+	You may optionally install SpliceX with cython. Doing so takes
+	longer to install because of compile times but SpliceX will
 	also be 20% to 35% faster, depending on your system. I recommend
-	this option if you intend on putting splicex to long-term use.
-	If your goal is simply to test, try, and/or debug splicex then
+	this option if you intend on putting SpliceX to long-term use.
+	If your goal is simply to test, try, and/or debug SpliceX then
 	using the pythonic install will be more practical.
 
 	NOTES:
@@ -45,6 +35,13 @@ AUTHOR:
 
 		This generates Python.h and structmember.h, which are
 		needed for gcc to compile splicex.
+
+		"<python[version]>" as seen in the install instructions
+		should be typed the same way you would call a specific
+		Python interpreter with only the first two version
+		numbers. IE:
+
+		python2.6, python2.7, python3.1, python3.2
 
 	DEPENDS ON:
 
@@ -69,7 +66,8 @@ AUTHOR:
 		 		make uninstall
 
 			DEBIAN/UBUNTU:
-		 		apt-get remove splicex
+
+				dpkg --remove splicex
 
 PYTHONIC (UN)INSTALL:
 
@@ -78,6 +76,17 @@ PYTHONIC (UN)INSTALL:
 	slower than compiling an executable binary with the
 	cython + gcc option above. I recommend using this option
 	if you simply want to test, try, and/or debug splicex.
+
+	NOTES:
+
+		"<python[version]>" as seen in the install instructions
+		should be typed the same way you would call a specific
+		Python interpreter with only the first two version
+		numbers. For a Pythonic install "python" sans the version
+		will most likely work as well, and will set SpliceX to
+		use the default Python Interpreter. IE:
+
+		python2.6, python2.7, python3.1, python3.2
 
 	DEPENDS ON:
 
@@ -99,7 +108,8 @@ PYTHONIC (UN)INSTALL:
 		 		make uninstall
 
 			DEBIAN/UBUNTU:
-		 		apt-get remove splicex
+		 		
+				dpkg --remove splicex
 
 TOOLS:
 
@@ -110,13 +120,13 @@ TOOLS:
 
 UPDATE:
 
-	d3v11's AnoNet(2) update for splicex:
+	d3v11's AnoNet(2) update for SpliceX:
  
 	make update
 
 HELP AND USAGE:
 
-	To obtain additional information on how to use splicex
+	To obtain additional information on how to use SpliceX
 	enter either of the following commands after installation:
 
 	splicex --help

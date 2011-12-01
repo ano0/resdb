@@ -1,75 +1,148 @@
 #!/bin/bash
-#########################################################################
-# We need to check for root privileges:
 if [[ $(id -u) != 0 ]]; then
- echo "peer2anonet: error: root privileges required."
- exit 1
+    echo "peer2anonet: root privileges required."
+    exit 1
 fi
 
-#########################################################################
-# We need to source our peer2anonet variables
-source /etc/peer2anonet/p2a.conf
+if [ -e /services/bird ]; then
+    [ -e /etc/peer2anonet/bird.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/bird.tar backup" ;\
+    tar cf /etc/peer2anonet/bird.tar bird )
+fi
 
-#########################################################################
-# We need to see if service(s) directories exist:
+[ -e contrib/peer2anonet/peer2anonet ] || echo "peer2anonet: not in \$RESDB_ROOT"
+[ -e contrib/peer2anonet/peer2anonet ] || exit 1
+
+USAGE(){
+    echo -e '\npeer2anonet:'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure             generate a new local configuration and exit'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --update                regenerate peer configurations'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure-peer        generate a new peer configuration and update'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --rm-peer               remove a peer configuration and update'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-daemontools   installs daemontools'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp     installs ucspi-tcp'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-djbdns        installs djbdns'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure-dns         configures dnscache and tinydns zones'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --update-dns            updates tinydns-ano zone\n'
+    exit 0
+    }
+
+mkdir -p /service
 mkdir -p /services
 mkdir -p /services/bird
-mkdir -p /service
+mkdir -p /etc/peer2anonet
+mkdir -p /etc/peer2anonet/peers
 
-#########################################################################
-# We need to get info for the new peering and BGP session:
-read -p "Enter your peer's name/interface: " PEERNAME
-read -p "Enter your peer's remote ip: " REMOTEIP
-read -p "Enter your peer's anonet ip: " PEERIP
-read -p "Enter your peer's remote port: " PEERPORT
-read -p "Enter your peer's asn: " PEERASN
-read -p "Enter your peer's public key: " PUBKEY
+CONFIGURE(){
+    echo -e '\nCONFIGURE:\n'
+    read -p "   Enter your AnoNet subnet: " P2A_NET
+    read -p "   Enter your AnoNet router: " P2A_ROUTE
+    read -p "   Enter your peering ip: " P2A_IP
+    read -p "   Enter your AnoNet asn: " P2A_ASN
 
-#########################################################################
-# Do some security checks on variables:
-TEST[0]=$PEERNAME; TEST[1]=$REMOTEIP; TEST[2]=$PEERIP
-        TEST[3]=$PEERPORT; TEST[4]=$PEERASN
 
-for((X=0;X<=2;X++)); do
-if [[ $(echo ${TEST[$X]} | tr -d 'a-zA-Z0-9._-' | wc -c) -gt 1 ]]; then
-echo ${TEST[$X]} | tr -d 'a-zA-Z0-9' | wc -c
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
-"
- exit 1
-fi
-done
+    echo "P2A_NET=\"$P2A_NET\"">/etc/peer2anonet/p2a.conf
+    echo "P2A_ROUTE=\"$P2A_ROUTE\"">>/etc/peer2anonet/p2a.conf
+    echo "P2A_IP=\"$P2A_IP\"">>/etc/peer2anonet/p2a.conf
+    echo "P2A_ASN=\"$P2A_ASN\"">>/etc/peer2anonet/p2a.conf
+    echo -e '\npeer2anonet: configured\n'
 
-for((X=3;X<=4;X++)); do
-if [[ $(echo ${TEST[$X]} | tr -d '0-9' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
-"
- exit 1
-fi
-done
+    NICK=`cat conf/git_name`
+    ./scripts/add_as $P2A_ASN $NICK
+    ./scripts/add_ip $P2A_NET/24 $NICK
+    exit 0
+    }
 
-if [[ $(echo "$PUBKEY" | tr -d 'a-zA-Z0-9' | wc -c) -gt 1 ]]; then
- echo "peer2anonet: fatal error: unacceptable data: ${TEST[$X]}
-"
- exit 1
-fi
+UPDATE(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
 
-ADDPORT="2$(($PEERASN % 10000))"
+    echo -e '\nUPDATE:\n'
+    if [[ $(ls /etc/peer2anonet/peers) ]]; then
+        for PEER in `ls /etc/peer2anonet/peers`; do
+            if [ -e /etc/peer2anonet/peers/"$PEER"/remote_ip ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/remote_ip`) == 'X' ]]; then
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/remote_ip is void"
+                    exit 1
+                fi
+            else
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/remote_ip not exists"
+                exit 1
+            fi
 
-#########################################################################
-# We need to check if base files need to be imported to services for bird:
-NEW_PROTOCOL="
-protocol bgp $PEERNAME { table AnoNet_routes;
- local as $P2A_ASN;
- neighbor $PEERIP as $PEERASN;
- source address $P2A_IP;
- import filter only_AnoNet_ebgp;
- export filter only_AnoNet_ebgp_export;
-}"
+            if [ -e /etc/peer2anonet/peers/"$PEER"/peering_ip ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/peering_ip`) == 'X' ]]; then
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/peering_ip is void"
+                    exit 1
+                fi
+            else
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/peering_ip not exists"
+                exit 1
+            fi
 
-BIRD_RUN='#!/bin/sh
-exec bird -c bird.conf -d'
+            if [ -e /etc/peer2anonet/peers/"$PEER"/remote_port ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/remote_port`) == 'X' ]]; then
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/remote_port is void"
+                    exit 1
+                fi
+            else
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/remote_port not exists"
+                exit 1
+            fi
 
-BIRD_CONF="function n_AnoNet_mine (prefix arg) {
+            if [ -e /etc/peer2anonet/peers/"$PEER"/local_port ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/local_port`) == 'X' ]]; then
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/local_port is void"
+                    exit 1
+                fi
+            else
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/local_port not exists"
+                exit 1
+            fi
+
+            if [ -e /etc/peer2anonet/peers/"$PEER"/asn ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/asn`) == 'X' ]]; then
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/asn is void"
+                    exit 1
+                fi
+            else
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/asn not exists"
+                exit 1
+            fi
+
+            if [ -e /etc/peer2anonet/peers/"$PEER"/pubkey ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/pubkey`) == 'X' ]]; then
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/pubkey is void"
+                    exit 1
+                fi
+            else
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/pubkey not exists"
+                exit 1
+            fi
+
+            if [ -e /etc/peer2anonet/peers/"$PEER"/seckey ]; then
+                if [[ $(echo X`cat /etc/peer2anonet/peers/"$PEER"/seckey`) == 'X' ]]; then
+                    echo "   fatal error: /etc/peer2anonet/peers/$PEER/seckey is void"
+                    exit 1
+                fi
+            else
+                echo "   fatal error: /etc/peer2anonet/peers/$PEER/seckey not exists"
+                exit 1
+            fi
+        done
+    else
+        echo "   fatal error: peering configurations not exists"
+        exit 1
+    fi
+
+    echo '#!/bin/bash
+bird -c bird.conf -d' > /services/bird/run
+    chmod +x /services/bird/run
+
+    echo "function n_AnoNet_mine (prefix arg) {
  if arg ~ [ $P2A_NET/24+ ] then return true;
 return false; };
 
@@ -116,57 +189,368 @@ protocol device {
 protocol direct direct_AnoNet_routes { table AnoNet_routes;
  interface \"eth0\";
  import filter only_AnoNet;
-}"
+}" > /services/bird/bird.conf
 
+    for PEER in `ls /etc/peer2anonet/peers`; do
+        mkdir -p /services/"$PEER"
+        REMOTEIP=`cat /etc/peer2anonet/peers/"$PEER"/remote_ip`
+        PEERIP=`cat /etc/peer2anonet/peers/"$PEER"/peering_ip`
+        PEERPORT=`cat /etc/peer2anonet/peers/"$PEER"/remote_port`
+        LOCALPORT=`cat /etc/peer2anonet/peers/"$PEER"/local_port`
+        PEERASN=`cat /etc/peer2anonet/peers/"$PEER"/asn`
+        PUBKEY=`cat /etc/peer2anonet/peers/"$PEER"/pubkey`
+        SECKEY=`cat /etc/peer2anonet/peers/"$PEER"/seckey`
 
+        echo "
+protocol bgp $PEER { table AnoNet_routes;
+ local as $P2A_ASN;
+ neighbor $PEERIP as $PEERASN;
+ source address $P2A_IP;
+ import filter only_AnoNet_ebgp;
+ export filter only_AnoNet_ebgp_export;
+}" >> /services/bird/bird.conf
 
-test -e /services/bird/bird.conf || echo "$BIRD_CONF" > /services/bird/bird.conf
-test -e /services/bird/run || echo "$BIRD_RUN" > /services/bird/run
-chmod +x /services/bird/run
-echo "$NEW_PROTOCOL" >> /services/bird/bird.conf
-test -L /services/bird && rm -r /service/bird
-test -L /service/bird || ln -s /services/bird /service/
-
-#########################################################################
-# We need to check if this peering session already exists:
-test -e /services/"$PEERNAME" && rm -r /services/"$PEERNAME"
-mkdir -p /services/"$PEERNAME"
-
-
-#########################################################################
-# Create files to configure the new peering session:
-echo "#!/bin/sh
+        if [ -e /etc/peer2anonet/peers/"$PEER"/run ]; then
+            cp /etc/peer2anonet/peers/$PEER/run /services/"$PEER"/run
+        else
+            echo "#!/bin/bash
+# uncomment if your peer has a dynamic IP
+#
 #export REMOTE_FLOAT=1
+
+# uncomment for debugging. you'll need to use ./run to view output instead
+# of svc -u /service/<peer name>
+#
+#export DEBUG=1
+
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
-export LOCAL_PORT=$ADDPORT
-export PRIVATE_KEY=\"\$(cat seckey)\"
+export LOCAL_PORT=$LOCALPORT
+export PRIVATE_KEY=$SECKEY
 export PUBLIC_KEY=$PUBKEY
 export TUN_MODE=1
-export INTERFACE=ppp-$PEERNAME
+export INTERFACE=ppp-$PEER
+
+# uncomment if you want to nuke your default gateway and configure
+# routes only to peers through IcannNet. If any of your peers use
+# dynamic IP's or you use Tor or i2p then this is probably NOT a
+# good idea. You may need to modify the DEFAULT_ROUTE code below.
+# If you run into problems with this please email d3v11@d3v11.ano
+# so I can create a patch.
+#
+#DEFAULT_ROUTE=\`ip route show | grep default | cut -d' ' -f 3\`
+#route del default gw \$DEFAULT_ROUTE
+#route add \$REMOTE_ADDRESS gw \$DEFAULT_ROUTE
+
 ( sleep 5;
  ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
  ip addr add $P2A_ROUTE/32 dev \$INTERFACE scope global
  ip link set dev \$INTERFACE up
- ping -c 1 -I $INTERFACE -r -w 5
+# comment the following ping line to remove pinghack. this is a
+# trick used to help bird connect.
+ ping -c 1 -I \$INTERFACE $PEERIP -r -w 5
 ) &
-exec /usr/sbin/quicktun.nacltai" > /services/"$PEERNAME"/run
-chmod +x /services/"$PEERNAME"/run
+exec /usr/sbin/quicktun.nacltai" > /etc/peer2anonet/peers/$PEER/run
+            cp /etc/peer2anonet/peers/$PEER/run /services/"$PEER"/run
+        fi
+        chmod +x /services/"$PEER"/run
+        test -L "/service/$PEER" || ln -s "/services/$PEER" "/service/$PEER"
+        svc -t "/service/$PEER"
+    done
+    test -L /service/bird || ln -s /services/bird /service/bird
+    echo configure | birdc
+    }
 
-#########################################################################
-# Configure and start our new peering session:
-test -L "/service/$PEERNAME" && rm -r "/service/$PEERNAME"
-ln -s "/services/$PEERNAME" /service/
-echo 'Secret Key Goes Here!' > "/services/$PEERNAME/seckey"
-echo "peer2anonet: New peering session configured.
-Please place your secret key in: /services/$PEERNAME/seckey
+CONFIGURE_PEER(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
 
-To allow remote floating:
-uncomment REMOTE_FLOAT=1 in /services/$PEERNAME/run"
+    echo -e '\nCONFIGURE PEER:\n'
+    read -p "   Enter your peer's name: " PEER
+    read -p "   Enter your peer's remote ip: " REMOTEIP
+    read -p "   Enter your peer's peering ip: " PEERIP
+    read -p "   Enter your peer's remote port: " PEERPORT
+    read -p "   Enter your local port: " LOCALPORT
+    read -p "   Enter your peer's asn: " PEERASN
+    read -p "   Enter your peer's public key: " PUBKEY
+    read -p "   Enter your private key: " SECKEY
+    [ -e /etc/peer2anonet/peers/"$PEER" ] && rm -r /etc/peer2anonet/peers/"$PEER"
+    mkdir -p /etc/peer2anonet/peers/"$PEER"
+    echo $REMOTEIP >/etc/peer2anonet/peers/"$PEER"/remote_ip
+    echo $PEERIP >/etc/peer2anonet/peers/"$PEER"/peering_ip
+    echo $PEERPORT >/etc/peer2anonet/peers/"$PEER"/remote_port
+    echo $LOCALPORT >/etc/peer2anonet/peers/"$PEER"/local_port
+    echo $PEERASN >/etc/peer2anonet/peers/"$PEER"/asn
+    echo $PUBKEY >/etc/peer2anonet/peers/"$PEER"/pubkey
+    echo $SECKEY >/etc/peer2anonet/peers/"$PEER"/seckey
+    echo -e "\n   configured $PEER\n"
+    }
+
+RM_PEER(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
+
+    echo -e '\nRM PEER:\n'
+    read -p "   Enter your peer's name: " PEER
+    if [ -e /etc/peer2anonet/peers/"$PEER" ]; then
+        rm -r /etc/peer2anonet/peers/"$PEER"
+        echo
+        echo -e "   removed /etc/peer2anonet/peers/$PEER\n"
+    else
+        echo
+        echo -e "   fatal error: /etc/peer2anonet/peers/$PEER not exists\n"
+        exit 1
+    fi
+    }
+
+INSTALL_DAEMONTOOLS(){
+    echo -e '\nINSTALL DAEMONTOOLS:\n'
+    [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && exit 1
+    [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && exit 1
+    [[ $(echo X`which csh`) == X ]] && echo '   fatal error: cannot find csh'
+    [[ $(echo X`which csh`) == X ]] && exit 1
+    mkdir -p /package
+    chmod 1755 /package
+    cd /package
+    wget http://cr.yp.to/daemontools/daemontools-0.76.tar.gz
+    gunzip daemontools-0.76.tar
+    tar -xpf daemontools-0.76.tar
+    rm -f daemontools-0.76.tar
+    cd admin/daemontools-0.76
+    sed -i 's/gcc/gcc -include errno.h/g' src/conf-cc
+    package/install
+    cp /etc/rc.local /etc/peer2anonet/rc.local.backup
+    sed -i "s/exit 0/csh -cf \'\/command\/svscanboot \&\'/" /etc/rc.local
+    chmod +x /etc/rc.local
+    }
+
+INSTALL_UCSPI_TCP(){
+    echo -e '\nINSTALL UCSPI-TCP:\n'
+    [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && exit 1
+    [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && exit 1
+    cd /usr/local/src
+    wget http://cr.yp.to/ucspi-tcp/ucspi-tcp-0.88.tar.gz
+    gunzip ucspi-tcp-0.88.tar
+    tar -xf ucspi-tcp-0.88.tar
+    cd ucspi-tcp-0.88
+    sed -i 's/gcc/gcc -include errno.h/g' conf-cc
+    make
+    make setup check
+    }
+
+INSTALL_DJBDNS(){
+    echo -e '\nINSTALL DJBDNS:\n'
+    [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && exit 1
+    [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && exit 1
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && exit 1
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && exit 1
+    cd /usr/local/src
+    wget http://cr.yp.to/djbdns/djbdns-1.05.tar.gz
+    gunzip djbdns-1.05.tar
+    tar -xf djbdns-1.05.tar
+    cd djbdns-1.05
+    echo gcc -O2 -include /usr/include/errno.h > conf-cc
+    make
+    make setup check
+    }
+
+CONFIGURE_DNS(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
+
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && exit 1
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && exit 1
+
+    if [ -e /services/dnscache ]; then
+        [ -e /etc/peer2anonet/dnscache.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/dnscache.tar backup" ;\
+        tar cf /etc/peer2anonet/dnscache.tar dnscache )
+    fi
+    if [ -e /services/tinydns ]; then
+        [ -e /etc/peer2anonet/tinydns.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/tinydns.tar backup" ;\
+        tar cf /etc/peer2anonet/tinydns.tar tinydns )
+    fi
+    if [ -e /services/tinydns-ano ]; then
+        [ -e /etc/peer2anonet/tinydns-ano.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/tinydns-ano.tar backup" ;\
+        tar cf /etc/peer2anonet/tinydns-ano.tar tinydns-ano )
+    fi
+    if [ -e /services/tinydns-root ]; then
+        [ -e /etc/peer2anonet/tinydns-root.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/tinydns-root.tar backup" ;\
+        tar cf /etc/peer2anonet/tinydns-root.tar tinydns-root )
+    fi
+
+    (
+        cd /service
+        svc -d dnscache tinydns tinydns-ano tinydns-root
+        rm -f dnscache tinydns tinydns-ano tinydns-root
+        cd /services
+        rm -rf dnscache tinydns tinydns-ano tinydns-root
+    )
+
+    echo -e '\nCONFIGURE DNS:\n'
+    NICK=`cat conf/git_name`
+    TINYDNS_ROOT_IP=`cat conf/tinydns__rootsrvrip`
+    TINYDNS_ROOT_DOMAIN=`cat conf/tinydns__rootsrvrname`
+    TINYDNS_ANO_IP=`cat conf/tinydns__tldsrvrip`
+    TINYDNS_ANO_DOMAIN=`cat conf/tinydns__tldsrvrname`
+    TINYDNS_IP=`cat conf/tinydns__srvrip`
+    TINYDNS_DOMAIN=`cat conf/tinydns__srvrname`
+    GIT_IP=`cat conf/gitd_ip`
+    GIT_DOMAIN="git.$NICK.ano"
+
+    ip addr add $TINYDNS_ROOT_IP/32 dev lo > /dev/null 2>&1
+    ip addr add $TINYDNS_IP/32 dev lo > /dev/null 2>&1
+    ip addr add $TINYDNS_ANO_IP/32 dev lo > /dev/null 2>&1
+    ip addr add $GIT_IP/32 dev lo > /dev/null 2>&1
+
+    if [[ $(cat /etc/rc.local) != *"ip addr add $TINYDNS_ROOT_IP/32 dev lo &"* ]]; then
+        echo "ip addr add $TINYDNS_ROOT_IP/32 dev lo &" >> /etc/rc.local
+    fi
+    if [[ $(cat /etc/rc.local) != *"ip addr add $TINYDNS_IP/32 dev lo &"* ]]; then
+        echo "ip addr add $TINYDNS_IP/32 dev lo &" >> /etc/rc.local
+    fi
+    if [[ $(cat /etc/rc.local) != *"ip addr add $TINYDNS_ANO_IP/32 dev lo &"* ]]; then
+        echo "ip addr add $TINYDNS_ANO_IP/32 dev lo &" >> /etc/rc.local
+    fi
+    if [[ $(cat /etc/rc.local) != *"ip addr add $GIT_IP/32 dev lo &"* ]]; then
+        echo "ip addr add $GIT_IP/32 dev lo &" >> /etc/rc.local
+    fi
+
+    useradd Gdnscache
+    useradd Gdnslog
+    useradd Gtinydns
+ 
+    dnscache-conf Gdnscache Gdnslog /services/dnscache
+    mv /services/dnscache/root/servers/@ /services/dnscache/root/servers/@.icann
+    echo $TINYDNS_ROOT_IP >/services/dnscache/root/servers/@
+    echo 'nameserver 127.0.0.1' >/etc/resolv.conf
 
 
+    tinydns-conf Gtinydns Gdnslog /services/tinydns $TINYDNS_IP
+    (
+        cd /services/tinydns/root
+        ./add-ns $NICK.ano $TINYDNS_IP
+        ./add-alias $GIT_DOMAIN $GIT_IP
+        ./add-alias $TINYDNS_ROOT_DOMAIN $TINYDNS_ROOT_IP
+        ./add-alias $TINYDNS_ANO_DOMAIN $TINYDNS_ANO_IP
+        make
+    )
+
+    tinydns-conf Gtinydns Gdnslog /services/tinydns-root $TINYDNS_ROOT_IP
+    ./scripts/nameserver_autogen/tinydns_root_datafile > /services/tinydns-root/root/data
+    ( cd /services/tinydns-root/root ; make )
+
+    tinydns-conf Gtinydns Gdnslog /services/tinydns-ano $TINYDNS_ANO_IP
+    ./scripts/nameserver_autogen/tinydns_tld_datafile > /services/tinydns-ano/root/data
+    ( cd /services/tinydns-ano/root ; make )
+
+    ( 
+        cd /
+        ln -s /services/dnscache /service/dnscache
+        ln -s /services/tinydns /service/tinydns
+        ln -s /services/tinydns-ano /service/tinydns-ano
+        ln -s /services/tinydns-root /service/tinydns-root
+        cd /service ; sleep 5 ; svc -t dnscache tinydns tinydns-ano tinydns-root
+    )
+    }
+
+INSTALL_DJBDNS(){
+    echo -e '\nINSTALL DJBDNS:\n'
+    [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && exit 1
+    [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && exit 1
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && exit 1
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && exit 1
+    cd /usr/local/src
+    wget http://cr.yp.to/djbdns/djbdns-1.05.tar.gz
+    gunzip djbdns-1.05.tar
+    tar -xf djbdns-1.05.tar
+    cd djbdns-1.05
+    echo gcc -O2 -include /usr/include/errno.h > conf-cc
+    make
+    make setup check
+    }
+
+UPDATE_DNS(){
+    if [ -e /etc/peer2anonet/p2a.conf ]; then
+        source /etc/peer2anonet/p2a.conf
+    else
+        CONFIGURE
+        exit 0
+    fi
+
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && exit 1
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && exit 1
+
+    if [ -e /services/tinydns-ano ]; then
+        ( 
+            cd /services
+            echo "creating /etc/peer2anonet/tinydns-ano.tar backup"
+            tar cf /etc/peer2anonet/tinydns-ano.tar tinydns-ano
+        )
+    fi
+
+    echo -e '\nUPDATE DNS:\n'
+    ./scripts/nameserver_autogen/tinydns_tld_datafile > /services/tinydns-ano/root/data
+    ( cd /services/tinydns-ano/root ; make )
+
+    ( 
+        cd /service
+        sleep 5
+        svc -t dnscache tinydns tinydns-ano tinydns-root
+    )
+    }
 
 
+if [ "$1" == '--configure' ]; then
+    CONFIGURE
+elif [ "$1" == '--update' ]; then
+    UPDATE
+elif [ "$1" == '--configure-peer' ]; then
+    CONFIGURE_PEER
+    UPDATE
+elif [ "$1" == '--rm-peer' ]; then
+    RM_PEER
+    UPDATE
+elif [ "$1" == '--install-daemontools' ]; then
+    INSTALL_DAEMONTOOLS
+elif [ "$1" == '--install-ucspi-tcp' ]; then
+    INSTALL_UCSPI_TCP
+elif [ "$1" == '--install-djbdns' ]; then
+    INSTALL_DJBDNS
+elif [ "$1" == '--configure-dns' ]; then
+    CONFIGURE_DNS
+elif [ "$1" == '--update-dns' ]; then
+    UPDATE_DNS
+else
+    USAGE
+fi
 
 
 

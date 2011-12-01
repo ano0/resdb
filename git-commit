@@ -1,4 +1,4 @@
 #!/bin/sh
 git add configure db doc git-commit gitd scripts contrib .gitignore
-git commit
+TZ=UTC git commit --date="`date -u +'%s'`"
 test -x /usr/lib/git-core/git-update-server-info && /usr/lib/git-core/git-update-server-info
