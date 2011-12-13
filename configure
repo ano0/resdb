@@ -1,9 +1,19 @@
-#!/bin/bash
+#!/bin/sh
 
 vars="gitd_ip gitd_basepath git_name git_email tinydns_config tinydns__rootsrvrname tinydns__rootsrvrip tinydns__tldsrvrname tinydns__tldsrvrip tinydns__srvrip tinydns__srvrname"
 
 echo "Welcome to the resdb configurator!" >&2
 echo >&2
+
+if ! echo "$var=${!var}" >/dev/null 2>&1; then
+ echo "Your shell sucks.  If you're using a stupid OS like Ubuntu that doesn't" >&2
+ echo "give a damn about backwards compatibility, I'd suggest fixing your" >&2
+ echo "default shell, which you can do by typing \"ln -s bash /bin/sh\" at a" >&2
+ echo "root shell prompt." >&2
+ echo "If you have some ancient Unix system, I'd suggest installing bash." >&2
+ echo "If you have questions, you can always bother SRN :-)" >&2
+ exit 1
+fi
 
 for var in $vars ; do
  export "$var"="$(cat conf/$var 2>/dev/null)"
