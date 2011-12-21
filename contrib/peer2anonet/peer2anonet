@@ -413,14 +413,14 @@ CONFIGURE_DNS(){
     )
 
     echo -e '\nCONFIGURE DNS:\n'
-    NICK=`cat conf/git_name`
-    TINYDNS_ROOT_IP=`cat conf/tinydns__rootsrvrip`
-    TINYDNS_ROOT_DOMAIN=`cat conf/tinydns__rootsrvrname`
-    TINYDNS_ANO_IP=`cat conf/tinydns__tldsrvrip`
-    TINYDNS_ANO_DOMAIN=`cat conf/tinydns__tldsrvrname`
-    TINYDNS_IP=`cat conf/tinydns__srvrip`
-    TINYDNS_DOMAIN=`cat conf/tinydns__srvrname`
-    GIT_IP=`cat conf/gitd_ip`
+    NICK=`cat conf/git_name` || exit 1
+    TINYDNS_ROOT_IP=`cat conf/tinydns__rootsrvrip` || exit 1
+    TINYDNS_ROOT_DOMAIN=`cat conf/tinydns__rootsrvrname` || exit 1
+    TINYDNS_ANO_IP=`cat conf/tinydns__tldsrvrip` || exit 1
+    TINYDNS_ANO_DOMAIN=`cat conf/tinydns__tldsrvrname` || exit 1
+    TINYDNS_IP=`cat conf/tinydns__srvrip` || exit 1
+    TINYDNS_DOMAIN=`cat conf/tinydns__srvrname` || exit 1
+    GIT_IP=`cat conf/gitd_ip` || exit 1
     GIT_DOMAIN="git.$NICK.ano"
 
     ip addr add $TINYDNS_ROOT_IP/32 dev lo > /dev/null 2>&1
