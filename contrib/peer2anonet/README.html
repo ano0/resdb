@@ -93,6 +93,10 @@
 
             <b>CONFIGURATION FILES:</b>
 
+                If /etc/peer2anonet/bird.conf exists, then peer2anonet
+                will not create a new bird. Instead it will use this
+                bird.conf and append new protocols to it. 
+
                 /etc/peer2anonet/peers/$PEER/* contains:
                 
                     asn  local_port  peering_ip  pubkey  remote_ip  remote_port  run  seckey

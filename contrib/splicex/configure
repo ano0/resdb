@@ -74,6 +74,7 @@ if [ -z "$2" ]; then
  fi
 fi
 echo
+mkdir -p build || exit 1
 if [ -z "$2" ]; then
  sed -e s^PYTHON^"$PYPATH"^g src/splicex.py >build/splicex || exit 1
  sed -e s^PYTHON^"$PYPATH"^g src/splicex-deshadow.py >build/splicex-deshadow || exit 1

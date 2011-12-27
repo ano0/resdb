@@ -142,7 +142,10 @@ UPDATE(){
 bird -c bird.conf -d' > /services/bird/run
     chmod +x /services/bird/run
 
-    echo "function n_AnoNet_mine (prefix arg) {
+    if [ -e /etc/peer2anonet/bird.conf ]; then
+        cp /etc/peer2anonet/bird.conf /services/bird/bird.conf
+    else
+        echo "function n_AnoNet_mine (prefix arg) {
  if arg ~ [ $P2A_NET/24+ ] then return true;
 return false; };
 
@@ -190,6 +193,7 @@ protocol direct direct_AnoNet_routes { table AnoNet_routes;
  interface \"eth0\";
  import filter only_AnoNet;
 }" > /services/bird/bird.conf
+    fi
 
     for PEER in `ls /etc/peer2anonet/peers`; do
         mkdir -p /services/"$PEER"
@@ -409,14 +413,14 @@ CONFIGURE_DNS(){
     )
 
     echo -e '\nCONFIGURE DNS:\n'
-    NICK=`cat conf/git_name`
-    TINYDNS_ROOT_IP=`cat conf/tinydns__rootsrvrip`
-    TINYDNS_ROOT_DOMAIN=`cat conf/tinydns__rootsrvrname`
-    TINYDNS_ANO_IP=`cat conf/tinydns__tldsrvrip`
-    TINYDNS_ANO_DOMAIN=`cat conf/tinydns__tldsrvrname`
-    TINYDNS_IP=`cat conf/tinydns__srvrip`
-    TINYDNS_DOMAIN=`cat conf/tinydns__srvrname`
-    GIT_IP=`cat conf/gitd_ip`
+    NICK=`cat conf/git_name` || exit 1
+    TINYDNS_ROOT_IP=`cat conf/tinydns__rootsrvrip` || exit 1
+    TINYDNS_ROOT_DOMAIN=`cat conf/tinydns__rootsrvrname` || exit 1
+    TINYDNS_ANO_IP=`cat conf/tinydns__tldsrvrip` || exit 1
+    TINYDNS_ANO_DOMAIN=`cat conf/tinydns__tldsrvrname` || exit 1
+    TINYDNS_IP=`cat conf/tinydns__srvrip` || exit 1
+    TINYDNS_DOMAIN=`cat conf/tinydns__srvrname` || exit 1
+    GIT_IP=`cat conf/gitd_ip` || exit 1
     GIT_DOMAIN="git.$NICK.ano"
 
     ip addr add $TINYDNS_ROOT_IP/32 dev lo > /dev/null 2>&1
