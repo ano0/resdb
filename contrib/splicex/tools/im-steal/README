@@ -10,6 +10,13 @@ SPLICEX USAGE:
 
 splicex --command='im-steal <prpl-protocol> <username> PASSWORD' --<modules> --test='Account Connected'
 
+PROXY:
+        --command='torify im-steal <prpl-protocol> <username> PASSWORD'
+
+        --command='usewithtor im-steal <prpl-protocol> <username> PASSWORD'
+
+        --command='proxychains im-steal <prpl-protocol> <username> PASSWORD'
+
 DEPENDS:
 	libpurple-dev, libpurple
 
