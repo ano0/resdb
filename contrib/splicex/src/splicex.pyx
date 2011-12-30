@@ -706,11 +706,14 @@ elif MixCustom is not None and RestoreSwitch is False:
 
 Word = []
 def REGULAR():
+    global Word
     ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      Word.append(line.replace('\n', ''))
+    Word = list(set(Word))
 
 def L337():
+    global Word
     ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      line = line.replace("a", "4", 1)
@@ -1118,13 +1121,17 @@ def L337():
      line = line.replace("t", "7")
      line = line.replace("z", "2")
      Word.append(line.replace('\n', ''))
+    Word = list(set(Word))
 
 def BW():
+    global Word
     ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      Word.append(line[::-1].replace('\n', ''))
+    Word = list(set(Word))
 
 def CAPS():
+    global Word
     ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
          line = line.replace('\n', '')
@@ -1523,8 +1530,10 @@ def CAPS():
      line = line.replace("z", "Z")
      if line.__contains__("Z"):
       Word.append(line.replace('\n', ''))
+    Word = list(set(Word))
 
 def MIX():
+    global Word
     for Input in MixChars:
      ReadDictionary = open(dictionary, 'r')
      for line in ReadDictionary:
@@ -1592,13 +1601,17 @@ def MIX():
          c += let
          b = b + 1
       Word.append(c)
+    Word = list(set(Word))
 
 def MD5():
+    global Word
     ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      Word.append(md5(line.replace('\n', '')).hexdigest())
+    Word = list(set(Word))
 
 def WEP5():
+    global Word
     ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      i = 0
@@ -1609,8 +1622,10 @@ def WEP5():
       line = line.encode('hex')
       line = line.replace('\n', '')
       Word.append(line.replace('0a', ''))
+    Word = list(set(Word))
 
 def WEP13():
+    global Word
     ReadDictionary = open(dictionary, 'r')
     for line in ReadDictionary:
      i = 0
@@ -1621,9 +1636,11 @@ def WEP13():
       line = line.encode('hex')
       line = line.replace('\n', '')
       Word.append(line.replace('0a', ''))
+    Word = list(set(Word))
 
 
 def SOCEN():
+    global Word
     socen = []
     socen_a = []
     socen_words = []
@@ -1673,7 +1690,8 @@ def SOCEN():
      for b in socen_words:
       for c in socen_words:
        if a != b and a != c and b != c:
-        Word.append(a + b + c)    
+        Word.append(a + b + c)
+    Word = list(set(Word))   
 
     
 if RegularSwitch is True:
