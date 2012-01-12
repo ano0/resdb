@@ -21,6 +21,7 @@ USAGE(){
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-daemontools   installs daemontools'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp     installs ucspi-tcp'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-djbdns        installs djbdns'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-nacl          installs nacl'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure-dns         configures dnscache and tinydns zones'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --update-dns            updates tinydns-ano zone\n'
     exit 0
@@ -531,6 +532,13 @@ UPDATE_DNS(){
     )
     }
 
+INSTALL_NACL(){
+    wget http://hyperelliptic.org/nacl/nacl-20110221.tar.bz2
+    bunzip2 < nacl-20110221.tar.bz2 | tar -xf -
+    cd nacl-20110221
+    ./do
+    }
+
 
 if [ "$1" == '--configure' ]; then
     CONFIGURE
@@ -548,6 +556,8 @@ elif [ "$1" == '--install-ucspi-tcp' ]; then
     INSTALL_UCSPI_TCP
 elif [ "$1" == '--install-djbdns' ]; then
     INSTALL_DJBDNS
+elif [ "$1" == '--install-nacl' ]; then
+    INSTALL_NACL
 elif [ "$1" == '--configure-dns' ]; then
     CONFIGURE_DNS
 elif [ "$1" == '--update-dns' ]; then
