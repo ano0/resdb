@@ -438,6 +438,8 @@ CONFIGURE_DNS(){
     GIT_IP=`cat conf/gitd_ip` || exit 1
     GIT_DOMAIN="git.$NICK.ano"
 
+    ./scripts/add_dom $NICK.ano $NICK $TINYDNS_DOMAIN/$TINYDNS_IP > /dev/null 2>&1
+
     if [ -w /etc/rc.local ]; then
         if [[ $(cat /etc/rc.local) != *"ip addr add $TINYDNS_ROOT_IP/32 dev lo &"* ]]; then
             echo "ip addr add $TINYDNS_ROOT_IP/32 dev lo &" >> /etc/rc.local
