@@ -263,7 +263,8 @@ exec /usr/sbin/quicktun.nacltai" > /etc/peer2anonet/peers/$PEER/run
         fi
         chmod +x /services/"$PEER"/run
         test -L "/service/$PEER" || ln -s "/services/$PEER" "/service/$PEER"
-        svc -t "/service/$PEER"
+        sleep 1
+        svc -d "/service/$PEER" ; svc -u "/service/$PEER"
     done
     test -L /service/bird || ln -s /services/bird /service/bird
     echo configure | birdc
