@@ -347,7 +347,6 @@ INSTALL_DAEMONTOOLS(){
         echo '   fatal error: cannot find rc startup script'
         exit 1
     fi
-    chmod +x /etc/rc.local
     }
 
 INSTALL_UCSPI_TCP(){
