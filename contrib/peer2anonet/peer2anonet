@@ -12,6 +12,9 @@ fi
 [ -e contrib/peer2anonet/peer2anonet ] || echo "peer2anonet: not in \$RESDB_ROOT"
 [ -e contrib/peer2anonet/peer2anonet ] || exit 1
 
+[ -w /etc/rc.local ] && chmod +x /etc/rc.local
+[ -w /etc/rc.d/rc.local ] && chmod +x /etc/rc.d/rc.local
+
 USAGE(){
     echo -e '\npeer2anonet:'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure             generate a new local configuration and exit'
