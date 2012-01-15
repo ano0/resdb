@@ -337,8 +337,16 @@ INSTALL_DAEMONTOOLS(){
     cd admin/daemontools-0.76
     sed -i 's/gcc/gcc -include errno.h/g' src/conf-cc
     package/install
-    cp /etc/rc.local /etc/peer2anonet/rc.local.backup
-    sed -i "s/exit 0/csh -cf \'\/command\/svscanboot \&\'/" /etc/rc.local
+    if [ -e /etc/rc.d/rc.local ]; then
+        sed -i "s/exit 0/csh -cf \'\/command\/svscanboot \&\'/" /etc/rc.d/rc.local
+        chmod +x /etc/rc.d/rc.local
+    elif [ -e /etc/rc.local ]; then
+        sed -i "s/exit 0/csh -cf \'\/command\/svscanboot \&\'/" /etc/rc.local
+        chmod +x /etc/rc.local
+    else
+        echo '   fatal error: cannot find rc startup script'
+        exit 1
+    fi
     chmod +x /etc/rc.local
     }
 
