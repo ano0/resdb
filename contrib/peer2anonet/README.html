@@ -2,135 +2,125 @@
 <pre>
 <b>DESCRIPTION:</b>
 
-    peer2anonet is an autoconfiguration utility for setting
-    up core services on AnoNet2. Enjoy :-).
+    peer2anonet is an autoconfiguration utility for
+    setting up core services on AnoNet2. Enjoy :-).
 
 <b>DEPENDS ON:</b>
 
-    quicktun, bird, bash for now. it also installs some cool shit
-    that you'll use later.
+    quicktun, bird, bash for now. it also installs
+    some cool shit that you'll use later.
 
 <b>AUTHOR:</b>
 
     d3v11 from <a href="http://www.d3v11.ano/">www.d3v11.ano</a>, somtimes, maybe, dunno.
 
-    <b>REPORT BULLSHIT TO:</b>
-
-        <b>IRC:</b>
+<b>REPORT BULLSHIT TO:</b>
         
-            /relayhell/d3v11
+    /relayhell/d3v11
 
-        <b>EMAIL:</b>
-        
-            d3v11@d3v11.ano
+    d3v11@d3v11.ano
 
 <b>USAGE:</b>
 
-    <b>From $RESDB_ROOT do:</b>
+    ./contrib/peer2anonet/peer2anonet --help
+    ./contrib/peer2anonet/peer2anonet --rtfm
 
-        ./contrib/peer2anonet/peer2anonet --configure             generate a new local configuration and exit
+<b>TORIFY:</b>
 
-        ./contrib/peer2anonet/peer2anonet --update                regenerate peer configurations
+    --install-* flags should be compatible with Tor:
 
-        ./contrib/peer2anonet/peer2anonet --configure-peer        generate a new peer configuration and update
+    export http_proxy='http://127.0.0.1:8118/'
+    ./contrib/peer2anonet/peer2anonet --install-*
 
-        ./contrib/peer2anonet/peer2anonet --rm-peer               remove a peer configuration and update
+    torify ./contrib/peer2anonet/peer2anonet --install-*
 
-        ./contrib/peer2anonet/peer2anonet --install-daemontools   installs daemontools
+    usewithtor ./contrib/peer2anonet/peer2anonet --install-*
 
-        ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp     installs ucspi-tcp
+<b>CONFIGURE:</b>
 
-        ./contrib/peer2anonet/peer2anonet --install-djbdns        installs djbdns
+    I highly recommend that before you use peer2anonet
+    you ./configure resdb with tinydns support.
 
-        ./contrib/peer2anonet/peer2anonet --configure-dns         configures dnscache and tinydns zones
+    ./contrib/peer2anonet/peer2anonet --configure
 
-        ./contrib/peer2anonet/peer2anonet --update-dns            updates tinydns-ano zone
+    <b>EXAMPLES:</b>
 
-<b>RTFM:</b>
+        Enter your AnoNet subnet: 1.1.5.0
+        Enter your AnoNet router: 1.1.5.1
+        Enter your peering ip: 1.1.5.2
+        Enter your AnoNet asn: 1150
 
-    <b>CONFIGURE:</b>
+<b>CONFIGURE PEER:</b>
 
-        I highly recommend that before you use peer2anonet
-        you ./configure resdb with tinydns support.
+    ./contrib/peer2anonet/peer2anonet --configure-peer
 
-        ./contrib/peer2anonet/peer2anonet --configure
+    <b>KEY PAIRS:</b>
 
-        <b>EXAMPLES:</b>
+        before running peer2anonet to configure peers
+        you can use quicktun to generate keypairs:
 
-            Enter your AnoNet subnet: 1.1.5.0
-            Enter your AnoNet router: 1.1.5.1
-            Enter your peering ip: 1.1.5.2
-            Enter your AnoNet asn: 1150
+        quicktun.keypair < /dev/random
 
-    <b>CONFIGURE PEER:</b>
+    <b>EXAMPLES:</b>
 
-        ./contrib/peer2anonet/peer2anonet --configure-peer
+        Enter your peer's name: d3v11
+        Enter your peer's remote ip: 11.11.55.1
+        Enter your peer's peering ip: 1.1.5.2
+        Enter your peer's remote port: 21150
+        Enter your local port: 61150
+        Enter your peer's asn: 1150
+        Enter your peer's public key: * see KEY PAIRS above *
+        Enter your private key: * see KEY PAIRS above *
 
-            <b>KEY PAIRS:</b>
+    <b>/SERVICE/$PEER/RUN CHANGES:</b>
 
-                before running peer2anonet to configure peers you can use
-                quicktun to generate keypairs:
+        peer2anonet exports the /service/$PEER/run file to
+        /etc/peer2anonet/peers/$PEER/run. If you need to
+        create customizations for peerings then make 
+        adjustments to that file.
 
-                    quicktun.keypair < /dev/random
+    <b>CONFIGURATION FILES:</b>
 
-            <b>EXAMPLES:</b>
+        If /etc/peer2anonet/bird.conf exists, then
+        peer2anonet will not create a new bird. Instead
+        it will use this bird.conf and append new protocols
+        to it. 
 
-                Enter your peer's name: d3v11
-                Enter your peer's remote ip: 11.11.55.1
-                Enter your peer's peering ip: 1.1.5.2
-                Enter your peer's remote port: 21150
-                Enter your local port: 61150
-                Enter your peer's asn: 1150
-                Enter your peer's public key: * see KEY PAIRS above *
-                Enter your private key: * see KEY PAIRS above *
-
-            <b>RUN CHANGES:</b>
-
-                peer2anonet exports the /service/$PEER/run file to
-                /etc/peer2anonet/peers/$PEER/run. If you need to
-                create customizations for peerings then make adjustments
-                to that file.
-
-            <b>CONFIGURATION FILES:</b>
-
-                If /etc/peer2anonet/bird.conf exists, then peer2anonet
-                will not create a new bird. Instead it will use this
-                bird.conf and append new protocols to it. 
-
-                /etc/peer2anonet/peers/$PEER/* contains:
+        /etc/peer2anonet/peers/$PEER/* contains:
                 
-                    asn  local_port  peering_ip  pubkey  remote_ip  remote_port  run  seckey
+        asn  local_port  peering_ip  pubkey
+        remote_ip  remote_port  run  seckey
 
-                In the event you want to reconfigure a peer's tunnel you can alter the run
-                file and do `--update', rm run and modify the above files then use `--update',
-                or reconfigure the peering tunnel altogether with --configure-peer and choose
-                that peer's name. If you think this is absurd then you're probably right! I 
-                plan on doing something with these files later.
+        In the event you want to reconfigure a peer's tunnel
+        you can alter the run file and do `--update', rm run
+        and modify the above files then use `--update',  or
+        reconfigure the peering tunnel altogether with
+        --configure-peer and choose that peer's name. If you
+        think this is absurd then you're probably right! I 
+        plan on doing something with these files later.
 
-    <b>CONFIGURE DNS:</b>
+<b>CONFIGURE DNS:</b>
 
-        If you did not ./configure resdb with tinydns support
-        then you need to do that before using this function.
+    If you did not ./configure resdb with tinydns support
+    then you need to do that before using this function.
 
-        also before using you will need to have installed
-        daemontools, djbdns, and ucspi-tcp. peer2anonet
-        can do this for you with --install-* options.
+    also before using you will need to have installed
+    daemontools, djbdns, and ucspi-tcp. peer2anonet
+    can do this for you with --install-* options.
 
-        ./contrib/peer2anonet/peer2anonet --configure-dns
+    ./contrib/peer2anonet/peer2anonet --configure-dns
 
-        <b>UPDATE DNS:</b>
+<b>UPDATE DNS:</b>
 
-            After a successful `--configure-dns', you can now
-            enjoy to use `--update-dns' to bring your AnoNet
-            domains up to speed.
+    After a successful `--configure-dns', you can now
+    enjoy to use `--update-dns' to bring your AnoNet
+    domains up to speed.
 
-    <b>COMPLAIN:</b>
+<b>COMPLAIN:</b>
 
-        If this README doesn't tell you what you need to know
-        you can head over to www.d3v11.ano/peering. If that
-        doesn't get you what you want then either complain to
-        me or shoot both of us in the face.
+    If this README doesn't tell you what you need to know
+    you can head over to www.d3v11.ano/peering. If that
+    doesn't get you what you want then either complain to
+    me or shoot both of us in the face.
 
-
-      
 </pre></font></body></html>
