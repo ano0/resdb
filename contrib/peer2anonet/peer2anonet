@@ -351,6 +351,7 @@ INSTALL_DAEMONTOOLS(){
     cd admin/daemontools-0.76
     sed -i 's/gcc/gcc -include errno.h/g' src/conf-cc
     package/install
+    csh -cf '/command/svscanboot &'
     }
 
 INSTALL_UCSPI_TCP(){
@@ -600,6 +601,3 @@ elif [ "$1" == '--update-dns' ]; then
 else
     USAGE
 fi
-
-
-
