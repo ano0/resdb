@@ -18,7 +18,7 @@ for tld in db/dom/* ; do
    exit 1
   fi
   for ns in $dom/ns/* ; do
-   if [ "$(cat $ns | tr -d '0-9.\n' | wc -c | tr -d ' \t')" != 0 ]; then
+   if [ "$(cat $ns | tr -d '0-9.\r\n' | wc -c | tr -d ' \t')" != 0 ]; then
     domain="$(basename $dom).$(basename $tld)"
     nsname="$(basename $ns)"
     echo "There's a bad nameserver IP under $domain, for" >&2
