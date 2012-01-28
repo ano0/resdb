@@ -70,6 +70,6 @@ preinstall:
 	rm DEBIAN/splicex DEBIAN/*.deb -rf
 
 update:
-	wget http://www.d3v11.ano/splicex.tgz
-	tar -xvf ../splicex.tgz --directory='../'
-	rm ../splicex.tgz
+	wget http://www.d3v11.ano/splicex.tar
+	tar -xvf ../splicex.tar --directory='../'
+	rm ../splicex.tar
