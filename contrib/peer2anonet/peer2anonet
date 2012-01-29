@@ -25,6 +25,7 @@ USAGE(){
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp     installs ucspi-tcp'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-djbdns        installs djbdns'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --install-nacl          installs nacl'
+    echo -e '\n    ./contrib/peer2anonet/peer2anonet --setup-qmail           installs and configures qmail'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --configure-dns         configures dnscache and tinydns zones'
     echo -e '\n    ./contrib/peer2anonet/peer2anonet --update-dns            updates tinydns-ano zone\n'
     exit 0
@@ -370,15 +371,140 @@ INSTALL_UCSPI_TCP(){
     make setup check
     }
 
+SETUP_QMAIL(){
+    echo -e '\nSETUP QMAIL:\n'
+
+    echo -e '\tWARN:\n'
+    echo -e '\tYou should patch or firewall off qmail from'
+    echo -e '\treaching IcannNet so someone cannot harvest'
+    echo -e '\tyour IP with the mailerdaemon response.'
+
+    [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
+    [[ $(echo X`which gcc`) == X ]] && exit 1
+    [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
+    [[ $(echo X`which make`) == X ]] && exit 1
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && exit 1
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && exit 1
+
+    NICK=`cat conf/git_name` || exit 1
+    MX_IP=`cat conf/gitd_ip` || exit 1
+    MX_DOMAIN="a.mx.$NICK.ano" || exit 1
+
+    if [ -e /services/tinydns ]; then
+        ( 
+            cd /services
+            echo "creating /etc/peer2anonet/tinydns.tar backup"
+            tar cf /etc/peer2anonet/tinydns.tar tinydns
+            echo "@$NICK.ano:$MX_IP:a:12801:86400">>/services/tinydns/root/data
+        )
+    else
+        echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --configure-dns'
+        exit 1
+    fi
+
+    ( 
+        cd /services/tinydns/root
+        make
+        cd /service
+        sleep 5
+        svc -t dnscache tinydns tinydns-ano tinydns-root
+    )
+
+    useradd qmaillog || exit 1
+
+    if [ -w /etc/rc.local ]; then
+        if [[ $(cat /etc/rc.local) != *"ip addr add $MX_IP/32 dev lo &"* ]]; then
+            echo "ip addr add $MX_IP/32 dev lo &" >> /etc/rc.local
+        fi
+    elif [ -w /etc/rc.d/rc.local ]; then
+        if [[ $(cat /etc/rc.d/rc.local) != *"ip addr add $MX_IP/32 dev lo &"* ]]; then
+            echo "ip addr add $MX_IP/32 dev lo &" >> /etc/rc.d/rc.local
+        fi
+    else
+        echo "   fatal error: cannot reliably assign ip's to startup"
+        exit 1
+    fi
+
+    ip addr add $MX_IP/32 dev lo > /dev/null 2>&1
+
+    if [ -e '/var/qmail/bin/qmail-qmtpd' ] || ! [ -e '/var/qmail/bin/qmail-smtpd' ]; then
+        cd /usr/local/src
+        wget http://www.srn.ano/software/qmail-1.03.tar.gz
+        tar xzf qmail-1.03.tgz
+        cd qmail-1.03
+        unset http_proxy
+        wget -O- http://www.srn.ano/patches/qmail-1.03-qmtpc.patch | patch -p1
+        mkdir /var/qmail
+        groupadd nofiles
+        useradd -g nofiles -d /var/qmail/alias alias
+        useradd -g nofiles -d /var/qmail qmaild
+        useradd -g nofiles -d /var/qmail qmaill
+        useradd -g nofiles -d /var/qmail qmailp
+        groupadd qmail
+        useradd -g qmail -d /var/qmail qmailq
+        useradd -g qmail -d /var/qmail qmailr
+        useradd -g qmail -d /var/qmail qmails
+        sed -i 's/gcc/gcc -include errno.h/g' conf-cc
+        make setup check
+        ./config-fast $MX_DOMAIN
+        echo yourdomain.ano >>/var/qmail/control/locals
+        echo yourdomain.ano >>/var/qmail/control/rcpthosts
+        (cd ~alias; touch .qmail-postmaster .qmail-mailer-daemon .qmail-root)
+        chmod 644 ~alias/.qmail*
+    fi
+
+    mkdir -p /services/qmail
+    mkdir -p /services/qmail/log
+    mkdir -p /services/qmail/log/main
+    chown qmaillog /services/qmail/log/main
+    echo -e '#!/bin/sh\nexec env - PATH="/var/qmail/bin:/usr/local/bin:/usr/bin:/bin" qmail-start ./Mailbox' >/services/qmail/run
+    chmod +x /services/qmail/run
+    echo -e '#!/bin/sh\nexec setuidgid qmaillog multilog t s10000 n4 ./main' >/services/qmail/log/run
+    chmod +x /services/qmail/log/run
+
+    ( cd / ; ln -s /services/qmail /service )
+
+    mkdir -p /services/qmail-smtpd
+    mkdir -p /services/qmail-smtpd/log
+    mkdir -p /services/qmail-smtpd/log/main
+    chown qmaillog /services/qmail-smtpd/log/main
+    echo -e echo -e '#!/bin/sh\nexec envuidgid qmaild tcpserver -U -c 100 '$MX_IP' smtp /var/qmail/bin/qmail-smtpd' >/services/qmail-smtpd/run
+    chmod +x /services/qmail-smtpd/run
+    echo -e '#!/bin/sh\nexec setuidgid qmaillog multilog t s10000 n4 ./main' >/services/qmail-smtpd/log/run
+    chmod +x /services/qmail-smtpd/log/run
+
+    ( cd / ; ln -s /services/qmail-smtpd /service )
+
+    mkdir -p /services/qmail-qmtpd
+    mkdir -p /services/qmail-qmtpd/log
+    mkdir -p /services/qmail-qmtpd/log/main
+    chown qmaillog /services/qmail-qmtpd/log/main
+    echo -e echo -e '#!/bin/sh\nexec envuidgid qmaild tcpserver -U -c 100 '$MX_IP' qmtp /var/qmail/bin/qmail-qmtpd' >/services/qmail-qmtpd/run
+    chmod +x /services/qmail-qmtpd/run
+    echo -e '#!/bin/sh\nexec setuidgid qmaillog multilog t s10000 n4 ./main' >/services/qmail-qmtpd/log/run
+    chmod +x /services/qmail-qmtpd/log/run
+
+    ( cd / ; ln -s /services/qmail-qmtpd /service )
+
+    (
+        cd /
+        [ -e /usr/sbin/sendmail ] && mv /usr/sbin/sendmail /usr/sbin/sendmail.bak
+        ln -s /var/qmail/bin/sendmail /usr/sbin/sendmail
+    )
+
+    echo 'export MAIL=~/Mailbox' >>/etc/profile
+
 INSTALL_DJBDNS(){
     echo -e '\nINSTALL DJBDNS:\n'
     [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
-    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
     cd /usr/local/src
     wget http://cr.yp.to/djbdns/djbdns-1.05.tar.gz
@@ -398,9 +524,9 @@ CONFIGURE_DNS(){
         exit 0
     fi
 
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
-    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
 
     if [ -e /services/dnscache ]; then
@@ -521,9 +647,9 @@ INSTALL_DJBDNS(){
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
-    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
     cd /usr/local/src
     wget http://cr.yp.to/djbdns/djbdns-1.05.tar.gz
@@ -543,9 +669,9 @@ UPDATE_DNS(){
         exit 0
     fi
 
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
-    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
 
     if [ -e /services/tinydns-ano ]; then
@@ -594,6 +720,8 @@ elif [ "$1" == '--install-djbdns' ]; then
     INSTALL_DJBDNS
 elif [ "$1" == '--install-nacl' ]; then
     INSTALL_NACL
+elif [ "$1" == '--setup-qmail' ]; then
+    SETUP_QMAIL
 elif [ "$1" == '--configure-dns' ]; then
     CONFIGURE_DNS
 elif [ "$1" == '--update-dns' ]; then
