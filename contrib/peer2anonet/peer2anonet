@@ -373,6 +373,12 @@ INSTALL_UCSPI_TCP(){
 
 SETUP_QMAIL(){
     echo -e '\nSETUP QMAIL:\n'
+
+    echo -e '\tWARN:\n'
+    echo -e '\tYou should patch or firewall off qmail from'
+    echo -e '\treaching IcannNet so someone cannot harvest'
+    echo -e '\tyour IP with the mailerdaemon response.'
+
     [[ $(echo X`which gcc`) == X ]] && echo '   fatal error: cannot find gcc'
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
