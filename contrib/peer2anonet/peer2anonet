@@ -377,9 +377,9 @@ SETUP_QMAIL(){
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
-    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
 
     NICK=`cat conf/git_name` || exit 1
@@ -387,7 +387,7 @@ SETUP_QMAIL(){
     MX_DOMAIN="a.mx.$NICK.ano" || exit 1
 
     echo "@$NICK.ano:$MX_IP:a:12801:86400">>/services/tinydns/root/data || 
-        echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --configure-dns' &&
+        echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --configure-dns' &&
         exit 1
 
     if [ -e /services/tinydns ]; then
@@ -496,9 +496,9 @@ INSTALL_DJBDNS(){
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
-    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
     cd /usr/local/src
     wget http://cr.yp.to/djbdns/djbdns-1.05.tar.gz
@@ -518,9 +518,9 @@ CONFIGURE_DNS(){
         exit 0
     fi
 
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
-    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
 
     if [ -e /services/dnscache ]; then
@@ -641,9 +641,9 @@ INSTALL_DJBDNS(){
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
-    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
     cd /usr/local/src
     wget http://cr.yp.to/djbdns/djbdns-1.05.tar.gz
@@ -663,9 +663,9 @@ UPDATE_DNS(){
         exit 0
     fi
 
-    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-ucspi-tcp'
+    [[ $(echo X`which tcpserver`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-ucspi-tcp'
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
-    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools'
+    [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
 
     if [ -e /services/tinydns-ano ]; then
