@@ -386,16 +386,16 @@ SETUP_QMAIL(){
     MX_IP=`cat conf/gitd_ip` || exit 1
     MX_DOMAIN="a.mx.$NICK.ano" || exit 1
 
-    echo "@$NICK.ano:$MX_IP:a:12801:86400">>/services/tinydns/root/data || 
-        echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --configure-dns' &&
-        exit 1
-
     if [ -e /services/tinydns ]; then
         ( 
             cd /services
             echo "creating /etc/peer2anonet/tinydns.tar backup"
             tar cf /etc/peer2anonet/tinydns.tar tinydns
+            echo "@$NICK.ano:$MX_IP:a:12801:86400">>/services/tinydns/root/data
         )
+    else
+        echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --configure-dns' &&
+        exit 1
     fi
 
     ( 
