@@ -32,6 +32,9 @@
     export http_proxy='http://127.0.0.1:8118/'
     ./contrib/peer2anonet/peer2anonet --install-*
 
+    You can use torify or usewithtor on most options
+    but setting http_proxy is more reliable.
+
     torify ./contrib/peer2anonet/peer2anonet --install-*
 
     usewithtor ./contrib/peer2anonet/peer2anonet --install-*
@@ -115,6 +118,22 @@
     After a successful `--configure-dns', you can now
     enjoy to use `--update-dns' to bring your AnoNet
     domains up to speed.
+
+<b>SETUP QMAIL:</b>
+
+    If you did not ./configure resdb with tinydns support
+    then you need to do that before using this function.
+
+    also before using you will need to have installed
+    daemontools, djbdns, and ucspi-tcp. peer2anonet
+    can do this for you with --install-* options.
+
+    setup-qmail will download and install qmail if it
+    isn't already installed and configure your
+    mx domain as a.mx.$nick.ano with the ip of your
+    resdb git-daemon ip.
+
+    ./contrib/peer2anonet/peer2anonet --setup-qmail
 
 <b>COMPLAIN:</b>
 

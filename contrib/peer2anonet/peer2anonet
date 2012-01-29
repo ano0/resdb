@@ -428,6 +428,7 @@ SETUP_QMAIL(){
         wget http://www.srn.ano/software/qmail-1.03.tar.gz
         tar xzf qmail-1.03.tgz
         cd qmail-1.03
+        unset http_proxy
         wget -O- http://www.srn.ano/patches/qmail-1.03-qmtpc.patch | patch -p1
         mkdir /var/qmail
         groupadd nofiles
