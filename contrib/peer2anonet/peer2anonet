@@ -387,7 +387,7 @@ SETUP_QMAIL(){
     MX_DOMAIN="a.mx.$NICK.ano" || exit 1
 
     echo "@$NICK.ano:$MX_IP:a:12801:86400">>/services/tinydns/root/data || 
-        echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --install-daemontools' &&
+        echo '   fatal error: needs ./contrib/peer2anonet/peer2nonet --configure-dns' &&
         exit 1
 
     if [ -e /services/tinydns ]; then
