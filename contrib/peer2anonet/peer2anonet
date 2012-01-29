@@ -394,7 +394,7 @@ SETUP_QMAIL(){
             echo "@$NICK.ano:$MX_IP:a:12801:86400">>/services/tinydns/root/data
         )
     else
-        echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --configure-dns' &&
+        echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --configure-dns'
         exit 1
     fi
 
