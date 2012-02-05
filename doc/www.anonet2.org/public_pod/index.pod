@@ -46,7 +46,8 @@ Z<><table>
  <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://anortr.ucis.nl:8086/?channels=anonet&nick=Anonymous></td><td>L<aaya|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname (note 1))</td></tr>
  <tr><td>HTTP WebChatZ<></td><td>L<KwaakNet|http://webchat.kwaaknet.org/?c=AnoNet></td><td>L<naya|http://www.anonet2.org/irc_anonymity> (Visible IP, hidden username and realname, custom nickname (warning!) (note 1))</td></tr>
 -->
- <tr><td>IRCZ<></td><td>L<CA|irc://client.thruhere.net/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
+ <tr><td>IRCZ<></td><td>L<CA|irc://irc.anonet2.biz/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname 
+(note 2))</td></tr>
 <!--
  <tr><td>IRCZ<></td><td>L<SRN|irc://anortr.ucis.nl:8804/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2), and also blocks most CTCP messages)</td></tr>
 -->
@@ -98,7 +99,7 @@ are a few options available:
 
 =item *
 
-L<PIKAJ00 has a client port.|http://client.thruhere.net/> (You will
+L<www.anonet2.biz has a client port.|http://www.anonet2.biz/> (You will
 need openvpn for this option, but there is no need for routing software.)
 
 =item *
