@@ -1,0 +1,11 @@
+#!/bin/sh
+# READ ME:
+# If AS# is taken it will return the desired AS#
+# else it will not return the desired AS#
+echo -e "Enter path to resdb:\c"
+read resdb
+cd $resdb
+echo -e "Enter desired AS#:\c"
+read asn
+ls db/as/ | grep "^$asn\$"
+

@@ -1,0 +1,11 @@
+#!/bin/sh
+# READ ME:
+# If subnet is taken it will return the desired AS#
+# else it will not return the desired subnet
+echo -e "Enter path to resdb:\c"
+read resdb
+cd $resdb
+echo -e "Enter desired subnet:\c"
+read subnet
+cat db/ip/01/*/*/cidr | grep "^$subnet\$"
+
