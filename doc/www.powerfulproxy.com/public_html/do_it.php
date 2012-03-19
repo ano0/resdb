@@ -77,9 +77,8 @@ if ($info['http_code'] === 301) {
 			header('Location: '.$redirurl);
 		}
 	}
-} else {
-	if (in_array(strtok($info['content_type'], ';'), $REWRITE_CONTENT_TYPES)) $data = preg_replace(array_keys($REWRITE_PATTERNS), array_values($REWRITE_PATTERNS), $data, -1, $count);
 }
+if (in_array(strtok($info['content_type'], ';'), $REWRITE_CONTENT_TYPES)) $data = preg_replace(array_keys($REWRITE_PATTERNS), array_values($REWRITE_PATTERNS), $data, -1, $count);
 
 header('Content-Length: '.strlen($data));
 echo $data;
