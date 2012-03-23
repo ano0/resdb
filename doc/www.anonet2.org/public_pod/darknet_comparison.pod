@@ -40,19 +40,19 @@ Z<><table>
  Z<><tr>Z<><th>Centralized Critical InfrastructureZ<></th>Z<><td>wiki (includes resource database), client port, IRCZ<></td>Z<><td>noneZ<></td>Z<><td>wiki, IRCZ<></td>Z<><td>allZ<></td>Z<></tr>
  Z<><tr>Z<><th>Decentralized Critical InfrastructureZ<></th>Z<><td>routingZ<></td>Z<><td>allZ<></td>Z<><td>routing, resource databaseZ<></td>Z<><td>noneZ<></td>Z<></tr>
  Z<><tr>Z<><th>Current SizeZ<></th>Z<><td>10-15Z<></td>Z<><td>50-70Z<></td>Z<><td>60-90Z<></td>Z<><td>&lt;5Z<></td>Z<></tr>
- Z<><tr>Z<><th>Average Monthly GrowthZ<></th>Z<><td>~0%Z<></td>Z<><td>~15%Z<></td>Z<><td>&lt;5%%Z<></td>Z<><td>~0%Z<></td>Z<></tr>
- Z<><tr>Z<><th>Activity LevelZ<></th>Z<><td>lowZ<></td>Z<><td>medium-highZ<></td>Z<><td>low-mediumZ<></td>Z<><td>noneZ<></td>Z<></tr>
+ Z<><tr>Z<><th>Average Monthly GrowthZ<></th>Z<><td>~0%Z<></td>Z<><td>~0%Z<></td>Z<><td>~0%Z<></td>Z<><td>0%Z<></td>Z<></tr>
+ Z<><tr>Z<><th>Activity LevelZ<></th>Z<><td>lowZ<></td>Z<><td>low-highZ<></td>Z<><td>low-mediumZ<></td>Z<><td>noneZ<></td>Z<></tr>
  Z<><tr>Z<><th>Interdarknet ConnectivityZ<></th>Z<><td>censored access to AnoNet2 (must use AnoNet2 DNS), censored access to dn42 (must use AnoNet2 DNS)Z<></td>Z<><td>full routing to most of AnoNet1, full routing to part of dn42, full routing to VAnetZ<></td>Z<><td>censored access to AnoNet (1&amp;2, must use SRN's DNS), censored access to VAnet (must use SRN's DNS)Z<></td>Z<><td>full routing to part of AnoNet1, full routing to AnoNet2, full routing to part of dn42Z<></td>Z<></tr>
  Z<><tr>Z<><th>DNS CoverageZ<></th>Z<><td>AnoNet1Z<></td>Z<><td>AnoNet (1&amp;2), dn42, VAnet, IcannNetZ<></td>Z<><td>dn42, IcannNetZ<></td>Z<><td>AnoNet (1&amp;2), dn42, VAnet, IcannNetZ<></td>Z<></tr>
  Z<><tr>Z<><th>Proxy CoverageZ<></th>Z<><td>AnoNet1Z<></td>Z<><td>AnoNet (1&amp;2), IcannNetZ<></td>Z<><td>noneZ<></td>Z<><td>noneZ<></td>Z<></tr>
- Z<><tr>Z<><th>Web-Based Proxy CoverageZ<></th>Z<><td>noneZ<></td>Z<><td>AnoNet (1&amp;2), IcannNetZ<></td>Z<><td>noneZ<></td>Z<><td>noneZ<></td>Z<></tr>
+ Z<><tr>Z<><th>Web-Based Proxy CoverageZ<></th>Z<><td>noneZ<></td>Z<><td>AnoNet (1&amp;2), IcannNetZ<></td>Z<><td>AnoNetZ<></td>Z<><td>noneZ<></td>Z<></tr>
  Z<><tr>Z<><th>Peering PrerequisitesZ<></th>Z<><td>OpenVPN, BGP daemon, sustained IRC participation for over a month, and a miracleZ<></td>Z<><td>OpenVPN or tinc or L<quicktun|http://wiki.ucis.nl/QuickTun>, BGP daemon or static routingZ<></td>Z<><td>OpenVPN or tinc or L<quicktun|http://wiki.ucis.nl/QuickTun>, BGP daemon or static routing, and an available subnet, and a big-block owner that will not change the ownership of your subnet to someone elseZ<></td>Z<><td>depends on individual PoP policyZ<></td>Z<></tr>
  Z<><tr>Z<><th colspan='5'>ServicesZ<></th>Z<></tr>
  Z<><tr>Z<><td>&nbspZ<></td>Z<><th>AnoNet1Z<></th>Z<><th>AnoNet2Z<></th>Z<><th>dn42Z<></th>Z<><th>VAnetZ<></th>Z<></tr>
  Z<><tr>Z<><th>RoutingZ<></th>Z<><td>decentralizedZ<></td>Z<><td>decentralizedZ<></td>Z<><td>decentralizedZ<></td>Z<><td>centralizedZ<></td>
  Z<><tr>Z<><th>Resource DatabaseZ<></th>Z<><td>centralized (part of wiki)Z<></td>Z<><td>decentralized (part of git-based resdb)Z<></td>Z<><td>decentralized (part of monotone-based registry)Z<></td>Z<><td>centralized (ask Borg)Z<></td>Z<></tr>
  Z<><tr>Z<><th>DocumentationZ<></th>Z<><td>centralized (crzydmnd's wiki)Z<></td>Z<><td>decentralized (part of git-based resdb, and many wikis)Z<></td>Z<><td>centralized (helios's wiki)Z<></td>Z<><td>centralized (vanet.org)Z<></td>Z<></tr>
- Z<><tr>Z<><th>ChatroomZ<></th>Z<><td>centralized (single IRCnet)Z<></td>Z<><td>decentralized (ad-hoc relaying between IRC and Jabber chatrooms, and a L<UDPMSG4|http://www.powerfulproxy.com/do_it.php/http/www.srw.ano/udpmsg4> cloud)Z<></td>Z<><td>semicentralized (single IRCnet, with a Jabber chatroom relay, and a L<UDPMSG4|http://www.powerfulproxy.com/do_it.php/http/www.srw.ano/udpmsg4> relay)Z<></td>Z<><td>temporarily decentralized (shared with AnoNet2)Z<></td>Z<></tr>
+ Z<><tr>Z<><th>ChatroomZ<></th>Z<><td>centralized (single IRCnet)Z<></td>Z<><td>decentralized (the public udpmsg4 chat cloud)Z<></td>Z<><td>centralized (single IRCnet)Z<></td>Z<><td>centralized (KwaakNet)Z<></td>Z<></tr>
  Z<><tr>Z<><th>DNSZ<></th>Z<><td>centralized (from wiki), several official "rootservers"Z<></td>Z<><td>decentralized (from resdb), each user fields his own, public nameservers available for the lazyZ<></td>Z<><td>decentralized (from registry), multiple competing deploymentsZ<></td>Z<><td>centralized (from svn), centralized official deploymentZ<></td>Z<></tr>
  Z<><tr>Z<><th>BitTorrent Trackers/IndexersZ<></th>Z<><td>none?Z<></td>Z<><td>1 centralized and 1 decentralized (git-based)Z<></td>Z<><td>1 centralizedZ<></td>Z<><td>1 centralizedZ<></td>Z<></tr>
 Z<></table>
