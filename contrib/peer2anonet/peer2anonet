@@ -330,12 +330,10 @@ INSTALL_DAEMONTOOLS(){
     [[ $(echo X`which gcc`) == X ]] && exit 1
     [[ $(echo X`which make`) == X ]] && echo '   fatal error: cannot find make'
     [[ $(echo X`which make`) == X ]] && exit 1
-    [[ $(echo X`which csh`) == X ]] && echo '   fatal error: cannot find csh'
-    [[ $(echo X`which csh`) == X ]] && exit 1
 
     if [ -w /etc/inittab ]; then :
     elif [ -w /etc/rc.local ] && ! [ -w /etc/inittab ]; then
-        sed -i "s/exit 0/csh -cf \'\/command\/svscanboot \&\'/" /etc/rc.local
+        sed -i "s/exit 0/exec \/command\/svscanboot \&/" /etc/rc.local
         chmod +x /etc/rc.local
     else
         echo '   fatal error: cannot create reliable startup'
@@ -352,7 +350,7 @@ INSTALL_DAEMONTOOLS(){
     cd admin/daemontools-0.76
     sed -i 's/gcc/gcc -include errno.h/g' src/conf-cc
     package/install
-    csh -cf '/command/svscanboot &'
+    exec /command/svscanboot >/dev/null 2>&1 &
     }
 
 INSTALL_UCSPI_TCP(){
