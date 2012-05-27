@@ -1752,7 +1752,8 @@ PassAmount = 0
 StartTime = time.time() - 1
 if TIME != None:
  try:
-     TIME = TIME.split(", ")
+     TIME = TIME.replace(' ','')
+     TIME = TIME.split(",")
      sleep_now = int(TIME[0])
      sleep_for = int(TIME[1])
 
@@ -1765,6 +1766,7 @@ else:
 
 if LENGTH != None:
  try:
+     LENGTH = LENGTH.replace(' ','')
      LENGTH = LENGTH.split(", ")
      length_start = int(LENGTH[0])
      length_end = int(LENGTH[1])
