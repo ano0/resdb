@@ -561,6 +561,10 @@ find your anonymous sources.
 
 Well, even if you don't care about your anonymity and in fact _want_ everyone to know who you are, doing business on IcannNet isn't so safe, L<because you never know when a misguided government will sieze your domain for no real reason, without even admitting its mistake|http://torrentfreak.com/u-s-government-shuts-down-84000-websites-by-mistake-110216/>.  AnoNet domains are a safer investment, because it is far more difficult for someone to sieze an AnoNet domain.  In addition, L<PowerfulProxy|http://www.powerfulproxy.com/> now makes it possible to reach many AnoNet domains directly from IcannNet.
 
+=item Create the Programs
+
+L<not safe|http://www.forbes.com/sites/jonmatonis/2012/06/07/detaining-developer-at-us-border-increases-cryptocat-popularity/> L<create the programs|http://www.maximumpc.com/article/news/bitcoin_developer_denied_entry_us_confused_customs_agents> except anonymous
+
 =back
 
 =head2 Why Not to Join
