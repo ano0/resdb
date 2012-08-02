@@ -62,7 +62,7 @@ Z<><table>
  <tr><td>IRCZ<></td><td>L<SRN8 (tor)|irc://kvur4ogjijlvxsdm.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
  <tr><td>IRCZ<></td><td>L<sevilNatas (tor)|irc://p4hej3mnyqdtxwiu.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
  <tr><td>IRCZ<></td><td>L<d3v11 (tor)|irc://rbb3cizcd23x7w4g.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname)</td></tr>
- <tr><td>IRCZ<></td><td>L<NTMA (tor)|irc://uvqqv4xu22vfkhg2.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname, custom nickname(note 2))</td></tr>
+ <tr><td>IRCZ<></td><td>L<NTMA (tor)|irc://uvqqv4xu22vfkhg2.onion/anonet></td><td>L<aaoa|http://www.anonet2.org/irc_anonymity> (Hidden IP, username and realname (note 2))</td></tr>
 <!--
  <tr><td>IRCZ<></td><td>L<UFO|irc://anortr.ucis.nl:8805/anonet></td><td>L<aooo|http://www.anonet2.org/irc_anonymity> (Hidden IP, visible username and realname)</td></tr>
  <tr><td>IRCZ<></td><td>L<UFO|irc://irc.kwaaknet.org:6667/anonet></td><td>L<nooo|http://www.anonet2.org/irc_anonymity> (Visible IP, username and realname (warning!))</td></tr>
