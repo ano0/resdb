@@ -1,0 +1,25 @@
+=head1 About
+
+=head2 /OnionNet/katmagic
+
+=over
+
+ /OnionNet/katmagic> TriPh0rce: Anonet is this project to create an internet that is not governed by ICAAN regulations.
+ /OnionNet/katmagic> (Of course, it is run on networks governed by ICAAN regulations.)
+ /OnionNet/katmagic> It is about as secure as the regular internet, but they make grandiose and clearly false claims.
+ /OnionNet/katmagic> It's filled with people who can't speak English, and are generally uninformed.
+ /OnionNet/katmagic> Oh, and it's not anonymous, despite its claims.
+ /OnionNet/katmagic> Sounds great, right?
+ /OnionNet/katmagic> And it has no users.
+ /sfor/SeekingFor>  /OnionNet/katmagic> Oh, and it's not anonymous, despite its claims.
+ /sfor/SeekingFor> it can be, some peerings are established trough hidden services only
+ /OnionNet/TriPh0rce> sounds like something i'd really love
+ /OnionNet/katmagic> And everyone who uses it quotes things in a super annoying way.
+ /OnionNet/katmagic> And its maintainer runs an incredibly annoying bot that everyone hates.
+ /OnionNet/katmagic> I think that pretty much summarizes it.
+ /sfor/SeekingFor>  /OnionNet/katmagic> And everyone who uses it quotes things in a super annoying way.
+ /sfor/SeekingFor> what do you mean?
+ /OnionNet/katmagic> You just did it!
+ /NTMA/talamon> who is mad
+
+=back
