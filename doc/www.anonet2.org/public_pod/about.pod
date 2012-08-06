@@ -1,6 +1,6 @@
 =head1 About
 
-=head2 /OnionNet/katmagic
+=head2 /OnionNet/katmagic in #public
 
 =over
 
