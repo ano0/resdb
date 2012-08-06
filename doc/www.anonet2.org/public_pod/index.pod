@@ -13,6 +13,10 @@ Join us in chat for more information right now by loading L<http://client.thruhe
 
 =item *
 
+L<about|http://www.anonet2.org/about>
+
+=item *
+
 L<anonymity in general and its place in AnoNet in particular|http://www.anonet2.org/anonymity>
 
 =item *
