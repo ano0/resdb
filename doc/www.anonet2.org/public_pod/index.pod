@@ -1,6 +1,6 @@
 =head1 AnoNet, Take 2!
 
-Welcome to AnoNet! AnoNet is a highly decentralized darknet, aiming to create a censorship resistant network free from government influence and restrictions. AnoNet uses an IP network to accomplish this, as an alternative to the existing internet.
+Welcome to AnoNet! AnoNet is a highly decentralized darknet, aiming to create a censorship resistant network free from government influence and restrictions. AnoNet uses an IP network to accomplish this, as an alternative to the existing internet.  L<more informations|http://www.anonet2.org/about>
 
 =for comment
 You can read more information about AnoNet below, or on L<http://wiki.ucis.nl/Anonet>.
@@ -10,6 +10,10 @@ Join us in chat for more information right now by loading L<http://client.thruhe
 =head2 Theory
 
 =over
+
+=item *
+
+L<about|http://www.anonet2.org/about>
 
 =item *
 
