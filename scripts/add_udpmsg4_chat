@@ -1,11 +1,12 @@
 #!/bin/sh
-if [ -z $3 ]; then
- echo "Usage: $0 <chat> <owner> <pubkey> <seckey>" >&2; exit 255
+if [ -z $5 ]; then
+ echo "Usage: $0 <chat> <owner> <pubkey> <seckey> <topic>" >&2; exit 255
 fi
 chat="$1"
 owner="$2"
 pubkey="$3"
 seckey="$4"
+topic="$5"
 
 if [ "$(echo -n "${chat/chat\//}" | tr -d 'A-Za-z0-9_-' | wc -c | tr -d ' \t')" != 0 ]; then
  echo "udpmsg4 chats do not allow funny chars." >&2; exit 255
@@ -29,3 +30,5 @@ mkdir -p $fullchat/@ || exit 1
 echo -n "$owner" >"$fullchat/@/owner"
 echo -n "$pubkey" >"$fullchat/@/pubkey"
 echo -n "$seckey" >"$fullchat/@/seckey"
+echo -n "$topic" >"$fullchat/@/topic"
+echo -n "seckey" >"$fullchat/@/.gitignore"
