@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ -z $5 ]; then
+if [ -z "$5" ]; then
  echo "Usage: $0 <chat> <owner> <pubkey> <seckey> <topic>" >&2; exit 255
 fi
 chat="$1"
