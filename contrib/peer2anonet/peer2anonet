@@ -226,17 +226,23 @@ protocol bgp $PEER { table AnoNet_routes;
             cp /etc/peer2anonet/peers/$PEER/run /services/"$PEER"/run
         else
             echo "#!/bin/bash
-# uncomment if your peer has a dynamic IP
-#
-#export REMOTE_FLOAT=1
 
 # uncomment for debugging. you'll need to use ./run to view output instead
 # of svc -u /service/<peer name>
 #
 #export DEBUG=1
 
+# uncomment if your peer has a dynamic IP
+#
+#export REMOTE_FLOAT=1
+
+# comment if your peer has a dynamic IP
+#
 export REMOTE_ADDRESS=$REMOTEIP
 export REMOTE_PORT=$PEERPORT
+
+# not recommended to change these values
+#
 export LOCAL_PORT=$LOCALPORT
 export PRIVATE_KEY=$SECKEY
 export PUBLIC_KEY=$PUBKEY
@@ -247,7 +253,7 @@ export INTERFACE=ppp-$PEER
 # routes only to peers through IcannNet. If any of your peers use
 # dynamic IP's or you use Tor or i2p then this is probably NOT a
 # good idea. You may need to modify the DEFAULT_ROUTE code below.
-# If you run into problems with this please email d3v11@d3v11.ano
+# If you run into problems with this please /msg /relayhell/d3v11
 # so I can create a patch.
 #
 #DEFAULT_ROUTE=\`ip route show | grep default | cut -d' ' -f 3\`
@@ -258,9 +264,12 @@ export INTERFACE=ppp-$PEER
  ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
  ip addr add $P2A_ROUTE/32 dev \$INTERFACE scope global
  ip link set dev \$INTERFACE up
+
 # comment the following ping line to remove pinghack. this is a
 # trick used to help bird connect.
+#
  ping -c 1 -I \$INTERFACE $PEERIP -r -w 5
+
 ) &
 exec /usr/sbin/quicktun.nacltai" > /etc/peer2anonet/peers/$PEER/run
             cp /etc/peer2anonet/peers/$PEER/run /services/"$PEER"/run
@@ -391,7 +400,7 @@ SETUP_QMAIL(){
     MX_DOMAIN="a.mx.$NICK.ano" || exit 1
 
     if [ -e /services/tinydns ]; then
-        ( 
+        (
             cd /services
             echo "creating /etc/peer2anonet/tinydns.tar backup"
             tar cf /etc/peer2anonet/tinydns.tar tinydns
@@ -402,7 +411,7 @@ SETUP_QMAIL(){
         exit 1
     fi
 
-    ( 
+    (
         cd /services/tinydns/root
         make
         cd /service
@@ -605,7 +614,7 @@ CONFIGURE_DNS(){
     useradd Gdnscache
     useradd Gdnslog
     useradd Gtinydns
- 
+
     dnscache-conf Gdnscache Gdnslog /services/dnscache
     mv /services/dnscache/root/servers/@ /services/dnscache/root/servers/@.icann
     echo $TINYDNS_ROOT_IP >/services/dnscache/root/servers/@
@@ -630,7 +639,7 @@ CONFIGURE_DNS(){
     ./scripts/nameserver_autogen/tinydns_tld_datafile > /services/tinydns-ano/root/data
     ( cd /services/tinydns-ano/root ; make )
 
-    ( 
+    (
         cd /
         ln -s /services/dnscache /service/dnscache
         ln -s /services/tinydns /service/tinydns
@@ -674,7 +683,7 @@ UPDATE_DNS(){
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
 
     if [ -e /services/tinydns-ano ]; then
-        ( 
+        (
             cd /services
             echo "creating /etc/peer2anonet/tinydns-ano.tar backup"
             tar cf /etc/peer2anonet/tinydns-ano.tar tinydns-ano
@@ -685,7 +694,7 @@ UPDATE_DNS(){
     ./scripts/nameserver_autogen/tinydns_tld_datafile > /services/tinydns-ano/root/data
     ( cd /services/tinydns-ano/root ; make )
 
-    ( 
+    (
         cd /service
         sleep 5
         svc -t dnscache tinydns tinydns-ano tinydns-root
