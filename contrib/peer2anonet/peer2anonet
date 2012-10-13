@@ -236,16 +236,16 @@ protocol bgp $PEER { table AnoNet_routes;
 #
 #export REMOTE_FLOAT=1
 
-# comment if your peer has a dynamic IP
-#
-export REMOTE_ADDRESS=$REMOTEIP
-export REMOTE_PORT=$PEERPORT
+if [[ \$REMOTE_FLOAT != 1 ]]; then
+  export REMOTE_ADDRESS=\`cat /etc/peer2anonet/peers/$PEER/remote_ip\`
+  export REMOTE_PORT=\`cat /etc/peer2anonet/peers/$PEER/remote_port\`
+fi
 
 # not recommended to change these values
 #
-export LOCAL_PORT=$LOCALPORT
-export PRIVATE_KEY=$SECKEY
-export PUBLIC_KEY=$PUBKEY
+export LOCAL_PORT=\`cat /etc/peer2anonet/peers/$PEER/local_port\`
+export PRIVATE_KEY=\`cat /etc/peer2anonet/peers/$PEER/seckey\`
+export PUBLIC_KEY=\`cat /etc/peer2anonet/peers/$PEER/pubkey\`
 export TUN_MODE=1
 export INTERFACE=ppp-$PEER
 
@@ -261,23 +261,23 @@ export INTERFACE=ppp-$PEER
 #route add \$REMOTE_ADDRESS gw \$DEFAULT_ROUTE
 
 ( sleep 5;
- ip addr add $P2A_IP peer $PEERIP/32 dev \$INTERFACE scope link
+ ip addr add $P2A_IP peer \`cat /etc/peer2anonet/peers/$PEER/peering_ip\`/32 dev \$INTERFACE scope link
  ip addr add $P2A_ROUTE/32 dev \$INTERFACE scope global
  ip link set dev \$INTERFACE up
 
 # comment the following ping line to remove pinghack. this is a
 # trick used to help bird connect.
 #
- ping -c 1 -I \$INTERFACE $PEERIP -r -w 5
+ ping -c 1 -I \$INTERFACE \`cat /etc/peer2anonet/peers/$PEER/peering_ip\` -r -w 5
 
 ) &
 exec /usr/sbin/quicktun.nacltai" > /etc/peer2anonet/peers/$PEER/run
-            cp /etc/peer2anonet/peers/$PEER/run /services/"$PEER"/run
         fi
-        chmod +x /services/"$PEER"/run
+        chmod +x /etc/peer2anonet/peers/"$PEER"/run
+        test -L /services/"$PEER"/run || rm -f /services/"$PEER"/run
+        test -L /services/"$PEER"/run || ln -s /etc/peer2anonet/peers/"$PEER"/run /services/"$PEER"/run
+        test -L "/service/$PEER" && svc -t "/service/$PEER"
         test -L "/service/$PEER" || ln -s "/services/$PEER" "/service/$PEER"
-        sleep 1
-        svc -d "/service/$PEER" ; svc -u "/service/$PEER"
     done
     test -L /service/bird || ln -s /services/bird /service/bird
     echo configure | birdc
