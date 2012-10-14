@@ -223,7 +223,8 @@ protocol bgp $PEER { table AnoNet_routes;
 }" >> /services/bird/bird.conf
 
         if [ -e /etc/peer2anonet/peers/"$PEER"/run ]; then
-            cp /etc/peer2anonet/peers/$PEER/run /services/"$PEER"/run
+          test -L /services/"$PEER"/run || rm -f /services/"$PEER"/run
+          test -L /services/"$PEER"/run || ln -s /etc/peer2anonet/peers/"$PEER"/run /services/"$PEER"/run
         else
             echo "#!/bin/bash
 
