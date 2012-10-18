@@ -537,6 +537,8 @@ CONFIGURE_DNS(){
     [[ $(echo X`which tcpserver`) == X ]] && exit 1
     [[ $(echo X`which svscanboot`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-daemontools'
     [[ $(echo X`which svscanboot`) == X ]] && exit 1
+    [[ $(echo X`which tinydns`) == X ]] && echo '   fatal error: needs ./contrib/peer2anonet/peer2anonet --install-djbdns'
+    [[ $(echo X`which tinydns`) == X ]] && exit 1
 
     if [ -e /services/dnscache ]; then
         [ -e /etc/peer2anonet/dnscache.tar ] || ( cd /services ; echo "creating /etc/peer2anonet/dnscache.tar backup" ;\
