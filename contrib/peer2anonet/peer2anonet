@@ -559,7 +559,7 @@ CONFIGURE_DNS(){
 
     (
         cd /service
-        svc -d dnscache tinydns tinydns-ano tinydns-root
+        svc -d dnscache tinydns tinydns-ano tinydns-root >/dev/null 2>&1
         rm -f dnscache tinydns tinydns-ano tinydns-root
         cd /services
         rm -rf dnscache tinydns tinydns-ano tinydns-root
@@ -605,8 +605,17 @@ CONFIGURE_DNS(){
         echo "ip addr add $GIT_IP/32 dev lo &" >> /etc/rc.d/rc.local
         fi
     else
-        echo "   fatal error: cannot reliably assign ip's to startup"
-        exit 1
+        (
+          mkdir -p /services/tinydns-ips
+          echo "#!/bin/sh -e" > /services/tinydns-ips/run
+          echo "ip addr add $TINYDNS_ROOT_IP/32 dev lo &" >> /services/tinydns-ips/run
+          echo "ip addr add $TINYDNS_IP/32 dev lo &" >> /services/tinydns-ips/run
+          echo "ip addr add $TINYDNS_ANO_IP/32 dev lo &" >> /services/tinydns-ips/run
+          echo "ip addr add $GIT_IP/32 dev lo &" >> /services/tinydns-ips/run
+          echo "svc -d ." /services/tinydns-ips/run
+          chmod +x /services/tinydns-ips/run
+          test -L /service/tinydns-ips || ln -s /services/tinydns-ips /service/tinydns-ips
+        )
     fi
 
     ip addr add $TINYDNS_ROOT_IP/32 dev lo > /dev/null 2>&1
