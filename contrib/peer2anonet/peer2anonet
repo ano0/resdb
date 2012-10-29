@@ -431,8 +431,14 @@ SETUP_QMAIL(){
             echo "ip addr add $MX_IP/32 dev lo &" >> /etc/rc.d/rc.local
         fi
     else
-        echo "   fatal error: cannot reliably assign ip's to startup"
-        exit 1
+        (
+          mkdir -p /services/qmail-ips
+          echo "#!/bin/sh -e" > /services/qmail-ips/run
+          echo "ip addr add $MX_IP/32 dev lo &" >> /services/qmail-ips/run
+          echo "svc -d ." /services/qmail-ips/run
+          chmod +x /services/qmail-ips/run
+          test -L /service/qmail-ips || ln -s /services/qmail-ips /service/qmail-ips
+        )
     fi
 
     ip addr add $MX_IP/32 dev lo > /dev/null 2>&1
@@ -623,17 +629,17 @@ CONFIGURE_DNS(){
     ip addr add $TINYDNS_ANO_IP/32 dev lo > /dev/null 2>&1
     ip addr add $GIT_IP/32 dev lo > /dev/null 2>&1
 
-    useradd Gdnscache
-    useradd Gdnslog
-    useradd Gtinydns
+    useradd gdnscache
+    useradd gdnslog
+    useradd gtinydns
 
-    dnscache-conf Gdnscache Gdnslog /services/dnscache
+    dnscache-conf gdnscache gdnslog /services/dnscache
     mv /services/dnscache/root/servers/@ /services/dnscache/root/servers/@.icann
     echo $TINYDNS_ROOT_IP >/services/dnscache/root/servers/@
     echo 'nameserver 127.0.0.1' >/etc/resolv.conf
 
 
-    tinydns-conf Gtinydns Gdnslog /services/tinydns $TINYDNS_IP
+    tinydns-conf gtinydns gdnslog /services/tinydns $TINYDNS_IP
     (
         cd /services/tinydns/root
         ./add-ns $NICK.ano $TINYDNS_IP
@@ -643,11 +649,11 @@ CONFIGURE_DNS(){
         make
     )
 
-    tinydns-conf Gtinydns Gdnslog /services/tinydns-root $TINYDNS_ROOT_IP
+    tinydns-conf gtinydns gdnslog /services/tinydns-root $TINYDNS_ROOT_IP
     ./scripts/nameserver_autogen/tinydns_root_datafile > /services/tinydns-root/root/data
     ( cd /services/tinydns-root/root ; make )
 
-    tinydns-conf Gtinydns Gdnslog /services/tinydns-ano $TINYDNS_ANO_IP
+    tinydns-conf gtinydns gdnslog /services/tinydns-ano $TINYDNS_ANO_IP
     ./scripts/nameserver_autogen/tinydns_tld_datafile > /services/tinydns-ano/root/data
     ( cd /services/tinydns-ano/root ; make )
 
