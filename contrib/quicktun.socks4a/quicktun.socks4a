@@ -27,8 +27,8 @@ udp_poll       = select.poll(                                  )
 udp_poll.register(udp.fileno(),select.POLLIN|select.POLLPRI    )
 
 if REMOTE_FLOAT==0:
-  tun          = subprocess.Popen  (
-                 [ 'socat','stdio','socks4a:'+SOCKS_ADDRESS+':'
+  tun          = subprocess.Popen  ([
+                   'socat','stdio','socks4a:'+SOCKS_ADDRESS+':'
                    +DST_ADDRESS+':'+DST_PORT
                    +',socksport='+SOCKS_PORT
                  ],
@@ -40,7 +40,7 @@ if REMOTE_FLOAT==0:
   tun_poll.register                (
   tun.stdout.fileno(),             select.POLLIN|select.POLLPRI)
 
-while REMOTE_FLOAT==1:
+if REMOTE_FLOAT==1:
   tcp            = socket.socket(
                               socket.AF_INET,socket.SOCK_STREAM)
   tcp.setsockopt      (socket.SOL_SOCKET,socket.SO_REUSEADDR,1 )
@@ -50,7 +50,7 @@ while REMOTE_FLOAT==1:
   tcp_poll       = select.poll(                                )
   tcp_poll.register(tcp.fileno(),select.POLLIN|select.POLLPRI  )
 
-  if len(tcp_poll.poll(65536))>0:
+  while len(tcp_poll.poll(65536))>0:
     tun        = tcp.accept        ()[0]
     tun_stdout = tun.fileno        (                           )
     tun_stdin  = tun.fileno        (                           )
@@ -67,7 +67,7 @@ fcntl.fcntl(tun_stdout,fcntl.F_SETFL,fcntl.fcntl(
 tun            = subprocess.Popen(
                  ['/usr/sbin/quicktun.'+PROTOCOL],
 stdout         = subprocess.PIPE,
-stdin          = subprocess.PIPE                               )
+stdin          = subprocess.PIPE,                              )
 
 recvq          = str(                                          )
 sendq          = str(                                          )
