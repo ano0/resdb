@@ -90,17 +90,15 @@ while 1:
 
   if len(sendq)>0:
     try:
-      sendq    = sendq[os.write         (tun_stdin,sendq[:1024])
-                                                              :]
+      sendq    = sendq       [os.write(tun_stdin,sendq[:1024]):]
     except OSError as ex:
       if ex.errno!=11:
         break
 
   if len(recvq)>0:
     try:
-      recvq    = recvq[udp.sendto                (recvq[:1024],
-                                     (LOCAL_ADDRESS,LOCAL_PORT))
-                                                              :]
+      recvq    = recvq                [udp.sendto(recvq[:1024],
+                                   (LOCAL_ADDRESS,LOCAL_PORT)):]
     except OSError as ex:
       if ex.errno!=11:
         break
