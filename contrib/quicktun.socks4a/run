@@ -2,8 +2,12 @@
 
 export          DEBUG='1'
 export       TUN_MODE='1'
+export       PROTOCOL='nacltai'
 export      INTERFACE='ppp-tortun'
 export   REMOTE_FLOAT='1'
+
+export    PRIVATE_KEY='0000000000000000000000000000000000000000000000000000000000000000'
+export     PUBLIC_KEY='2fe57da347cd62431528daac5fbb290730fff684afc4cfc2ed90995f58cb3b74'
 
 export  LOCAL_ADDRESS='127.0.0.1'
 export     LOCAL_PORT='2998'

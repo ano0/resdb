@@ -1,12 +1,55 @@
 hacking quicktun through socks4a:
-  peer one should set REMOTE_FLOAT = 0
-  peer two should set REMOTE_FLOAT = 1
-
-  i've never actually tested this. but
-  it should "just work" with minimal
-  shit. if it's really that bad you
-  can complain to /relayhell/d3v11.
+  i've never actually tested this. but it should "just work"
+  with minimal shit. if it's really that bad you can complain to
+  /relayhell/d3v11.
 
 depends:
   quicktun.raw, socat, daemontools,
   a lot of fucking patience
+
+env:
+  $DEBUG
+    1 for debugging, 0 for quiet
+
+  $TUN_MODE
+    this should always be 1
+
+  $PROTOCOL
+    raw, nacl0, nacltai supported
+
+  $INTERFACE
+    named interface of your tunnel
+
+  $REMOTE_FLOAT
+    peer one should set REMOTE_FLOAT = 0
+    peer two should set REMOTE_FLOAT = 1
+
+  $PRIVATE_KEY
+    your private key, necessary for nacl0 and nacltai
+
+  $PUBLIC_KEY
+    peer's public key, necessary for nacl0 or nacltai
+
+  $LOCAL_ADDRESS
+    quicktun.* will bind here
+
+  $LOCAL_PORT
+    quicktun.* will bind here
+
+  $REMOTE_ADDRESS
+    quicktun.socks4a listens here on UDP
+
+  $REMOTE_PORT
+    quicktun.socks4a listens here on UDP
+
+  $DST_ADDRESS
+    REAL REMOTE_ADDRESS
+
+  $DST_PORT
+    REAL REMOTE_PORT
+
+  $SOCKS_ADDRESS
+    listening address of the socks4a proxy
+
+  $SOCKS_PORT
+    listening port of the socks4a proxy

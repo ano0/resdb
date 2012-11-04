@@ -3,6 +3,7 @@ import               subprocess, socket, select, fcntl, sys, os
 
 DEBUG          = os.getenv(    'DEBUG'         ,'1'            )
 TUN_MODE       = os.getenv(    'TUN_MODE'      ,'1'            )
+PROTOCOL       = os.getenv(    'PROTOCOL'      ,'raw'          )
 INTERFACE      = os.getenv(    'ppp-tortun'    ,'1'            )
 REMOTE_FLOAT   = int(os.getenv('REMOTE_FLOAT'  ,'1'           ))
 
@@ -18,20 +19,11 @@ DST_PORT       = os.getenv(    'DST_PORT'    ,'2998'           )
 SOCKS_ADDRESS  = os.getenv(    'LOCAL_ADDRESS' ,'127.0.0.1'    )
 SOCKS_PORT     = os.getenv(    'LOCAL_PORT'    ,'9050'         )
 
-tcp            = socket.socket(
-                              socket.AF_INET,socket.SOCK_STREAM)
-tcp.setsockopt        (socket.SOL_SOCKET,socket.SO_REUSEADDR,1 )
-tcp.setblocking       (0                                       )
-tcp.bind              ((LOCAL_ADDRESS,LOCAL_PORT              ))
-tcp.listen            (1                                       )
-tcp_poll       =       select.poll(                            )
-tcp_poll.register(tcp.fileno(),select.POLLIN|select.POLLPRI    )
-
 udp            = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 udp.setsockopt        (socket.SOL_SOCKET,socket.SO_REUSEADDR,1 )
 udp.setblocking       (0                                       )
 udp.bind              ((REMOTE_ADDRESS,REMOTE_PORT            ))
-udp_poll       =       select.poll(                            )
+udp_poll       = select.poll(                                  )
 udp_poll.register(udp.fileno(),select.POLLIN|select.POLLPRI    )
 
 if REMOTE_FLOAT==0:
@@ -49,6 +41,15 @@ if REMOTE_FLOAT==0:
   tun.stdout.fileno(),             select.POLLIN|select.POLLPRI)
 
 while REMOTE_FLOAT==1:
+  tcp            = socket.socket(
+                              socket.AF_INET,socket.SOCK_STREAM)
+  tcp.setsockopt      (socket.SOL_SOCKET,socket.SO_REUSEADDR,1 )
+  tcp.setblocking     (0                                       )
+  tcp.bind            ((LOCAL_ADDRESS,LOCAL_PORT              ))
+  tcp.listen          (1                                       )
+  tcp_poll       = select.poll(                                )
+  tcp_poll.register(tcp.fileno(),select.POLLIN|select.POLLPRI  )
+
   if len(tcp_poll.poll(65536))>0:
     tun        = tcp.accept        ()[0]
     tun_stdout = tun.fileno        (                           )
@@ -63,7 +64,8 @@ fcntl.fcntl(tun_stdin,fcntl.F_SETFL,fcntl.fcntl(
 fcntl.fcntl(tun_stdout,fcntl.F_SETFL,fcntl.fcntl(
          tun_stdout,fcntl.F_GETFL)&~os.O_NONBLOCK|os.O_NONBLOCK)
 
-tun            = subprocess.Popen(['/usr/sbin/quicktun.raw'],
+tun            = subprocess.Popen(
+                 ['/usr/sbin/quicktun.'+PROTOCOL],
 stdout         = subprocess.PIPE,
 stdin          = subprocess.PIPE                               )
 
@@ -102,10 +104,7 @@ while 1:
       if ex.errno!=11:
         break
 
-  if len(sendq)>65536*128:
-    break
-
-  if len(recvq)>65536*128:
+  if len(sendq)>65536*128 or len(recvq)>65536*128:
     break
 
 tun.terminate(                                                 )
