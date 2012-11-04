@@ -1,62 +1,62 @@
 #!/usr/bin/env python
 import               subprocess, socket, select, fcntl, sys, os
 
-DEBUG          = os.getenv(    'DEBUG'         ,'1'            )
-TUN_MODE       = os.getenv(    'TUN_MODE'      ,'1'            )
-PROTOCOL       = os.getenv(    'PROTOCOL'      ,'raw'          )
-INTERFACE      = os.getenv(    'ppp-tortun'    ,'1'            )
-REMOTE_FLOAT   = int(os.getenv('REMOTE_FLOAT'  ,'1'           ))
+DEBUG          = os.getenv        ('DEBUG'         ,'1'        )
+TUN_MODE       = os.getenv        ('TUN_MODE'      ,'1'        )
+PROTOCOL       = os.getenv        ('PROTOCOL'      ,'raw'      )
+INTERFACE      = os.getenv        ('ppp-tortun'    ,'1'        )
+REMOTE_FLOAT   = int(os.getenv    ('REMOTE_FLOAT'  ,'1'       ))
 
-LOCAL_ADDRESS  = os.getenv(    'LOCAL_ADDRESS' ,'127.0.0.1'    )
-LOCAL_PORT     = int(os.getenv('LOCAL_PORT'    ,'2998'        ))
+LOCAL_ADDRESS  = os.getenv        ('LOCAL_ADDRESS' ,'127.0.0.1')
+LOCAL_PORT     = int(os.getenv    ('LOCAL_PORT'    ,'2998'    ))
 
-REMOTE_ADDRESS = os.getenv(    'REMOTE_ADDRESS','127.0.0.2'    )
-REMOTE_PORT    = int(os.getenv('REMOTE_PORT'   ,'2998'        ))
+REMOTE_ADDRESS = os.getenv        ('REMOTE_ADDRESS','127.0.0.2')
+REMOTE_PORT    = int(os.getenv    ('REMOTE_PORT'   ,'2998'    ))
 
-DST_ADDRESS    = os.getenv(    'DST_ADDRESS' ,'127.0.0.3'      )
-DST_PORT       = os.getenv(    'DST_PORT'    ,'2998'           )
+DST_ADDRESS    = os.getenv        ('DST_ADDRESS'   ,'127.0.0.3')
+DST_PORT       = os.getenv        ('DST_PORT'      ,'2998'     )
 
-SOCKS_ADDRESS  = os.getenv(    'LOCAL_ADDRESS' ,'127.0.0.1'    )
-SOCKS_PORT     = os.getenv(    'LOCAL_PORT'    ,'9050'         )
+SOCKS_ADDRESS  = os.getenv        ('LOCAL_ADDRESS' ,'127.0.0.1')
+SOCKS_PORT     = os.getenv        ('LOCAL_PORT'    ,'9050'     )
 
 udp            = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-udp.setsockopt        (socket.SOL_SOCKET,socket.SO_REUSEADDR,1 )
-udp.setblocking       (0                                       )
-udp.bind              ((REMOTE_ADDRESS,REMOTE_PORT            ))
-udp_poll       = select.poll(                                  )
-udp_poll.register(udp.fileno(),select.POLLIN|select.POLLPRI    )
+udp.setsockopt         (socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
+udp.setblocking                                              (0)
+udp.bind                          ((REMOTE_ADDRESS,REMOTE_PORT))
+udp_poll       = select.poll                                  ()
+udp_poll.register    (udp.fileno(),select.POLLIN|select.POLLPRI)
 
 if REMOTE_FLOAT==0:
-  tun          = subprocess.Popen  ([
-                   'socat','stdio','socks4a:'+SOCKS_ADDRESS+':'
-                   +DST_ADDRESS+':'+DST_PORT
-                   +',socksport='+SOCKS_PORT
+  tun          = subprocess.Popen                             (
+                 [ 'socat','stdio','socks4a:'+SOCKS_ADDRESS+':'
+                                      +DST_ADDRESS+':'+DST_PORT
+                                      +',socksport='+SOCKS_PORT
                  ],
   stdout       = subprocess.PIPE,
   stdin        = subprocess.PIPE,                              )
-  tun_stdout   = tun.stdout.fileno (                           )
-  tun_stdin    = tun.stdin.fileno  (                           )
-  tun_poll     = select.poll       (                           )
-  tun_poll.register                (
-  tun.stdout.fileno(),             select.POLLIN|select.POLLPRI)
+  tun_stdout   = tun.stdout.fileno                            ()
+  tun_stdin    = tun.stdin.fileno                             ()
+  tun_poll     = select.poll                                  ()
+  tun_poll.register                                           (
+               tun.stdout.fileno(),select.POLLIN|select.POLLPRI)
 
 if REMOTE_FLOAT==1:
   tcp            = socket.socket(
                               socket.AF_INET,socket.SOCK_STREAM)
-  tcp.setsockopt      (socket.SOL_SOCKET,socket.SO_REUSEADDR,1 )
-  tcp.setblocking     (0                                       )
-  tcp.bind            ((LOCAL_ADDRESS,LOCAL_PORT              ))
-  tcp.listen          (1                                       )
-  tcp_poll       = select.poll(                                )
-  tcp_poll.register(tcp.fileno(),select.POLLIN|select.POLLPRI  )
+  tcp.setsockopt       (socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
+  tcp.setblocking                                            (0)
+  tcp.bind                          ((LOCAL_ADDRESS,LOCAL_PORT))
+  tcp.listen                                                 (1)
+  tcp_poll       = select.poll                                ()
+  tcp_poll.register  (tcp.fileno(),select.POLLIN|select.POLLPRI)
 
   while len(tcp_poll.poll(65536))>0:
     tun        = tcp.accept        ()[0]
-    tun_stdout = tun.fileno        (                           )
-    tun_stdin  = tun.fileno        (                           )
-    tun_poll   = select.poll       (                           )
-    tun_poll.register              (
-    tun.fileno(),                  select.POLLIN|select.POLLPRI)
+    tun_stdout = tun.fileno                                   ()
+    tun_stdin  = tun.fileno                                   ()
+    tun_poll   = select.poll                                  ()
+    tun_poll.register                                         (
+                      tun.fileno(),select.POLLIN|select.POLLPRI)
     break
 
 fcntl.fcntl(tun_stdin,fcntl.F_SETFL,fcntl.fcntl(
@@ -64,32 +64,32 @@ fcntl.fcntl(tun_stdin,fcntl.F_SETFL,fcntl.fcntl(
 fcntl.fcntl(tun_stdout,fcntl.F_SETFL,fcntl.fcntl(
          tun_stdout,fcntl.F_GETFL)&~os.O_NONBLOCK|os.O_NONBLOCK)
 
-tun            = subprocess.Popen(
-                 ['/usr/sbin/quicktun.'+PROTOCOL],
+tun            = subprocess.Popen                             (
+                              ['/usr/sbin/quicktun.'+PROTOCOL],
 stdout         = subprocess.PIPE,
 stdin          = subprocess.PIPE,                              )
 
-recvq          = str(                                          )
-sendq          = str(                                          )
+recvq          = str                                          ()
+sendq          = str                                          ()
 
 while 1:
   if len(udp_poll.poll(128))>0:
-    buffer     = str(                                          )
-    buffer     = udp.recv(1024                                 )
+    buffer     = str                                          ()
+    buffer     = udp.recv                                 (1024)
     if len(buffer)==0:
       break
     sendq      = sendq + buffer
 
   if len(tun_poll.poll(128))>0:
-    buffer     = str(                                          )
-    buffer     = os.read(tun_stdout,1024                       )
+    buffer     = str                                          ()
+    buffer     = os.read                       (tun_stdout,1024)
     if len(buffer)==0:
       break
     recvq      = recvq + buffer
 
   if len(sendq)>0:
     try:
-      sendq    = sendq[os.write(tun_stdin,sendq[:1024]         )
+      sendq    = sendq[os.write         (tun_stdin,sendq[:1024])
                  :]
     except OSError as ex:
       if ex.errno!=11:
@@ -97,8 +97,8 @@ while 1:
 
   if len(recvq)>0:
     try:
-      recvq    = recvq[udp.sendto(recvq[:1024],
-                 (LOCAL_ADDRESS,LOCAL_PORT                    ))
+      recvq    = recvq[udp.sendto                (recvq[:1024],
+                                     (LOCAL_ADDRESS,LOCAL_PORT))
                  :]
     except OSError as ex:
       if ex.errno!=11:
@@ -107,4 +107,4 @@ while 1:
   if len(sendq)>65536*128 or len(recvq)>65536*128:
     break
 
-tun.terminate(                                                 )
+tun.terminate                                                 ()
