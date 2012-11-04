@@ -41,7 +41,7 @@ if REMOTE_FLOAT==0:
                tun.stdout.fileno(),select.POLLIN|select.POLLPRI)
 
 if REMOTE_FLOAT==1:
-  tcp            = socket.socket(
+  tcp            = socket.socket                              (
                               socket.AF_INET,socket.SOCK_STREAM)
   tcp.setsockopt       (socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
   tcp.setblocking                                            (0)
@@ -51,7 +51,7 @@ if REMOTE_FLOAT==1:
   tcp_poll.register  (tcp.fileno(),select.POLLIN|select.POLLPRI)
 
   while len(tcp_poll.poll(65536))>0:
-    tun        = tcp.accept        ()[0]
+    tun        = tcp.accept                                ()[0]
     tun_stdout = tun.fileno                                   ()
     tun_stdin  = tun.fileno                                   ()
     tun_poll   = select.poll                                  ()
@@ -59,10 +59,11 @@ if REMOTE_FLOAT==1:
                       tun.fileno(),select.POLLIN|select.POLLPRI)
     break
 
-fcntl.fcntl(tun_stdin,fcntl.F_SETFL,fcntl.fcntl(
-          tun_stdin,fcntl.F_GETFL)&~os.O_NONBLOCK|os.O_NONBLOCK)
-fcntl.fcntl(tun_stdout,fcntl.F_SETFL,fcntl.fcntl(
-         tun_stdout,fcntl.F_GETFL)&~os.O_NONBLOCK|os.O_NONBLOCK)
+fcntl.fcntl                (tun_stdin,fcntl.F_SETFL,fcntl.fcntl
+         (tun_stdin,fcntl.F_GETFL)&~os.O_NONBLOCK|os.O_NONBLOCK)
+
+fcntl.fcntl               (tun_stdout,fcntl.F_SETFL,fcntl.fcntl
+        (tun_stdout,fcntl.F_GETFL)&~os.O_NONBLOCK|os.O_NONBLOCK)
 
 tun            = subprocess.Popen                             (
                               ['/usr/sbin/quicktun.'+PROTOCOL],
@@ -90,7 +91,7 @@ while 1:
   if len(sendq)>0:
     try:
       sendq    = sendq[os.write         (tun_stdin,sendq[:1024])
-                 :]
+                                                              :]
     except OSError as ex:
       if ex.errno!=11:
         break
@@ -99,7 +100,7 @@ while 1:
     try:
       recvq    = recvq[udp.sendto                (recvq[:1024],
                                      (LOCAL_ADDRESS,LOCAL_PORT))
-                 :]
+                                                              :]
     except OSError as ex:
       if ex.errno!=11:
         break
