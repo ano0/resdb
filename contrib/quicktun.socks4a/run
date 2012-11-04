@@ -1,0 +1,28 @@
+#!/bin/sh -e
+
+export          DEBUG='1'
+export       TUN_MODE='1'
+export      INTERFACE='ppp-tortun'
+export   REMOTE_FLOAT='1'
+
+export  LOCAL_ADDRESS='127.0.0.1'
+export     LOCAL_PORT='2998'
+
+export REMOTE_ADDRESS='127.0.0.2'
+export    REMOTE_PORT='2998'
+
+export    DST_ADDRESS='127.0.0.3'
+export       DST_PORT='2998'
+
+export  SOCKS_ADDRESS='127.0.0.1'
+export     SOCKS_PORT='9050'
+
+(
+  sleep 8
+  ip addr add $LOCAL_PEER_ADDRESS peer $REMOTE_PEER_ADDRESS/32 dev $INTERFACE scope link
+  ip addr add $LOCAL_ROUTER_ADDRESS/32 dev $INTERFACE scope global
+  ip link set dev $INTERFACE up
+  ping -c 1 -I $INTERFACE $REMOTE_PEER_ADDRESS -r -w 5 >/dev/null 2>&1
+) &
+
+exec "`pwd`"/quicktun.socks4a

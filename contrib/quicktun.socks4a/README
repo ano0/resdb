@@ -1,0 +1,12 @@
+hacking quicktun through socks4a:
+  peer one should set REMOTE_FLOAT = 0
+  peer two should set REMOTE_FLOAT = 1
+
+  i've never actually tested this. but
+  it should "just work" with minimal
+  shit. if it's really that bad you
+  can complain to /relayhell/d3v11.
+
+depends:
+  quicktun.raw, socat, daemontools,
+  a lot of fucking patience
