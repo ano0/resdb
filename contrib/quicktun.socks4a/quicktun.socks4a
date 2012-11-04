@@ -28,9 +28,11 @@ udp_poll.register    (udp.fileno(),select.POLLIN|select.POLLPRI)
 
 if REMOTE_FLOAT==0:
   tun          = subprocess.Popen                             (
-                 [ 'socat','stdio','socks4a:'+SOCKS_ADDRESS+':'
-                                      +DST_ADDRESS+':'+DST_PORT
-                                      +',socksport='+SOCKS_PORT
+                 [ 'socat',
+                   'STDIO',
+                   'SOCKS4A:'
+                   +SOCKS_ADDRESS+':'+DST_ADDRESS+':'+DST_PORT
+                                     +',SOCKSPORT='+SOCKS_PORT,
                  ],
   stdout       = subprocess.PIPE,
   stdin        = subprocess.PIPE,                              )
@@ -41,23 +43,21 @@ if REMOTE_FLOAT==0:
                tun.stdout.fileno(),select.POLLIN|select.POLLPRI)
 
 if REMOTE_FLOAT==1:
-  tcp            = socket.socket                              (
-                              socket.AF_INET,socket.SOCK_STREAM)
-  tcp.setsockopt       (socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-  tcp.setblocking                                            (0)
-  tcp.bind                          ((LOCAL_ADDRESS,LOCAL_PORT))
-  tcp.listen                                                 (1)
-  tcp_poll       = select.poll                                ()
-  tcp_poll.register  (tcp.fileno(),select.POLLIN|select.POLLPRI)
-
-  while len(tcp_poll.poll(65536))>0:
-    tun        = tcp.accept                                ()[0]
-    tun_stdout = tun.fileno                                   ()
-    tun_stdin  = tun.fileno                                   ()
-    tun_poll   = select.poll                                  ()
-    tun_poll.register                                         (
-                      tun.fileno(),select.POLLIN|select.POLLPRI)
-    break
+  tun          = subprocess.Popen                             (
+                 [ 'socat',
+                   'TCP-LISTEN:'
+                   +str(LOCAL_PORT)+',BIND='+LOCAL_ADDRESS
+                                                 +',REUSEADDR',
+                   'UDP-CONNECT:'+LOCAL_ADDRESS+':'
+                                              +str(LOCAL_PORT),
+                 ],
+  stdout       = subprocess.PIPE,
+  stdin        = subprocess.PIPE,                              )
+  tun_stdout   = tun.stdout.fileno                            ()
+  tun_stdin    = tun.stdin.fileno                             ()
+  tun_poll     = select.poll                                  ()
+  tun_poll.register                                           (
+               tun.stdout.fileno(),select.POLLIN|select.POLLPRI)
 
 fcntl.fcntl                (tun_stdin,fcntl.F_SETFL,fcntl.fcntl
          (tun_stdin,fcntl.F_GETFL)&~os.O_NONBLOCK|os.O_NONBLOCK)
@@ -66,7 +66,8 @@ fcntl.fcntl               (tun_stdout,fcntl.F_SETFL,fcntl.fcntl
         (tun_stdout,fcntl.F_GETFL)&~os.O_NONBLOCK|os.O_NONBLOCK)
 
 tun            = subprocess.Popen                             (
-                              ['/usr/sbin/quicktun.'+PROTOCOL],
+                 [ '/usr/sbin/quicktun.'+PROTOCOL,
+                 ],
 stdout         = subprocess.PIPE,
 stdin          = subprocess.PIPE,                              )
 
