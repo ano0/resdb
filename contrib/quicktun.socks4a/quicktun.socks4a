@@ -4,7 +4,7 @@ import               subprocess, socket, select, fcntl, sys, os
 DEBUG          = os.getenv        ('DEBUG'         ,'1'        )
 TUN_MODE       = os.getenv        ('TUN_MODE'      ,'1'        )
 PROTOCOL       = os.getenv        ('PROTOCOL'      ,'raw'      )
-INTERFACE      = os.getenv        ('ppp-tortun'    ,'1'        )
+INTERFACE      = os.getenv        ('INTERFACE'     ,'ppp-socks')
 REMOTE_FLOAT   = int(os.getenv    ('REMOTE_FLOAT'  ,'1'       ))
 
 LOCAL_ADDRESS  = os.getenv        ('LOCAL_ADDRESS' ,'127.0.0.1')

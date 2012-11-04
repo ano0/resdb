@@ -3,7 +3,7 @@
 export          DEBUG='1'
 export       TUN_MODE='1'
 export       PROTOCOL='nacltai'
-export      INTERFACE='ppp-tortun'
+export      INTERFACE='ppp-socks'
 export   REMOTE_FLOAT='1'
 
 export    PRIVATE_KEY='0000000000000000000000000000000000000000000000000000000000000000'
