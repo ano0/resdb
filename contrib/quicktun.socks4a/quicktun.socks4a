@@ -1,5 +1,14 @@
 #!/usr/bin/env python
-import               subprocess, socket, select, fcntl, sys, os
+import  subprocess, signal, socket, select, fcntl, time, sys, os
+
+def exit(sn,sf):
+  try:
+    tun.terminate                                             ()
+  except:
+    pass
+signal.signal                              (signal.SIGHUP, exit)
+signal.signal                              (signal.SIGINT, exit)
+signal.signal                              (signal.SIGTERM,exit)
 
 DEBUG          = os.getenv        ('DEBUG'         ,'1'        )
 TUN_MODE       = os.getenv        ('TUN_MODE'      ,'1'        )
@@ -16,8 +25,8 @@ REMOTE_PORT    = int(os.getenv    ('REMOTE_PORT'   ,'2998'    ))
 DST_ADDRESS    = os.getenv        ('DST_ADDRESS'   ,'127.0.0.3')
 DST_PORT       = os.getenv        ('DST_PORT'      ,'2998'     )
 
-SOCKS_ADDRESS  = os.getenv        ('LOCAL_ADDRESS' ,'127.0.0.1')
-SOCKS_PORT     = os.getenv        ('LOCAL_PORT'    ,'9050'     )
+SOCKS_ADDRESS  = os.getenv        ('SOCKS_ADDRESS' ,'127.0.0.1')
+SOCKS_PORT     = os.getenv        ('SOCKS_PORT'    ,'9050'     )
 
 udp            = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 udp.setsockopt         (socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
@@ -28,12 +37,9 @@ udp_poll.register    (udp.fileno(),select.POLLIN|select.POLLPRI)
 
 if REMOTE_FLOAT==0:
   tun          = subprocess.Popen                             (
-                 [ 'socat',
-                   'STDIO',
-                   'SOCKS4A:'
-                   +SOCKS_ADDRESS+':'+DST_ADDRESS+':'+DST_PORT
-                                     +',SOCKSPORT='+SOCKS_PORT,
-                 ],
+                 ['socat','STDIO','SOCKS4A:'+SOCKS_ADDRESS+':'
+                  +DST_ADDRESS+':'+DST_PORT+',SOCKSPORT='
+                                                  +SOCKS_PORT],
   stdout       = subprocess.PIPE,
   stdin        = subprocess.PIPE,                              )
   tun_stdout   = tun.stdout.fileno                            ()
@@ -44,13 +50,10 @@ if REMOTE_FLOAT==0:
 
 if REMOTE_FLOAT==1:
   tun          = subprocess.Popen                             (
-                 [ 'socat',
-                   'TCP-LISTEN:'
-                   +str(LOCAL_PORT)+',BIND='+LOCAL_ADDRESS
-                                                 +',REUSEADDR',
-                   'UDP-CONNECT:'+LOCAL_ADDRESS+':'
-                                              +str(LOCAL_PORT),
-                 ],
+                       ['socat','TCP-LISTEN:'+str(LOCAL_PORT)
+                        +',BIND='+LOCAL_ADDRESS+',REUSEADDR',
+                        'UDP-CONNECT:'+LOCAL_ADDRESS+':'+str(
+                                                  LOCAL_PORT)],
   stdout       = subprocess.PIPE,
   stdin        = subprocess.PIPE,                              )
   tun_stdout   = tun.stdout.fileno                            ()
@@ -64,6 +67,8 @@ fcntl.fcntl                (tun_stdin,fcntl.F_SETFL,fcntl.fcntl
 
 fcntl.fcntl               (tun_stdout,fcntl.F_SETFL,fcntl.fcntl
         (tun_stdout,fcntl.F_GETFL)&~os.O_NONBLOCK|os.O_NONBLOCK)
+
+time.sleep                                                   (4)
 
 tun            = subprocess.Popen                             (
                  [ '/usr/sbin/quicktun.'+PROTOCOL,
