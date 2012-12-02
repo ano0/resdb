@@ -14,7 +14,7 @@ SLOT="2"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND="dev-lang/nacl-toolchain-newlib"
+DEPEND="dev-libs/nacl"
 RDEPEND="${DEPEND}"
 
 src_compile() {
