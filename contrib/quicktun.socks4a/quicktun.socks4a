@@ -36,6 +36,7 @@ udp_poll       = select.poll                                  ()
 udp_poll.register    (udp.fileno(),select.POLLIN|select.POLLPRI)
 
 if REMOTE_FLOAT==0:
+  os.environ.pop                                ('REMOTE_FLOAT')
   tun          = subprocess.Popen                             (
                  ['socat','STDIO','SOCKS4A:'+SOCKS_ADDRESS+':'
                   +DST_ADDRESS+':'+DST_PORT+',SOCKSPORT='
