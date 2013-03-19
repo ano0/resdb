@@ -53,7 +53,7 @@ CONFIGURE(){
 
     NICK=`cat conf/git_name`
     ./scripts/add_as $P2A_ASN $NICK
-    ./scripts/add_ip $P2A_NET/24 $NICK
+    ./scripts/add_ip $P2A_NET/24 $NICK "`cat conf/tinydns__srvrname`/`cat conf/tinydns__srvrip`"
     [ -e "db/usr/$NICK" ] || mkdir -p "db/usr/$NICK"
     [ -e "db/usr/$NICK/git" ] || echo "git://git.$NICK.ano/">"db/usr/$NICK/git"
     [ -e "db/usr/$NICK/email" ] || echo "`cat conf/git_email`">"db/usr/$NICK/email"
