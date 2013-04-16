@@ -5,7 +5,8 @@ vars="gitd_ip gitd_basepath git_name git_email tinydns_config tinydns__rootsrvrn
 echo "Welcome to the resdb configurator!" >&2
 echo >&2
 
-if ! echo "$var=${!var}" >/dev/null 2>&1; then
+if ! echo "$var=${!var}" >/dev/null 2>&1 
+then
  echo "Your shell sucks.  If you're using a stupid OS like Ubuntu that doesn't" >&2
  echo "give a damn about backwards compatibility, I'd suggest fixing your" >&2
  echo "default shell, which you can do by typing \"ln -s bash /bin/sh\" at a" >&2
