@@ -29,16 +29,16 @@ $ ./path_list_to_dot.php < /tmp/paths.txt | dot -T png -o graph.png
 You can combine data from as many routers as you like. More is better, because it will make the graph more accurate.
 
 Or, in one single line:
-$ (./bgp_path_list_bird.sh; ./bgp_path_list_quagga.sh) | ./path_list_to_dot.php < /tmp/paths.txt | dot -T png -o graph.png
+$ (./bgp_path_list_bird.sh; ./bgp_path_list_quagga.sh) | ./path_list_to_dot.php | dot -T png -o graph.png
 
 Graphing a remote quagga instance using http:
-$ wget http://remotehost/bgp_path_list_quagga.php -O - | ./path_list_to_dot.php < /tmp/paths.txt | dot -T png -o graph.png
+$ wget http://remotehost/bgp_path_list_quagga.php -O - | ./path_list_to_dot.php | dot -T png -o graph.png
 
 Alternatively, you can use a cron job on the server to periodically update a static data file.
 
 Graphing a remote instance using netcat:
 server$ ./bgp_path_list_bird.sh | nc -l -p 9876
-client$ nc remotehost 9876 | ./path_list_to_dot.php < /tmp/paths.txt | dot -T png -o graph.png
+client$ nc remotehost 9876 | ./path_list_to_dot.php | dot -T png -o graph.png
 
 You can also use inetd/xinetd on the server side for a more permanent solution.
 
