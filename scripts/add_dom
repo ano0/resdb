@@ -5,7 +5,7 @@ if [ x"$2" = x ]; then
 fi
 
 dir=db/dom/"$(echo "$1" | tr . '\n' | tac | tr '\n' / | head -c -1)"
-mkdir "$dir" || exit 1
+mkdir -p "$dir" || exit 1
 echo "$2" > "$dir/owner"
 mkdir "$dir/ns" || exit 1
 shift; shift;
