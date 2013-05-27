@@ -1,4 +1,5 @@
 #!/bin/sh
+# maybe use? not sure if this would break anything. : printf "%02X" $1
 (
  if [ x"$USE_BC" = x1 ]; then
   echo -n "obase=16; "
