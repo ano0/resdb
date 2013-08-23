@@ -1,0 +1,8 @@
+RTFS
+
+todo:
+  ipv6
+  more info in responses?
+  make it compatible with traceroute -A ?
+
+add any other features you'd like either in here or the source. You know perl, right?
