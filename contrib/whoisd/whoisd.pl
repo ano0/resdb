@@ -41,8 +41,12 @@ if($QUERY =~ m/^AS(.+?)$/) {
 if($QUERY =~ m/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/) {
  printf "%% IP section for %s\n", $QUERY;
  chdir("$RESDB/db/ip");
- foreach(split(/\./,$QUERY)) {
-  chdir(sprintf("%02x",$_));
+ @parts=split(/\./,$QUERY);
+ for($i=0;$i<scalar(@parts)-1;$i++) {
+  if(!chdir(sprintf("%02x",$parts[$i]))) {
+   printf "%-20s %s\n", "error" . ":", "IP not found.";
+   exit;
+  }
  }
  foreach(split(/\n/,`grep '' -r .`)) {
   $out = $_;
