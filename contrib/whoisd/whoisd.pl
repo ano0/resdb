@@ -97,3 +97,12 @@ foreach(split(/\n/,`grep '^$QUERY\$' */owner | cut -d/ -f1`)) {
  $out =~ s/\n//g;
  printf "%-20s %s\n", "ASN" . ":", $out;
 }
+
+foreach(split(/\n/,`grep -i -e "^$QUERY\$" "$RESDB/db/dom"/*/*/owner`)) {
+ $out = $_;
+ $out =~ s/.*\/db\/dom\/(.+?)\/(.+?)\/owner.*/\2\.\1/;
+ if ($out ne "") { #fix this comparison.
+  printf "%-20s %s\n", "domain" . ":", $out;
+ }
+}
+#printf "%-20s %s\n", "notice:","$QUERY did not claim any domains yet";
