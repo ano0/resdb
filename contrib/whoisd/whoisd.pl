@@ -49,7 +49,7 @@ if($QUERY =~ m/^AS(.+?)$/) {
 
 # IPv4 addresses
 if($QUERY =~ m/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/) {
- printf "%% IP section for %s", $QUERY unless $HACK;
+ printf "%% IP section for %s\n", $QUERY unless $HACK;
  chdir("$RESDB/db/ip");
  @parts=split(/\./,$QUERY);
  for($i=0;$i<scalar(@parts)-1;$i++) {
