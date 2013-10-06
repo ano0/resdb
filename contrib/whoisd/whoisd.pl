@@ -22,7 +22,6 @@ if($QUERY eq "!!\n") {
  $QUERY =~ s/^!r(.+?)[\/,].*$/\1/;
  printf "A500\n"; #fake this I guess. Does it even use that number for anything?
  printf "%% Looks like you're trying -A on a BSDian traceroute with this server.\n";
- printf "%% support will come soon for that.\n";
  $HACK=1;
 }
 
@@ -30,8 +29,8 @@ if($QUERY eq "!!\n") {
 if($QUERY =~ m/^AS(.+?)$/) {
  printf "%% AS section for %s\n", $QUERY;
  my $AS=$1;
- chdir("$RESDB/db/as");
- if(chdir($AS)) {
+ chdir("$RESDB/db/as") || die "%% error";
+ if(chdir($AS) || die "%% error") {
   foreach(split(/\n/,`grep '' -r .`)) {
    $out = $_;
    $out =~ s/^\.\///g;
@@ -50,7 +49,7 @@ if($QUERY =~ m/^AS(.+?)$/) {
 # IPv4 addresses
 if($QUERY =~ m/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/) {
  printf "%% IP section for %s\n", $QUERY unless $HACK;
- chdir("$RESDB/db/ip");
+ chdir("$RESDB/db/ip") || die "%% error";
  @parts=split(/\./,$QUERY);
  for($i=0;$i<scalar(@parts)-1;$i++) {
   if(!chdir(sprintf("%02X",$parts[$i]))) {
@@ -74,8 +73,12 @@ if($QUERY =~ m/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-
 if($QUERY =~ m/\./) {
  printf "%% domain section for %s\n", $QUERY;
  @parts=split(/\./,$QUERY);
- chdir("$RESDB/db/dom");
+ chdir("$RESDB/db/dom") || die "%% error";
  for($i=scalar(@parts)-1;$i>scalar(@parts)-3;$i--) {
+  if(!$parts[$i]) {
+   printf "%% error";
+   exit
+  }
   if(!chdir($parts[$i])) {
    printf "%-20s %s", "warning" . ":", "domain not found.";
    exit;
@@ -96,7 +99,7 @@ if($QUERY =~ m/\./) {
 # default to assuming it is a name.
 printf "%% user section for %s\n", $QUERY unless $HACK;
 
-chdir("$RESDB/db/usr");
+chdir("$RESDB/db/usr") || die "%% error";
 if(chdir($QUERY)) {
  foreach(split(/\n/,`grep '' -r .`)) {
   $out = $_;
@@ -108,7 +111,7 @@ if(chdir($QUERY)) {
 } else {
  printf "%-20s missing db/usr file.\n", "warning" . ":" unless $HACK;
 }
-chdir("$RESDB/db/as");
+chdir("$RESDB/db/as") || die "%% error";
 foreach(split(/\n/,`grep '^$QUERY\$' */owner | cut -d/ -f1`)) {
  $out = $_;
  $out =~ s/\n//g;
