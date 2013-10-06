@@ -1,4 +1,5 @@
 #!/usr/bin/php
+#does anyone use this?
 <?php
 print('$ttl 600'."\n");
 chdir('../db/dom/ano');
