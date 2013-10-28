@@ -6,11 +6,17 @@
 
 use strict;
 
+#maybe chroot this whoisd?
 my $RESDB = "/services/resdb/resdb";
 
 my $HACK=0;
 my $QUERY=<stdin>;
 $QUERY =~ s/\r\n//g;
+$QUERY =~ s/\///g;
+if($QUERY eq '') {
+ printf "%% error. no query. wtf?";
+ exit 0;
+}
 my $out;
 my $title;
 my $value;
@@ -97,7 +103,7 @@ if($QUERY =~ m/\./) {
 }
 
 # default to assuming it is a name.
-printf "%% user section for %s\n", $QUERY unless $HACK;
+printf "%% user section for '%s'\n", $QUERY unless $HACK;
 
 chdir("$RESDB/db/usr") || die "%% error";
 if(chdir($QUERY)) {
