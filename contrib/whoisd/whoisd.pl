@@ -31,26 +31,29 @@ if($QUERY eq "!!\n") {
  $HACK=1;
 }
 
-# ASNs
-if($QUERY =~ m/^AS(.+?)$/) {
- printf "%% AS section for %s\n", $QUERY;
- my $AS=$1;
- chdir("$RESDB/db/as") || die "%% error";
- if(chdir($AS) || die "%% error") {
-  foreach(split(/\n/,`grep '' -r .`)) {
-   $out = $_;
-   $out =~ s/^\.\///g;
-   $out =~ m/^(.+?):(.+?)$/;
-   ($title, $value) = ($1, $2);
-   printf "%-20s %s\n", $title . ":", $value;
-   if($title eq "owner") {
-    $QUERY = $value;
+sub ASN_lookup {
+ if($QUERY =~ m/^AS(.+?)$/) {
+  printf "%% AS section for %s\n", $QUERY;
+  my $AS=$1;
+  chdir("$RESDB/db/as") || die "%% error";
+  if(chdir($AS) || die "%% error") {
+   foreach(split(/\n/,`grep '' -r .`)) {
+    $out = $_;
+    $out =~ s/^\.\///g;
+    $out =~ m/^(.+?):(.+?)$/;
+    ($title, $value) = ($1, $2);
+    printf "%-20s %s\n", $title . ":", $value;
+    if($title eq "owner") {
+     $QUERY = $value;
+    }
    }
+  } else {
+   printf "AS not found.";
   }
- } else {
-  printf "AS not found.";
  }
 }
+
+ASN_lookup();
 
 # IPv4 addresses
 if($QUERY =~ m/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/) {
@@ -73,7 +76,6 @@ if($QUERY =~ m/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-
   }
  }
 }
-
 
 # if we get here and there's still a . in the query it is probably a domain.
 if($QUERY =~ m/\./) {
@@ -102,34 +104,70 @@ if($QUERY =~ m/\./) {
  }
 }
 
+#ipv6 addresses
+#if($QUERY =~ m/:/) {#close enough?
+# $QUERY =~ s/://g;
+# $QUERY =~ s/[^a-fA-F0-9]//g;
+# $QUERY = uc($QUERY);
+# chdir("$RESDB/db/ip6");
+# foreach(split(//,$QUERY)) {
+#  chdir($_);;
+# }
+# foreach(split(/\n/,`grep '' -r .`)) {
+#  $out = $_;
+#  $out =~ s/^\.\///g;
+#  $out =~ m/^(.+?):(.+?)$/;
+#  ($title, $value) = ($1, $2);
+#  printf "%-20s %s\n", $title . ":", $value;
+#  if($title eq "owner") {
+#   $QUERY = $value;
+#  }
+# } 
+#}
+
+
 # default to assuming it is a name.
-printf "%% user section for '%s'\n", $QUERY unless $HACK;
+ printf "%% user section for '%s'\n", $QUERY unless $HACK;
 
-chdir("$RESDB/db/usr") || die "%% error";
-if(chdir($QUERY)) {
- foreach(split(/\n/,`grep '' -r .`)) {
+ chdir("$RESDB/db/usr") || die "%% error";
+ if(chdir($QUERY)) {
+  foreach(split(/\n/,`grep '' -r .`)) {
+   $out = $_;
+   $out =~ s/^\.\///g;
+   $out =~ m/^(.+?):(.+?)$/;
+   ($title, $value) = ($1, $2);
+   printf "%-20s %s\n", $title . ":", $value unless $HACK;
+  }
+ } else {
+  printf "%-20s missing db/usr file.\n", "warning" . ":" unless $HACK;
+ }
+ chdir("$RESDB/db/as") || die "%% error";
+ my @asn;
+ foreach(split(/\n/,`grep '^$QUERY\$' */owner | cut -d/ -f1`)) {
   $out = $_;
-  $out =~ s/^\.\///g;
-  $out =~ m/^(.+?):(.+?)$/;
-  ($title, $value) = ($1, $2);
-  printf "%-20s %s\n", $title . ":", $value unless $HACK;
+  $out =~ s/\n//g;
+  printf "%-20s AS%s\n", "origin" . ":", $out if $HACK;
+  printf "%-20s AS%s\n", "origin" . ":", $out unless $HACK;
+  @asn[scalar(@asn)]=$out;
  }
-} else {
- printf "%-20s missing db/usr file.\n", "warning" . ":" unless $HACK;
-}
-chdir("$RESDB/db/as") || die "%% error";
-foreach(split(/\n/,`grep '^$QUERY\$' */owner | cut -d/ -f1`)) {
- $out = $_;
- $out =~ s/\n//g;
- printf "%-20s AS%s\n", "origin" . ":", $out if $HACK;
- printf "%-20s AS%s\n", "origin" . ":", $out unless $HACK;
-}
+ chdir("$RESDB/db/ip") || die "%% error";
+ my $merp;
+ foreach(split(/\n/,`grep '^$QUERY\$' */*/*/owner | cut -d/ -f1-3`)) {
+  $merp=`cat $_/cidr`;
+  chomp $merp;
+  printf "%-20s %s\n", "cidr" . ":", $merp;
+ }
+ 
+ foreach(split(/\n/,`grep -i -e "^$QUERY\$" "$RESDB/db/dom"/*/*/owner`)) {
+  $out = $_;
+  $out =~ s/.*\/db\/dom\/(.+?)\/(.+?)\/owner.*/\2\.\1/;
+  if ($out ne "") { #fix this comparison.
+   printf "%-20s %s\n", "domain" . ":", $out;
+  }
+ }
 
-foreach(split(/\n/,`grep -i -e "^$QUERY\$" "$RESDB/db/dom"/*/*/owner`)) {
- $out = $_;
- $out =~ s/.*\/db\/dom\/(.+?)\/(.+?)\/owner.*/\2\.\1/;
- if ($out ne "") { #fix this comparison.
-  printf "%-20s %s\n", "domain" . ":", $out;
+ foreach(@asn) {
+  $QUERY="AS$_"; #meh. fix to pass it instead of global.
+  ASN_lookup();
  }
-}
-#printf "%-20s %s\n", "notice:","$QUERY did not claim any domains yet";
+ #printf "%-20s %s\n", "notice:","$QUERY did not claim any domains yet";
