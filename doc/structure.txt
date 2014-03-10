@@ -1,0 +1,65 @@
+--- ResDB structure (As written by Sarah.ano 10/March/2014)
+When I 'joined' anonet I was told to update the resdb.
+This in itself isnt all that hard to do if someone helps you.
+But when that isnt the case youre kind of stuck.
+There isnt a helpful README that says exactly what to do, or even what is necesary.
+As of writing, there isnt anything on the anonet wiki about it either.
+Maybe this can be that README?
+
+-- ResDB in a nutshell
+ResDB is where people write down what they own.
+If its not in the ResDB, people wont know its yours.
+Things like tinydns use the db/dom directory to find relevant DNS servers.
+Chakra in #anonet uses all information to answer requests. (try @asowner <num>)
+
+-- A smallish disclaimer
+Do not blindly run anything you find in ResDB.
+Someone could have edited, well, anything, to include a rm -rf / (or worse)
+Everything is written in human readable languages. So just cat the scripts and read them.
+You might even learn something.
+
+-- What are all these things?
+Short explanation on what everything in resdb is.
+doc/ 	 Where people put documentation. A bit sparse. Also where this file should be.
+db/ 	 Ill get to that later. Its the important bit.
+contrib/ Full of a lot of misc things that people found useful enough to include. Most of it is not documented. Run with care.
+scripts/ Mostly scripts directly related to working with ResDB. Again, run with care.
+
+The executables are related to running your own git and serving your modified ResDB.
+./configure will configure git commit relevant stuff, and also configure gitd.
+./gitd will run the git server. Optimally you would use this to serve your modified ResDB to others. Once someone else has it, it will usually spread fast.
+./git-commit will commit whatever canges you made. You should always do this when done fucking with resdb. People cant pull uncommited changes.
+
+Once you want to announce your changes, just go to #anonet and tell people to pull from git://<yourgitdip>/
+Note that many people set up a proper git server to serve ResDB and other things. The included gitd is a bootstrap and potential hazard. (Since future commits might put bad things in there.)
+
+-- DB Structure
+- db/as/
+Every claimed AS has a directory here. Inside is a single file called 'owner'.
+That file simply contains the handle of whoever owns that AS.
+To add yourself, either create these things manually or use a script. (scripts/add_as)
+
+- db/dom/
+Inside is a directory for each TLD in use. In each TLD directory are domain names.
+Each domain name directory contains another 'owner' file, and a ns directory.
+The ns directory should contain a file named 'a.ns.<domain>.<tld>' or something similar.
+In that file should be a valid anonet ip to a DNS server. This DNS server will be asked about your domain and is required.
+There is also a script for this (scripts/add_dom), but take care to give a valid ns as argument too or your domain will be broken.
+
+- db/ip and db/ip6
+Nested directories for each byte of an IP. At the end of that chain is, again, an owner file and a cidr file.
+Doing this manually might cause confusion, headaches and sudden death.
+Id recommend using a script. (scripts/add_ip)
+
+- db/usr
+Kind of freeform. A directory for every handle that cares to add itself.
+Inside, you can put pretty much whatever information you want.
+An adress to your git server, contact information. The filenames should be short and descriptive.
+Just check a few folders yourself and youll get the idea. Maybe find something useful.
+
+-- So what do?
+Well, if you are reading this, I assume you are already peered. So you should know your information.
+So go and add it to the relevant places as explained.
+If you are still confused (as you should be) head to #anonet and seek help. You should say Hi anyway.
+Help on other related things (like tinydns) can be found on the wiki or asked for.
+If something doesnt work, fuck around with it untill it does.
