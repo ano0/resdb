@@ -1,17 +1,17 @@
 #!/bin/sh
-if [ "$(ls db/dom/ | tr -d 'a-z0-9\n-' | wc -c | tr -d ' \t')" != 0 ]; then
+if [ "$(ls db/dom/ | tr -d 'a-z0-9\n\-' | wc -c | tr -d ' \t')" != 0 ]; then
  echo "There's a bad TLD.  You probably don't want to run any shell scripts." >&2
  exit 1
 fi
 for tld in db/dom/* ; do
- if [ "$(ls $tld/ | tr -d 'a-z0-9\n-' | wc -c | tr -d ' \t')" != 0 ]; then
+ if [ "$(ls $tld/ | tr -d 'a-z0-9\n\-' | wc -c | tr -d ' \t')" != 0 ]; then
   tld="$(basename $tld)"
   echo "There's a bad domain under $tld." >&2
   echo "You probably don't want to run any shell scripts." >&2
   exit 1
  fi
  for dom in $tld/* ; do
-  if [ "$(ls $dom/ns/ | tr -d 'A-Fa-z0-9\n.-:' | wc -c | tr -d ' \t')" != 0 ]; then
+  if [ "$(ls $dom/ns/ | tr -d 'A-Fa-z0-9\n.:\-' | wc -c | tr -d ' \t')" != 0 ]; then
    domain="$(basename $dom).$(basename $tld)"
    echo "There's a bad nameserver under $domain." >&2
    echo "You probably don't want to run any shell scripts." >&2
@@ -44,7 +44,7 @@ if [ "$(ls db/ip/ | tr -d 'A-F0-9\n' | wc -c | tr -d ' \t')" != 0 ]; then
      exit 1
     fi
     for third in $second/* ; do
-     if [ "$(ls $third/ns/ | tr -d 'a-z0-9\n.-' | wc -c | tr -d ' \t')" != 0 ]; then
+     if [ "$(ls $third/ns/ | tr -d 'a-z0-9\n.\-' | wc -c | tr -d ' \t')" != 0 ]; then
       ip="$(basename $first).$(basename $second).$(basename $third).0/24"
       echo "There's a bad nameserver under $ip." >&2
       echo "You probably don't want to run any shell scripts." >&2
