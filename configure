@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 vars="gitd_ip gitd_basepath git_name git_email tinydns_config tinydns__rootsrvrname tinydns__rootsrvrip tinydns__tldsrvrname tinydns__tldsrvrip tinydns__srvrip tinydns__srvrname"
 
