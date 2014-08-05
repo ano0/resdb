@@ -1,0 +1,2 @@
+anycast.ano | 1.78.69.80
+ns.anycast.ano | 1.78.69.53
