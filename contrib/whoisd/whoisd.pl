@@ -20,6 +20,7 @@ if($QUERY eq '') {
 my $out;
 my $title;
 my $value;
+my @value;
 my @parts;
 my $i;
 
@@ -69,7 +70,8 @@ if($QUERY =~ m/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-
  foreach(split(/\n/,`grep '' -r .`)) {
   $out = $_;
   $out =~ s/^\.\///g;
-  ($title, $value) = split(/:/,$out);
+  ($title, @value) = split(/:/,$out);
+  $value=join(":",@value);
   printf "%-20s %s\n", $title . ":", $value unless $HACK;
   if($title eq "owner") {
    $QUERY = $value;
