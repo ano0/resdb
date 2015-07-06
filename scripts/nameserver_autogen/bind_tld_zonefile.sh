@@ -16,9 +16,9 @@ echo -n "generating ipv4 reverse lookup zonefile for 1/8..."
 
 echo "; this zonefile genreated on: `date`" > "$RDNS_ZONEFILE"
 echo '$TTL 3600' >> "$RDNS_ZONEFILE"
-echo '@ IN SOA localhost. root.localhost. ('`date +" %Y%m%d%H"`' 60 300 3600000 3600 )' >> "$RDNS_ZONEFILE"
-echo '@ IN NS localhost.' >> "$RDNS_ZONEFILE"
-echo 'localhost. IN A 127.0.0.1' >> "$RDNS_ZONEFILE"
+echo '@ IN SOA @ root ('`date +" %Y%m%d%H"`' 60 300 3600000 3600 )' >> "$RDNS_ZONEFILE"
+echo '@ IN NS @' >> "$RDNS_ZONEFILE"
+echo '@ IN A 127.0.0.1' >> "$RDNS_ZONEFILE"
 
 for i in `ls ${RESDB_PATH}/db/ip/01/*/*/ns/*`;do
  f=$(basename $i)
@@ -35,9 +35,9 @@ echo -n generating .ano TLD zonefile...
 
 echo "; this zonefile genreated on: `date`" > "$ANO_ZONEFILE"
 echo '$TTL 3600' >> "$ANO_ZONEFILE"
-echo '@ IN SOA localhost. root.localhost. ('`date +" %Y%m%d%H"`' 60 300 3600000 3600 )' >> "$ANO_ZONEFILE"
-echo '@ IN NS localhost.' >> "$ANO_ZONEFILE"
-echo 'localhost. IN A 127.0.0.1' >> "$ANO_ZONEFILE"
+echo '@ IN SOA @ root ('`date +" %Y%m%d%H"`' 60 300 3600000 3600 )' >> "$ANO_ZONEFILE"
+echo '@ IN NS @' >> "$ANO_ZONEFILE"
+echo '@ IN A 127.0.0.1' >> "$ANO_ZONEFILE"
 
 
 for name in *;do
