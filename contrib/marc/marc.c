@@ -9,6 +9,9 @@
 #define M_TYPE_LIST 2
 #define M_TYPE_DICT 3
 
+//extension?
+#define M_TYPE_TRANSFERCHAIN 5
+
 char *type[]={"NULL","string","list","dict"};
 
 int indent;
@@ -20,13 +23,24 @@ void pi() {
  }
 }
 
+void printpercent(unsigned char *data,int length) {
+ for(;length;data++,length--) {
+  if(isprint(*data)) printf("%c",*data);
+  else {
+//   printf("%%%c%c","0123456789abcdef"[(*data-'0')>>4&15],"0123456789abcdef"[(*data-'0')&15]);
+   printf("%%%02x",*data);
+//"0123456789abcdef"[(*data-'0')>>4&15],"0123456789abcdef"[(*data-'0')&15]);
+  }
+ }
+}
+
 int marc_decode(unsigned char *data,int from_index,int length) {
- char *s;
+ unsigned char *s;
  unsigned int cur_len=0;
  unsigned char m_type=data[from_index];
  from_index++;
  char *key;
- if(!length) return printf("dafuq? no length???"),-1;
+ if(!length) return printf("what the fuck? no length???"),-1;
  pi();
  printf("length: %d\n",length);
  pi();
@@ -38,7 +52,9 @@ int marc_decode(unsigned char *data,int from_index,int length) {
    s=malloc(length);
    memcpy(s,data+from_index,length-1);
    s[length-1]=0;
-   printf("string: %s\n",s);
+   printf("string: ");
+   printpercent(s,length);
+   printf("\n");
    break;
   case M_TYPE_LIST:
    printf("list:\n");
@@ -75,8 +91,14 @@ int marc_decode(unsigned char *data,int from_index,int length) {
    }
    indent--;
    break;
+  /*case M_TYPE_TRANSFERCHAIN:
+   s=malloc(length);
+   memcpy(s,data+from_index,length-1);
+   s[length-1]=0;
+   printf("transfer: %s\n",s);
+   break;*/
   default:
-   printf("oh fuck. dahell is this!?!? %d\n",m_type);
+   printf("oh fuck. dahell is this!?!? mtype of %d!?!?\n",m_type);
    break;
  }
  return 0;
@@ -89,7 +111,7 @@ void printhex(unsigned char *data,int length) {
 }
 
 void update_message_decode(unsigned char *data,int from_index,int length) {
- printf("update_message version: %d len: %d\n",data[from_index],length);
+ printf("\nupdate_message version: %d len: %d\n",data[from_index],length);
  if(data[from_index] != 2) return printf("this program only handles version 2 update messages.\n");
  from_index++;
  char pkey[32];
@@ -135,7 +157,10 @@ void update_message_decode(unsigned char *data,int from_index,int length) {
    from_index+=2;
    from_index+=ext_data_len;//skip this for now... fuck it.
    printf("  ext %d type: %d len: %d\n",i,ext_type,ext_data_len);
-   if(ext_type != 1 && ext_type != 4) return printf("fuckfuckfuckfuck...\n"),0;
+   if(ext_type != 1 && ext_type != 4 && ext_type != 5) {//let's pretend 5 is transfer chain?
+    printf("fuck. unknown ext_type: %d @ %d\n",ext_type,from_index);
+    return;
+   }
   }
   marc_decode(data+from_index,0,length);
  //}
