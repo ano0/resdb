@@ -60,8 +60,14 @@ int marc_decode(unsigned char *data,int from_index,int length) {
    printf("list:\n");
    indent++;
    while(from_index < length) {
+
+// old code. testing 16 bit lengths.
     cur_len=data[from_index+3]+(data[from_index+2]<<1)+(data[from_index+1]<<2)+(data[from_index+0]<<3);
     from_index+=4;
+
+//    cur_len=data[from_index+1]+(data[from_index+0]<<1);
+//    from_index+=2;
+ 
     marc_decode(data,from_index,cur_len);
     from_index+=cur_len;
    }
@@ -153,6 +159,8 @@ void update_message_decode(unsigned char *data,int from_index,int length) {
   for(i=0;i<num_extensions;i++) {
    ext_type=data[from_index];
    from_index++;
+//  is this right?
+//   ext_data_len=(data[from_index+1]) + (data[from_index+0]<<8);
    ext_data_len=(data[from_index]<<8) + (data[from_index+1]);
    from_index+=2;
    from_index+=ext_data_len;//skip this for now... fuck it.
