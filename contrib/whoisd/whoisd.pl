@@ -37,8 +37,8 @@ sub get_user_from_ASN {
  my $AS=$_[0];
  my $user;
  chdir("$RESDB/db/as") || die "%% error";
- if(chdir($AS) || die "%% error") {
-  open(FILE,"owner") || die "%% ASN not found.";
+ if(chdir($AS) || die "%% ASN not found.") {
+  open(FILE,"owner") || die "%% ASN's owner not found.";
   $user=<FILE>;
   close(FILE);
  } else {
@@ -204,7 +204,6 @@ sub IPv6_lookup {
  }
 }
 
-# default to assuming it is a name.
 sub user_lookup {
  printf "%% user section for '%s'\n", $QUERY unless $HACK;
 
@@ -272,8 +271,8 @@ printf "%%%% found user: %s for the query.\n", $user;
 
 #k. we got user... now to find stuff belonging to that user.
 
-#ASN_lookup($user);
-#IPv4_lookup($user);
-#domain_lookup($user);
-#IPv6_lookup($user);
-user_lookup();
+ASN_lookup($user);
+IPv4_lookup($user);
+domain_lookup($user);
+IPv6_lookup($user);
+#user_lookup();
