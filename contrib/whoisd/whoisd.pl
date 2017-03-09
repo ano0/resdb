@@ -125,7 +125,7 @@ sub ASN_lookup {
 }
 
 
-# IPv4 addresses
+# IPv4 addresses #this checks all dirs in the ip dir. so, 1., 2., and 21. (15)
 sub IPv4_lookup {
  if($QUERY =~ m/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/) {
   printf "%% IP section for %s\n", $QUERY unless $HACK;
@@ -204,7 +204,7 @@ sub IPv6_lookup {
  }
 }
 
-sub user_lookup {
+sub user_based_lookups {
  printf "%% user section for '%s'\n", $QUERY unless $HACK;
 
  chdir("$RESDB/db/usr") || die "%% error";
@@ -230,10 +230,9 @@ sub user_lookup {
  }
  chdir("$RESDB/db/ip") || die "%% error";
  my $merp;
- foreach(split(/\n/,`grep '^$QUERY\$' */*/*/owner | cut -d/ -f1-3`)) {
-  $merp=`cat $_/cidr`;
-  chomp $merp;
-  printf "%-20s %s\n", "cidr" . ":", $merp;
+ foreach(split(/\n/,`grep '^$QUERY\$' */*/*/owner | cut -d/ -f1-3 | xargs printf '%s/cidr\n' | xargs cat | uniq`)) {
+  chomp $_;
+  printf "%-20s %s\n", "cidr" . ":", $_;
  }
  
  foreach(split(/\n/,`grep -i -e "^$QUERY\$" "$RESDB/db/dom"/*/*/owner`)) {
@@ -275,4 +274,5 @@ ASN_lookup($user);
 IPv4_lookup($user);
 domain_lookup($user);
 IPv6_lookup($user);
-#user_lookup();
+$QUERY=$user;
+user_based_lookups($user);
