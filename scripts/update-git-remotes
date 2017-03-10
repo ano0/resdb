@@ -12,22 +12,33 @@ USR_DB_DIR=./db/usr
 GIT_REPO=./.git
 GIT_REMOTES_DIR=$GIT_REPO/refs/remotes
 
-for u in `ls -1 $USR_DB_DIR`; do
+for u in `ls -1 "$USR_DB_DIR"`; do
   git_url_file="$USR_DB_DIR/$u/git"
 
-  if [ -f $git_url_file ]; then
-    git_url=`cat $git_url_file`
+  if [ -f "$git_url_file" ]; then
+    git_url=`cat "$git_url_file"`
     git_remote_name="anonet_$u"
 
-    if [ -d $GIT_REMOTES_DIR/$git_remote_name ]; then
-      # The remote already exists;
-      # TODO: Update it if it has changed.
-      echo "skipping $u" >&2
-
+    if [ -d "$GIT_REMOTES_DIR/$git_remote_name" ]; then
+      if [ x"$git_url" != x`git remote get-url "$git_remote_name"` ]; then
+        echo "changing $u" >&2
+        git remote set-url "$git_remote_name" "$git_url"
+      else
+        # The remote already exists and is the same
+        echo "skipping $u" >&2
+      fi
     else
-      git remote add -t master -m master $git_remote_name $git_url
-
+      echo "adding $u" >&2
+      git remote add -t master -m master "$git_remote_name" "$git_url"
     fi
+  fi
+done
 
+for r in `ls -1 "$GIT_REMOTES_DIR" | grep '^anonet_'`; do
+  u=`echo $r | sed 's/^anonet_//'`
+  if [ ! -f "$USR_DB_DIR/$u/git" ]; then
+    echo "deleting $u" >&2
+    git remote rm "$r"
+    rm -rf "$GIT_REMOTES_DIR/$r"
   fi
 done
