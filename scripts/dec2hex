@@ -17,6 +17,6 @@
    bc -q
   ) | tail -c3
  else
-  cat ./scripts/dec2hex.d/"$(cat)"
+  cat `dirname "$0"`/dec2hex.d/"$(cat)"
  fi
 )

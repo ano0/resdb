@@ -5,5 +5,5 @@ if [ x"$1" = x ]; then
 fi
 
 for x in $(echo -n "$1" | tr . ' ') ; do
- ./scripts/dec2hex "$x"
+`dirname "$0"`/dec2hex "$x"
 done | tr '\n' / | head -c -1 ; echo

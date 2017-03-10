@@ -1,5 +1,5 @@
 #!/bin/sh
-[ -z $2 ] && echo 'Usage: ./scripts/git-config <name> <email>'
+[ -z $2 ] && echo "Usage: $0 <name> <email>" >&2
 [ -z $2 ] && exit 1
 
 git config user.name $1

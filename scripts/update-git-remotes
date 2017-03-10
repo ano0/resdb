@@ -4,7 +4,7 @@
 # TODO: detect users' git address changes
 #
 
-if ! ./scripts/check_db_safety; then
+if ! `dirname "$0"`/check_db_safety; then
  exit 1
 fi
 

@@ -3,7 +3,7 @@
 opt="$1"
 if [ "x$opt" = "x-f" ]; then
  shift
-elif ! ./scripts/check_db_safety; then
+elif ! `dirname "$0"`/check_db_safety; then
  exit 1
 fi
 ns="$1"

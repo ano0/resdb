@@ -12,6 +12,6 @@
  if [ x"$USE_BC" = x1 ]; then
   bc -q
  else
-  cat ./scripts/hex2dec.d/"$(cat)"
+  cat `dirname "$0"`/hex2dec.d/"$(cat)"
  fi
 )

@@ -5,7 +5,7 @@ if [ x"$2" = x ]; then
 fi
 
 cidr="$1"
-hex="$(./scripts/cidr2hex "$cidr")"
+hex=$($(dirname "$0")/cidr2hex "$cidr") || exit 1
 dir=db/ip/"$hex"
 if [ -e "$dir" ]; then
  echo "Refusing to clobber existing record" >&2; exit 1

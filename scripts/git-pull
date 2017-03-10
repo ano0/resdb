@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 if [ -z "$1" ]; then
-    echo './scripts/git-pull $PEER_NAME'
+    echo "Usage: $0 \$PEER_NAME" >&2
     exit 1
 fi
-[ -e db/usr/"$1"/git ] && git pull `cat db/usr/"$1"/git` master
-[ -e db/usr/"$1"/git ] || echo "./git-pull: record does not exist for $1"
+[ -e db/usr/"$1"/git ] && git pull `cat db/usr/"$1"/git` master || echo "$0: record does not exist for $1" >&2
