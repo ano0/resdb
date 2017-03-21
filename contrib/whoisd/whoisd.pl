@@ -266,6 +266,7 @@ else {
  $user=$QUERY;
 }
 $user =~ s/[\r\n]//g;
+printf "%%%% %s", `git log -1 | head -n1`;
 printf "%%%% found user: %s for the query.\n", $user;
 
 #k. we got user... now to find stuff belonging to that user.
