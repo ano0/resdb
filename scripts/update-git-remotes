@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# Creates git remotes from the user db
-# TODO: detect users' git address changes
+# Synchronizes git remotes with the user db
 #
 
 if ! `dirname "$0"`/check_db_safety; then
