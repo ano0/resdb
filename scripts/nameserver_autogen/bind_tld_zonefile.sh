@@ -35,8 +35,8 @@ for PFX in $RDNS_PREFIX;do
  echo '$TTL 3600' >> "$RDNS_ZONEFILE".tmp
  echo '$ORIGIN' $DOM >> "$RDNS_ZONEFILE".tmp
  echo '@ IN SOA @ root ('`date -u +" %Y%m%d%H"`' 60 300 3600000 3600 )' >> "$RDNS_ZONEFILE".tmp
- echo '@ IN NS @' >> "$RDNS_ZONEFILE".tmp
- echo '@ IN A 127.0.0.1' >> "$RDNS_ZONEFILE".tmp
+ echo '@ IN NS  @' >> "$RDNS_ZONEFILE".tmp
+ echo '@ IN A   127.0.0.1' >> "$RDNS_ZONEFILE".tmp
 
  for i in */*/ns/*;do
   [ -e "$i" ] || continue
@@ -44,7 +44,8 @@ for PFX in $RDNS_PREFIX;do
   a=$(basename $(dirname $i))
   b=$(basename $(dirname $(dirname $i)))
   c=$(basename $(dirname $(dirname $(dirname $i))))
-  printf "%d.%d IN NS %s\n" $[0x${b}] $[0x${c}] ${f}.
+  ipv4=`printf "%d.%d" $[0x${b}] $[0x${c}]`
+  printf "%-7s IN NS %s\n" $ipv4 ${f}.
  done >> "$RDNS_ZONEFILE".tmp
  mv -f "$RDNS_ZONEFILE".tmp "$RDNS_ZONEFILE"
  echo " done." >&2
@@ -61,8 +62,8 @@ for TLD in $TLDS;do
  echo '$TTL 3600' >> "$ANO_ZONEFILE".tmp
  echo '$ORIGIN' $TLD >> "$ANO_ZONEFILE".tmp
  echo '@ IN SOA @ root ('`date -u +" %Y%m%d%H"`' 60 300 3600000 3600 )' >> "$ANO_ZONEFILE".tmp
- echo '@ IN NS @' >> "$ANO_ZONEFILE".tmp
- echo '@ IN A 127.0.0.1' >> "$ANO_ZONEFILE".tmp
+ echo '@ IN NS  @' >> "$ANO_ZONEFILE".tmp
+ echo '@ IN A   127.0.0.1' >> "$ANO_ZONEFILE".tmp
 
  for name in *;do
   if [ -e "$name/ns/" ];then
