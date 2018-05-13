@@ -66,7 +66,7 @@ for TLD in $TLDS;do
  echo '@ IN A   127.0.0.1' >> "$ANO_ZONEFILE".tmp
 
  for name in *;do
-  if [ -e "$name/ns/" ];then
+  if [ -d "$name/ns" ];then
    for server in "$name"/ns/*;do
     [ -e "$server" ] || continue
     fqserver=`cut -d/ -f3- <<< "$server"`
