@@ -33,7 +33,7 @@ for PFX in $RDNS_PREFIX;do
 
  echo "; this zonefile genreated on: `date -u`" > "$RDNS_ZONEFILE".tmp
  echo '$TTL 3600' >> "$RDNS_ZONEFILE".tmp
- echo '$ORIGIN' $DOM >> "$RDNS_ZONEFILE".tmp
+ echo '$ORIGIN' $DOM. >> "$RDNS_ZONEFILE".tmp
  echo '@ IN SOA @ root ('`date -u +" %Y%m%d%H"`' 60 300 3600000 3600 )' >> "$RDNS_ZONEFILE".tmp
  echo '@ IN NS  @' >> "$RDNS_ZONEFILE".tmp
  echo '@ IN A   127.0.0.1' >> "$RDNS_ZONEFILE".tmp
@@ -60,7 +60,7 @@ for TLD in $TLDS;do
 
  echo "; this zonefile genreated on: `date -u`" > "$ANO_ZONEFILE".tmp
  echo '$TTL 3600' >> "$ANO_ZONEFILE".tmp
- echo '$ORIGIN' $TLD >> "$ANO_ZONEFILE".tmp
+ echo '$ORIGIN' $TLD. >> "$ANO_ZONEFILE".tmp
  echo '@ IN SOA @ root ('`date -u +" %Y%m%d%H"`' 60 300 3600000 3600 )' >> "$ANO_ZONEFILE".tmp
  echo '@ IN NS  @' >> "$ANO_ZONEFILE".tmp
  echo '@ IN A   127.0.0.1' >> "$ANO_ZONEFILE".tmp
