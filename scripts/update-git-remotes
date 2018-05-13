@@ -3,6 +3,7 @@
 # Synchronizes git remotes with the user db
 #
 
+echo "checking database safety" >&2
 if ! `dirname "$0"`/check_db_safety; then
  exit 1
 fi
