@@ -1,4 +1,4 @@
-#!/usr/pkg/bin/perl
+#!/usr/bin/env perl
 # ncat -klp 43 -e ./whoisd.pl
 # use inetd or tcpserver or ncat
 
