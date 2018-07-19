@@ -6,6 +6,7 @@
 # optional:
 : ${TLDS:=ano}
 : ${RDNS_PREFIX:=21}
+: ${RDNS6_PREFIX:=fd63:1e39:6f73}
 
 if [ ! "$ZONEFILE_DIR" ];then
  echo "You forgot to set some variables. read the source plzkthx." >&2
