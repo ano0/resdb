@@ -27,7 +27,7 @@ fi
 cd "$RESDB_PATH/db/ip" || exit 1
 for PFX in $RDNS_PREFIX;do
  cd "$RESDB_PATH/db/ip/$PFX" 2>/dev/null || continue
- IP=$[0x$PFX]
+ IP=$((0x$PFX))
  DOM=$IP.in-addr.arpa
  RDNS_ZONEFILE="$ZONEFILE_DIR/$DOM"
  echo -n "generating IPv4 reverse lookup zonefile for $IP/8..." >&2
@@ -45,7 +45,7 @@ for PFX in $RDNS_PREFIX;do
   a=$(basename $(dirname $i))
   b=$(basename $(dirname $(dirname $i)))
   c=$(basename $(dirname $(dirname $(dirname $i))))
-  ipv4=`printf "%d.%d" $[0x${b}] $[0x${c}]`
+  ipv4=`printf "%d.%d" $((0x$b)) $((0x$c))`
   printf "%-7s IN NS %s\n" $ipv4 ${f}.
  done >> "$RDNS_ZONEFILE".tmp
  mv -f "$RDNS_ZONEFILE".tmp "$RDNS_ZONEFILE"
