@@ -89,7 +89,7 @@ sub get_user_from_domain {
 sub get_user_from_IPv6 {
  chdir("$RESDB/db/ip6") || die "%% error. no resdb/db/ip6\n";
  $d=$_[0];
- print "$d";
+ #print "$d";
  $d =~ s/[^0-9a-f]//gi;
  $d =~ tr/a-z/A-Z/;
  foreach(split(//,$d)) {
@@ -231,6 +231,12 @@ sub user_based_lookups {
  chdir("$RESDB/db/ip") || die "%% error";
  my $merp;
  foreach(split(/\n/,`grep '^$QUERY\$' */*/*/owner | cut -d/ -f1-3 | xargs printf '%s/cidr\n' | xargs cat | uniq`)) {
+  chomp $_;
+  printf "%-20s %s\n", "cidr" . ":", $_;
+ }
+ 
+ chdir("$RESDB/db/ip6") || die "%% error";
+ foreach(split(/\n/,`grep '^$QUERY\$' -r * | cut -d/ -f1-16 | xargs printf '%s/cidr\n' | xargs cat | uniq`)) {
   chomp $_;
   printf "%-20s %s\n", "cidr" . ":", $_;
  }
