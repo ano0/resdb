@@ -6,12 +6,32 @@
 # optional:
 : ${TLDS:=ano}
 : ${RDNS_PREFIX:=21}
-: ${RDNS6_PREFIX:=fd63:1e39:6f73}
+: ${RDNS6_PREFIX:=fd63:1e39:6f73} #not actually used atm.
 
 if [ ! "$ZONEFILE_DIR" ];then
  echo "You forgot to set some variables. read the source plzkthx." >&2
  exit 1
 fi
+
+DOM="3.7.f.6.9.3.e.1.3.6.d.f.ip6.arpa"
+RDNS_ZONEFILE="$ZONEFILE_DIR/$DOM"
+
+echo -n 'generating IPv6 reverse lookup zonefile for...' >&2
+echo "; this zonefile generated on: `date -u`" > "$RDNS_ZONEFILE".tmp
+echo '$TTL 3600' >> "$RDNS_ZONEFILE".tmp
+echo '$ORIGIN' $DOM. >> "$RDNS_ZONEFILE".tmp
+echo '@ IN SOA @ root ('`date -u +" %Y%m%d%H"`' 60 300 3600000 3600 )' >> "$RDNS_ZONEFILE".tmp
+echo '@ IN NS  @' >> "$RDNS_ZONEFILE".tmp
+echo '@ IN A   127.0.0.1' >> "$RDNS_ZONEFILE".tmp
+cd $RESDB_PATH/db/ip6/F/D/6/3/1/E/3/9/6/F/7/3/
+for i in  */*/*/*/ns/*;do
+ a=$(printf "%s\n" "$i" | cut -d/ -f1-4 | tr '/' '.' | rev)
+ b=$(printf "%s\n" "$i" | cut -d/ -f6)
+ printf '%s IN NS %s.\n' "$a" "$b"
+done >> "$RDNS_ZONEFILE".tmp
+mv -f "$RDNS_ZONEFILE".tmp "$RDNS_ZONEFILE"
+echo " done." >&2
+
 
 # convert to hex
 if [ "*" != "$RDNS_PREFIX" ];then
